@@ -28,6 +28,7 @@ public class PlayerInput : MonoBehaviour
     public bool swap2 = default;
     public bool swap3 = default;
     public bool get = default;
+
     // Start is called before the first frame update
     void Start()
     {
