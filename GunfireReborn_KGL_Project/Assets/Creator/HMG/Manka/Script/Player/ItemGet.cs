@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemGet : MonoBehaviour
@@ -9,8 +10,8 @@ public class ItemGet : MonoBehaviour
     GameObject nearObject;
 
     Item nearItem;
-
-    PlayerInput input;
+    //플레이어 웨폰슬롯
+    WeaponManager weaponManager;
 
 
     //레이를 쏘기시작할 캠
@@ -28,12 +29,13 @@ public class ItemGet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        input = GetComponent<PlayerInput>();
+        weaponManager = GetComponent<WeaponManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+       
         ShotRaycast();
     }
     private void ShotRaycast()
@@ -80,17 +82,38 @@ public class ItemGet : MonoBehaviour
 
     private void GetItem()
     {
-        
+        //ToDo : if문으로 만약 공격중이라면 바로 return하도록 만들어야한다.
+        //공격중에는 아이템을 먹을수가없다.
         if (nearObject != null)
         {
             Debug.LogFormat("{0}", nearObject.name);
-            if (nearObject.tag == "weapon" && input.get == true)
+            if (nearObject.tag == "weapon" && Input.GetButtonDown("Get"))
             {//가까이 있고, 아이템 갖는 입력을받고, 레이캐스트에 맞았을때
              //일단은 임시적으로 아이템을 파괴하게 만들음
+                //changeWeapon();
+                //또한 원래 가지고있던 무기가 밖으로 떨어지게만들어야함
+                //WeaponDrop();
                 Destroy(nearObject.gameObject);
-                input.get = false;
             }
         }
        
+    }
+
+    private void ChangeWeapon()
+    {
+
+        if (weaponManager.slotWeapons[0] == null)
+        {//만약 1번슬롯이 비어있다면  1번에 무기장착하도록함.
+            weaponManager.EquipWeapon(nearObject.name, 0);
+        }
+        else if (weaponManager.slotWeapons[1] == null)
+        {//만약 2번슬롯이 비어있다면  2번에 무기장착하도록함.
+            weaponManager.EquipWeapon(nearObject.name, 1);
+        }
+        else
+        {//만약 1,2,번 슬롯이 모두 있다면 지금현재 사용하고있는 슬롯의 무기와 교환하도록함.
+            weaponManager.WeaponDrop();
+            weaponManager.EquipWeapon(nearObject.name, 99); //어차피 0과 1이외의 경우는 EquipWeapon에서 현재 활성화되어있는 슬롯을체크하고 그슬롯을 바꾸기때문에 상관없다고판단했다.
+        }
     }
 }

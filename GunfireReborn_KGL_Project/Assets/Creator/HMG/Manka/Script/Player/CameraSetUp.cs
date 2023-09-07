@@ -7,6 +7,7 @@ public class CameraSetUp : MonoBehaviour
 {
 
     public CinemachineVirtualCamera followCam;
+    public GameObject weaponPosition;
 
     private float lookSensivility = 5f;
     private float cameraRotationLimit = 45;
@@ -33,5 +34,6 @@ public class CameraSetUp : MonoBehaviour
         currentCameraRotationX -= _cameraRotationX;
         currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
         followCam.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
+        weaponPosition.transform.localEulerAngles = new Vector3(currentCameraRotationX,0f, 0f);
     }
 }

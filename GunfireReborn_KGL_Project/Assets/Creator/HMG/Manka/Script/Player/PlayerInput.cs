@@ -24,10 +24,6 @@ public class PlayerInput : MonoBehaviour
     public float RMove;
     public bool jump = default;
     public bool dash = default;
-    public bool swap1 = default;
-    public bool swap2 = default;
-    public bool swap3 = default;
-    public bool get = default;
 
     // Start is called before the first frame update
     void Start()
@@ -60,14 +56,6 @@ public class PlayerInput : MonoBehaviour
         jump = Input.GetButtonDown(jumpName);
         //dash에 관한 입력감지
         dash = Input.GetButtonDown(dashName);
-        //swap1에 관한 입력감지
-        swap1 = Input.GetButtonDown(swap1Name);
-        //swap2에 관한 입력감지
-        swap2 = Input.GetButtonDown(swap2Name);
-        //swap3에 관한 입력감지
-        swap3 = Input.GetButtonDown(swap3Name);
-        //get에 관한 입력감지
-        get = Input.GetButton(getItem);
 
         //ToDo:
         //InputManager에서 fire,reload,dash,swap1,2,3, getItem처리를 해줘야한다.
