@@ -10,9 +10,12 @@ public class PlayerController : MonoBehaviour
     private Transform myHand = default;
     private Transform muzzle = default;
 
-    public static bool isShoot = false;
+    public Vector3 camRotate = default;
 
-    public static Vector3 hitPoint = Vector3.zero;
+    public bool isShoot = false;
+    public bool useSkill = false;
+
+    public Vector3 hitPoint = Vector3.zero;
     private float speed = 500.0f;
 
     // Start is called before the first frame update
@@ -26,11 +29,11 @@ public class PlayerController : MonoBehaviour
         muzzle = GameObject.Find("Muzzle").GetComponentInChildren<Transform>();
 
 
-        Debug.Log(myBody.name);
-        Debug.Log(myEye.name);
-        Debug.Log(myHand.name);
-        Debug.Log(muzzle.name);
-        Debug.Log("총구 위치 : " + myEye.transform.position);
+        //Debug.Log(myBody.name);
+        //Debug.Log(myEye.name);
+        //Debug.Log(myHand.name);
+        //Debug.Log(muzzle.name);
+        //Debug.Log("총구 위치 : " + myEye.transform.position);
     }
 
     // Update is called once per frame
@@ -39,7 +42,7 @@ public class PlayerController : MonoBehaviour
         Move();
         Shooting();
         CamControll();
-
+        
     }
 
     private void Move()
@@ -55,6 +58,7 @@ public class PlayerController : MonoBehaviour
 
     private void Shooting()
     {
+        // { 마우스 좌클릭
         if(Input.GetMouseButton(0))
         {
             isShoot = true;
@@ -62,19 +66,41 @@ public class PlayerController : MonoBehaviour
 
             RaycastHit hit; 
 
-            if(Physics.Raycast(myEye.transform.position, myEye.transform.forward, out hit))
+            if(Physics.Raycast(myEye.transform.position, myEye.transform.forward, out hit, 50f))
             {               
                 hitPoint = hit.point;
                 //Debug.Log("레이 찍힌 지점 : " + hitPoint);
                 
             }            
         }
+        else if(Input.GetMouseButtonUp(0))
+        {
+            isShoot = false;
+        }
+        // } 마우스 좌클릭
+
+
+        // { 마우스 우클릭
+        if (Input.GetMouseButtonDown(1))
+        {
+            useSkill = true;
+            Debug.DrawRay(myEye.transform.position, myEye.transform.forward * 20f, Color.yellow);
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(myEye.transform.position, myEye.transform.forward, out hit, 50f))
+            {
+                hitPoint = hit.point;
+                //Debug.Log("레이 찍힌 지점 : " + hitPoint);
+
+            }
+
+        }
         else
         {
-            isShoot= false;
+            useSkill = false;
         }
-
-        
+        // } 마우스 우클릭
     }
 
     private void CamControll()
@@ -83,8 +109,8 @@ public class PlayerController : MonoBehaviour
         float h = Input.GetAxisRaw("Mouse X");
 
         //Debug.Log("마우스 입력값 : " + v);
-        Vector3 camRotate = myEye.eulerAngles;
-        camRotate = new Vector3(camRotate.x + v * 500f * Time.deltaTime, camRotate.y + h * 500f * Time.deltaTime, 0f);
+        camRotate = myEye.eulerAngles;
+        camRotate = new Vector3(camRotate.x + v * 500f * Time.deltaTime, camRotate.y + h * 500f * Time.deltaTime, 0f);        
 
         //myEye.rotation = Quaternion.Slerp(myEye.transform.rotation, Quaternion.LookRotation(camRotate), 1f);
         //camRotate.x = Mathf.Clamp(camRotate.x, -90f, 90f);
