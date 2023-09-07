@@ -78,6 +78,7 @@ public class Rifle : MonoBehaviour
         if (shoot.useSkill == true)
         {
             useskill = true;
+
             for (int i = 0; i < 10; i++)
             {
                 Instantiate(bulletPrefab, muzzle.transform.position, transform.rotation);

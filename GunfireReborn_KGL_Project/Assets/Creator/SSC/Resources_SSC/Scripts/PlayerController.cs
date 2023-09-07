@@ -23,10 +23,10 @@ public class PlayerController : MonoBehaviour
     {
         
         myRigid = GetComponent<Rigidbody>();
-        myBody = GameObject.Find("Body").GetComponent<Transform>();
-        myEye = GameObject.Find("CameraArm").GetComponentInChildren<Transform>();
-        myHand = GameObject.Find("Hand").GetComponentInChildren<Transform>();
-        muzzle = GameObject.Find("Muzzle").GetComponentInChildren<Transform>();
+        myBody = transform.Find("Body").GetComponentInChildren<Transform>();
+        myEye = transform.Find("CameraArm").GetComponentInChildren<Transform>();
+        myHand = myBody.transform.Find("Hand").GetComponentInChildren<Transform>();
+        //muzzle = myHand.transform.Find("")
 
 
         //Debug.Log(myBody.name);
