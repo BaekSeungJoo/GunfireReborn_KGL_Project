@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - weapon
+  - Enumy
   layers:
   - Default
   - TransparentFX
