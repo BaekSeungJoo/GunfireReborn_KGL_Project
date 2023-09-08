@@ -21,7 +21,7 @@ public class Rifle : MonoBehaviour
     public AudioClip skillShot;
 
     // 사격 간격시간
-    public float attackSpeed = 0.01f;
+    public float attackSpeed = 0.1f;
     private float attackTimer = 0f;
 
     private bool useskill = false;
@@ -45,8 +45,9 @@ public class Rifle : MonoBehaviour
 
             if(attackTimer > attackSpeed)
             {
-                
-                Instantiate(bulletPrefab, muzzle.transform.position, transform.rotation);         
+                Debug.Log("라이플 로테이션 값 : " + transform.rotation);
+                Debug.Log("총구 로테이션 값 :" + muzzle.rotation);
+                Instantiate(bulletPrefab, muzzle.transform.position, muzzle.transform.rotation);         
                 muzzlFlash.Play();
                 fireSound.clip = basicShot;
                 fireSound.volume = 0.4f;
@@ -81,7 +82,7 @@ public class Rifle : MonoBehaviour
 
             for (int i = 0; i < 10; i++)
             {
-                Instantiate(bulletPrefab, muzzle.transform.position, transform.rotation);
+                Instantiate(bulletPrefab, muzzle.transform.position, muzzle.transform.rotation);
             }
 
             muzzlFlash.Play();

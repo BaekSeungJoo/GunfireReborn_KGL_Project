@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
                 randomHit.z + Random.Range(randposMin, randposMax));
             myRigid.velocity = random;
 
-            Debug.Log("벨로시티에 적용될 값은? : " + randomHit);
+            //Debug.Log("벨로시티에 적용될 값은? : " + randomHit);
 
             //myRigid.velocity = randomHit * speed;
             //target = randomHit - transform.position;
@@ -40,7 +40,9 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        myRigid.velocity = cam.transform.forward * speed;
+        myRigid.velocity = cam.transform.forward * speed;        
+
+        Debug.Log("총알 로테이션 값 : " + transform.rotation);
 
         //Debug.Log("목표와 총알 사이의 거리 : " + target + " 목표의 방향 : " + targetnormal);
 

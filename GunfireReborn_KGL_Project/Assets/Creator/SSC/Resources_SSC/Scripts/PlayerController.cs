@@ -62,16 +62,16 @@ public class PlayerController : MonoBehaviour
         if(Input.GetMouseButton(0))
         {
             isShoot = true;
-            Debug.DrawRay(myEye.transform.position, myEye.transform.forward * 20f, Color.yellow);
+            //Debug.DrawRay(myEye.transform.position, myEye.transform.forward * 20f, Color.yellow);
 
-            RaycastHit hit; 
+            //RaycastHit hit; 
 
-            if(Physics.Raycast(myEye.transform.position, myEye.transform.forward, out hit, 50f))
-            {               
-                hitPoint = hit.point;
-                //Debug.Log("·¹ÀÌ ÂïÈù ÁöÁ¡ : " + hitPoint);
+            //if(Physics.Raycast(myEye.transform.position, myEye.transform.forward, out hit, 50f))
+            //{               
+            //    hitPoint = hit.point;
+            //    //Debug.Log("·¹ÀÌ ÂïÈù ÁöÁ¡ : " + hitPoint);
                 
-            }            
+            //}            
         }
         else if(Input.GetMouseButtonUp(0))
         {
