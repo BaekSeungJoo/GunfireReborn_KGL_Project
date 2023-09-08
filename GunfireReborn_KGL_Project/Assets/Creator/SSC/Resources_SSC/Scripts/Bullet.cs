@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -5,7 +6,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    PlayerController shoot;
+    PlayerAttack shoot;
+    public CinemachineVirtualCamera cam;
     private Rigidbody myRigid = default;
     private float speed = 30.0f;
 
@@ -15,8 +17,8 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Camera cam = Camera.main;
-        shoot = FindObjectOfType<PlayerController>();
+        cam = FindObjectOfType<CinemachineVirtualCamera>();
+        shoot = FindObjectOfType<PlayerAttack>();
         myRigid = GetComponent<Rigidbody>();
 
         //Vector3 target = shoot.hitPoint - transform.position;

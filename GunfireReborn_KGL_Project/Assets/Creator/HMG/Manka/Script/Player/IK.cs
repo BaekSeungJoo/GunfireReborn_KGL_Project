@@ -25,8 +25,11 @@ public class IK : MonoBehaviour
         {
             weaponChilds[i] = weaponPosition.GetChild(i).gameObject;
         }
-        weaponChilds[0].SetActive(true);
-        ChangeIK("Pistol");
+
+        //처음에 활성화할 IK와 무기
+        weaponChilds[1].SetActive(true);
+        ChangeIK("Rifle");
+        //라이플을 활성화함
     }
 
     // Update is called once per frame
