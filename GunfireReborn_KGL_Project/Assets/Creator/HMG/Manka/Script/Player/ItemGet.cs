@@ -86,13 +86,11 @@ public class ItemGet : MonoBehaviour
         //공격중에는 아이템을 먹을수가없다.
         if (nearObject != null)
         {
-            Debug.LogFormat("{0}", nearObject.name);
+            //Debug.LogFormat("{0}", nearObject.name);
             if (nearObject.tag == "weapon" && Input.GetButtonDown("Get"))
             {//가까이 있고, 아이템 갖는 입력을받고, 레이캐스트에 맞았을때
              //일단은 임시적으로 아이템을 파괴하게 만들음
-                //changeWeapon();
-                //또한 원래 가지고있던 무기가 밖으로 떨어지게만들어야함
-                //WeaponDrop();
+                ChangeWeapon();
                 Destroy(nearObject.gameObject);
             }
         }
@@ -101,17 +99,20 @@ public class ItemGet : MonoBehaviour
 
     private void ChangeWeapon()
     {
-
+        Debug.LogFormat("{0}", weaponManager.slotWeapons[0]);
         if (weaponManager.slotWeapons[0] == null)
         {//만약 1번슬롯이 비어있다면  1번에 무기장착하도록함.
+            Debug.Log("1번슬롯에입장");
             weaponManager.EquipWeapon(nearObject.name, 0);
         }
         else if (weaponManager.slotWeapons[1] == null)
         {//만약 2번슬롯이 비어있다면  2번에 무기장착하도록함.
+            Debug.Log("2번슬롯에입장");
             weaponManager.EquipWeapon(nearObject.name, 1);
         }
         else
         {//만약 1,2,번 슬롯이 모두 있다면 지금현재 사용하고있는 슬롯의 무기와 교환하도록함.
+            Debug.Log("1,2번중 활성화된 슬롯에 입장");
             weaponManager.WeaponDrop();
             weaponManager.EquipWeapon(nearObject.name, 99); //어차피 0과 1이외의 경우는 EquipWeapon에서 현재 활성화되어있는 슬롯을체크하고 그슬롯을 바꾸기때문에 상관없다고판단했다.
         }

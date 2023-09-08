@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class IK : MonoBehaviour
 {
     //웨폰 포지션
     public Transform weaponPosition;
-
+    //웨폰의 자식들을저장할배열
+    private GameObject[] weaponChilds;
     //왼쪽 오른쪽손이 갈위치
     public Transform p_HandLeft;
     public Transform p_HandRight;
@@ -17,6 +19,14 @@ public class IK : MonoBehaviour
     void Start()
     {
         IKAnimator = GetComponent<Animator>();
+        //Todo  웨폰의 자식들을  weaponchilds에 저장해야함
+        weaponChilds = new GameObject[weaponPosition.childCount];
+        for (int i = 0; i < weaponPosition.childCount; i++)
+        {
+            weaponChilds[i] = weaponPosition.GetChild(i).gameObject;
+        }
+        weaponChilds[0].SetActive(true);
+        ChangeIK("Pistol");
     }
 
     // Update is called once per frame
@@ -47,5 +57,14 @@ public class IK : MonoBehaviour
     public void ChangeIK(string weaponName)
     {
         //Todo : for 문을 돌려서 weaponposition의 자식중  이름이 weaponName과 같은 녀석과 ik를 맞추는 코드를 작성해야한다.
+        for (int i = 0; i < weaponChilds.Length; i++)
+        {
+            if (weaponChilds[i].name == weaponName)
+            {
+                // IK를 맞추는 코드 추가
+                p_HandLeft = weaponChilds[i].GetComponent<weapon>().leftGrap;
+                p_HandRight = weaponChilds[i].GetComponent<weapon>().rightGrap;
+            }
+        }
     }
 }

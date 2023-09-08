@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class WeaponManager : MonoBehaviour
 
     private void Start()
     {
+        slotWeapons[0] = null;
+        slotWeapons[1] = null;
+        ActiveSlot = new bool[3];
+        ActiveSlot[2] = true;
         playerIK = gameObject.GetComponent<IK>();
         weapons[0] = "Pistol";
         weapons[1] = "Rifle";
@@ -54,26 +59,46 @@ public class WeaponManager : MonoBehaviour
     {
         if (First == 0)
         {   //만약 첫번째 슬롯이 비어있어서 장착된경우라면
+            Debug.Log("EquipWeapon1");
+            Debug.LogFormat("{0}", weaponName);    
+            //3번째 슬롯이 활성화된상태 즉 아무 무기도 먹지않은 처음상태라면
+            if (ActiveSlot[2] == true)
+            {
+                ActiveSlot[2] = false;
+            }
+            ActiveSlot[0] = true;
             //첫번째 슬롯의 아이템을 먹은 아이템으로 바꾼다.
             slotWeapons[0] = weaponName;
             //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
             playerIK.ChangeIK(weaponName);
             //그리고 팔에있는 무기를 활성화시킨다.
             Equip_weapons[SearchWeapon()].SetActive(true);
-            //
+            //아닌 것들을 모두 false
+            TurnWeapon(weaponName);
         }
         else if (First == 1)
         {   //만약 두번째 슬롯이 비어있어서 장착된경우라면
+            Debug.Log("EquipWeapon2");
+            //3번째 슬롯이 활성화된상태라면
+            if (ActiveSlot[2] == true)
+            {
+                ActiveSlot[2] = false;
+            }
+            ActiveSlot[1] = true;
+            
+
             //두번째 슬롯의 아이템을 먹은 아이템으로 바꾼다.
             slotWeapons[1] = weaponName;
             //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
             playerIK.ChangeIK(weaponName);
             //그리고 팔에있는 무기를 활성화시킨다.
             Equip_weapons[SearchWeapon()].SetActive(true);
-            //
+            //아닌 것들을 모두 false
+            TurnWeapon(weaponName);
         }
         else
         {
+            Debug.Log("EquipWeapon");
             //만약 1,2번슬롯이 모두 무기가 장착되어있는 경우라면
             //현재 활성화된 슬롯이 몇번슬롯인지 체크하고
             //그슬롯의 아이템을 먹은 아이템으로 바꾼다.
@@ -87,7 +112,7 @@ public class WeaponManager : MonoBehaviour
     }
 
     public int CheckActiveslot()
-    {
+    {   //현재 활성화된 슬롯을 체크하는함수
         //아무무기도 안먹은상태는 기본무기3번슬롯이 활성화되야하기에 2가 기본값이다.
         int ActiveSlotNum=2;
         for(int i =0; i<3; i++)
@@ -138,5 +163,20 @@ public class WeaponManager : MonoBehaviour
             }
         }
         return 999;
+    }
+
+    public void TurnWeapon(string weaponName)
+    {// 손에있는 무기배열중 아닌것을 모두끄는 함수.
+        for(int i =0; i< Equip_weapons.Length; i++)
+        {
+            if (Equip_weapons[i].name == weaponName )
+            {
+                Equip_weapons[i].SetActive(true);
+            }
+            else
+            {
+                Equip_weapons[i].SetActive(false);
+            }
+        }
     }
 }
