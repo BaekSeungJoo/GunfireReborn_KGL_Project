@@ -1,117 +1,117 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Photon.Pun;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+//using Photon.Pun;
+//using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class RoomManager : MonoBehaviourPunCallbacks
-{
-    public static RoomManager instance;
+//public class RoomManager : MonoBehaviourPunCallbacks
+//{
+//    public static RoomManager instance;
 
-    public GameObject player;
+//    public GameObject player;
 
-    [Space]
-    public Transform[] spawnPoints;
+//    [Space]
+//    public Transform[] spawnPoints;
 
-    [Space]
-    public GameObject roomCam;
+//    [Space]
+//    public GameObject roomCam;
 
-    [Space]
-    public GameObject nameUI;
-    public GameObject connectingUI;
+//    [Space]
+//    public GameObject nameUI;
+//    public GameObject connectingUI;
 
-    private string nickname = "unnamed";
+//    private string nickname = "unnamed";
 
-    public string roomNameToJoin = "test";
+//    public string roomNameToJoin = "test";
 
-    [HideInInspector]
-    public int kills = 0;
-    [HideInInspector]
-    public int deaths = 0;
+//    [HideInInspector]
+//    public int kills = 0;
+//    [HideInInspector]
+//    public int deaths = 0;
 
-    private void Awake()
-    {
-        instance = this;
-    }
+//    private void Awake()
+//    {
+//        instance = this;
+//    }
 
-    public void ChangeNickName(string _name)
-    {
-        nickname = _name;
-    }
+//    public void ChangeNickName(string _name)
+//    {
+//        nickname = _name;
+//    }
 
-    public void JoinRoomButtonPressed()
-    {
-        Debug.Log("Connecting");
+//    public void JoinRoomButtonPressed()
+//    {
+//        Debug.Log("Connecting");
 
-        PhotonNetwork.JoinOrCreateRoom("roomNameToJoin", null, null);
+//        PhotonNetwork.JoinOrCreateRoom("roomNameToJoin", null, null);
 
-        nameUI.SetActive(false);
-        connectingUI.SetActive(true);
-    }
+//        nameUI.SetActive(false);
+//        connectingUI.SetActive(true);
+//    }
 
-    // 룸을 생성을 사용자가 직접하므로 삭제
-    #region create room
-    //void Start()
-    //{
+//    // 룸을 생성을 사용자가 직접하므로 삭제
+//    #region create room
+//    //void Start()
+//    //{
 
-    //}
+//    //}
 
-    //public override void OnConnectedToMaster()
-    //{
-    //    base.OnConnectedToMaster();
+//    //public override void OnConnectedToMaster()
+//    //{
+//    //    base.OnConnectedToMaster();
 
-    //    Debug.Log("Connected to Server");
+//    //    Debug.Log("Connected to Server");
 
-    //    PhotonNetwork.JoinLobby();
-    //}
+//    //    PhotonNetwork.JoinLobby();
+//    //}
 
-    //public override void OnJoinedLobby()
-    //{
-    //    base.OnJoinedLobby();
+//    //public override void OnJoinedLobby()
+//    //{
+//    //    base.OnJoinedLobby();
 
-    //    Debug.Log("We're in the lobby");
+//    //    Debug.Log("We're in the lobby");
 
-    //    PhotonNetwork.JoinOrCreateRoom("roomNameToJoin", null, null);
-    //}
-    #endregion
+//    //    PhotonNetwork.JoinOrCreateRoom("roomNameToJoin", null, null);
+//    //}
+//    #endregion
 
-    public override void OnJoinedRoom()
-    {
-        base.OnJoinedRoom();
+//    public override void OnJoinedRoom()
+//    {
+//        base.OnJoinedRoom();
 
-        Debug.Log("We,re connected and in a room!");
+//        Debug.Log("We,re connected and in a room!");
 
-        roomCam.SetActive(false);
+//        roomCam.SetActive(false);
 
-        SpawnPlayer();
-    }
+//        SpawnPlayer();
+//    }
 
-    public void SpawnPlayer()
-    {
-        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+//    public void SpawnPlayer()
+//    {
+//        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
-        GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
-        _player.GetComponent<PlayerSetUp>().IsLocalPlayer();
-        _player.GetComponent<Health>().isLocalPlayer = true;
+//        GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
+//        _player.GetComponent<PlayerSetUp>().IsLocalPlayer();
+//        _player.GetComponent<Health>().isLocalPlayer = true;
 
-        _player.GetComponent<PhotonView>().RPC("SetNickname", RpcTarget.AllBuffered, nickname);
-        PhotonNetwork.LocalPlayer.NickName = nickname;
-    }
+//        _player.GetComponent<PhotonView>().RPC("SetNickname", RpcTarget.AllBuffered, nickname);
+//        PhotonNetwork.LocalPlayer.NickName = nickname;
+//    }
 
-    public void SetHashes()
-    {
-        try
-        {
-            Hashtable hash = PhotonNetwork.LocalPlayer.CustomProperties;
+//    public void SetHashes()
+//    {
+//        try
+//        {
+//            Hashtable hash = PhotonNetwork.LocalPlayer.CustomProperties;
 
-            hash["kills"] = kills;
-            hash["deaths"] = deaths;
+//            hash["kills"] = kills;
+//            hash["deaths"] = deaths;
 
-            PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
-        }
-        catch
-        {
-            // do nothing
-        }
-    }
-}
+//            PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+//        }
+//        catch
+//        {
+//            // do nothing
+//        }
+//    }
+//}
