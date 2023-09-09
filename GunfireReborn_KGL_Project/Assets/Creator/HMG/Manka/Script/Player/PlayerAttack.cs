@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     public bool isShoot = false;
     public bool useSkill = false;
+    public bool isShootPistol = false;
 
     // Update is called once per frame
     void Update()
@@ -17,6 +18,12 @@ public class PlayerAttack : MonoBehaviour
         else if (Input.GetMouseButtonUp(0))
         {
             isShoot = false;
+            //isShootPistol = false;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            isShootPistol = true;
         }
         // } 마우스 좌클릭
 

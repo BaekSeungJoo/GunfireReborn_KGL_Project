@@ -10,8 +10,6 @@ public class WeaponManager : MonoBehaviour
     public bool[] ActiveSlot;
     //현재 슬롯에 있는 웨폰을 확인하기위한 변수
     public string[] slotWeapons;
-    //모든 종류의 웨폰들
-    public string[] weapons;
     //장착하지않은 웨폰들의 프리팹 저장배열
     public GameObject[] weaponPrefabs;
     //플레이어의 IK함수를 가져오기위한 변수
@@ -24,34 +22,83 @@ public class WeaponManager : MonoBehaviour
 
     private void Start()
     {
+        //제일처음에는 슬롯0과 1에 아무것도 없는상태가되야한다.
         slotWeapons[0] = null;
         slotWeapons[1] = null;
+        //슬롯2에 기본권총이있다.
+        slotWeapons[2] = "Pistol";
+        //액티브슬롯3을 만든다.
         ActiveSlot = new bool[3];
+        //슬롯2를 활성화시킨다.
         ActiveSlot[2] = true;
+        //플레이어ik ik를받는다.
         playerIK = gameObject.GetComponent<IK>();
-        weapons[0] = "Pistol";
-        weapons[1] = "Rifle";
-        //Todo: weapons[]배열에 넣을것들 추가해줘야한다.
-        //weapons배열의 무기들의 순서는 프리팹저장배열의 순서와같아야한다. 또한 Equip_weapons의 순서와도같아야한다.
+        //Todo: Equip_weapons[]배열에 존재할모든 무기들을 추가해줘야한다.
+        //Equp_weapons[]배열의 무기들의 순서는 프리팹저장배열의 순서와같아야한다.
         //프리팹 저장배열이 반드시 인스펙터창에서 설정이되어있어야한다.
+        //만약 새로운 무기를 추가하고싶다면 Equip_weapons[]와 weaponPrefabs[]배열에 필수적으로 추가해야한다.
 
-        //만약 새로운 무기를 추가하고싶다면 weapons와 weaponPrefabs배열에 필수적으로 추가해야한다.
+        //스왑을할때는 Activeslot[]을 변경해주고, ik, Equipweapons[]를 변경해야한다.
     }
     void Update()
     {
         if(Input.GetButtonDown("Swap1"))
         {
+            //슬롯1이 비어있으면 return
+            if (slotWeapons[0] == null)
+            {
+                return;
+            }
             //Todo : 현재 사용하고있는 장비가 몇번슬롯에있는지 확인하고 1번이라면 그대로냅두고
             //2번, 혹은 3번이라면  현재 총을 쏘고있거나 장전중이라면 애니메이션을 취소하고
             //1번에 원래있던 무기를 다시활성화시키고 ik를 연결한다.
+            if (ActiveSlot[0] == true)
+            {
+                return;
+            }
+            ActiveSlot[0] = true;
+            ActiveSlot[1] = false;
+            ActiveSlot[2] = false;
+            playerIK.ChangeIK(slotWeapons[0]);
+            Equip_weapons[SearchWeapon()].SetActive(true);
+            TurnWeapon(slotWeapons[0]);
         }
         else if(Input.GetButtonDown("Swap2"))
         {
-            //
+            //슬롯2가 비어있다면 return;
+            if (slotWeapons[1] == null)
+            {
+                return;
+            }
+            //Todo : 현재 사용하고있는 장비가 몇번슬롯에있는지 확인하고 2번이라면 그대로냅두고
+            //1번, 혹은 3번이라면  현재 총을 쏘고있거나 장전중이라면 애니메이션을 취소하고
+            //2번에 원래있던 무기를 다시활성화시키고 ik를 연결한다.
+            if (ActiveSlot[1] == true)
+            {
+                return;
+            }
+            ActiveSlot[0] = false;
+            ActiveSlot[1] = true;
+            ActiveSlot[2] = false;
+            playerIK.ChangeIK(slotWeapons[1]);
+            Equip_weapons[SearchWeapon()].SetActive(true);
+            TurnWeapon(slotWeapons[1]);
         }
         else if(Input.GetButtonDown("Swap3"))
         {
-
+            //Todo : 현재 사용하고있는 장비가 몇번슬롯에있는지 확인하고 3번이라면 그대로냅두고
+            //1번, 혹은 2번이라면  현재 총을 쏘고있거나 장전중이라면 애니메이션을 취소하고
+            //3번에 원래있던 무기를 다시활성화시키고 ik를 연결한다.
+            if (ActiveSlot[1] == true)
+            {
+                return;
+            }
+            ActiveSlot[0] = false;
+            ActiveSlot[1] = false;
+            ActiveSlot[2] = true;
+            playerIK.ChangeIK(slotWeapons[2]);
+            Equip_weapons[SearchWeapon()].SetActive(true);
+            TurnWeapon(slotWeapons[2]);
         }
     }
 
@@ -61,13 +108,13 @@ public class WeaponManager : MonoBehaviour
         {   //만약 첫번째 슬롯이 비어있어서 장착된경우라면
             Debug.Log("EquipWeapon1");
             Debug.LogFormat("{0}", weaponName);    
-            //3번째 슬롯이 활성화된상태 즉 아무 무기도 먹지않은 처음상태라면
-            if (ActiveSlot[2] == true)
-            {
-                ActiveSlot[2] = false;
-            }
+            //슬롯2,3은 비활성화한다.
+            ActiveSlot[2] = false;
+            ActiveSlot[1] = false;
+            //슬롯1은 활성화한다.
             ActiveSlot[0] = true;
             //첫번째 슬롯의 아이템을 먹은 아이템으로 바꾼다.
+            weaponName = weaponName.Replace("(get)", "");
             slotWeapons[0] = weaponName;
             //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
             playerIK.ChangeIK(weaponName);
@@ -80,14 +127,15 @@ public class WeaponManager : MonoBehaviour
         {   //만약 두번째 슬롯이 비어있어서 장착된경우라면
             Debug.Log("EquipWeapon2");
             //3번째 슬롯이 활성화된상태라면
-            if (ActiveSlot[2] == true)
-            {
-                ActiveSlot[2] = false;
-            }
+            //슬롯1,3은 비활성화한다.
+            ActiveSlot[2] = false;
+            ActiveSlot[0] = false;
+            //슬롯2은 활성화한다.
             ActiveSlot[1] = true;
-            
+
 
             //두번째 슬롯의 아이템을 먹은 아이템으로 바꾼다.
+            weaponName = weaponName.Replace("(get)", "");
             slotWeapons[1] = weaponName;
             //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
             playerIK.ChangeIK(weaponName);
@@ -102,6 +150,7 @@ public class WeaponManager : MonoBehaviour
             //만약 1,2번슬롯이 모두 무기가 장착되어있는 경우라면
             //현재 활성화된 슬롯이 몇번슬롯인지 체크하고
             //그슬롯의 아이템을 먹은 아이템으로 바꾼다.
+            weaponName = weaponName.Replace("(get)", "");
             slotWeapons[CheckActiveslot()] = weaponName;
             //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
             playerIK.ChangeIK(weaponName);
@@ -155,9 +204,9 @@ public class WeaponManager : MonoBehaviour
 
     public int SearchWeapon()
     {// 내가 가지고있는 무기가 전체리스트의 몇번인덱스에 있는지 확인하는함수. 없다면 999를 반환한다.
-        for(int i=0; i<weapons.Length;i++)
+        for(int i=0; i<Equip_weapons.Length;i++)
         {
-            if (slotWeapons[CheckActiveslot()] == weapons[i])
+            if (slotWeapons[CheckActiveslot()] == Equip_weapons[i].name)
             {
                 return i;
             }
