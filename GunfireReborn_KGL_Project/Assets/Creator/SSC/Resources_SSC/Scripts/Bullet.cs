@@ -13,6 +13,8 @@ public class Bullet : MonoBehaviour
 
     private float randposMin = -3.0f;
     private float randposMax = 3.0f;
+
+    private int bulletDamage = 1;
    
     // Start is called before the first frame update
     void Awake()
@@ -43,9 +45,6 @@ public class Bullet : MonoBehaviour
         }
 
         myRigid.velocity = cam.transform.forward * speed;        
-
-        Debug.Log("총알 로테이션 값 : " + transform.rotation);
-
         //Debug.Log("목표와 총알 사이의 거리 : " + target + " 목표의 방향 : " + targetnormal);
 
         ////Debug.Log("타겟 지점 노멀라이즈값 : " + target.normalized + " 총알이 갖게되는 벨로시티 값 : " + myRigid.velocity);
@@ -54,6 +53,16 @@ public class Bullet : MonoBehaviour
         //{
         //    myRigid.velocity = cam.transform.forward * speed;
         //}
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Enemy"))
+        {
+            EnemyTest helath = other.GetComponent<EnemyTest>();
+
+            helath.OnDamageable(bulletDamage);
+        }
     }
 
 

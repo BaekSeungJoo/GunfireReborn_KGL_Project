@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
-        Shooting();
+        //Shooting();
         CamControll();
         
     }

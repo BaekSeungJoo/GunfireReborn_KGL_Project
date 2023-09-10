@@ -26,11 +26,11 @@ public class Rifle : MonoBehaviour
 
     private bool useskill = false;
 
-    PlayerController shoot;
+    PlayerAttack shoot;
 
     private void Start()
     {
-        shoot = FindObjectOfType<PlayerController>();
+        shoot = FindObjectOfType<PlayerAttack>();
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
         fireSound = GetComponent<AudioSource>();
         //muzzlFlash = GetComponent<ParticleSystem>();
@@ -45,15 +45,12 @@ public class Rifle : MonoBehaviour
 
             if(attackTimer > attackSpeed)
             {
-                Debug.Log("라이플 로테이션 값 : " + transform.rotation);
-                Debug.Log("총구 로테이션 값 :" + muzzle.rotation);
                 Instantiate(bulletPrefab, muzzle.transform.position, muzzle.transform.rotation);         
                 muzzlFlash.Play();
                 fireSound.clip = basicShot;
                 fireSound.volume = 0.4f;
                 fireSound.Play();
 
-                shoot.camRotate.x += 50f;
                 attackTimer = 0f;
             }
         }
