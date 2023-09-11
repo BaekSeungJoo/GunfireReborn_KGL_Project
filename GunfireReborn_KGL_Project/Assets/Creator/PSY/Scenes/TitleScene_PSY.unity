@@ -730,7 +730,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonType: "\uC885\uB8CC"
-  popupExit: {fileID: 0}
 --- !u!114 &931774584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1179,7 +1178,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonType: "\uC2DC\uC791"
-  popupExit: {fileID: 0}
 --- !u!1 &1670063383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1595,6 +1593,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7276487936211549843, guid: e1d37216d1b26014bb0842a28fa1458f, type: 3}
+      propertyPath: m_Name
+      value: Label_Check
+      objectReference: {fileID: 0}
     - target: {fileID: 7276487936246571554, guid: e1d37216d1b26014bb0842a28fa1458f, type: 3}
       propertyPath: m_Name
       value: PopupExit
@@ -1686,6 +1688,18 @@ PrefabInstance:
     - target: {fileID: 7276487936246571555, guid: e1d37216d1b26014bb0842a28fa1458f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276487936506764053, guid: e1d37216d1b26014bb0842a28fa1458f, type: 3}
+      propertyPath: m_Name
+      value: T_BottomShape
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276487936655527137, guid: e1d37216d1b26014bb0842a28fa1458f, type: 3}
+      propertyPath: m_Name
+      value: Label_End
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276487936731466557, guid: e1d37216d1b26014bb0842a28fa1458f, type: 3}
+      propertyPath: m_Name
+      value: T_TopShape
       objectReference: {fileID: 0}
     - target: {fileID: 7276487937238969234, guid: e1d37216d1b26014bb0842a28fa1458f, type: 3}
       propertyPath: m_AnchorMax.y
