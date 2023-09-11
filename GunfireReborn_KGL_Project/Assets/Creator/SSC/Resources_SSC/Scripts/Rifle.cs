@@ -99,6 +99,7 @@ public class Rifle : MonoBehaviour
             if(magAmmo <= 0)
             {
                 magAmmo = 0;
+                muzzlFlash.Stop();
                 state = State.EMPTY;
             }
 
