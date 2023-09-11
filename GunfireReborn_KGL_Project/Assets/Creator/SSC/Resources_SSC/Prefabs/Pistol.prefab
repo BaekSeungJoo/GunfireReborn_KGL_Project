@@ -115,7 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5341742223406746680, guid: 3f94cc9164352294b8688ca9fe066e19, type: 3}
   muzzlFlash: {fileID: 0}
-  basicShot: {fileID: 8300000, guid: 36aaa96ffd404b643a3bc9e959d6ee95, type: 3}
+  basicShot: {fileID: 8300000, guid: 58eaa6a2b1b0db24a84d6b2bf8c018d5, type: 3}
   skillShot: {fileID: 0}
   attackSpeed: 1
 --- !u!1 &5914677986329806904

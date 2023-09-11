@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class HellBullet : MonoBehaviour
 {
     PlayerAttack shoot;
     public CinemachineVirtualCamera cam;
@@ -23,21 +23,14 @@ public class Bullet : MonoBehaviour
         shoot = FindObjectOfType<PlayerAttack>();
         myRigid = GetComponent<Rigidbody>();
 
-        //Vector3 target = shoot.hitPoint - transform.position;
-        //Vector3 targetnormal = target.normalized;
-        if (shoot.useSkill == true)
-        {
-            Vector3 randomHit = cam.transform.forward * speed ;
-            Vector3 random = new Vector3
-                (randomHit.x + Random.Range(randposMin, randposMax),
-                randomHit.y + Random.Range(randposMin, randposMax),
-                randomHit.z + Random.Range(randposMin, randposMax));
-            myRigid.velocity = random;
+        Vector3 randomHit = cam.transform.forward * speed ;
 
-            return;
-        }
+        Vector3 random = new Vector3
+            (randomHit.x + Random.Range(randposMin, randposMax),
+            randomHit.y + Random.Range(randposMin, randposMax),
+            randomHit.z + Random.Range(randposMin, randposMax));
 
-        myRigid.velocity = cam.transform.forward * speed;        
+        myRigid.velocity = random;
     }
 
     public void OnTriggerEnter(Collider other)
