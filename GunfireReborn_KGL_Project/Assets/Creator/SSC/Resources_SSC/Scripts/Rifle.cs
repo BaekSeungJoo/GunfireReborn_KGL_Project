@@ -109,7 +109,9 @@ public class Rifle : MonoBehaviour
 
                 if(attackTimer > attackSpeed)
                 {
-                    Instantiate(bulletPrefab, muzzle.transform.position, muzzle.transform.rotation);
+                    var bullet = BulletPool.GetObject();
+                    bullet.transform.position = muzzle.transform.position;
+                    bullet.transform.rotation = muzzle.transform.rotation;
                     magAmmo -= 1;                   
                     muzzlFlash.Play();
                     fireSound.clip = basicShot;
@@ -145,7 +147,9 @@ public class Rifle : MonoBehaviour
             // 나가는 스킬 총알 갯수는 현재 탄창의 남은 양만큼
             for (int i = 0; i < magAmmo; i++)
             {
-                Instantiate(bulletPrefab, muzzle.transform.position, muzzle.transform.rotation);
+                var bullet = BulletPool.GetObject();
+                bullet.transform.position = muzzle.transform.position;
+                bullet.transform.rotation = muzzle.transform.rotation;
             }
             magAmmo -= magAmmo;
         }
@@ -153,7 +157,9 @@ public class Rifle : MonoBehaviour
         {
             for (int i = 0; i < skillAmmo; i++)
             {
-                Instantiate(bulletPrefab, muzzle.transform.position, muzzle.transform.rotation);
+                var bullet = BulletPool.GetObject();
+                bullet.transform.position = muzzle.transform.position;
+                bullet.transform.rotation = muzzle.transform.rotation;
                 magAmmo -= 1;
             }
 

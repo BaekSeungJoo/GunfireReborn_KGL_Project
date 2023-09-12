@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -25,20 +26,34 @@ public class Bullet : MonoBehaviour
 
         //Vector3 target = shoot.hitPoint - transform.position;
         //Vector3 targetnormal = target.normalized;
+     
+    }
+
+    private void OnEnable()
+    {
         if (shoot.useSkill == true)
         {
-            Vector3 randomHit = cam.transform.forward * speed ;
+            Vector3 randomHit = cam.transform.forward * speed;
             Vector3 random = new Vector3
                 (randomHit.x + Random.Range(randposMin, randposMax),
                 randomHit.y + Random.Range(randposMin, randposMax),
                 randomHit.z + Random.Range(randposMin, randposMax));
             myRigid.velocity = random;
 
+            Invoke("DestroyBullet", 5f);
             return;
         }
 
-        myRigid.velocity = cam.transform.forward * speed;        
+        myRigid.velocity = cam.transform.forward * speed;
+
+        Invoke("DestroyBullet", 5f);
     }
+
+    private void DestroyBullet()
+    {
+        BulletPool.ReturnObject(this);
+    }
+
 
     public void OnTriggerEnter(Collider other)
     {
