@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    public GameObject shopPopup;
+    private UIManager uiManager;
 
     private void Start()
     {
-        shopPopup = GameObject.Find("ShopPopupFrame");
+        uiManager = GameObject.Find("@Managers").GetComponent<UIManager>();
     }
-
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && shopPopup.activeInHierarchy )
+        if (Input.GetKeyDown(KeyCode.Escape) && uiManager.CheckActiveShopPopup() )
         {
-            shopPopup.SetActive(false);
+            uiManager.SetActiveShopPopup(false);
+
         }    
     }
 }

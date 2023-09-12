@@ -13,7 +13,7 @@ public class LoadingManager : MonoBehaviour
     public Image loadingImage;
     public TextMeshProUGUI loadingTipText;
     public Image loadingBar;
-    private int count;
+   
     private float[] fill = new float[5]{ 0.05f, 0.28f , 0.52f , 0.75f , 1f };
     private void Start()
     {
