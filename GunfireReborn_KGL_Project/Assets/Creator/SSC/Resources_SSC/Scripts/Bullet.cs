@@ -59,11 +59,11 @@ public class Bullet : MonoBehaviour
     {
             if(other.CompareTag("Enemy"))
             {
-                EnemyTest helath = other.GetComponent<EnemyTest>();
+                EnemyHealth helath = other.GetComponent<EnemyHealth>();
 
                 if (helath != null)
                 {
-                   helath.OnDamageable(bulletDamage);
+                   helath.EnemyHpDown(bulletDamage);
                 }
             }
     }

@@ -29,7 +29,7 @@ public class IK : MonoBehaviour
         {
             weaponChilds[i] = weaponPosition.GetChild(i).gameObject;
         }
-        ChangeIK("Pistol");
+        ChangeIK("CrimsonFirescale");
         //처음에는 기본권총을 활성화함\
         //ChangeIK("Shotgun");
     }
