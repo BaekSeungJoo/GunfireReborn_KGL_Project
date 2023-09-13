@@ -31,7 +31,7 @@ namespace OccaSoftware.Crosshairs.Editor
 
         void OnGUI()
         {
-            SetupHeaderStyle(startMenu);
+            //SetupHeaderStyle(startMenu);
             SetupButtonStyle(startMenu);
             SetupContentSectionStyle(startMenu);
 
@@ -69,13 +69,13 @@ namespace OccaSoftware.Crosshairs.Editor
                 );
         }
 
-        private static void SetupHeaderStyle(StartMenu startMenu)
-        {
-            startMenu.header = new GUIStyle(EditorStyles.boldLabel);
-            startMenu.header.fontSize = 18;
-            startMenu.header.wordWrap = true;
-            startMenu.header.padding = new RectOffset(0, 0, 0, 0);
-        }
+        //private static void SetupHeaderStyle(StartMenu startMenu)
+        //{
+        //    startMenu.header = new GUIStyle(EditorStyles.boldLabel);
+        //    startMenu.header.fontSize = 18;
+        //    startMenu.header.wordWrap = true;
+        //    startMenu.header.padding = new RectOffset(0, 0, 0, 0);
+        //}
 
         private static void SetupButtonStyle(StartMenu startMenu)
         {

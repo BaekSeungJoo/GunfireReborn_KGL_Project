@@ -10,6 +10,8 @@ TagManager:
   - LuckyShotPoint
   - Bullet
   - Enemy
+  - Shop
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -46,4 +48,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 840823167
     locked: 0
