@@ -1,3 +1,4 @@
+using Photon.Pun.Demo.PunBasics;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -24,6 +25,7 @@ public class WeaponManager : MonoBehaviour
     public GameObject frontPlayer;
     // Update is called once per frame
 
+    public GameObject playerGun;
 
     private void Start()
     {
@@ -55,9 +57,8 @@ public class WeaponManager : MonoBehaviour
             {
                 return;
             }
-            //Todo : 현재 사용하고있는 장비가 몇번슬롯에있는지 확인하고 1번이라면 그대로냅두고
-            //2번, 혹은 3번이라면  현재 총을 쏘고있거나 장전중이라면 애니메이션을 취소하고
-            //1번에 원래있던 무기를 다시활성화시키고 ik를 연결한다.
+            //Todo : 2번, 혹은 3번이라면  현재 총을 쏘고있거나 장전중이라면 애니메이션을 취소하고
+            
             if (ActiveSlot[0] == true)
             {
                 return;
@@ -65,11 +66,21 @@ public class WeaponManager : MonoBehaviour
             ActiveSlot[0] = true;
             ActiveSlot[1] = false;
             ActiveSlot[2] = false;
+            //플레이어가 현재들고있는 무기를 뜻하는변수에  현재 Front에 활성화되있는 무기를 대입함
+            //playerGun = ReturnWeapon();
+            //무기를 낮춰서 팔또한 낮추게만듬.
+            //LowerGun();
+            //1번무기에 해당하는 ik로 변경
             playerIK.ChangeIK(slotWeapons[0]);
             //프런트ik도 변경
             frontIK.ChangeIK(slotWeapons[0]);
+            //1번에 원래있던 무기를 다시활성화시킴.
             Equip_weapons[SearchWeapon()].SetActive(true);
+            //1번이 아닌 다른무기들을 비활성화시킴 front에 있는 무기도 비활성화시킴
             TurnWeapon(slotWeapons[0]);
+            //총을들어서 다시 손을 카메라에게 보이게함
+            //RaiseGun();
+            
         }
         else if(Input.GetButtonDown("Swap2"))
         {
@@ -253,5 +264,65 @@ public class WeaponManager : MonoBehaviour
                 Front_weapons[i].SetActive(false);
             }
         }
+    }
+    public GameObject ReturnWeapon()
+    {
+        GameObject gameObject = null;
+        for (int i = 0; i < Front_weapons.Length; i++)
+        {
+            if (Front_weapons[i].activeSelf == true)
+            {
+                gameObject = Front_weapons[i];
+            }
+        }
+        return gameObject;
+    }
+    IEnumerator LowerGun()
+    {
+        // 팔과 총을 천천히 아래로 내리는 처리를 구현합니다.
+        float elapsedTime = 0f;
+        float duration = 0.2f; // 내리는 시간 (예: 3초)
+        Vector3 initialArmLocalPosition = playerGun.transform.localPosition;
+        Vector3 targetArmLocalPosition = initialArmLocalPosition - playerGun.transform.up * 0.5f; // 아래로 내리기
+
+        Quaternion initialGunLocalRotation = playerGun.transform.localRotation;
+        Quaternion targetGunLocalRotation = Quaternion.Euler(0f, -90f, -45f); // Z 축만 회전
+
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            playerGun.transform.localPosition = Vector3.Lerp(initialArmLocalPosition, targetArmLocalPosition, t);
+            playerGun.transform.localRotation = Quaternion.Slerp(initialGunLocalRotation, targetGunLocalRotation, t);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+    }
+
+    // 총을 위로 올리는 부분을 처리하는 코루틴 함수
+    IEnumerator RaiseGun()
+    {
+        // 팔과 총을 원래 위치로 돌리는 처리를 구현합니다.
+        float elapsedTime = 0f;
+        float duration = 0.2f; // 올리는 시간 (예: 3초)
+        Vector3 initialArmLocalPosition = playerGun.transform.localPosition;
+        Vector3 targetArmLocalPosition = initialArmLocalPosition; // 초기 위치로 올리기
+
+        Quaternion initialGunLocalRotation = playerGun.transform.localRotation;
+        Quaternion targetGunLocalRotation = Quaternion.identity; // 회전 없이 원래 방향으로 돌리기
+
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            playerGun.transform.localPosition = Vector3.Lerp(initialArmLocalPosition, targetArmLocalPosition, t);
+            playerGun.transform.localRotation = Quaternion.Slerp(initialGunLocalRotation, targetGunLocalRotation, t);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 재장전 완료 후 상태를 원래대로 되돌립니다.
+        //isDown = false;
     }
 }

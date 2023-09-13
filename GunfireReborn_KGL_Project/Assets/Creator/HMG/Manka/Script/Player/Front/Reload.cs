@@ -16,10 +16,10 @@ public class Reload : MonoBehaviour
     }
     private void Update()
     {
-
-        Search();
+        
         if (Input.GetButtonDown("Reload") && !isReloading)
         {
+            
             // 총을 천천히 아래로 내리는 코루틴을 시작합니다.
             StartCoroutine(LowerGun());
         }
@@ -41,7 +41,7 @@ public class Reload : MonoBehaviour
     {
         // 재장전 중인 상태로 설정합니다.
         isReloading = true;
-
+        Search();
         // 팔과 총을 천천히 아래로 내리는 처리를 구현합니다.
         float elapsedTime = 0f;
         float duration = 0.5f; // 내리는 시간 (예: 3초)
@@ -62,7 +62,7 @@ public class Reload : MonoBehaviour
         }
 
         // 대기합니다. (예: 총을 아래로 내린 후 3초 동안 대기)
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
 
         // 팔과 총을 원래 위치로 돌리는 처리를 구현합니다.
         elapsedTime = 0f;

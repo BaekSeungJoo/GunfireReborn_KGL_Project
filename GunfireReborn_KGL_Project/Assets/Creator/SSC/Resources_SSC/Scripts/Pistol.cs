@@ -50,7 +50,6 @@ public class Pistol : MonoBehaviour
                 fireSound.clip = basicShot;
                 fireSound.volume = 0.4f;
                 fireSound.Play();
-
                 shoot.camRotate.x += 50f;
                 attackTimer = 0f;
             }
@@ -60,8 +59,6 @@ public class Pistol : MonoBehaviour
             muzzlFlash.Stop();
         }
         // } 기본 사격 : 좌클릭
-
-
         // { 스킬 사격 : 우클릭
         if(useskill == false)
         {

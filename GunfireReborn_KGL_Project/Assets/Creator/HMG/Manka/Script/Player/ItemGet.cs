@@ -56,9 +56,6 @@ public class ItemGet : MonoBehaviour
         {   //레이가 아무것도 맞지않은경우
             hitPosition = cam.transform.position + cam.transform.forward * rayDistance;
         }
-        
-
-
     }
 
     private void OnTriggerStay(Collider other)
@@ -96,7 +93,6 @@ public class ItemGet : MonoBehaviour
                 Debug.LogFormat("파괴가 안된다고?");
             }
         }
-       
     }
 
     private void ChangeWeapon()

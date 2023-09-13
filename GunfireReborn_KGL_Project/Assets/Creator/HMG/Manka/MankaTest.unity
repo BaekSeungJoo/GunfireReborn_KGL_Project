@@ -410,6 +410,10 @@ PrefabInstance:
       value: MiniDragon
       objectReference: {fileID: 0}
     - target: {fileID: 58961656921936004, guid: 5ff57224f6e7eb04fb26829f747b9ffa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58961656921936004, guid: 5ff57224f6e7eb04fb26829f747b9ffa, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -847,19 +851,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canGetState: 0
---- !u!135 &292257522
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 292257520}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.6777328
-  m_Center: {x: 0.12087029, y: -0.07994391, z: 0.00039310753}
 --- !u!135 &292257526
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -871,7 +862,20 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.5
+  m_Center: {x: 0.12087029, y: -0.07994391, z: 0.00039310753}
+--- !u!65 &292257530
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292257520}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3554657, y: 0.48917022, z: 0.06715029}
   m_Center: {x: 0.12087029, y: -0.07994391, z: 0.00039310753}
 --- !u!1 &344738662
 GameObject:
@@ -928,7 +932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 215aee40a9fa80e49bc6dd71c69ed497, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.55
+      value: -2.39
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 215aee40a9fa80e49bc6dd71c69ed497, type: 3}
       propertyPath: m_LocalRotation.w
@@ -964,7 +968,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 1efc8eb239e89d947ab741ea1fdda0ac, type: 2}
     - target: {fileID: 919132149155446097, guid: 215aee40a9fa80e49bc6dd71c69ed497, type: 3}
       propertyPath: m_Name
-      value: Rifle(get)
+      value: CrimsonFirescale(get)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 215aee40a9fa80e49bc6dd71c69ed497, type: 3}
       propertyPath: m_TagString
@@ -1032,6 +1036,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2268707604431541362, guid: 625d3e06efaaa3a4b988fddcce540735, type: 3}
   m_PrefabInstance: {fileID: 4433939213016989935}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &459975478
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459975470}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: 0.12087031, y: -0.07994402, z: 0.00039311877}
 --- !u!136 &481477476
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1292,7 +1309,7 @@ GameObject:
   - component: {fileID: 596684418}
   m_Layer: 0
   m_Name: Plane (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -3858,13 +3875,14 @@ MonoBehaviour:
   - {fileID: 292257520}
   Equip_weapons:
   - {fileID: 2035972840}
-  - {fileID: 0}
+  - {fileID: 95985205}
   - {fileID: 414593259}
   Front_weapons:
   - {fileID: 1109203822892363778}
   - {fileID: 459975470}
   - {fileID: 1852880999}
   frontPlayer: {fileID: 976498167}
+  playerGun: {fileID: 0}
 --- !u!114 &716906415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4558,7 +4576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f33a6750edda74241bd72bbd1b8fec7d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.606
+      value: 4.964
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f33a6750edda74241bd72bbd1b8fec7d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4566,7 +4584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f33a6750edda74241bd72bbd1b8fec7d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.2561986
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f33a6750edda74241bd72bbd1b8fec7d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4660,6 +4678,10 @@ PrefabInstance:
     - target: {fileID: 3133425722104492131, guid: 419cf7aaa0ba0cf4984066ed6da5c451, type: 3}
       propertyPath: m_Name
       value: SkeletonWarrior
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133425722104492131, guid: 419cf7aaa0ba0cf4984066ed6da5c451, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3133425722104492131, guid: 419cf7aaa0ba0cf4984066ed6da5c451, type: 3}
       propertyPath: m_TagString
@@ -4828,6 +4850,10 @@ PrefabInstance:
       value: MushroomSmile
       objectReference: {fileID: 0}
     - target: {fileID: 594600363271798378, guid: e3c3a82093e556c4c926d872a9b3ac78, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 594600363271798378, guid: e3c3a82093e556c4c926d872a9b3ac78, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -4859,6 +4885,10 @@ PrefabInstance:
     - target: {fileID: 2336555170174120158, guid: f677462c3cff85f4abc9dc9516a3a118, type: 3}
       propertyPath: m_Name
       value: CrimsonFirescale
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336555170174120158, guid: f677462c3cff85f4abc9dc9516a3a118, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3109397033491163748, guid: f677462c3cff85f4abc9dc9516a3a118, type: 3}
       propertyPath: m_RootOrder
@@ -4976,6 +5006,10 @@ PrefabInstance:
     - target: {fileID: 2314034687237531748, guid: 8f1b1e53eeb4d3849b838d78e39c939d, type: 3}
       propertyPath: m_Name
       value: EvilMage
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314034687237531748, guid: 8f1b1e53eeb4d3849b838d78e39c939d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2314034687237531748, guid: 8f1b1e53eeb4d3849b838d78e39c939d, type: 3}
       propertyPath: m_TagString
@@ -5106,7 +5140,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.5
   m_Center: {x: 0.063759066, y: -0.032722827, z: 0.0000072345138}
 --- !u!1 &1414160754
 GameObject:
@@ -5295,7 +5329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6efe674338ad4a49866fd7e5c2ba6b4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.50461257
+      value: 1.763
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6efe674338ad4a49866fd7e5c2ba6b4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5626,6 +5660,10 @@ PrefabInstance:
       value: Puffe
       objectReference: {fileID: 0}
     - target: {fileID: 4709564040845024137, guid: 9106d339905391848af45d366308506b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709564040845024137, guid: 9106d339905391848af45d366308506b, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -5866,7 +5904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4676838151956998879, guid: e8cee0dbd15fb59478e0ff9b4b31a226, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4676838151956998879, guid: e8cee0dbd15fb59478e0ff9b4b31a226, type: 3}
       propertyPath: m_TagString
@@ -6048,6 +6086,10 @@ PrefabInstance:
     - target: {fileID: 7050771939171894483, guid: 3e27935b36a404b4180e7bfb5773d3a0, type: 3}
       propertyPath: m_Name
       value: Cute_OctopusCc
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050771939171894483, guid: 3e27935b36a404b4180e7bfb5773d3a0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7050771939171894483, guid: 3e27935b36a404b4180e7bfb5773d3a0, type: 3}
       propertyPath: m_TagString
@@ -6439,6 +6481,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3669355319752700141, guid: 625d3e06efaaa3a4b988fddcce540735, type: 3}
   m_PrefabInstance: {fileID: 4433939213016989935}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &1109203822892363786
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109203822892363778}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Center: {x: 0.06375908, y: -0.032722827, z: 0.0000072307903}
 --- !u!1001 &2982934297017912189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6496,7 +6551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1109203822965492162, guid: 497c2aeff878e0a4c9e53afaf675f094, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6267006917769731197, guid: 497c2aeff878e0a4c9e53afaf675f094, type: 3}
       propertyPath: m_Enabled
@@ -6555,6 +6610,10 @@ PrefabInstance:
     - target: {fileID: 1507868909364663023, guid: 625d3e06efaaa3a4b988fddcce540735, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.011
+      objectReference: {fileID: 0}
+    - target: {fileID: 2268707604431541362, guid: 625d3e06efaaa3a4b988fddcce540735, type: 3}
+      propertyPath: m_Name
+      value: CrimsonFirescale
       objectReference: {fileID: 0}
     - target: {fileID: 2268707604431541362, guid: 625d3e06efaaa3a4b988fddcce540735, type: 3}
       propertyPath: m_Layer
@@ -6635,6 +6694,10 @@ PrefabInstance:
     - target: {fileID: 4433939212261677291, guid: 625d3e06efaaa3a4b988fddcce540735, type: 3}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433939212293713825, guid: 625d3e06efaaa3a4b988fddcce540735, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4433939212846833980, guid: 625d3e06efaaa3a4b988fddcce540735, type: 3}
       propertyPath: m_Enabled
@@ -7481,7 +7544,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

@@ -1,3 +1,4 @@
+using Photon.Pun.Demo.PunBasics;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -13,6 +14,8 @@ public class FrontIK : MonoBehaviour
     public Transform p_HandLeft;
     public Transform p_HandRight;
     private Animator IKAnimator;
+
+    public GameObject playergun;
     // Start is called before the first frame update
     void Start()
     {
@@ -72,4 +75,6 @@ public class FrontIK : MonoBehaviour
             }
         }
     }
+
+  
 }
