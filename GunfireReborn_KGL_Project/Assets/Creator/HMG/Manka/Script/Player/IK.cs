@@ -15,6 +15,10 @@ public class IK : MonoBehaviour
     //얼굴이 바라볼 오브젝트
     public Transform targetObj;
     private Animator IKAnimator;
+
+    [Range(0, 1)]
+    public float HandIKHandler = 1;
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +30,8 @@ public class IK : MonoBehaviour
             weaponChilds[i] = weaponPosition.GetChild(i).gameObject;
         }
         ChangeIK("Pistol");
-        //처음에는 기본권총을 활성화함
+        //처음에는 기본권총을 활성화함\
+        //ChangeIK("Shotgun");
     }
 
     // Update is called once per frame
@@ -42,15 +47,15 @@ public class IK : MonoBehaviour
         
         //왼손 조절하는코드
         IKAnimator.SetIKPosition(AvatarIKGoal.LeftHand, p_HandLeft.position);
-        IKAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
+        IKAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, HandIKHandler);
         IKAnimator.SetIKRotation(AvatarIKGoal.LeftHand, p_HandLeft.rotation);
-        IKAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
+        IKAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, HandIKHandler);
         
         //오른손 조절하는코드
         IKAnimator.SetIKPosition(AvatarIKGoal.RightHand, p_HandRight.position);
-        IKAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+        IKAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, HandIKHandler);
         IKAnimator.SetIKRotation(AvatarIKGoal.RightHand, p_HandRight.rotation);
-        IKAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
+        IKAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, HandIKHandler);
 
     }
 

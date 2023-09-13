@@ -16,7 +16,12 @@ public class WeaponManager : MonoBehaviour
     private IK playerIK;
     //보이지않지만 팔에있는 웨폰오브젝트들을 껏다켰다 하기위해 만든배열
     public GameObject[] Equip_weapons;
-
+    //1인칭 오브젝트들;
+    public GameObject[] Front_weapons;
+    //프런트플레이어의 IK함수를 가져오기위한 변수
+    private FrontIK frontIK;
+    //프런트 플레어을 지정하기위한변수
+    public GameObject frontPlayer;
     // Update is called once per frame
 
 
@@ -33,6 +38,7 @@ public class WeaponManager : MonoBehaviour
         ActiveSlot[2] = true;
         //플레이어ik ik를받는다.
         playerIK = gameObject.GetComponent<IK>();
+        frontIK = frontPlayer.GetComponent<FrontIK>();
         //Todo: Equip_weapons[]배열에 존재할모든 무기들을 추가해줘야한다.
         //Equp_weapons[]배열의 무기들의 순서는 프리팹저장배열의 순서와같아야한다.
         //프리팹 저장배열이 반드시 인스펙터창에서 설정이되어있어야한다.
@@ -60,6 +66,8 @@ public class WeaponManager : MonoBehaviour
             ActiveSlot[1] = false;
             ActiveSlot[2] = false;
             playerIK.ChangeIK(slotWeapons[0]);
+            //프런트ik도 변경
+            frontIK.ChangeIK(slotWeapons[0]);
             Equip_weapons[SearchWeapon()].SetActive(true);
             TurnWeapon(slotWeapons[0]);
         }
@@ -81,6 +89,8 @@ public class WeaponManager : MonoBehaviour
             ActiveSlot[1] = true;
             ActiveSlot[2] = false;
             playerIK.ChangeIK(slotWeapons[1]);
+            //프런트ik도 변경
+            frontIK.ChangeIK(slotWeapons[1]);
             Equip_weapons[SearchWeapon()].SetActive(true);
             TurnWeapon(slotWeapons[1]);
         }
@@ -97,6 +107,8 @@ public class WeaponManager : MonoBehaviour
             ActiveSlot[1] = false;
             ActiveSlot[2] = true;
             playerIK.ChangeIK(slotWeapons[2]);
+            //프런트ik도 변경
+            frontIK.ChangeIK(slotWeapons[2]);
             Equip_weapons[SearchWeapon()].SetActive(true);
             TurnWeapon(slotWeapons[2]);
         }
@@ -118,8 +130,14 @@ public class WeaponManager : MonoBehaviour
             slotWeapons[0] = weaponName;
             //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
             playerIK.ChangeIK(weaponName);
+            Debug.Log("format1");
+            //1인칭시점의 IK또한바꿔준다.
+            frontIK.ChangeIK(weaponName);
+            Debug.Log("format2");
             //그리고 팔에있는 무기를 활성화시킨다.
             Equip_weapons[SearchWeapon()].SetActive(true);
+            //1인칭 시점 무기도 교체한다.
+            Front_weapons[SearchWeapon()].SetActive(true);
             //아닌 것들을 모두 false
             TurnWeapon(weaponName);
         }
@@ -132,15 +150,17 @@ public class WeaponManager : MonoBehaviour
             ActiveSlot[0] = false;
             //슬롯2은 활성화한다.
             ActiveSlot[1] = true;
-
-
             //두번째 슬롯의 아이템을 먹은 아이템으로 바꾼다.
             weaponName = weaponName.Replace("(get)", "");
             slotWeapons[1] = weaponName;
             //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
             playerIK.ChangeIK(weaponName);
+            //1인칭시점의 IK또한바꿔준다.
+            frontIK.ChangeIK(weaponName);
             //그리고 팔에있는 무기를 활성화시킨다.
             Equip_weapons[SearchWeapon()].SetActive(true);
+            //1인칭 시점 무기도 교체한다.
+            Front_weapons[SearchWeapon()].SetActive(true);
             //아닌 것들을 모두 false
             TurnWeapon(weaponName);
         }
@@ -154,8 +174,12 @@ public class WeaponManager : MonoBehaviour
             slotWeapons[CheckActiveslot()] = weaponName;
             //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
             playerIK.ChangeIK(weaponName);
+            //1인칭시점의 IK또한바꿔준다.
+            frontIK.ChangeIK(weaponName);
             //그리고 팔에있는 무기를 활성화시킨다.
             Equip_weapons[SearchWeapon()].SetActive(true);
+            //1인칭 시점 무기도 교체한다.
+            Front_weapons[SearchWeapon()].SetActive(true);
             //
         }
     }
@@ -221,10 +245,12 @@ public class WeaponManager : MonoBehaviour
             if (Equip_weapons[i].name == weaponName )
             {
                 Equip_weapons[i].SetActive(true);
+                Front_weapons[i].SetActive(true);
             }
             else
             {
                 Equip_weapons[i].SetActive(false);
+                Front_weapons[i].SetActive(false);
             }
         }
     }

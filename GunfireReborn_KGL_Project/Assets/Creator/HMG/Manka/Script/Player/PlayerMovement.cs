@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
             playerInput.jump = false;
             isJumping = true;
         }
-        else if (!(isJumping == true))
+        else if(!(isJumping == true))
         { //플레이어가 점프중이 아니라면 이동이 가능하게 만들음
             playerRigidbody.velocity = transform.TransformDirection(movement * moveSpeed);
             playerAnimator.SetFloat("H", movement.x);

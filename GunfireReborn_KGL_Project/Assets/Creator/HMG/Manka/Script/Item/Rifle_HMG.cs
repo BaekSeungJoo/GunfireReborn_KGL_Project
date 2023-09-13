@@ -16,6 +16,7 @@ public class Rifle_HMG: MonoBehaviour
     // 사격시 총구 화염 파티클
     public ParticleSystem muzzlFlash;
 
+    // 사격 효과음
     private AudioSource fireSound;
     public AudioClip basicShot;
     public AudioClip skillShot;
@@ -23,9 +24,9 @@ public class Rifle_HMG: MonoBehaviour
     // 사격 간격시간
     public float attackSpeed = 0.1f;
     private float attackTimer = 0f;
-
+    // 
     private bool useskill = false;
-
+    //  입력정보를 받기위한 변수
     PlayerAttack shoot;
 
     private void Start()

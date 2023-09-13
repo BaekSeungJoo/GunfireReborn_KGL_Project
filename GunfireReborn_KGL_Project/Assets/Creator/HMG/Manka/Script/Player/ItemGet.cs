@@ -91,7 +91,9 @@ public class ItemGet : MonoBehaviour
             {//가까이 있고, 아이템 갖는 입력을받고, 레이캐스트에 맞았을때
              //일단은 임시적으로 아이템을 파괴하게 만들음
                 ChangeWeapon();
+                Debug.LogFormat("왜 안되는거야?");
                 Destroy(nearObject.gameObject);
+                Debug.LogFormat("파괴가 안된다고?");
             }
         }
        

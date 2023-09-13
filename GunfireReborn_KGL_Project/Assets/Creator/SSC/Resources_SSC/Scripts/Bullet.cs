@@ -44,7 +44,7 @@ public class Bullet : MonoBehaviour
 
         myRigid.velocity = cam.transform.forward * speed;        
 
-        Debug.Log("총알 로테이션 값 : " + transform.rotation);
+        //Debug.Log("총알 로테이션 값 : " + transform.rotation);
 
         //Debug.Log("목표와 총알 사이의 거리 : " + target + " 목표의 방향 : " + targetnormal);
 

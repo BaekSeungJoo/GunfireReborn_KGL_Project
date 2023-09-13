@@ -1062,9 +1062,6 @@ MonoBehaviour:
   - 
   - 
   - 
-  weapons:
-  - 
-  - 
   weaponPrefabs:
   - {fileID: 0}
   - {fileID: 0}
@@ -3190,6 +3187,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rifle
       objectReference: {fileID: 0}
+    - target: {fileID: 2518802689206913146, guid: 0750f3ebcfb0c8b43af077efe38195ef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3008199078905008832, guid: 0750f3ebcfb0c8b43af077efe38195ef, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3303,7 +3304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1109203822965492162, guid: 497c2aeff878e0a4c9e53afaf675f094, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6267006917769731197, guid: 497c2aeff878e0a4c9e53afaf675f094, type: 3}
       propertyPath: m_Enabled

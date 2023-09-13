@@ -17,7 +17,7 @@ public class CameraSetUp : MonoBehaviour
     {
         PlayerMovement player = GetComponent<PlayerMovement>();
         followCam.transform.parent = player.transform;
-        Vector3 CamPosition = new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z+0.2f);
+        Vector3 CamPosition = new Vector3(player.transform.position.x, player.transform.position.y + 0.7f, player.transform.position.z+0.5f);
         followCam.transform.position = CamPosition;
     }
 

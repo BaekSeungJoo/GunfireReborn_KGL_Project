@@ -8,7 +8,6 @@ public class PlayerInput : MonoBehaviour
     public string VMoveAxisName = "Vertical";
     public string HMoveAxisName = "Horizontal";
     public string fireButtonName = "Fire1";
-    public string reloadButtonName = "Reload";
     public string RotateName = "Mouse X";
     public string jumpName = "Jump";
     public string dashName = "Dash";
@@ -20,7 +19,6 @@ public class PlayerInput : MonoBehaviour
     public float VMove;
     public float HMove;
     public bool fire = default;
-    public bool reload = default;
     public float RMove;
     public bool jump = default;
     public bool dash = default;
@@ -48,8 +46,6 @@ public class PlayerInput : MonoBehaviour
         HMove = Input.GetAxis(HMoveAxisName);
         //fire에 관한 입력감지
         fire = Input.GetButton(fireButtonName);
-        //reload에 관한 입력감지
-        reload = Input.GetButtonDown(reloadButtonName);
         //Rmove에 관한 입력감지
         RMove = Input.GetAxis(RotateName);
         //jump에 관한 입력감지
