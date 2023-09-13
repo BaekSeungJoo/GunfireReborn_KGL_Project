@@ -24,9 +24,15 @@ public class DictionarytTest : MonoBehaviour
             testStack.Push(i);
         }
 
-        for(int i = 0;i < 10; i++)
+        
+        foreach(string testkey in bullet.Keys)
         {
-            Debug.Log("스택 데이터 값 : " + bullet.Keys);
+            Debug.Log("현재 딕셔너리에 담긴 키 값 : " + testkey);
+        }
+
+        foreach(Stack<int> stack in bullet.Values)
+        {
+            Debug.Log("딕셔너리에 담긴 밸류값 : " + stack);
         }
     }
 
