@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     private Transform myEye = default;
     private Transform myBody = default;
     private Transform myHand = default;
-    private Transform muzzle = default;
 
     public Vector3 camRotate = default;
 
@@ -40,7 +39,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
-        Shooting();
+        //Shooting();
         CamControll();
         
     }
