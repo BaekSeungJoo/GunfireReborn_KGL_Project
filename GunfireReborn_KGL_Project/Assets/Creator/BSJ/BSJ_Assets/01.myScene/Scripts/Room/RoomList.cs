@@ -1,111 +1,111 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-//using Photon.Pun;
-//using Photon.Realtime;
-//using TMPro;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using TMPro;
 
-//public class RoomList : MonoBehaviourPunCallbacks
-//{
-//    public static RoomList instance;
+public class RoomList : MonoBehaviourPunCallbacks
+{
+    public static RoomList instance;
 
-//    public GameObject roomManagerGameObject;
-//    public RoomManager roomManager;
+    public GameObject roomManagerGameObject;
+    public RoomManager roomManager;
 
-//    [Header("UI")]
-//    public Transform roomListParent;
-//    public GameObject roomListItemPrefab;
+    [Header("UI")]
+    public Transform roomListParent;
+    public GameObject roomListItemPrefab;
 
-//    private List<RoomInfo> cacheRoomList = new List<RoomInfo>();
+    private List<RoomInfo> cacheRoomList = new List<RoomInfo>();
 
-//    public void ChangeRoomToCreatName(string _roomname)
-//    {
-//        roomManager.roomNameToJoin = _roomname;
-//    }
+    public void ChangeRoomToCreatName(string _roomname)
+    {
+        roomManager.roomNameToJoin = _roomname;
+    }
 
-//    private void Awake()
-//    {
-//        instance = this;
-//    }
+    private void Awake()
+    {
+        instance = this;
+    }
 
-//    IEnumerator Start()
-//    {
-//        // precoutions
-//        if(PhotonNetwork.InRoom)
-//        {
-//            PhotonNetwork.LeaveRoom();
-//            PhotonNetwork.Disconnect();
-//        }
+    IEnumerator Start()
+    {
+        // precoutions
+        if(PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.LeaveRoom();
+            PhotonNetwork.Disconnect();
+        }
 
-//        yield return new WaitUntil(() => !PhotonNetwork.IsConnected);
+        yield return new WaitUntil(() => !PhotonNetwork.IsConnected);
 
-//        PhotonNetwork.ConnectUsingSettings();
-//    }
+        PhotonNetwork.ConnectUsingSettings();
+    }
 
-//    public override void OnConnectedToMaster()
-//    {
-//        base.OnConnectedToMaster();
+    public override void OnConnectedToMaster()
+    {
+        base.OnConnectedToMaster();
 
-//        PhotonNetwork.JoinLobby();
-//    }
+        PhotonNetwork.JoinLobby();
+    }
 
-//    public override void OnRoomListUpdate(List<RoomInfo> roomList)
-//    {
-//        if (cacheRoomList.Count <= 0)
-//        {
-//            cacheRoomList = roomList;
-//        }
-//        else
-//        {
-//            foreach (var room in roomList)
-//            {
-//                for (int i = 0; i < cacheRoomList.Count; i++)
-//                {
-//                    if (cacheRoomList[i].Name == room.Name) 
-//                    {
-//                        List<RoomInfo> newList = cacheRoomList;
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        if (cacheRoomList.Count <= 0)
+        {
+            cacheRoomList = roomList;
+        }
+        else
+        {
+            foreach (var room in roomList)
+            {
+                for (int i = 0; i < cacheRoomList.Count; i++)
+                {
+                    if (cacheRoomList[i].Name == room.Name) 
+                    {
+                        List<RoomInfo> newList = cacheRoomList;
 
-//                        if (room.RemovedFromList)
-//                        {
-//                            newList.Remove(newList[i]);
-//                        }
-//                        else
-//                        {
-//                            newList[i] = room;
-//                        }
+                        if (room.RemovedFromList)
+                        {
+                            newList.Remove(newList[i]);
+                        }
+                        else
+                        {
+                            newList[i] = room;
+                        }
 
-//                        cacheRoomList = newList;
-//                    }
-//                }
-//            }
-//        }
+                        cacheRoomList = newList;
+                    }
+                }
+            }
+        }
 
-//        UpdateUI();
-//    }
+        UpdateUI();
+    }
 
 
-//    void UpdateUI()
-//    {
-//        foreach(Transform roomItem in roomListParent)
-//        {
-//            Destroy(roomItem.gameObject);
-//        }
+    void UpdateUI()
+    {
+        foreach(Transform roomItem in roomListParent)
+        {
+            Destroy(roomItem.gameObject);
+        }
 
-//        foreach(var room in cacheRoomList)
-//        {
-//            GameObject roomItem = Instantiate(roomListItemPrefab, roomListParent);
+        foreach(var room in cacheRoomList)
+        {
+            GameObject roomItem = Instantiate(roomListItemPrefab, roomListParent);
 
-//            roomItem.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = room.Name;
-//            roomItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = room.PlayerCount + " / 16";
+            roomItem.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = room.Name;
+            roomItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = room.PlayerCount + " / 16";
 
-//            roomItem.GetComponent<RoomItemButton>().RoomName = room.Name;
-//        }
-//    }
+            roomItem.GetComponent<RoomItemButton>().RoomName = room.Name;
+        }
+    }
 
-//    public void JoinRoomByName(string _name)
-//    {
-//        roomManager.roomNameToJoin = _name;
-//        roomManagerGameObject.SetActive(true);
-//        gameObject.SetActive(false);
-//    }
-//}
+    public void JoinRoomByName(string _name)
+    {
+        roomManager.roomNameToJoin = _name;
+        roomManagerGameObject.SetActive(true);
+        gameObject.SetActive(false);
+    }
+}
