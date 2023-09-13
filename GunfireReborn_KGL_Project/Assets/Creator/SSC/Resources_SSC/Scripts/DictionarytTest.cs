@@ -15,7 +15,19 @@ public class DictionarytTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        List<Stack> poolList = new List<Stack>(); 
+        Dictionary<string, Stack<int>> bullet = new Dictionary<string, Stack<int>>();
+
+        bullet.Add("testStack", testStack);
+
+        for(int i = 0; i < 10; i++)
+        {
+            testStack.Push(i);
+        }
+
+        for(int i = 0;i < 10; i++)
+        {
+            Debug.Log("스택 데이터 값 : " + bullet.Keys);
+        }
     }
 
     // Update is called once per frame
