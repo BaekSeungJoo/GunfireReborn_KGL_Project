@@ -1,11 +1,12 @@
 using Cinemachine;
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class Bullet001 : MonoBehaviour
+public class Bullet001 : MonoBehaviourPun
 {
     private CinemachineVirtualCamera cam;
     private CrimsonFirescale001 rifle;
@@ -61,7 +62,8 @@ public class Bullet001 : MonoBehaviour
 
             if (helath != null)
             {
-               helath.EnemyHpDown(bulletDamage);
+                //helath.EnemyHpDown(bulletDamage);
+                photonView.RPC("EnemyTakeDamage", RpcTarget.All, bulletDamage);
             }
         }
 
@@ -71,7 +73,8 @@ public class Bullet001 : MonoBehaviour
 
             if(health != null)
             {
-                health.EnemyHpDown(bulletDamage * 2);
+                //health.EnemyHpDown(bulletDamage * 2);
+                photonView.RPC("EnemyTakeDamage", RpcTarget.All, bulletDamage * 2);
             }
         }
     }

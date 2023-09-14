@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using Photon.Pun;
 
-public class PistolBullet : MonoBehaviour
+public class PistolBullet : MonoBehaviourPun
 {
     private CinemachineVirtualCamera cam;
     private Rigidbody myRigid = default;
@@ -43,7 +44,8 @@ public class PistolBullet : MonoBehaviour
 
             if (helath != null)
             {
-               helath.EnemyHpDown(bulletDamage);
+                //helath.EnemyHpDown(bulletDamage);
+                photonView.RPC("EnemyTakeDamage", RpcTarget.All, bulletDamage);
             }
         }
 
@@ -53,7 +55,8 @@ public class PistolBullet : MonoBehaviour
 
             if (health != null)
             {
-                health.EnemyHpDown(bulletDamage * 2);
+                //health.EnemyHpDown(bulletDamage * 2);
+                photonView.RPC("EnemyTakeDamage", RpcTarget.All, bulletDamage * 2);
             }
         }
     }
