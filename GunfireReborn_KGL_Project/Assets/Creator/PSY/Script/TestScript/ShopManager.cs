@@ -46,6 +46,7 @@ public class ShopManager : MonoBehaviour
                 PlayerTest player = GameObject.Find("Player").GetComponent<PlayerTest>();
                 for (int i = 0; i < player.shopScripts.Count; i++)
                 {
+                    
                     player.shopScripts[i].soldOut.SetActive(false);
                     player.shopScripts[i].enabled = true;
                 }
@@ -60,9 +61,10 @@ public class ShopManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && uiManager.CheckActiveShopPopup())
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             uiManager.SetActiveShopPopup(false);
+            uiManager.SetActiveInven(false);
 
         }
     }

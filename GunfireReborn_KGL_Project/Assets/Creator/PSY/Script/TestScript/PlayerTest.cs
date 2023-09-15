@@ -13,7 +13,6 @@ public class PlayerTest : MonoBehaviour
     private bool isShop = false;
     private void Start()
     {
-
         uiManager = GameObject.Find("@Managers").GetComponent<UIManager>();
 
         GameObject[] items = GameObject.FindGameObjectsWithTag("Item");  // Item 태그가 달린 오브젝트를 배열에 넣는다.
@@ -40,6 +39,11 @@ public class PlayerTest : MonoBehaviour
             {
                 shopScripts[i].enabled = true;  // 상점이 켜지는 순간에 ShopScript를 활성화한다.
             }
+        }
+
+        if ( Input.GetKeyDown(KeyCode.Tab) )
+        {
+            uiManager.SetActiveInven(true);
         }
     }
 
