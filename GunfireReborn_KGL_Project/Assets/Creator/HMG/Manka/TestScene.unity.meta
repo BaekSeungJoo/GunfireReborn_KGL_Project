@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/TestScene.unity.meta
 guid: e572f8621a56480459039d3d2c85ed28
+========
+guid: 2f12aef1f80593b429d630c44a0d4df9
+folderAsset: yes
+>>>>>>>> origin/PSY:GunfireReborn_KGL_Project/Assets/Creator/PSY/Texture/Render Textures.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
