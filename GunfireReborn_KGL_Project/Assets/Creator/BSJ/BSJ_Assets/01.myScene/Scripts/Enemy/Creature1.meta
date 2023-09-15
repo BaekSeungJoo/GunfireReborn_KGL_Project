@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/BSJ/BSJ_Assets/01.myScene/Scripts/Enemy/Creature1.meta
 guid: 055cc6e251bfd3e4e8e79614ce42a3bf
+========
+guid: 645b8ab7ad415374eb225bc7543529f2
+>>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/SSC/AssetsImport/Effect/02.Hovl Studio.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
