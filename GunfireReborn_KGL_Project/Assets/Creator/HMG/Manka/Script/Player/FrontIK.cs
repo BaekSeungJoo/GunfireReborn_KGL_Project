@@ -3,39 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using Photon.Pun;
 
-public class FrontIK : MonoBehaviour
+public class FrontIK : MonoBehaviourPun
 {
     //웨폰 포지션
     public Transform FrontweaponPosition;
     //웨폰의 자식들을저장할배열
-    private GameObject[] FrontWeaponChilds;
+    public GameObject[] FrontWeaponChilds;
     //왼쪽 오른쪽손이 갈위치
     public Transform p_HandLeft;
     public Transform p_HandRight;
-    private Animator IKAnimator;
+    public Animator IKAnimator;
 
-    public GameObject playergun;
+
     // Start is called before the first frame update
     void Start()
     {
-        IKAnimator = gameObject.GetComponent<Animator>();
-        //Todo  웨폰의 자식들을  weaponchilds에 저장해야함
-        FrontWeaponChilds = new GameObject[FrontweaponPosition.childCount];
-        for (int i = 0; i < FrontweaponPosition.childCount; i++)
-        {
-            FrontWeaponChilds[i] = FrontweaponPosition.GetChild(i).gameObject;
-        }
-        ChangeIK("Pistol");
-        //ChangeIK("Rifle");
-        //ChangeIK("Shotgun");
+            Debug.Log("Start1");
+            FrontWeaponChilds = new GameObject[3];
+            IKAnimator = gameObject.GetComponent<Animator>();
+            //Todo  웨폰의 자식들을  weaponchilds에 저장해야함
+            FrontWeaponChilds = new GameObject[FrontweaponPosition.childCount];
+            for (int i = 0; i < FrontweaponPosition.childCount; i++)
+            {
+                FrontWeaponChilds[i] = FrontweaponPosition.GetChild(i).gameObject;
+            }
+            ChangeIK("Pistol");
+            //ChangeIK("Rifle");
+            //ChangeIK("Shotgun");
 
-        for (int i =0; i< FrontweaponPosition.childCount; i++)
-        {
-            Debug.LogFormat("{0}", FrontWeaponChilds[i].name);
-        }
-        //처음에는 기본권총을 활성화함\
-        //ChangeIK("Shotgun");
+            for (int i = 0; i < FrontweaponPosition.childCount; i++)
+            {
+                Debug.LogFormat("{0}", FrontWeaponChilds[i].name);
+            }
+
+            //처음에는 기본권총을 활성화함\
+            //ChangeIK("Shotgun");
     }
 
     // Update is called once per frame
@@ -45,19 +49,18 @@ public class FrontIK : MonoBehaviour
     }
 
     private void OnAnimatorIK(int layerIndex)
-    {   
-        //왼손 조절하는코드
-        IKAnimator.SetIKPosition(AvatarIKGoal.LeftHand, p_HandLeft.position);
-        IKAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
-        //IKAnimator.SetIKRotation(AvatarIKGoal.LeftHand, p_HandLeft.rotation);
-        //IKAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
-        
-        //오른손 조절하는코드
-        IKAnimator.SetIKPosition(AvatarIKGoal.RightHand, p_HandRight.position);
-        IKAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
-        //IKAnimator.SetIKRotation(AvatarIKGoal.RightHand, p_HandRight.rotation);
-        //IKAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
+    {
+            //왼손 조절하는코드
+            IKAnimator.SetIKPosition(AvatarIKGoal.LeftHand, p_HandLeft.position);
+            IKAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
+            //IKAnimator.SetIKRotation(AvatarIKGoal.LeftHand, p_HandLeft.rotation);
+            //IKAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
 
+            //오른손 조절하는코드
+            IKAnimator.SetIKPosition(AvatarIKGoal.RightHand, p_HandRight.position);
+            IKAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+            //IKAnimator.SetIKRotation(AvatarIKGoal.RightHand, p_HandRight.rotation);
+            //IKAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
     }
 
     public void ChangeIK(string weaponName)

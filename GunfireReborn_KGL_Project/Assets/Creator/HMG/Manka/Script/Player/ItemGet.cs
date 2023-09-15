@@ -1,18 +1,17 @@
 using Cinemachine;
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ItemGet : MonoBehaviour
+public class ItemGet : MonoBehaviourPun
 {
-
     GameObject nearObject;
 
     Item nearItem;
     //플레이어 웨폰슬롯
     WeaponManager weaponManager;
-
 
     //레이를 쏘기시작할 캠
     public CinemachineVirtualCamera cam;
@@ -29,19 +28,17 @@ public class ItemGet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cam = FindObjectOfType<CinemachineVirtualCamera>();
         weaponManager = GetComponent<WeaponManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-       
         ShotRaycast();
     }
     private void ShotRaycast()
     {
-        
-
         //레이캐스트 발사
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hitInfo, rayDistance))
         {   //레이가 충돌한경우
@@ -50,7 +47,6 @@ public class ItemGet : MonoBehaviour
             {
                 GetItem();
             }
-
         }
         else
         {   //레이가 아무것도 맞지않은경우
@@ -60,6 +56,7 @@ public class ItemGet : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        //Debug.Log("샷건에 닿은거같은데?");
         if(other.tag == "weapon")
         {
             //무기 트리거에 닿았을때 nearObject에 무기를담는다.

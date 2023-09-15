@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Creator/HMG/Manka/TestScene.unity
+    guid: e572f8621a56480459039d3d2c85ed28
+  - enabled: 1
+    path: Assets/Creator/HMG/Manka/MankaTest.unity
+    guid: 079ee6a6cea5a1e438362657e4253ab4
+  - enabled: 1
     path: Assets/Creator/PSY/Scenes/LoadingScene_PSY.unity
     guid: 8cd56137641a90144ad7612174c14f3c
   - enabled: 1

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class BulletPool : MonoBehaviour
 {
     // 오브젝트풀 매니저 싱글턴
-    public static BulletPool instence;
+    public static BulletPool instance;
 
     // 오브젝트 풀에 담아둘 프리팹
     public GameObject bulletPrefab;
@@ -14,12 +16,11 @@ public class BulletPool : MonoBehaviour
     // 프리팹을 담아둘 메모리 Stack
     Stack<Bullet> rifleBullet = new Stack<Bullet>();
 
-    Dictionary<Bullet, Stack> keyValuePairs = new Dictionary<Bullet, Stack>();  
     // 
     private void Awake()
     {
 
-        instence = this;
+        instance = this;
 
         Initialized(10); 
     }
@@ -44,16 +45,16 @@ public class BulletPool : MonoBehaviour
     // 오브젝트 호출
     public static Bullet GetObject()
     {
-        if(instence.rifleBullet.Count > 0)
+        if(instance.rifleBullet.Count > 0)
         {
-            var obj = instence.rifleBullet.Pop();
+            var obj = instance.rifleBullet.Pop();
             obj.transform.SetParent(null);
             obj.gameObject.SetActive(true);
             return obj;
         }
         else
         {
-            var newObj = instence.CreateNewObject();
+            var newObj = instance.CreateNewObject();
             newObj.transform.SetParent(null);
             newObj.gameObject.SetActive(true);
             return newObj;
@@ -65,8 +66,8 @@ public class BulletPool : MonoBehaviour
     {
         bullet.gameObject.SetActive(false);
 
-        bullet.transform.SetParent(instence.transform);
-        instence.rifleBullet.Push(bullet);
+        bullet.transform.SetParent(instance.transform);
+        instance.rifleBullet.Push(bullet);
     }
 
 }

@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerInput : MonoBehaviour
+using Photon.Pun;
+public class PlayerInput : MonoBehaviourPun
 {
 
     public string VMoveAxisName = "Vertical";
@@ -32,6 +32,12 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //로컬 플레이어가 아닌경우 입력을 받지않음
+        if(!photonView.IsMine)
+        {
+            return;
+        }
+
         //매 프레임 사용자 입력을 감지
         //ToDo:게임매니저의 인스턴스가 null이 아닌데 GameOver상태일때는 입력을 멈춰야함 if문 처리해야함
         //대쉬 상태에는 입력을 잠깐 못받게 하기 대쉬 false를 true로 바꾸는일은 Movement 스크립트에서 처리함

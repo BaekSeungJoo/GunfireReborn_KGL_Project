@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviourPun
 {
     public int maxHealth;       // 최대 Hp
     public int curHealth;       // 현재 Hp
@@ -20,8 +20,7 @@ public class EnemyHealth : MonoBehaviour
         hpbar.fillAmount = (float)curHealth / (float)maxHealth;
     }
 
-
-    // Enemy 스스로가 공격을 받았을 때 원격 프로시저 콜 해줄 함수
+    // Enemy가 공격을 받았을 때 원격 프로시저 콜 해줄 함수
     [PunRPC]
     public void EnemyTakeDamage(int _damage)
     {
@@ -33,7 +32,10 @@ public class EnemyHealth : MonoBehaviour
 
             if (curHealth <= 0)
             {
-                PhotonNetwork.Destroy(gameObject);
+                // 우선 비활성화로 해놓았음.
+                transform.gameObject.SetActive(false);
+
+                // PhotonNetwork.Destroy(gameObject);
             }
         }
     }

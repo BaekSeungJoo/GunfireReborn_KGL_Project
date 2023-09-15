@@ -35,13 +35,15 @@ public class FakeBoom : MonoBehaviour
     }
     private void OnEnable()
     {
+        // 시작 시간 저장
         startTime = Time.time;
     }
 
 
-    // 초기 스케일로 변경
+    
     private void OnDisable()
     {
+        // 초기 스케일로 변경
         transform.localScale = startScale;
     }
 }

@@ -494,9 +494,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  trackingSpeed: 2
-  trackingRange: 30
-  attackRange: 2
+  trackingSpeed: 5
+  trackingRange: 100
+  attackRange: 3
   targetPlayer: {fileID: 0}
   trackPlayer: {fileID: 0}
   animator: {fileID: 0}

@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Pistol_HMG : MonoBehaviour
+using Photon.Pun;
+public class Pistol_HMG : MonoBehaviourPun
 {
     // 총기의 현재 상태를 정의할 Enum : 발사가능, 탄창비어있음, 재장전
     public enum State { Ready, Empty, Reloading}
@@ -26,11 +26,13 @@ public class Pistol_HMG : MonoBehaviour
 
     private bool useskill = false;
 
-    PlayerAttack shoot;
+    public PlayerAttack shoot;
 
     private void Start()
     {
-        shoot = FindObjectOfType<PlayerAttack>();
+        if(!photonView.IsMine)
+        { return; }
+        //shoot = GetComponent<PlayerAttack>();
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
         fireSound = GetComponent<AudioSource>();
         //muzzlFlash = GetComponent<ParticleSystem>();
@@ -38,10 +40,12 @@ public class Pistol_HMG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!photonView.IsMine)
+        { return; }
         // { 기본 사격 : 좌클릭
-        if(shoot.isShootPistol == true)
+        if (shoot.isShootPistol == true)
         {
-            Instantiate(bulletPrefab, muzzle.transform.position, muzzle.transform.rotation);
+            PhotonNetwork.Instantiate(bulletPrefab.name, muzzle.transform.position, muzzle.transform.rotation);
             muzzlFlash.Play();
             fireSound.clip = basicShot;
             fireSound.volume = 0.4f;

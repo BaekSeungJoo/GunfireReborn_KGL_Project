@@ -1,11 +1,13 @@
+using Photon.Pun;
 using Photon.Pun.Demo.PunBasics;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class WeaponManager : MonoBehaviour
+public class WeaponManager : MonoBehaviourPun
 {
     //현재 활성화되있는 슬롯을 확인하기위한변수
     public bool[] ActiveSlot;
@@ -24,6 +26,7 @@ public class WeaponManager : MonoBehaviour
     //프런트 플레어을 지정하기위한변수
     public GameObject frontPlayer;
     // Update is called once per frame
+    private Animator frontAnimator;
 
     public GameObject playerGun;
 
@@ -40,6 +43,9 @@ public class WeaponManager : MonoBehaviour
         ActiveSlot[2] = true;
         //플레이어ik ik를받는다.
         playerIK = gameObject.GetComponent<IK>();
+        //
+        frontPlayer = Camera.main.transform.GetChild(0).gameObject;
+
         frontIK = frontPlayer.GetComponent<FrontIK>();
         //Todo: Equip_weapons[]배열에 존재할모든 무기들을 추가해줘야한다.
         //Equp_weapons[]배열의 무기들의 순서는 프리팹저장배열의 순서와같아야한다.
@@ -47,10 +53,30 @@ public class WeaponManager : MonoBehaviour
         //만약 새로운 무기를 추가하고싶다면 Equip_weapons[]와 weaponPrefabs[]배열에 필수적으로 추가해야한다.
 
         //스왑을할때는 Activeslot[]을 변경해주고, ik, Equipweapons[]를 변경해야한다.
+
+        for (int i = 0; i < Front_weapons.Length; i++)
+        {
+            Transform child = frontPlayer.transform.GetChild(2).GetChild(i); // 자식 게임 오브젝트 가져오기
+            Front_weapons[i] = child.gameObject; // 배열에 넣기
+        }
+        for (int i =0; i < frontIK.FrontWeaponChilds.Length; i++)
+        {
+            Transform child = frontPlayer.transform.GetChild(2).GetChild(i);
+            frontIK.FrontWeaponChilds[i] = child.gameObject;
+        }
+
+        frontIK.ChangeIK("Pistol");
+        frontAnimator = frontPlayer.GetComponent<Animator>();
+        frontIK.IKAnimator = frontAnimator;
+        
     }
     void Update()
     {
-        if(Input.GetButtonDown("Swap1"))
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+        if (Input.GetButtonDown("Swap1"))
         {
             //슬롯1이 비어있으면 return
             if (slotWeapons[0] == null)
@@ -66,21 +92,19 @@ public class WeaponManager : MonoBehaviour
             ActiveSlot[0] = true;
             ActiveSlot[1] = false;
             ActiveSlot[2] = false;
-            //플레이어가 현재들고있는 무기를 뜻하는변수에  현재 Front에 활성화되있는 무기를 대입함
-            //playerGun = ReturnWeapon();
-            //무기를 낮춰서 팔또한 낮추게만듬.
-            //LowerGun();
-            //1번무기에 해당하는 ik로 변경
+            frontAnimator.SetTrigger("Swap");
+
+            /*//1번무기에 해당하는 ik로 변경
+            Debug.Log("change1");
             playerIK.ChangeIK(slotWeapons[0]);
             //프런트ik도 변경
+            Debug.Log("change2");
             frontIK.ChangeIK(slotWeapons[0]);
             //1번에 원래있던 무기를 다시활성화시킴.
-            Equip_weapons[SearchWeapon()].SetActive(true);
+            Debug.Log("change3");
             //1번이 아닌 다른무기들을 비활성화시킴 front에 있는 무기도 비활성화시킴
-            TurnWeapon(slotWeapons[0]);
-            //총을들어서 다시 손을 카메라에게 보이게함
-            //RaiseGun();
-            
+            TurnWeapon(slotWeapons[0]);*/
+            StartCoroutine(DelayedWeaponChange1()); // DelayedWeaponChange 코루틴을 시작하여 0.6초 후에 코드 블록 실행
         }
         else if(Input.GetButtonDown("Swap2"))
         {
@@ -99,29 +123,33 @@ public class WeaponManager : MonoBehaviour
             ActiveSlot[0] = false;
             ActiveSlot[1] = true;
             ActiveSlot[2] = false;
-            playerIK.ChangeIK(slotWeapons[1]);
+            frontAnimator.SetTrigger("Swap");
+           /* playerIK.ChangeIK(slotWeapons[1]);
             //프런트ik도 변경
             frontIK.ChangeIK(slotWeapons[1]);
             Equip_weapons[SearchWeapon()].SetActive(true);
-            TurnWeapon(slotWeapons[1]);
+            TurnWeapon(slotWeapons[1]);*/
+            StartCoroutine(DelayedWeaponChange2());
         }
         else if(Input.GetButtonDown("Swap3"))
         {
             //Todo : 현재 사용하고있는 장비가 몇번슬롯에있는지 확인하고 3번이라면 그대로냅두고
             //1번, 혹은 2번이라면  현재 총을 쏘고있거나 장전중이라면 애니메이션을 취소하고
             //3번에 원래있던 무기를 다시활성화시키고 ik를 연결한다.
-            if (ActiveSlot[1] == true)
+            if (ActiveSlot[2] == true)
             {
                 return;
             }
             ActiveSlot[0] = false;
             ActiveSlot[1] = false;
             ActiveSlot[2] = true;
-            playerIK.ChangeIK(slotWeapons[2]);
+            frontAnimator.SetTrigger("Swap");
+            /*playerIK.ChangeIK(slotWeapons[2]);
             //프런트ik도 변경
             frontIK.ChangeIK(slotWeapons[2]);
             Equip_weapons[SearchWeapon()].SetActive(true);
-            TurnWeapon(slotWeapons[2]);
+            TurnWeapon(slotWeapons[2]);*/
+            StartCoroutine(DelayedWeaponChange3());
         }
     }
 
@@ -139,18 +167,18 @@ public class WeaponManager : MonoBehaviour
             //첫번째 슬롯의 아이템을 먹은 아이템으로 바꾼다.
             weaponName = weaponName.Replace("(get)", "");
             slotWeapons[0] = weaponName;
-            //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
-            playerIK.ChangeIK(weaponName);
-            Debug.Log("format1");
-            //1인칭시점의 IK또한바꿔준다.
-            frontIK.ChangeIK(weaponName);
-            Debug.Log("format2");
-            //그리고 팔에있는 무기를 활성화시킨다.
-            Equip_weapons[SearchWeapon()].SetActive(true);
-            //1인칭 시점 무기도 교체한다.
-            Front_weapons[SearchWeapon()].SetActive(true);
-            //아닌 것들을 모두 false
-            TurnWeapon(weaponName);
+            frontAnimator.SetTrigger("Swap");
+            /* //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
+             playerIK.ChangeIK(weaponName);
+             //Debug.Log("format1");
+             //1인칭시점의 IK또한바꿔준다.
+             frontIK.ChangeIK(weaponName);
+             //Debug.Log("format2");
+
+             //아닌 것들을 모두 false로 바꾸고 맞는것무기는 true로 바꾼다.
+             TurnWeapon(weaponName);*/
+            Debug.LogFormat("{0}", weaponName);
+            StartCoroutine(GetWeapon(weaponName));
         }
         else if (First == 1)
         {   //만약 두번째 슬롯이 비어있어서 장착된경우라면
@@ -164,16 +192,14 @@ public class WeaponManager : MonoBehaviour
             //두번째 슬롯의 아이템을 먹은 아이템으로 바꾼다.
             weaponName = weaponName.Replace("(get)", "");
             slotWeapons[1] = weaponName;
-            //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
+            frontAnimator.SetTrigger("Swap");
+         /*   //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
             playerIK.ChangeIK(weaponName);
             //1인칭시점의 IK또한바꿔준다.
             frontIK.ChangeIK(weaponName);
-            //그리고 팔에있는 무기를 활성화시킨다.
-            Equip_weapons[SearchWeapon()].SetActive(true);
-            //1인칭 시점 무기도 교체한다.
-            Front_weapons[SearchWeapon()].SetActive(true);
             //아닌 것들을 모두 false
-            TurnWeapon(weaponName);
+            TurnWeapon(weaponName);*/
+            StartCoroutine(GetWeapon(weaponName));
         }
         else
         {
@@ -183,14 +209,16 @@ public class WeaponManager : MonoBehaviour
             //그슬롯의 아이템을 먹은 아이템으로 바꾼다.
             weaponName = weaponName.Replace("(get)", "");
             slotWeapons[CheckActiveslot()] = weaponName;
-            //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
-            playerIK.ChangeIK(weaponName);
-            //1인칭시점의 IK또한바꿔준다.
-            frontIK.ChangeIK(weaponName);
-            //그리고 팔에있는 무기를 활성화시킨다.
-            Equip_weapons[SearchWeapon()].SetActive(true);
-            //1인칭 시점 무기도 교체한다.
-            Front_weapons[SearchWeapon()].SetActive(true);
+            frontAnimator.SetTrigger("Swap");
+            StartCoroutine(GetWeapon(weaponName));
+            /* //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
+             playerIK.ChangeIK(weaponName);
+             //1인칭시점의 IK또한바꿔준다.
+             frontIK.ChangeIK(weaponName);
+             //그리고 팔에있는 무기를 활성화시킨다.
+             Equip_weapons[SearchWeapon()].SetActive(true);
+             //1인칭 시점 무기도 교체한다.
+             Front_weapons[SearchWeapon()].SetActive(true);*/
             //
         }
     }
@@ -256,6 +284,7 @@ public class WeaponManager : MonoBehaviour
             if (Equip_weapons[i].name == weaponName )
             {
                 Equip_weapons[i].SetActive(true);
+                Debug.LogFormat("{0},{1}", Equip_weapons[i].name, Front_weapons[i].name);
                 Front_weapons[i].SetActive(true);
             }
             else
@@ -265,64 +294,77 @@ public class WeaponManager : MonoBehaviour
             }
         }
     }
-    public GameObject ReturnWeapon()
+
+
+    IEnumerator DelayedWeaponChange1()
     {
-        GameObject gameObject = null;
-        for (int i = 0; i < Front_weapons.Length; i++)
-        {
-            if (Front_weapons[i].activeSelf == true)
-            {
-                gameObject = Front_weapons[i];
-            }
-        }
-        return gameObject;
+        yield return new WaitForSeconds(0.6f); // 0.6초 대기
+
+        // 1번 무기에 해당하는 IK로 변경
+        Debug.Log("change1");
+        playerIK.ChangeIK(slotWeapons[0]);
+
+        // 프런트 IK도 변경
+        Debug.Log("change2");
+        frontIK.ChangeIK(slotWeapons[0]);
+
+        // 1번에 원래 있던 무기를 다시 활성화시킴
+        Debug.Log("change3");
+
+        // 1번이 아닌 다른 무기들을 비활성화시킴, front에 있는 무기도 비활성화시킴
+        TurnWeapon(slotWeapons[0]);
     }
-    IEnumerator LowerGun()
+    IEnumerator DelayedWeaponChange2()
     {
-        // 팔과 총을 천천히 아래로 내리는 처리를 구현합니다.
-        float elapsedTime = 0f;
-        float duration = 0.2f; // 내리는 시간 (예: 3초)
-        Vector3 initialArmLocalPosition = playerGun.transform.localPosition;
-        Vector3 targetArmLocalPosition = initialArmLocalPosition - playerGun.transform.up * 0.5f; // 아래로 내리기
+        yield return new WaitForSeconds(0.6f); // 0.6초 대기
 
-        Quaternion initialGunLocalRotation = playerGun.transform.localRotation;
-        Quaternion targetGunLocalRotation = Quaternion.Euler(0f, -90f, -45f); // Z 축만 회전
+        // 2번 무기에 해당하는 IK로 변경
+        //Debug.Log("change1");
+        playerIK.ChangeIK(slotWeapons[1]);
 
-        while (elapsedTime < duration)
-        {
-            float t = elapsedTime / duration;
-            playerGun.transform.localPosition = Vector3.Lerp(initialArmLocalPosition, targetArmLocalPosition, t);
-            playerGun.transform.localRotation = Quaternion.Slerp(initialGunLocalRotation, targetGunLocalRotation, t);
+        // 프런트 IK도 변경
+        //Debug.Log("change2");
+        frontIK.ChangeIK(slotWeapons[1]);
 
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+        // 2번에 원래 있던 무기를 다시 활성화시킴
+        //Debug.Log("change3");
 
+        // 2번이 아닌 다른 무기들을 비활성화시킴, front에 있는 무기도 비활성화시킴
+        TurnWeapon(slotWeapons[1]);
     }
 
-    // 총을 위로 올리는 부분을 처리하는 코루틴 함수
-    IEnumerator RaiseGun()
+    IEnumerator DelayedWeaponChange3()
     {
-        // 팔과 총을 원래 위치로 돌리는 처리를 구현합니다.
-        float elapsedTime = 0f;
-        float duration = 0.2f; // 올리는 시간 (예: 3초)
-        Vector3 initialArmLocalPosition = playerGun.transform.localPosition;
-        Vector3 targetArmLocalPosition = initialArmLocalPosition; // 초기 위치로 올리기
+        yield return new WaitForSeconds(0.6f); // 0.6초 대기
 
-        Quaternion initialGunLocalRotation = playerGun.transform.localRotation;
-        Quaternion targetGunLocalRotation = Quaternion.identity; // 회전 없이 원래 방향으로 돌리기
+        // 2번 무기에 해당하는 IK로 변경
+        //Debug.Log("change1");
+        playerIK.ChangeIK(slotWeapons[2]);
 
-        while (elapsedTime < duration)
-        {
-            float t = elapsedTime / duration;
-            playerGun.transform.localPosition = Vector3.Lerp(initialArmLocalPosition, targetArmLocalPosition, t);
-            playerGun.transform.localRotation = Quaternion.Slerp(initialGunLocalRotation, targetGunLocalRotation, t);
+        // 프런트 IK도 변경
+        //Debug.Log("change2");
+        frontIK.ChangeIK(slotWeapons[2]);
 
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+        // 2번에 원래 있던 무기를 다시 활성화시킴
+        //Debug.Log("change3");
 
-        // 재장전 완료 후 상태를 원래대로 되돌립니다.
-        //isDown = false;
+        // 2번이 아닌 다른 무기들을 비활성화시킴, front에 있는 무기도 비활성화시킴
+        TurnWeapon(slotWeapons[2]);
     }
+
+    IEnumerator GetWeapon(string weaponName)
+    {
+        yield return new WaitForSeconds(0.6f); // 0.6초 대기
+                                               
+        //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
+        playerIK.ChangeIK(weaponName);
+        //Debug.Log("format1");
+        //1인칭시점의 IK또한바꿔준다.
+        frontIK.ChangeIK(weaponName);
+        //Debug.Log("format2");
+
+        //아닌 것들을 모두 false로 바꾸고 맞는것무기는 true로 바꾼다.
+        TurnWeapon(weaponName);
+    }
+
 }

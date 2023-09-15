@@ -5,13 +5,11 @@ using UnityEngine;
 
 public class Boom : MonoBehaviour
 {
+    public Transform target_Tran;       // 타겟 위치
+    public float initialAngle = 30f;    // 처음 날라가는 각도
 
-    public Transform m_Target;
-    public float m_InitialAngle = 30f; // 처음 날라가는 각도
-
-    private EvilMage evilMage;        // 부모 몬스터 클래스
-    private Vector3 startPos;         // 생성될 초기 위치
-    private Rigidbody m_Rigidbody;    // Rigidbody
+    private EvilMage evilMage;          // 부모 클래스
+    private Rigidbody rb;               // Rigidbody
 
     private void Awake()
     {
@@ -20,10 +18,14 @@ public class Boom : MonoBehaviour
 
     private void OnEnable()
     {
-        m_Target = evilMage._TargetPlayer.transform;                                                // 타겟 플레이어
-        m_Rigidbody = GetComponent<Rigidbody>();                                                    // 탄환 rigidbody
-        Vector3 velocity = GetVelocity(transform.position, m_Target.position, m_InitialAngle);      // 포물선 운동 함수
-        m_Rigidbody.velocity = velocity;
+        rb = GetComponent<Rigidbody>();
+        
+        // 날아갈 타겟 플레이어의 transform
+        target_Tran = evilMage._TargetPlayer.transform;
+
+        // 포물선 운동
+        Vector3 velocity = GetVelocity(transform.position, target_Tran.position, initialAngle);      
+        rb.velocity = velocity;
     }
 
     private void OnCollisionEnter(Collision collision)

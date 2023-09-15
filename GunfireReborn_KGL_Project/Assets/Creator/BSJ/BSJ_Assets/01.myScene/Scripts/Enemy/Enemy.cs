@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
 
     public NavMeshAgent nav;                // 네비게이션 사용
 
+    protected Vector3 targetDirection;      // 추적 방향
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -91,7 +93,6 @@ public class Enemy : MonoBehaviour
         isTracking = false;
         animator.SetBool("Attack", true);
         animator.SetBool("Track", false);
-        
     }
 
     // 공격하는 순간 ( 애니메이션 이벤트 )

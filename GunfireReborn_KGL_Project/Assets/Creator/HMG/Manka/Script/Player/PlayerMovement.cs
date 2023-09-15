@@ -1,8 +1,9 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviourPun
 {
     public float moveSpeed = 5f;
     public float rotateSpeed = 7f;
@@ -18,6 +19,10 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         playerInput = GetComponent<PlayerInput>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
@@ -30,6 +35,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!photonView.IsMine)
+        {
+            return;
+        }
+        //Cursor.lockState = CursorLockMode.Locked; // 마우스 잠금
+        //Cursor.visible = false; // 마우스 숨기기
         Rotate();
         Move();
         Dash();
@@ -39,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = playerInput.HMove;
         movement.z = playerInput.VMove;
+        movement.y = playerRigidbody.velocity.y;
         if (playerInput.jump == true && isJumping == false)
         { //플레이어가 점프중이아니면서 점프키를 눌렀을때 점프하도록 만들음
             playerAnimator.Play("Jumping", -1, 0);

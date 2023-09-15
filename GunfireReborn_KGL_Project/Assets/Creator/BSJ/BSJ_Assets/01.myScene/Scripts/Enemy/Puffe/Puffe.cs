@@ -2,7 +2,7 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
+//using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,7 +24,7 @@ public class Puffe : Enemy
     private Vector3 direction;      // 레이 방향
     private Vector3 endPoint;       // 레이 끝 지점
 
-    private Vector3 targetDirection;
+    // private Vector3 targetDirection; ( Enemy )
 
     private void Awake()
     {
@@ -58,10 +58,7 @@ public class Puffe : Enemy
         {
             if (isAttacking == false)
             {
-                // 추적 플레이어를 바라본다.
-                // transform.LookAt(targetPlayer);
-
-                // y값 회전 고정
+                // 추적 대상 바라보기 ( y 값을 고정시켜서 높이차이가 있어도 이상하게 회전함을 방지 )
                 targetDirection = targetPlayer.position - transform.position;
                 targetDirection.y = 0;
                 transform.rotation = Quaternion.LookRotation(targetDirection.normalized);
@@ -93,7 +90,9 @@ public class Puffe : Enemy
         ChangeEmissionColor(Color.yellow);
 
         // 추적 플레이어를 바라본다.
-        transform.LookAt(targetPlayer);
+        targetDirection = targetPlayer.position - transform.position;
+        targetDirection.y = 0;
+        transform.rotation = Quaternion.LookRotation(targetDirection.normalized);
 
         // 이펙트 활성화
         gatherEnergyVFX.gameObject.SetActive(true);

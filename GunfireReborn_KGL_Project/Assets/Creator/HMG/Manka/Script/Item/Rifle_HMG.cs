@@ -43,7 +43,6 @@ public class Rifle_HMG: MonoBehaviour
         if(shoot.isShoot == true)
         {
             attackTimer += Time.deltaTime;
-
             if(attackTimer > attackSpeed)
             {
                 //Debug.Log("라이플 로테이션 값 : " + transform.rotation);
@@ -53,7 +52,6 @@ public class Rifle_HMG: MonoBehaviour
                 fireSound.clip = basicShot;
                 fireSound.volume = 0.4f;
                 fireSound.Play();
-
                 attackTimer = 0f;
             }
         }
@@ -62,8 +60,6 @@ public class Rifle_HMG: MonoBehaviour
             muzzlFlash.Stop();
         }
         // } 기본 사격 : 좌클릭
-
-
         // { 스킬 사격 : 우클릭
         if(useskill == false)
         {

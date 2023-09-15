@@ -1,8 +1,9 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FIngerIK : MonoBehaviour
+public class FIngerIK : MonoBehaviourPun
 {
     public Transform fingerBone;
     public Transform handBone;
@@ -12,7 +13,11 @@ public class FIngerIK : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // float fingerRotationAmount = fingerRotationSpeed;
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+        // float fingerRotationAmount = fingerRotationSpeed;
         //fingerBone.Rotate(Vector3.right, fingerRotationAmount);
 
         float handRotationAmount =  handRotationSpeed;

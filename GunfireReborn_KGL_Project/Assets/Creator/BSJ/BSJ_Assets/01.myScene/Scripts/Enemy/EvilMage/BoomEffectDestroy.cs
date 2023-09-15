@@ -16,6 +16,5 @@ public class BoomEffectDestroy : MonoBehaviour
             gameObject.SetActive(false);
             timer = 0f;
         }
-
     }
 }

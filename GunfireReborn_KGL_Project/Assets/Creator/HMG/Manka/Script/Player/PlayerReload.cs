@@ -1,9 +1,10 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class PlayerReload : MonoBehaviour
+public class PlayerReload : MonoBehaviourPun
 {
 
     private Animator playerAnimator;
@@ -12,6 +13,10 @@ public class PlayerReload : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         playerAnimator = gameObject.GetComponent<Animator>();
         playerIk = gameObject.GetComponent<IK>();
     }
@@ -19,7 +24,11 @@ public class PlayerReload : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Reload"))
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+        if (Input.GetButtonDown("Reload"))
         {
             Reload();
         }

@@ -2,8 +2,9 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;// PUN관련코드
 
-public class CameraSetUp : MonoBehaviour
+public class CameraSetUp : MonoBehaviourPun
 {
 
     public CinemachineVirtualCamera followCam;
@@ -12,19 +13,27 @@ public class CameraSetUp : MonoBehaviour
     private float lookSensivility = 5f;
     private float cameraRotationLimit = 45;
     private float currentCameraRotationX;
+
     // Start is called before the first frame update
     void Start()
     {
-        PlayerMovement player = GetComponent<PlayerMovement>();
-        followCam.transform.parent = player.transform;
-        Vector3 CamPosition = new Vector3(player.transform.position.x, player.transform.position.y + 0.7f, player.transform.position.z+0.5f);
-        followCam.transform.position = CamPosition;
+        if (photonView.IsMine)
+        {
+            followCam = FindObjectOfType<CinemachineVirtualCamera>();
+            PlayerMovement player = GetComponent<PlayerMovement>();
+            followCam.transform.parent = player.transform;
+            Vector3 CamPosition = new Vector3(player.transform.position.x, player.transform.position.y + 0.7f, player.transform.position.z + 0.5f);
+            followCam.transform.position = CamPosition;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        CameraRotation();
+        if (photonView.IsMine)
+        {
+            CameraRotation();
+        }
     }
 
     private void CameraRotation()

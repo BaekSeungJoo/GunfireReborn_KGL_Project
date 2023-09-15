@@ -44,13 +44,15 @@ GameObject:
   - component: {fileID: 4282326193685598475}
   - component: {fileID: -8407401327332183003}
   - component: {fileID: 1481959802}
+  - component: {fileID: 1271735863047212776}
+  - component: {fileID: 7061871523956666432}
   m_Layer: 0
   m_Name: CrimsonFirescale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3109397033491163748
 Transform:
   m_ObjectHideFlags: 0
@@ -60,11 +62,13 @@ Transform:
   m_GameObject: {fileID: 2336555170174120158}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5128507015473166943}
   - {fileID: 9000067685139373936}
+  - {fileID: 7061871522617544452}
+  - {fileID: 7061871522800710638}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -221,7 +225,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2336555170174120158}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8233545b78e31754899c4bbfb97d685c, type: 3}
   m_Name: 
@@ -240,6 +244,106 @@ MonoBehaviour:
   skillAmmo: 10
   MagAmmoText: {fileID: 0}
   AmmoRemainText: {fileID: 0}
+--- !u!114 &1271735863047212776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2336555170174120158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b924681ee33b3834ea44f780706b0e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useSkiil: 0
+  muzzlFlash: {fileID: 9094339511620000034}
+  basicShot: {fileID: 8300000, guid: f2653e12b27e37841b016af359f463d8, type: 3}
+  skillShot: {fileID: 8300000, guid: 4a4c6e28708a4ee4e870eebc56ca4af8, type: 3}
+  EmptyMagAmmo: {fileID: 8300000, guid: 5dbebabca24b9ac4796a28342090972b, type: 3}
+  CrimsonFirescale_Reload: {fileID: 8300000, guid: 6ec264f71ef62bf43ba8c6d18e099adf, type: 3}
+  attackSpeed: 0.1
+  maxAmmoRemain: 90
+  ammoRemain: 0
+  magCapacity: 30
+  magAmmo: 0
+  skillAmmo: 10
+--- !u!114 &7061871523956666432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2336555170174120158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60eda3f3a76c55647bc22eba7d1c6754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftGrap: {fileID: 7061871522800710638}
+  rightGrap: {fileID: 7061871522617544452}
+--- !u!1 &7061871522617544453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7061871522617544452}
+  m_Layer: 0
+  m_Name: Right_Hand_RIfle
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7061871522617544452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7061871522617544453}
+  m_LocalRotation: {x: -0.030320432, y: 0.016504792, z: -0.87778294, w: 0.47781307}
+  m_LocalPosition: {x: -0.241, y: -0.104, z: -0.001}
+  m_LocalScale: {x: 0.84000003, y: 0.84000003, z: 0.8399999}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3109397033491163748}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 93.957, z: -122.878}
+--- !u!1 &7061871522800710639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7061871522800710638}
+  m_Layer: 0
+  m_Name: Left_Hand_Rifle
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7061871522800710638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7061871522800710639}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00000005960463}
+  m_LocalPosition: {x: 0.041, y: -0.085, z: -0.004}
+  m_LocalScale: {x: 0.84000003, y: 0.84, z: 0.84000003}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3109397033491163748}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &9004917885229917630
 PrefabInstance:
   m_ObjectHideFlags: 0

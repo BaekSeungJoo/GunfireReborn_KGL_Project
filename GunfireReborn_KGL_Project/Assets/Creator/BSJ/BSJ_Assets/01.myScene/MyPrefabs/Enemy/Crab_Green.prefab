@@ -45,8 +45,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.45, y: 1, z: 2}
-  m_Center: {x: 0, y: 0.5, z: 1.56}
+  m_Size: {x: 1.45, y: 1, z: 3}
+  m_Center: {x: 0, y: 0.5, z: 2}
 --- !u!114 &7057703857029992456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512b6449924cc644eb01c03ecdc7d8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
+  damage: 10
 --- !u!114 &159547565797003618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1335,8 +1335,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4676838151956998879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.99, y: 0, z: -5.93}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2812758613692703346}
@@ -1409,8 +1409,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  trackingSpeed: 3
-  trackingRange: 30
+  trackingSpeed: 8
+  trackingRange: 100
   attackRange: 2
   targetPlayer: {fileID: 0}
   trackPlayer: {fileID: 0}
@@ -1431,7 +1431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b5c27fe7067f649ae3d05d7a372d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 100
   curHealth: 0
   hpbar: {fileID: 1271167498262240887}
 --- !u!114 &1103483276

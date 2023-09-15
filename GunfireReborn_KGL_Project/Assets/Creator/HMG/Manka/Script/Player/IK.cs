@@ -1,9 +1,10 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class IK : MonoBehaviour
+public class IK : MonoBehaviourPun
 {
     //웨폰 포지션
     public Transform weaponPosition;
@@ -40,7 +41,7 @@ public class IK : MonoBehaviour
     }
 
     private void OnAnimatorIK(int layerIndex)
-    {   
+    {
         //얼굴이 위를바라보게 만드는코드
         IKAnimator.SetLookAtWeight(1);
         IKAnimator.SetLookAtPosition(targetObj.position);

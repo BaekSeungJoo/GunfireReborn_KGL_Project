@@ -1302,7 +1302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b5c27fe7067f649ae3d05d7a372d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
+  maxHealth: 250
   curHealth: 0
   hpbar: {fileID: 7008159935035415208}
 --- !u!114 &2397602918060013459
@@ -1318,8 +1318,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 1
-  trackingSpeed: 1.5
-  trackingRange: 50
+  trackingSpeed: 2
+  trackingRange: 100
   attackRange: 20
   targetPlayer: {fileID: 0}
   trackPlayer: {fileID: 0}
