@@ -38,26 +38,32 @@ public class PistolBullet : MonoBehaviourPun
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy"))
+        if(photonView.IsMine)
         {
-            EnemyHealth helath = other.GetComponent<EnemyHealth>();
-
-            if (helath != null)
+            if(other.CompareTag("Enemy"))
             {
-                //helath.EnemyHpDown(bulletDamage);
-                photonView.RPC("EnemyTakeDamage", RpcTarget.All, bulletDamage);
+                Debug.Log("몬스터에 닿았음");
+
+                EnemyHealth helath = other.GetComponent<EnemyHealth>();
+
+                if (helath != null)
+                {
+                    helath.EnemyHpDown(bulletDamage);
+                    //photonView.RPC("EnemyTakeDamage", RpcTarget.All, bulletDamage);
+                }
             }
-        }
 
-        if (other.CompareTag("LuckyShotPoint"))
-        {
-            EnemyHealth health = other.GetComponent<EnemyHealth>();
-
-            if (health != null)
+            if (other.CompareTag("LuckyShotPoint"))
             {
-                //health.EnemyHpDown(bulletDamage * 2);
-                photonView.RPC("EnemyTakeDamage", RpcTarget.All, bulletDamage * 2);
+                EnemyHealth health = other.GetComponent<EnemyHealth>();
+
+                if (health != null)
+                {
+                    health.EnemyHpDown(bulletDamage * 2);
+                    //photonView.RPC("EnemyTakeDamage", RpcTarget.All, bulletDamage * 2);
+                }
             }
+
         }
     }
 

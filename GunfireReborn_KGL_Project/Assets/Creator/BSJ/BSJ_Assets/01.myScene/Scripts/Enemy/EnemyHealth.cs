@@ -24,8 +24,6 @@ public class EnemyHealth : MonoBehaviourPun
     [PunRPC]
     public void EnemyTakeDamage(int _damage)
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
             curHealth -= _damage;
 
             hpbar.fillAmount = (float)curHealth / (float)maxHealth;
@@ -37,7 +35,9 @@ public class EnemyHealth : MonoBehaviourPun
 
                 // PhotonNetwork.Destroy(gameObject);
             }
-        }
+        //if (PhotonNetwork.IsMasterClient)
+        //{
+        //}
     }
 
     public void EnemyHpDown(int _damage)
