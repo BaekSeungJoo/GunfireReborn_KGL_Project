@@ -81,7 +81,7 @@ public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         bgSize.localScale = baseSize;
         itemInfo.gameObject.SetActive(false);
 
-
+        Debug.Log("1"); 
         soldOut.SetActive(true);
 
         mine.enabled = false;

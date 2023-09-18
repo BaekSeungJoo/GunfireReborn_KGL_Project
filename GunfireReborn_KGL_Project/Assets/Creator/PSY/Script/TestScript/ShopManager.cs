@@ -26,12 +26,10 @@ public class ShopManager : MonoBehaviour
     public List<string> ItemInfoList { get { return itemInfoList; } }
     #endregion
 
-    #region Reroll
     private int count = 3;
-    /// <summary>
-    /// Reroll Count 프로퍼티
-    /// </summary>
-    public int Count
+
+    #region 프로퍼티
+    public int Count  // Reroll Count 프로퍼티
     {
         get
         {
@@ -46,6 +44,7 @@ public class ShopManager : MonoBehaviour
                 PlayerTest player = GameObject.Find("Player").GetComponent<PlayerTest>();
                 for (int i = 0; i < player.shopScripts.Count; i++)
                 {
+                    Debug.Log("3");
                     
                     player.shopScripts[i].soldOut.SetActive(false);
                     player.shopScripts[i].enabled = true;
@@ -65,6 +64,7 @@ public class ShopManager : MonoBehaviour
         {
             uiManager.SetActiveShopPopup(false);
             uiManager.SetActiveInven(false);
+            uiManager.SetActiveBlackSmith(false);
 
         }
     }

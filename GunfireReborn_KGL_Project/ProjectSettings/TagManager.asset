@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Shop
   - Item
+  - BlackSmith
   layers:
   - Default
   - TransparentFX

@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
 
     private GameObject invenCanvas;      // 가방 UI
 
+    private GameObject blackSmithCanvas; // 대장장이 UI
+
     private GameObject mainCanvas;       // 메인 UI
 
     private TextMeshProUGUI text_Reroll; // 새로고침 텍스트
@@ -29,6 +31,8 @@ public class UIManager : MonoBehaviour
 
         invenCanvas = GameObject.Find("InventoryCanvas");
 
+        blackSmithCanvas = GameObject.Find("BlackSmithCanvas");
+
         mainCanvas = GameObject.Find("MainCanvas");
 
         text_Reroll = GameObject.Find("RerollText").GetComponent<TextMeshProUGUI>();
@@ -40,6 +44,7 @@ public class UIManager : MonoBehaviour
         SetActiveMainCanvas(true);
         SetActiveInven(false);
         SetActiveShopPopup(false);
+        SetActiveBlackSmith(false);
     }
 
     
@@ -65,6 +70,7 @@ public class UIManager : MonoBehaviour
     {  // ESC 버튼 클릭 시 상점 / 가방 팝업을 닫는다.
         shopPopup.SetActive(false);
         invenCanvas.SetActive(false);
+        blackSmithCanvas.SetActive(false);
     }
 
     /// <summary>
@@ -86,6 +92,7 @@ public class UIManager : MonoBehaviour
     {  // 새로고침 버튼 클릭 시 클릭 횟수가 차감된 텍스트 출력 함수
         if ( shopManager.Count > 0 )
         {
+            Debug.Log("2");
             shopManager.Count--;
             text_Reroll.text = $"새로 고침 <i> {shopManager.Count} / 3 <i> ";
         }
@@ -99,6 +106,16 @@ public class UIManager : MonoBehaviour
     {  // 상점 팝업 활성화 / 비활성화 함수
         shopPopup?.SetActive(isActive);
         SetActiveMainCanvas(!isActive);  // 상점 팝업과 반대로 세팅
+    }
+
+    /// <summary>
+    /// BlackSmith 활성화 세팅 함수
+    /// </summary>
+    /// <param name="isActive">활성화 여부</param>
+    public void SetActiveBlackSmith(bool isActive)
+    {  // 대장장이 UI 활성화 / 비활성화 함수
+        blackSmithCanvas?.SetActive(isActive);
+        SetActiveMainCanvas(!isActive);  // 대장장이 팝업과 반대로 세팅
     }
 
     /// <summary>
