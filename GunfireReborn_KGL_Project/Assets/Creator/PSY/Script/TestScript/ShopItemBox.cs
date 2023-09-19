@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    private ItemData itemData;
+
     private ShopManager shopManager;
     public ShopItemBox mine;
     public GameObject soldOut;
@@ -41,6 +43,8 @@ public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         shopManager = GameObject.Find("@Managers").GetComponent<ShopManager>();
 
         itemImage = transform.GetChild(0).GetChild(2).GetComponent<Image>();
+
+        itemData = shopManager.itemDataManager.ItemList[transform.GetSiblingIndex()];
     }
     private void OnEnable()  // 해당 스크립트가 활성화 되는 순간에 동작하는 함수
     {
@@ -55,8 +59,8 @@ public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
 
         itemInfo.gameObject.SetActive(true);
-        itemInfo.SetItem(shopManager.ItemNameList[transform.GetSiblingIndex()],
-            shopManager.ItemInfoList[transform.GetSiblingIndex()],
+        itemInfo.SetItem(shopManager.itemDataManager.ItemNameList[transform.GetSiblingIndex()],
+            shopManager.itemDataManager.ItemInfoList[transform.GetSiblingIndex()],
             itemImage);
     }
 
@@ -73,7 +77,8 @@ public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         logText.transform.parent.gameObject.SetActive(true);
 
-        string styledItemName = $"<color=#FFFB00><size=28>{shopManager.ItemNameList[transform.GetSiblingIndex()]}</size></color>";
+        string styledItemName = $"<color=#FFFB00><size=28>" +
+            $"{shopManager.itemDataManager.ItemNameList[transform.GetSiblingIndex()]}</size></color>";
 
         logText.text = $"{styledItemName} 구매했습니다";
 
@@ -81,10 +86,11 @@ public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         bgSize.localScale = baseSize;
         itemInfo.gameObject.SetActive(false);
 
-        Debug.Log("1"); 
         soldOut.SetActive(true);
 
         mine.enabled = false;
+
+        // TODO: 구매한 아이템을 인벤토리에 추가한다.
 
         Invoke("SetActiveLogText", 1.5f);
     }

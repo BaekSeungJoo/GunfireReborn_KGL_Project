@@ -7,24 +7,7 @@ public class ShopManager : MonoBehaviour
 {
     private UIManager uiManager;
 
-    #region ItemList
-    private List<string> itemNameList = new List<string> { "신기한 만두", "탄약 보급", "특수탄", "대형탄", "일반탄" };
-    private List<string> itemInfoList = new List<string>
-    {"신기한 만두. 속에 뭐가 들었는지는 몰라도, 먹으면 30%의 생명력을 회복",
-     "모든 탄약을 보충하여 꽉 채운다",
-     "특수 탄약을 보충하여 꽉 채운다",
-     "대형 탄약을 보충하여 꽉 채운다",
-     "일반 탄약을 보충하여 꽉 채운다"};
-
-    /// <summary>
-    /// ItemNameList 프로퍼티
-    /// </summary>
-    public List<string> ItemNameList { get { return itemNameList; } }
-    /// <summary>
-    /// ItemInfoList 프로퍼티
-    /// </summary>
-    public List<string> ItemInfoList { get { return itemInfoList; } }
-    #endregion
+    public ItemDataManager itemDataManager;
 
     private int count = 3;
 
@@ -57,6 +40,7 @@ public class ShopManager : MonoBehaviour
     private void Start()
     {
         uiManager = GameObject.Find("@Managers").GetComponent<UIManager>();
+        itemDataManager = GameObject.Find("@Managers").GetComponent<ItemDataManager>();
     }
     private void Update()
     {
