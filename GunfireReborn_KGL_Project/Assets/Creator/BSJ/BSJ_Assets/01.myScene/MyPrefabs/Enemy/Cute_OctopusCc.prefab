@@ -390,6 +390,7 @@ GameObject:
   - component: {fileID: 2771308596741061423}
   - component: {fileID: 2771308596741061424}
   - component: {fileID: 687799921}
+  - component: {fileID: -7023595215963792895}
   m_Layer: 0
   m_Name: Cute_OctopusCc
   m_TagString: Untagged
@@ -694,6 +695,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-7023595215963792895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7050771939171894483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c5d1a1bddb3244087b927a585e8c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7050771939171894485
 GameObject:
   m_ObjectHideFlags: 0

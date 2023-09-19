@@ -513,6 +513,7 @@ GameObject:
   - component: {fileID: 1953884221}
   - component: {fileID: 3780654155482947013}
   - component: {fileID: 315806796}
+  - component: {fileID: -2215749788558728264}
   m_Layer: 0
   m_Name: Puffe
   m_TagString: Untagged
@@ -924,6 +925,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-2215749788558728264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4709564040845024137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c5d1a1bddb3244087b927a585e8c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4709564040845024139
 GameObject:
   m_ObjectHideFlags: 0

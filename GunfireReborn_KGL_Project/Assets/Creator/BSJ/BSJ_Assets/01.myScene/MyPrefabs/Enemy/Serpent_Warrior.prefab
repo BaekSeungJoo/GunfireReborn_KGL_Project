@@ -2217,6 +2217,7 @@ GameObject:
   - component: {fileID: 7149357520356838737}
   - component: {fileID: 7149357520356838738}
   - component: {fileID: 7149357520356838572}
+  - component: {fileID: 7408874669776234383}
   m_Layer: 0
   m_Name: Serpent_Warrior
   m_TagString: Untagged
@@ -2513,6 +2514,9 @@ MonoBehaviour:
   isTracking: 0
   isAttacking: 0
   nav: {fileID: 0}
+  soundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  normalAttackEffect: {fileID: 0}
   damage: 50
   chargeEffect1: {fileID: 2749487745579491923}
   chargeEffect2: {fileID: 5113333590126944159}
@@ -2546,6 +2550,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7408874669776234383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8857830502657741435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c5d1a1bddb3244087b927a585e8c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8857830502657741437
 GameObject:
   m_ObjectHideFlags: 0

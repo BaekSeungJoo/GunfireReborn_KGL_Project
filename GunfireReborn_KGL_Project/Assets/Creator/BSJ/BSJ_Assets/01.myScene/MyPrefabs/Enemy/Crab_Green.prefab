@@ -1321,6 +1321,7 @@ GameObject:
   - component: {fileID: 3014375122645141309}
   - component: {fileID: 8256283284396966407}
   - component: {fileID: 1117810108}
+  - component: {fileID: -2868344766949661443}
   m_Layer: 0
   m_Name: Crab_Green
   m_TagString: Untagged
@@ -1624,6 +1625,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-2868344766949661443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4676838151956998879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c5d1a1bddb3244087b927a585e8c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5290765688393326338
 GameObject:
   m_ObjectHideFlags: 0

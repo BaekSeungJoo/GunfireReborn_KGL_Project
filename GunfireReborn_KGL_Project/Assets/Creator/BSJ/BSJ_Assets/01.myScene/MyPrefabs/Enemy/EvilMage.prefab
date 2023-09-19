@@ -1104,6 +1104,7 @@ GameObject:
   - component: {fileID: 7753456093471444103}
   - component: {fileID: 7269734822317040653}
   - component: {fileID: 2397602918060013459}
+  - component: {fileID: -3970651695990228046}
   m_Layer: 0
   m_Name: EvilMage
   m_TagString: Untagged
@@ -1325,6 +1326,18 @@ MonoBehaviour:
   boomPrefab: {fileID: 8822651681692536907}
   fakeBoom: {fileID: 937292307395815702}
   _TargetPlayer: {fileID: 0}
+--- !u!114 &-3970651695990228046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2314034687237531748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c5d1a1bddb3244087b927a585e8c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2314053369330098258
 GameObject:
   m_ObjectHideFlags: 0
