@@ -108,9 +108,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4713719514245437058}
   - component: {fileID: 6910031252680295065}
-  - component: {fileID: 4270703913215467869}
-  - component: {fileID: 4148961674308475061}
-  - component: {fileID: 114983541678914978}
+  - component: {fileID: 4509019422809692698}
+  - component: {fileID: 7802413276317064865}
   m_Layer: 0
   m_Name: PistolBullet
   m_TagString: Untagged
@@ -151,20 +150,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4270703913215467869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5341742223406746680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97db1b4086bf4e348999170098af8314, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletDamage: 5
---- !u!114 &4148961674308475061
+--- !u!114 &4509019422809692698
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,12 +168,11 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents:
-  - {fileID: 114983541678914978}
+  ObservedComponents: []
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &114983541678914978
+--- !u!114 &7802413276317064865
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,13 +181,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5341742223406746680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Script: {fileID: 11500000, guid: 97db1b4086bf4e348999170098af8314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
+  bulletDamage: 5
 --- !u!1 &8087445199789049519
 GameObject:
   m_ObjectHideFlags: 0

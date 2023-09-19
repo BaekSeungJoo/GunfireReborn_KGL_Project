@@ -1,11 +1,9 @@
-using Photon.Pun.Demo.PunBasics;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using Photon.Pun;
 
-public class FrontIK : MonoBehaviourPun
+public class FrontIK1 : MonoBehaviour
 {
     //웨폰 포지션
     public Transform FrontweaponPosition;
@@ -20,7 +18,7 @@ public class FrontIK : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-            Debug.Log("Start1");
+            //Debug.Log("Start1");
             FrontWeaponChilds = new GameObject[3];
             IKAnimator = gameObject.GetComponent<Animator>();
             //Todo  웨폰의 자식들을  weaponchilds에 저장해야함
@@ -30,16 +28,6 @@ public class FrontIK : MonoBehaviourPun
                 FrontWeaponChilds[i] = FrontweaponPosition.GetChild(i).gameObject;
             }
             ChangeIK("Pistol");
-            //ChangeIK("Rifle");
-            //ChangeIK("Shotgun");
-
-            for (int i = 0; i < FrontweaponPosition.childCount; i++)
-            {
-                Debug.LogFormat("{0}", FrontWeaponChilds[i].name);
-            }
-
-            //처음에는 기본권총을 활성화함\
-            //ChangeIK("Shotgun");
     }
 
     // Update is called once per frame
@@ -65,13 +53,13 @@ public class FrontIK : MonoBehaviourPun
 
     public void ChangeIK(string weaponName)
     {
-        Debug.Log("Front 체인지중");
+        //Debug.Log("Front 체인지중");
         //Todo : for 문을 돌려서 weaponposition의 자식중  이름이 weaponName과 같은 녀석과 ik를 맞추는 코드를 작성해야한다.
         for (int i = 0; i < FrontWeaponChilds.Length; i++)
         {
             if (FrontWeaponChilds[i].name == weaponName)
             {
-                Debug.Log("Front 여기안들어오는거야?");
+                //Debug.Log("Front 여기안들어오는거야?");
                 // IK를 맞추는 코드 추가
                 p_HandLeft = FrontWeaponChilds[i].GetComponent<weapon>().leftGrap;
                 p_HandRight = FrontWeaponChilds[i].GetComponent<weapon>().rightGrap;

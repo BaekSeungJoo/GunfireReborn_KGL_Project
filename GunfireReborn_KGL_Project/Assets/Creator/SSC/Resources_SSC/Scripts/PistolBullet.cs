@@ -5,67 +5,70 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using Photon.Pun;
+using System.Runtime.Serialization;
 
 public class PistolBullet : MonoBehaviourPun
 {
-    private CinemachineVirtualCamera cam;
     private Rigidbody myRigid = default;
     private float speed = 30.0f;
 
-    public int bulletDamage = 5;
-   
-    // Start is called before the first frame update
-    void Awake()
-    {
-        cam = FindObjectOfType<CinemachineVirtualCamera>();
-        myRigid = GetComponent<Rigidbody>();
 
-    }
+    public int bulletDamage = 5;
 
     private void OnEnable()
     {
-        myRigid.velocity = cam.transform.forward * speed;
-
         StartCoroutine(DestroyBullet(P_PoolObjType.PISTOLBULLET));
-    }
-
-    private IEnumerator DestroyBullet(P_PoolObjType type)
-    {
-        yield return new WaitForSeconds(5f);
-        PhotonPoolManager.P_instance.CoolObj(this.gameObject, type);
     }
 
 
     public void OnTriggerEnter(Collider other)
     {
-        if(photonView.IsMine)
+        if(other.CompareTag("Enemy"))
         {
-            if(other.CompareTag("Enemy"))
-            {
-                Debug.Log("몬스터에 닿았음");
+            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
 
-                EnemyHealth helath = other.GetComponent<EnemyHealth>();
 
-                if (helath != null)
-                {
-                    helath.EnemyHpDown(bulletDamage);
-                    //photonView.RPC("EnemyTakeDamage", RpcTarget.All, bulletDamage);
-                }
-            }
 
-            if (other.CompareTag("LuckyShotPoint"))
-            {
-                EnemyHealth health = other.GetComponent<EnemyHealth>();
+            EnemyHealth health = other.GetComponent<EnemyHealth>();
 
-                if (health != null)
-                {
-                    health.EnemyHpDown(bulletDamage * 2);
-                    //photonView.RPC("EnemyTakeDamage", RpcTarget.All, bulletDamage * 2);
-                }
-            }
+            photonView.RPC("ShotCallMaster_Basic", RpcTarget.MasterClient, health, bulletDamage);
 
         }
+
+        if (other.CompareTag("LuckyShotPoint"))
+        {
+            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
+            EnemyHealth health = GFunc.FindRootObj(other.gameObject).GetComponent<EnemyHealth>();
+
+
+            photonView.RPC("ShotCallMaster_Lucky", RpcTarget.MasterClient, health, bulletDamage * 2);
+        }
+
     }
 
+    [PunRPC]
+    public void ShotCallMaster_Basic(EnemyHealth health, int damage)
+    {
+        health.EnemyTakeDamage(damage);
+
+    }
+
+    [PunRPC]
+    public void ShotCallMaster_Lucky(EnemyHealth health, int damage)
+    {
+        health.EnemyTakeDamage(damage * 2);
+    }
+
+    [PunRPC]
+    public void Shot(Pistol_Lie001 lie)
+    {
+        myRigid.velocity = lie.transform.forward * speed;
+
+    }
+    private IEnumerator DestroyBullet(P_PoolObjType type)
+    {
+        yield return new WaitForSeconds(5f);
+        PhotonPoolManager.P_instance.CoolObj(this.gameObject, type);
+    }
 
 }

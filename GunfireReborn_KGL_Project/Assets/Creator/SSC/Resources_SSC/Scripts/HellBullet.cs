@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class HellBullet : MonoBehaviour
 {
-    PlayerAttack shoot;
+    PlayerAttack1 shoot;
     public CinemachineVirtualCamera cam;
     private Rigidbody myRigid = default;
     private float speed = 30.0f;
@@ -20,7 +20,7 @@ public class HellBullet : MonoBehaviour
     void Awake()
     {
         cam = FindObjectOfType<CinemachineVirtualCamera>();
-        shoot = FindObjectOfType<PlayerAttack>();
+        shoot = FindObjectOfType<PlayerAttack1>();
         myRigid = GetComponent<Rigidbody>();
 
         Vector3 randomHit = cam.transform.forward * speed ;

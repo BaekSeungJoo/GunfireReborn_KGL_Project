@@ -7,26 +7,25 @@ using Photon.Pun;
 using System.Diagnostics.Tracing;
 
 // 호출하는 오브젝트의 타입을 구별하기위해 선언하는 enum
-public enum P_PoolObjType { BULLET, HELLBULLET, PISTOLBULLET }
 
 // 외부 인스펙터창에서 클래스 정보에 접근할수 있게 해주는 [Serializable]
-[Serializable]
-public class P_PoolInfo
-{
-    // 인스펙터창에서 보여줄 정보들
-    public P_PoolObjType Type;    // 오브젝트 이름 (타입), 호출시켰을때 호출시킨 오브젝트 이름 대조
-    public int objAmount = 0;   // 생성할 풀링 오브젝트 갯수
-    public GameObject prefab;   // 생성할 풀링 오브젝트 프리팹
-    public GameObject container;    // 생성한 풀링오브젝트를 담을 컨테이너 ( 다중 오브젝트풀링으로 인한 구별하기 )
-    public Stack<GameObject> poolObj = new Stack<GameObject>();     // 생성된 풀링 오브젝트가 담길 메모리 Stack
-
-}
 
 // 인스펙터창에서 클래스 내부값 조절 접근을 위한 [Serializable]
-public class PhotonPoolManager : MonoBehaviourPun
+public class PhotonPoolManager_Test : MonoBehaviourPun, IPunObservable
 {
-    public static PhotonPoolManager P_instance;
+    public enum P_PoolObjTypeTest { BULLET, HELLBULLET, PISTOLBULLET }
 
+    [Serializable]
+    public class P_PoolInfo
+    {
+        // 인스펙터창에서 보여줄 정보들
+        public P_PoolObjType Type;    // 오브젝트 이름 (타입), 호출시켰을때 호출시킨 오브젝트 이름 대조
+        public int objAmount = 0;   // 생성할 풀링 오브젝트 갯수
+        public GameObject prefab;   // 생성할 풀링 오브젝트 프리팹
+        public GameObject container;    // 생성한 풀링오브젝트를 담을 컨테이너 ( 다중 오브젝트풀링으로 인한 구별하기 )
+        public Stack<GameObject> poolObj = new Stack<GameObject>();     // 생성된 풀링 오브젝트가 담길 메모리 Stack
+
+    }
     // 상단에 선언한 PoolInfo 클래스를 인스펙터창에서 접근하기위한 [Serializefield]
     // 인스펙터창에서 설정한 갯수만큼 PoolInfo의 클래스를 가진 List가 생성 될 것 
     // == 각 리스트에 대응하는 인덱스 안에 개별적 Stack이 생성될 것 
@@ -35,32 +34,20 @@ public class PhotonPoolManager : MonoBehaviourPun
 
     private void Awake()
     {
-        P_instance = this;
-
-        if(PhotonNetwork.IsMasterClient)
+        // 생성할 오브젝트 풀 갯수만큼 ( 상단에 생성한 리스트 ) 반복
+        for(int i = 0; i < poolList.Count; i++)
         {
-            // 생성할 오브젝트 풀 갯수만큼 ( 상단에 생성한 리스트 ) 반복
-            for(int i = 0; i < poolList.Count; i++)
-            {
-                // PoolInfo 클래스에 담아둔 정보를 각 poolLsit에 담는다.
-                FillPool(poolList[i]);
-                //photonView.RPC("FillPool", RpcTarget.Others, poolList);
-            }
-
+            // PoolInfo 클래스에 담아둔 정보를 각 poolLsit에 담는다.
+            FillPool(poolList[i]);
+            //photonView.RPC("FillPool", RpcTarget.Others, poolList);
         }
+
     }
 
-    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    if(PhotonNetwork.IsMasterClient)
-    //    {
-    //        stream.SendNext(poolList);
-    //    }
-    //    else
-    //    {
-    //        poolList = (List<P_PoolInfo>)stream.ReceiveNext();
-    //    }
-    //}
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        
+    }
 
     // PoolInfo 클래스 셋팅값 ( 인스펙터창에서 셋팅하는 것 ) 기반으로 풀링오브젝트 생성하기
     void FillPool(P_PoolInfo poolInfo)

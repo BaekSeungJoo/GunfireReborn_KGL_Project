@@ -11,18 +11,17 @@ GameObject:
   - component: {fileID: 6022856380699828737}
   - component: {fileID: 7222261297470107044}
   - component: {fileID: 4890442089391790446}
-  - component: {fileID: 6053473794132340236}
   - component: {fileID: 8350059495692287040}
-  - component: {fileID: 8697497440847843311}
-  - component: {fileID: 8802917589677704976}
   - component: {fileID: 8802917589677704984}
-  m_Layer: 2
+  - component: {fileID: 8811933122645546688}
+  - component: {fileID: 8697497440847843311}
+  m_Layer: 0
   m_Name: CrimsonFirescale
-  m_TagString: weapon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6022856380699828737
 Transform:
   m_ObjectHideFlags: 0
@@ -30,9 +29,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6403744129016051899}
-  m_LocalRotation: {x: -0, y: -0.721445, z: -0, w: 0.69247174}
-  m_LocalPosition: {x: 0.203, y: 0.113, z: 0.962}
-  m_LocalScale: {x: 0.5, y: 0.7, z: 1}
+  m_LocalRotation: {x: -0, y: 0.7203926, z: -0, w: -0.6935665}
+  m_LocalPosition: {x: -0.02, y: -0.013, z: 0.284}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4584570008881492538}
@@ -41,7 +40,7 @@ Transform:
   - {fileID: 8697497440716137600}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -92.348, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 267.826, z: 0}
 --- !u!33 &7222261297470107044
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -92,20 +91,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6053473794132340236
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6403744129016051899}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2528559592762066072, guid: 215aee40a9fa80e49bc6dd71c69ed497, type: 3}
 --- !u!82 &8350059495692287040
 AudioSource:
   m_ObjectHideFlags: 0
@@ -202,6 +187,56 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8802917589677704984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6403744129016051899}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8233545b78e31754899c4bbfb97d685c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5341742223406746680, guid: 3f94cc9164352294b8688ca9fe066e19, type: 3}
+  muzzlFlash: {fileID: 470100927207100743}
+  basicShot: {fileID: 8300000, guid: f2653e12b27e37841b016af359f463d8, type: 3}
+  skillShot: {fileID: 8300000, guid: 4a4c6e28708a4ee4e870eebc56ca4af8, type: 3}
+  EmptyMagAmmo: {fileID: 8300000, guid: 5dbebabca24b9ac4796a28342090972b, type: 3}
+  CrimsonFirescale_Reload: {fileID: 8300000, guid: 6ec264f71ef62bf43ba8c6d18e099adf, type: 3}
+  attackSpeed: 0.1
+  maxAmmoRemain: 90
+  ammoRemain: 0
+  magCapacity: 30
+  magAmmo: 0
+  skillAmmo: 10
+  MagAmmoText: {fileID: 0}
+  AmmoRemainText: {fileID: 0}
+--- !u!114 &8811933122645546688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6403744129016051899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b924681ee33b3834ea44f780706b0e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useSkiil: 0
+  muzzlFlash: {fileID: 470100927207100743}
+  basicShot: {fileID: 8300000, guid: f2653e12b27e37841b016af359f463d8, type: 3}
+  skillShot: {fileID: 8300000, guid: 4a4c6e28708a4ee4e870eebc56ca4af8, type: 3}
+  EmptyMagAmmo: {fileID: 8300000, guid: 5dbebabca24b9ac4796a28342090972b, type: 3}
+  CrimsonFirescale_Reload: {fileID: 8300000, guid: 6ec264f71ef62bf43ba8c6d18e099adf, type: 3}
+  attackSpeed: 0.1
+  maxAmmoRemain: 90
+  ammoRemain: 0
+  magCapacity: 30
+  magAmmo: 0
+  skillAmmo: 10
 --- !u!114 &8697497440847843311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,45 +251,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftGrap: {fileID: 8697497440716137600}
   rightGrap: {fileID: 8697497439871535530}
---- !u!135 &8802917589677704976
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6403744129016051899}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.4
-  m_Center: {x: 0.12087031, y: -0.07994402, z: 0.00039311877}
---- !u!114 &8802917589677704984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6403744129016051899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8233545b78e31754899c4bbfb97d685c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5341742223406746680, guid: 3f94cc9164352294b8688ca9fe066e19, type: 3}
-  muzzlFlash: {fileID: 0}
-  basicShot: {fileID: 8300000, guid: f2653e12b27e37841b016af359f463d8, type: 3}
-  skillShot: {fileID: 8300000, guid: 4a4c6e28708a4ee4e870eebc56ca4af8, type: 3}
-  EmptyMagAmmo: {fileID: 8300000, guid: 5dbebabca24b9ac4796a28342090972b, type: 3}
-  CrimsonFirescale_Reload: {fileID: 8300000, guid: 6ec264f71ef62bf43ba8c6d18e099adf, type: 3}
-  attackSpeed: 0.1
-  maxAmmoRemain: 90
-  ammoRemain: 0
-  magCapacity: 30
-  magAmmo: 0
-  skillAmmo: 10
-  MagAmmoText: {fileID: 0}
-  AmmoRemainText: {fileID: 0}
 --- !u!1 &8697497439871535529
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8697497439871535530}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Right_Hand_RIfle
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -278,9 +274,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8697497439871535529}
-  m_LocalRotation: {x: -0.87697756, y: 0.47737467, z: 0.048297375, w: -0.026290372}
-  m_LocalPosition: {x: -0.312, y: -0.036, z: -0.059}
-  m_LocalScale: {x: 1.4, y: 1.3999999, z: 1.4000001}
+  m_LocalRotation: {x: -0.030320432, y: 0.016504792, z: -0.87778294, w: 0.47781307}
+  m_LocalPosition: {x: -0.241, y: -0.104, z: -0.001}
+  m_LocalScale: {x: 0.84000003, y: 0.84000003, z: 0.8399999}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6022856380699828737}
@@ -295,7 +291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8697497440716137600}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Left_Hand_Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -309,9 +305,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8697497440716137607}
-  m_LocalRotation: {x: -0, y: 0.02048719, z: -0, w: 0.9997902}
-  m_LocalPosition: {x: 0.074, y: -0.109, z: -0.008}
-  m_LocalScale: {x: 1.4000001, y: 1.4, z: 1.4000001}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00000005960463}
+  m_LocalPosition: {x: 0.041, y: -0.085, z: -0.004}
+  m_LocalScale: {x: 0.84000003, y: 0.84, z: 0.84000003}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6022856380699828737}
@@ -326,7 +322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4584570008881492538}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,21 +351,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6022856380699828737}
     m_Modifications:
-    - target: {fileID: 1553705176883072, guid: 9e08e7eea9b67324f9c545b241004b0b, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1565131197722278, guid: 9e08e7eea9b67324f9c545b241004b0b, type: 3}
       propertyPath: m_Name
       value: FX_Gunshot_Repeating
-      objectReference: {fileID: 0}
-    - target: {fileID: 1565131197722278, guid: 9e08e7eea9b67324f9c545b241004b0b, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1878062320382014, guid: 9e08e7eea9b67324f9c545b241004b0b, type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4869716791573198, guid: 9e08e7eea9b67324f9c545b241004b0b, type: 3}
       propertyPath: m_RootOrder
@@ -428,5 +412,10 @@ PrefabInstance:
 --- !u!4 &312188972373530389 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4869716791573198, guid: 9e08e7eea9b67324f9c545b241004b0b, type: 3}
+  m_PrefabInstance: {fileID: 307461711409638875}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &470100927207100743 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198845034460101788, guid: 9e08e7eea9b67324f9c545b241004b0b, type: 3}
   m_PrefabInstance: {fileID: 307461711409638875}
   m_PrefabAsset: {fileID: 0}

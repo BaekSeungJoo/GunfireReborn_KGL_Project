@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Photon.Pun;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : MonoBehaviourPun
 {
 
 
@@ -40,6 +41,11 @@ public class PlayerMove : MonoBehaviour
     
     void Update()
     {
+        if(!photonView.IsMine)
+        {
+            return;
+        }
+
         MoveUni();
         CharacterRotate();
         TryJump();

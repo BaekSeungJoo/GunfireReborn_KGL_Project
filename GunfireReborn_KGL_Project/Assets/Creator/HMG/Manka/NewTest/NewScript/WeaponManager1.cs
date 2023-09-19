@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager.cs
 
 public class WeaponManager : MonoBehaviour
+========
+using Photon.Pun;
+public class WeaponManager1 : MonoBehaviourPun
+>>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager1.cs
 {
     //현재 활성화되있는 슬롯을 확인하기위한변수
     public bool[] ActiveSlot;
@@ -13,13 +18,13 @@ public class WeaponManager : MonoBehaviour
     //장착하지않은 웨폰들의 프리팹 저장배열
     public GameObject[] weaponPrefabs;
     //플레이어의 IK함수를 가져오기위한 변수
-    private IK playerIK;
+    private IK1 playerIK;
     //보이지않지만 팔에있는 웨폰오브젝트들을 껏다켰다 하기위해 만든배열
     public GameObject[] Equip_weapons;
     //1인칭 오브젝트들;
     public GameObject[] Front_weapons;
     //프런트플레이어의 IK함수를 가져오기위한 변수
-    private FrontIK frontIK;
+    private FrontIK1 frontIK;
     //프런트 플레어을 지정하기위한변수
     public GameObject frontPlayer;
     // Update is called once per frame
@@ -38,11 +43,11 @@ public class WeaponManager : MonoBehaviour
         //슬롯2를 활성화시킨다.
         ActiveSlot[2] = true;
         //플레이어ik ik를받는다.
-        playerIK = gameObject.GetComponent<IK>();
+        playerIK = gameObject.GetComponent<IK1>();
         //
         frontPlayer = Camera.main.transform.GetChild(0).gameObject;
 
-        frontIK = frontPlayer.GetComponent<FrontIK>();
+        frontIK = frontPlayer.GetComponent<FrontIK1>();
         //Todo: Equip_weapons[]배열에 존재할모든 무기들을 추가해줘야한다.
         //Equp_weapons[]배열의 무기들의 순서는 프리팹저장배열의 순서와같아야한다.
         //프리팹 저장배열이 반드시 인스펙터창에서 설정이되어있어야한다.
@@ -68,6 +73,14 @@ public class WeaponManager : MonoBehaviour
     }
     void Update()
     {
+<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager.cs
+========
+        if(!photonView.IsMine)
+        {
+            return;
+        }
+
+>>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager1.cs
         if (Input.GetButtonDown("Swap1"))
         {
             SwapWeaponRPC1();
@@ -84,6 +97,7 @@ public class WeaponManager : MonoBehaviour
 
     public void EquipWeapon(string weaponName,int First)
     {
+<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager.cs
         if (First == 0)
         {   //만약 첫번째 슬롯이 비어있어서 장착된경우라면
             Debug.Log("EquipWeapon1");
@@ -125,7 +139,105 @@ public class WeaponManager : MonoBehaviour
             slotWeapons[CheckActiveslot()] = weaponName;
             frontAnimator.SetTrigger("Swap");
             StartCoroutine(GetWeapon(weaponName));
+========
+        if(photonView.IsMine)
+        {
+            if (First == 0)
+            {   //만약 첫번째 슬롯이 비어있어서 장착된경우라면
+                Debug.Log("EquipWeapon1");
+                Debug.LogFormat("{0}", weaponName);    
+                //슬롯2,3은 비활성화한다.
+                ActiveSlot[2] = false;
+                ActiveSlot[1] = false;
+                //슬롯1은 활성화한다.
+                ActiveSlot[0] = true;
+                //첫번째 슬롯의 아이템을 먹은 아이템으로 바꾼다.
+                weaponName = weaponName.Replace("(get)", "");
+                slotWeapons[0] = weaponName;
+                frontAnimator.SetTrigger("Swap");
+                /* //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
+                 playerIK.ChangeIK(weaponName);
+                 //Debug.Log("format1");
+                 //1인칭시점의 IK또한바꿔준다.
+                 frontIK.ChangeIK(weaponName);
+                 //Debug.Log("format2");
+
+                 //아닌 것들을 모두 false로 바꾸고 맞는것무기는 true로 바꾼다.
+                 TurnWeapon(weaponName);*/
+                Debug.LogFormat("{0}", weaponName);
+
+                // ============= Leagcy : Shin ===============================
+
+                StartCoroutine(GetWeapon(weaponName));
+
+                // ============= Leagcy : Shin ===============================
+
+                //photonView.RPC("GetWeapon_SSC", RpcTarget.All, weaponName);
+
+            }
+            else if (First == 1)
+            {   //만약 두번째 슬롯이 비어있어서 장착된경우라면
+                Debug.Log("EquipWeapon2");
+                //3번째 슬롯이 활성화된상태라면
+                //슬롯1,3은 비활성화한다.
+                ActiveSlot[2] = false;
+                ActiveSlot[0] = false;
+                //슬롯2은 활성화한다.
+                ActiveSlot[1] = true;
+                //두번째 슬롯의 아이템을 먹은 아이템으로 바꾼다.
+                weaponName = weaponName.Replace("(get)", "");
+                slotWeapons[1] = weaponName;
+                frontAnimator.SetTrigger("Swap");
+                /*   //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
+                   playerIK.ChangeIK(weaponName);
+                   //1인칭시점의 IK또한바꿔준다.
+                   frontIK.ChangeIK(weaponName);
+                   //아닌 것들을 모두 false
+                   TurnWeapon(weaponName);*/
+
+                // ============= Leagcy : Shin ===============================
+
+                StartCoroutine(GetWeapon(weaponName));
+
+                // ============= Leagcy : Shin ===============================
+                //photonView.RPC("GetWeapon_SSC", RpcTarget.All, weaponName);
+
+
+            }
+            else
+            {
+                Debug.Log("EquipWeapon");
+                //만약 1,2번슬롯이 모두 무기가 장착되어있는 경우라면
+                //현재 활성화된 슬롯이 몇번슬롯인지 체크하고
+                //그슬롯의 아이템을 먹은 아이템으로 바꾼다.
+                weaponName = weaponName.Replace("(get)", "");
+                slotWeapons[CheckActiveslot()] = weaponName;
+                frontAnimator.SetTrigger("Swap");
+
+
+                // ============= Leagcy : Shin ===============================
+
+                StartCoroutine(GetWeapon(weaponName));
+
+                // ============= Leagcy : Shin ===============================
+
+                //photonView.RPC("GetWeapon_SSC", RpcTarget.All, weaponName);
+
+
+                /* //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
+                 playerIK.ChangeIK(weaponName);
+                 //1인칭시점의 IK또한바꿔준다.
+                 frontIK.ChangeIK(weaponName);
+                 //그리고 팔에있는 무기를 활성화시킨다.
+                 Equip_weapons[SearchWeapon()].SetActive(true);
+                 //1인칭 시점 무기도 교체한다.
+                 Front_weapons[SearchWeapon()].SetActive(true);*/
+                //
+            }
+
+>>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager1.cs
         }
+
     }
 
     public int CheckActiveslot()
@@ -184,10 +296,12 @@ public class WeaponManager : MonoBehaviour
 
     public void TurnWeapon(string weaponName)
     {// 손에있는 무기배열중 아닌것을 모두끄는 함수.
-        for(int i =0; i< Equip_weapons.Length; i++)
-        {
-            if (Equip_weapons[i].name == weaponName )
+
+        if (photonView.IsMine)
+        { 
+            for(int i =0; i< Equip_weapons.Length; i++)
             {
+<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager.cs
                 Equip_weapons[i].SetActive(true);
                 Front_weapons[i].SetActive(true);
             }
@@ -195,11 +309,43 @@ public class WeaponManager : MonoBehaviour
             {
                 Equip_weapons[i].SetActive(false);
                 Front_weapons[i].SetActive(false);
+========
+                if (Equip_weapons[i].name == weaponName)
+                {
+                    photonView.RPC("LastChange_T", RpcTarget.All, i);
+                    //Equip_weapons[i].SetActive(true);
+                    Debug.LogFormat("{0},{1}", Equip_weapons[i].name, Front_weapons[i].name);
+                    Front_weapons[i].SetActive(true);
+                }
+                else
+                {
+                    photonView.RPC("LastChange_F", RpcTarget.All, i);
+                    //Equip_weapons[i].SetActive(false);
+                    Front_weapons[i].SetActive(false);
+                }
+>>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager1.cs
             }
         }
     }
 
+<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager.cs
     IEnumerator DelayedWeaponChange(int number)
+========
+    [PunRPC]
+    public void LastChange_T(int i)
+    {
+        Equip_weapons[i].SetActive(true);
+    }
+
+    [PunRPC]
+    public void LastChange_F(int i)
+    {
+        Equip_weapons[i].SetActive(false);
+    }
+
+
+    IEnumerator DelayedWeaponChange1()
+>>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager1.cs
     {
         yield return new WaitForSeconds(0.6f); // 0.6초 대기
 
@@ -215,17 +361,34 @@ public class WeaponManager : MonoBehaviour
 
     IEnumerator GetWeapon(string weaponName)
     {
-        yield return new WaitForSeconds(0.6f); // 0.6초 대기
-                                               
-        //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
-        playerIK.ChangeIK(weaponName);
-        //Debug.Log("format1");
-        //1인칭시점의 IK또한바꿔준다.
-        frontIK.ChangeIK(weaponName);
-        //Debug.Log("format2");
+        if (photonView.IsMine)
+        {
+            yield return new WaitForSeconds(0.6f); // 0.6초 대기
 
-        //아닌 것들을 모두 false로 바꾸고 맞는것무기는 true로 바꾼다.
-        TurnWeapon(weaponName);
+            //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
+            playerIK.ChangeIK(weaponName);
+            //Debug.Log("format1");
+            //1인칭시점의 IK또한바꿔준다.
+            frontIK.ChangeIK(weaponName);
+            //Debug.Log("format2");
+
+            //아닌 것들을 모두 false로 바꾸고 맞는것무기는 true로 바꾼다.
+
+            //photonView.RPC("TurnWeapon", RpcTarget.All, weaponName);
+
+            // =============== Legacy : Shin =====================
+
+            TurnWeapon(weaponName);
+
+            // =============== Legacy : Shin =====================
+        }
+
+    }
+
+
+    public void GetWeapon_SSC(string weaponName)
+    {
+        StartCoroutine(GetWeapon(weaponName));
     }
 
     private void SwapWeaponRPC1()

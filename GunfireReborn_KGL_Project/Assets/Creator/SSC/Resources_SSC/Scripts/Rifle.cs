@@ -42,13 +42,13 @@ public class Rifle : MonoBehaviour
     public TMP_Text MagAmmoText;
     public TMP_Text AmmoRemainText;
 
-    PlayerAttack shoot;
+    PlayerAttack1 shoot;
 
     private WaitForSeconds reloadTime;
 
     private void Start()
     {
-        shoot = FindObjectOfType<PlayerAttack>();
+        shoot = FindObjectOfType<PlayerAttack1>();
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
         fireSound = GetComponent<AudioSource>();
         reloadTime = new WaitForSeconds(1.1f);

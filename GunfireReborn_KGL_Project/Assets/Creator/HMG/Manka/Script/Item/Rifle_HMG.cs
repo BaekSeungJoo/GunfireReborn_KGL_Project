@@ -27,11 +27,11 @@ public class Rifle_HMG: MonoBehaviour
     // 
     private bool useskill = false;
     //  입력정보를 받기위한 변수
-    PlayerAttack shoot;
+    PlayerAttack1 shoot;
 
     private void Start()
     {
-        shoot = FindObjectOfType<PlayerAttack>();
+        shoot = FindObjectOfType<PlayerAttack1>();
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
         fireSound = GetComponent<AudioSource>();
         //muzzlFlash = GetComponent<ParticleSystem>();

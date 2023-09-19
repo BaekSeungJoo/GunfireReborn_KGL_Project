@@ -1,10 +1,11 @@
 using Cinemachine;
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class HellBullet001 : MonoBehaviour
+public class HellBullet001 : MonoBehaviourPun
 {
     public CinemachineVirtualCamera cam;
     private Rigidbody myRigid = default;
@@ -32,35 +33,42 @@ public class HellBullet001 : MonoBehaviour
 
         StartCoroutine(DestroyBullet(P_PoolObjType.HELLBULLET));
     }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Enemy"))
-        {
-            EnemyTest helath = other.GetComponent<EnemyTest>();
-
-            if (helath != null)
-            {
-               helath.OnDamageable(bulletDamage);
-            }
-        }
-
-        if (other.CompareTag("LuckyShotPoint"))
-        {
-            EnemyHealth health = other.GetComponent<EnemyHealth>();
-
-            if (health != null)
-            {
-                health.EnemyHpDown(bulletDamage * 2);
-            }
-        }
-    }
-
     private IEnumerator DestroyBullet(P_PoolObjType type)
     {
         yield return new WaitForSeconds(5f);
         PhotonPoolManager.P_instance.CoolObj(this.gameObject, type);
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
+            EnemyHealth helath = other.GetComponent<EnemyHealth>();
+            photonView.RPC("ShotCallMaster_Basic", RpcTarget.MasterClient, helath);
+        }
+
+        if (other.CompareTag("LuckyShotPoint"))
+        {
+            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
+
+            EnemyHealth helath = GFunc.FindRootObj(other.gameObject).GetComponent<EnemyHealth>();
+            photonView.RPC("ShotCallMaster_Lucky", RpcTarget.MasterClient, helath);
+        }
+    }
+
+    [PunRPC]
+    public void ShotCallMaster_Basic(EnemyHealth helth)
+    {
+        helth.EnemyTakeDamage(bulletDamage);
+    }
+
+    [PunRPC]
+    public void ShotCallMaster_Lucky(EnemyHealth helth)
+    {
+        helth.EnemyTakeDamage(bulletDamage * 2);
+    }
+
 
 
 }
