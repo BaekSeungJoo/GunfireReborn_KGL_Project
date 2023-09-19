@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5412551304324929818}
   - component: {fileID: 5412551304324893624}
   m_Layer: 0
-  m_Name: HellEffect01
+  m_Name: Hell_Effect01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
