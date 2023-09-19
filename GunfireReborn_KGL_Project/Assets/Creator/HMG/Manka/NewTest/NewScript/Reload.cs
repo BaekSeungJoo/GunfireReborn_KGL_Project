@@ -1,11 +1,10 @@
 using JetBrains.Annotations;
-using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Reload : MonoBehaviourPun
+public class Reload : MonoBehaviour
 {
     public GameObject playerGun;
     public Transform weaponPosition;
@@ -17,10 +16,6 @@ public class Reload : MonoBehaviourPun
     }
     private void Update()
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
         if (Input.GetButtonDown("Reload") && !isReloading)
         {
             

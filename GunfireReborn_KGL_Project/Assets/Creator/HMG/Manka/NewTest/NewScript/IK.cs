@@ -1,10 +1,10 @@
-using Photon.Pun;
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class IK : MonoBehaviourPun
+public class IK : MonoBehaviour
 {
     //웨폰 포지션
     public Transform weaponPosition;
@@ -19,7 +19,7 @@ public class IK : MonoBehaviourPun
 
     [Range(0, 1)]
     public float HandIKHandler = 1;
- 
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -30,9 +30,7 @@ public class IK : MonoBehaviourPun
         {
             weaponChilds[i] = weaponPosition.GetChild(i).gameObject;
         }
-        ChangeIK("CrimsonFirescale");
-        //처음에는 기본권총을 활성화함\
-        //ChangeIK("Shotgun");
+        ChangeIK("Pistol");
     }
 
     // Update is called once per frame

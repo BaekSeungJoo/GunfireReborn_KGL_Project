@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-public class PlayerInput : MonoBehaviourPun
+public class PlayerInput : MonoBehaviour
 {
 
     public string VMoveAxisName = "Vertical";
     public string HMoveAxisName = "Horizontal";
     public string fireButtonName = "Fire1";
-    public string RotateName = "Mouse X";
     public string jumpName = "Jump";
     public string dashName = "Dash";
     public string swap1Name = "Swap1";
@@ -19,7 +18,6 @@ public class PlayerInput : MonoBehaviourPun
     public float VMove;
     public float HMove;
     public bool fire = default;
-    public float RMove;
     public bool jump = default;
     public bool dash = default;
 
@@ -33,10 +31,10 @@ public class PlayerInput : MonoBehaviourPun
     void Update()
     {
         //로컬 플레이어가 아닌경우 입력을 받지않음
-        if(!photonView.IsMine)
-        {
-            return;
-        }
+        //if(!photonView.IsMine)
+        //{
+        //    return;
+        //}
 
         //매 프레임 사용자 입력을 감지
         //ToDo:게임매니저의 인스턴스가 null이 아닌데 GameOver상태일때는 입력을 멈춰야함 if문 처리해야함
@@ -52,8 +50,6 @@ public class PlayerInput : MonoBehaviourPun
         HMove = Input.GetAxis(HMoveAxisName);
         //fire에 관한 입력감지
         fire = Input.GetButton(fireButtonName);
-        //Rmove에 관한 입력감지
-        RMove = Input.GetAxis(RotateName);
         //jump에 관한 입력감지
         jump = Input.GetButtonDown(jumpName);
         //dash에 관한 입력감지

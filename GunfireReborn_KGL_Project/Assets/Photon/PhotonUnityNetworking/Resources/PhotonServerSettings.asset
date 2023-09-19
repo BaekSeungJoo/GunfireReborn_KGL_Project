@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: 5a564498-8a4d-4d48-ba8a-dc522295e831
+    AppIdRealtime: cd24530d-232b-41ff-90a7-54710b08ed15
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
@@ -47,6 +47,12 @@ MonoBehaviour:
   - TakeDamage
   - playerTakeDamage
   - OnTriggerEnter
+  - SwapWeaponRPC1
+  - SwapWeaponRPC2
+  - SwapWeaponRPC3
+  - ShotRaycast
+  - GetItem
+  - ChangeWeapon
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

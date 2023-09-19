@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Creator/PSY/Script/Scenes/TestScene.unity
     guid: 99e718adfea166741b5967b17c067a45
+  - enabled: 1
+    path: Assets/Creator/HMG/Test.unity
+    guid: e82db6237308d4d44bfd9a93019c02bf
   m_configObjects: {}

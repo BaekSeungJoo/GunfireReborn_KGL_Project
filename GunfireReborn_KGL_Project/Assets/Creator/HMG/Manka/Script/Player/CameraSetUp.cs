@@ -30,10 +30,11 @@ public class CameraSetUp : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine)
+        if (!photonView.IsMine)
         {
-            CameraRotation();
+            return;
         }
+            CameraRotation();
     }
 
     private void CameraRotation()
