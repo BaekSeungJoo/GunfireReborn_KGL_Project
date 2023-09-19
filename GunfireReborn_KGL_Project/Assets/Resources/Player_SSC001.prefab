@@ -2613,7 +2613,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   frontPlayer: {fileID: 0}
-  playerGun: {fileID: 0}
 --- !u!114 &5557776142449693488
 MonoBehaviour:
   m_ObjectHideFlags: 0

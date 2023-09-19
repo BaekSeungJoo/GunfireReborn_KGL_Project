@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviourPun
     }
     private void Rotate()
     {
-        transform.Rotate(0f, playerInput.RMove * rotateSpeed, 0f);
+        //transform.Rotate(0f, playerInput.RMove * rotateSpeed, 0f);
     }
 
     private void Dash()

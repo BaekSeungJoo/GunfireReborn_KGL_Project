@@ -1,17 +1,18 @@
-<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK.cs
+/*<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK.cs
 
 ========
->>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK1.cs
+>>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK1.cs*/
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK.cs
+/*<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK.cs*//*
 public class IK : MonoBehaviour
-========
+========*/
 public class IK1 : MonoBehaviour
->>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK1.cs
+/*>>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK1.cs
+*/
 {
     //웨폰 포지션
     public Transform weaponPosition;
@@ -37,11 +38,11 @@ public class IK1 : MonoBehaviour
         {
             weaponChilds[i] = weaponPosition.GetChild(i).gameObject;
         }
-<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK.cs
+/*<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK.cs*/
         ChangeIK("Pistol");
-========
-        ChangeIK("CrimsonFirescale");
->>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK1.cs
+/*========*/
+/*        ChangeIK("CrimsonFirescale");
+>>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK1.cs*/
     }
 
     // Update is called once per frame

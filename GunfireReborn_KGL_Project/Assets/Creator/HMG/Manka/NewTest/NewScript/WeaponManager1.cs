@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
-<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager.cs
-
-public class WeaponManager : MonoBehaviour
-========
 using Photon.Pun;
 public class WeaponManager1 : MonoBehaviourPun
->>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager1.cs
 {
     //현재 활성화되있는 슬롯을 확인하기위한변수
     public bool[] ActiveSlot;
@@ -73,73 +68,69 @@ public class WeaponManager1 : MonoBehaviourPun
     }
     void Update()
     {
-<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager.cs
-========
+
         if(!photonView.IsMine)
         {
             return;
         }
-
->>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager1.cs
         if (Input.GetButtonDown("Swap1"))
         {
-            SwapWeaponRPC1();
+            //슬롯1이 비어있으면 return
+            if (slotWeapons[0] == null)
+            {
+                return;
+            }
+            //Todo : 2번, 혹은 3번이라면  현재 총을 쏘고있거나 장전중이라면 애니메이션을 취소하고
+
+            if (ActiveSlot[0] == true)
+            {
+                return;
+            }
+            ActiveSlot[0] = true;
+            ActiveSlot[1] = false;
+            ActiveSlot[2] = false;
+            frontAnimator.SetTrigger("Swap");
+            StartCoroutine(DelayedWeaponChange(0)); // DelayedWeaponChange 코루틴을 시작하여 0.6초 후에 코드 블록 실행
         }
         else if(Input.GetButtonDown("Swap2"))
         {
-            SwapWeaponRPC2();
+            //슬롯2가 비어있다면 return;
+            if (slotWeapons[1] == null)
+            {
+                return;
+            }
+            //Todo : 현재 사용하고있는 장비가 몇번슬롯에있는지 확인하고 2번이라면 그대로냅두고
+            //1번, 혹은 3번이라면  현재 총을 쏘고있거나 장전중이라면 애니메이션을 취소하고
+            //2번에 원래있던 무기를 다시활성화시키고 ik를 연결한다.
+            if (ActiveSlot[1] == true)
+            {
+                return;
+            }
+            ActiveSlot[0] = false;
+            ActiveSlot[1] = true;
+            ActiveSlot[2] = false;
+            frontAnimator.SetTrigger("Swap");
+            StartCoroutine(DelayedWeaponChange(1));
         }
         else if(Input.GetButtonDown("Swap3"))
         {
-            SwapWeaponRPC3();
+            //Todo : 현재 사용하고있는 장비가 몇번슬롯에있는지 확인하고 3번이라면 그대로냅두고
+            //1번, 혹은 2번이라면  현재 총을 쏘고있거나 장전중이라면 애니메이션을 취소하고
+            //3번에 원래있던 무기를 다시활성화시키고 ik를 연결한다.
+            if (ActiveSlot[2] == true)
+            {
+                return;
+            }
+            ActiveSlot[0] = false;
+            ActiveSlot[1] = false;
+            ActiveSlot[2] = true;
+            frontAnimator.SetTrigger("Swap");
+            StartCoroutine(DelayedWeaponChange(2));
         }
     }
 
     public void EquipWeapon(string weaponName,int First)
     {
-<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager.cs
-        if (First == 0)
-        {   //만약 첫번째 슬롯이 비어있어서 장착된경우라면
-            Debug.Log("EquipWeapon1");
-            Debug.LogFormat("{0}", weaponName);    
-            //슬롯2,3은 비활성화한다.
-            ActiveSlot[2] = false;
-            ActiveSlot[1] = false;
-            //슬롯1은 활성화한다.
-            ActiveSlot[0] = true;
-            //첫번째 슬롯의 아이템을 먹은 아이템으로 바꾼다.
-            weaponName = weaponName.Replace("(get)", "");
-            slotWeapons[0] = weaponName;
-            frontAnimator.SetTrigger("Swap");
-            Debug.LogFormat("{0}", weaponName);
-            StartCoroutine(GetWeapon(weaponName));
-        }
-        else if (First == 1)
-        {   //만약 두번째 슬롯이 비어있어서 장착된경우라면
-            Debug.Log("EquipWeapon2");
-            //3번째 슬롯이 활성화된상태라면
-            //슬롯1,3은 비활성화한다.
-            ActiveSlot[2] = false;
-            ActiveSlot[0] = false;
-            //슬롯2은 활성화한다.
-            ActiveSlot[1] = true;
-            //두번째 슬롯의 아이템을 먹은 아이템으로 바꾼다.
-            weaponName = weaponName.Replace("(get)", "");
-            slotWeapons[1] = weaponName;
-            frontAnimator.SetTrigger("Swap");
-            StartCoroutine(GetWeapon(weaponName));
-        }
-        else
-        {
-            Debug.Log("EquipWeapon");
-            //만약 1,2번슬롯이 모두 무기가 장착되어있는 경우라면
-            //현재 활성화된 슬롯이 몇번슬롯인지 체크하고
-            //그슬롯의 아이템을 먹은 아이템으로 바꾼다.
-            weaponName = weaponName.Replace("(get)", "");
-            slotWeapons[CheckActiveslot()] = weaponName;
-            frontAnimator.SetTrigger("Swap");
-            StartCoroutine(GetWeapon(weaponName));
-========
         if(photonView.IsMine)
         {
             if (First == 0)
@@ -234,8 +225,6 @@ public class WeaponManager1 : MonoBehaviourPun
                  Front_weapons[SearchWeapon()].SetActive(true);*/
                 //
             }
-
->>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager1.cs
         }
 
     }
@@ -301,15 +290,6 @@ public class WeaponManager1 : MonoBehaviourPun
         { 
             for(int i =0; i< Equip_weapons.Length; i++)
             {
-<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager.cs
-                Equip_weapons[i].SetActive(true);
-                Front_weapons[i].SetActive(true);
-            }
-            else
-            {
-                Equip_weapons[i].SetActive(false);
-                Front_weapons[i].SetActive(false);
-========
                 if (Equip_weapons[i].name == weaponName)
                 {
                     photonView.RPC("LastChange_T", RpcTarget.All, i);
@@ -323,14 +303,19 @@ public class WeaponManager1 : MonoBehaviourPun
                     //Equip_weapons[i].SetActive(false);
                     Front_weapons[i].SetActive(false);
                 }
->>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager1.cs
             }
         }
     }
 
-<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager.cs
+
     IEnumerator DelayedWeaponChange(int number)
-========
+    {
+        yield return new WaitForSeconds(0.6f);
+
+        playerIK.ChangeIK(slotWeapons[number]);
+        frontIK.ChangeIK(slotWeapons[number]);
+        TurnWeapon(slotWeapons[2]);
+    }
     [PunRPC]
     public void LastChange_T(int i)
     {
@@ -342,23 +327,6 @@ public class WeaponManager1 : MonoBehaviourPun
     {
         Equip_weapons[i].SetActive(false);
     }
-
-
-    IEnumerator DelayedWeaponChange1()
->>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/WeaponManager1.cs
-    {
-        yield return new WaitForSeconds(0.6f); // 0.6초 대기
-
-        // 1번 무기에 해당하는 IK로 변경
-        playerIK.ChangeIK(slotWeapons[number]);
-
-        // 프런트 IK도 변경
-        frontIK.ChangeIK(slotWeapons[number]);
-
-        // 1번이 아닌 다른 무기들을 비활성화시킴, front에 있는 무기도 비활성화시킴
-        TurnWeapon(slotWeapons[number]);
-    }
-
     IEnumerator GetWeapon(string weaponName)
     {
         if (photonView.IsMine)
@@ -390,62 +358,4 @@ public class WeaponManager1 : MonoBehaviourPun
     {
         StartCoroutine(GetWeapon(weaponName));
     }
-
-    private void SwapWeaponRPC1()
-    {
-        //슬롯1이 비어있으면 return
-        if (slotWeapons[0] == null)
-        {
-            return;
-        }
-        //Todo : 2번, 혹은 3번이라면  현재 총을 쏘고있거나 장전중이라면 애니메이션을 취소하고
-
-        if (ActiveSlot[0] == true)
-        {
-            return;
-        }
-        ActiveSlot[0] = true;
-        ActiveSlot[1] = false;
-        ActiveSlot[2] = false;
-        frontAnimator.SetTrigger("Swap");
-        StartCoroutine(DelayedWeaponChange(0)); // DelayedWeaponChange 코루틴을 시작하여 0.6초 후에 코드 블록 실행
-    }
-
-    private void SwapWeaponRPC2()
-    {
-        //슬롯2가 비어있다면 return;
-        if (slotWeapons[1] == null)
-        {
-            return;
-        }
-        //Todo : 현재 사용하고있는 장비가 몇번슬롯에있는지 확인하고 2번이라면 그대로냅두고
-        //1번, 혹은 3번이라면  현재 총을 쏘고있거나 장전중이라면 애니메이션을 취소하고
-        //2번에 원래있던 무기를 다시활성화시키고 ik를 연결한다.
-        if (ActiveSlot[1] == true)
-        {
-            return;
-        }
-        ActiveSlot[0] = false;
-        ActiveSlot[1] = true;
-        ActiveSlot[2] = false;
-        frontAnimator.SetTrigger("Swap");
-        StartCoroutine(DelayedWeaponChange(1));
-    }
-    private void SwapWeaponRPC3()
-    {
-        //Todo : 현재 사용하고있는 장비가 몇번슬롯에있는지 확인하고 3번이라면 그대로냅두고
-        //1번, 혹은 2번이라면  현재 총을 쏘고있거나 장전중이라면 애니메이션을 취소하고
-        //3번에 원래있던 무기를 다시활성화시키고 ik를 연결한다.
-        if (ActiveSlot[2] == true)
-        {
-            return;
-        }
-        ActiveSlot[0] = false;
-        ActiveSlot[1] = false;
-        ActiveSlot[2] = true;
-        frontAnimator.SetTrigger("Swap");
-        StartCoroutine(DelayedWeaponChange(2));
-    }
-
- 
 }
