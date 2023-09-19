@@ -4,12 +4,12 @@ using UnityEngine;
 using Photon.Pun;
 public class InitWeapon : MonoBehaviourPun
 {
-    private WeaponManager player;
+    private WeaponManager1 player;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<WeaponManager>();
+        player = FindObjectOfType<WeaponManager1>();
         // Front_weapons 배열에 자식 게임 오브젝트들을 넣습니다.
         for (int i = 0; i < player.Front_weapons.Length; i++)
         {

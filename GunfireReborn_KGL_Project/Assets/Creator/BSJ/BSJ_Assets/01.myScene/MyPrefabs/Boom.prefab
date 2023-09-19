@@ -111,9 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0455371cff54a38459671c73aca7a6c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Target: {fileID: 0}
-  m_InitialAngle: 30
-  boomVFX: {fileID: 331203194446209050, guid: 27ae01f8bdcfd644dafb18fb243e4662, type: 3}
+  target_Tran: {fileID: 0}
+  initialAngle: 30
 --- !u!54 &-4872475665822808038
 Rigidbody:
   m_ObjectHideFlags: 0

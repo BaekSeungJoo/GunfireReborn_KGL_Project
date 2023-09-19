@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviourPun
     {
         movement.x = playerInput.HMove;
         movement.z = playerInput.VMove;
-        movement.y = playerRigidbody.velocity.y;
+        movement.y = playerRigidbody.position.y;
         if (playerInput.jump == true && isJumping == false)
         { //플레이어가 점프중이아니면서 점프키를 눌렀을때 점프하도록 만들음
             playerAnimator.Play("Jumping", -1, 0);
@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviourPun
             {
                 playerRigidbody.velocity = dashDirection * dashSpeed;
                 Invoke("StopDash", 0.1f);
-                Debug.LogFormat("대쉬했음");
+                //Debug.LogFormat("대쉬했음");
             }
             else
             {
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviourPun
                 dashDirection = transform.forward.normalized;
                 playerRigidbody.velocity = dashDirection * dashSpeed;
                 Invoke("StopDash", 0.1f);
-                Debug.LogFormat("대쉬했음");
+                //Debug.LogFormat("대쉬했음");
             }
         }
     }
@@ -100,14 +100,14 @@ public class PlayerMovement : MonoBehaviourPun
         playerInput.dash = false;
         dashCool = true;
         Invoke("DashCoolOn", 3f);
-        Debug.LogFormat("쿨타임중");
+        //Debug.LogFormat("쿨타임중");
     }
     private void DashCoolOn()
     {
         dashCool = false;
         playerInput.dash = false;
         //선입력문제를 해결하려고 false를 쿨타임 다찰떄 false로 만들어놓음
-        Debug.LogFormat("쿨타임끝");
+        //Debug.LogFormat("쿨타임끝");
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -8,7 +8,7 @@ public class PlayerReload : MonoBehaviourPun
 {
 
     private Animator playerAnimator;
-    private IK playerIk;
+    private IK1 playerIk;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class PlayerReload : MonoBehaviourPun
             return;
         }
         playerAnimator = gameObject.GetComponent<Animator>();
-        playerIk = gameObject.GetComponent<IK>();
+        playerIk = gameObject.GetComponent<IK1>();
     }
 
     // Update is called once per frame

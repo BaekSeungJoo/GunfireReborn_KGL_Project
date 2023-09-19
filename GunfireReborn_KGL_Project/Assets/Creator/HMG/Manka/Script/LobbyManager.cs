@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
-    private string gameVersion = "1"; //게임버젼
+    private string gameVersion = "3"; //게임버젼
 
     public Text connectionInfoText; //네트워크 정보를 표시할 텍스트
     public Button joinButton; //룸 접속 버튼

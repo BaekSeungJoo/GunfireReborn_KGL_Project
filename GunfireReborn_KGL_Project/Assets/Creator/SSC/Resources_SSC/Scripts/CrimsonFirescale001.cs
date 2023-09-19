@@ -44,7 +44,7 @@ public class CrimsonFirescale001 : MonoBehaviour
     //public TMP_Text MagAmmoText;
     //public TMP_Text AmmoRemainText;
 
-    PlayerAttack shoot;
+    PlayerAttack1 shoot;
 
     private WaitForSeconds reloadTime;
 

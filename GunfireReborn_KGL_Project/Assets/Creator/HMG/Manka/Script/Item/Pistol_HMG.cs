@@ -26,7 +26,7 @@ public class Pistol_HMG : MonoBehaviourPun
 
     private bool useskill = false;
 
-    public PlayerAttack shoot;
+    public PlayerAttack1 shoot;
 
     private void Start()
     {

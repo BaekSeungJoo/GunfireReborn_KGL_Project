@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
 using UnityEngine;
+using Photon.Pun;
+using Cinemachine;
 
-public class Pistol001 : MonoBehaviour
+public class Pistol001 : MonoBehaviourPun
 {
     // 총기의 현재 상태를 정의할 Enum : 발사가능, 탄창비어있음, 재장전
     public enum State { READY, EMPTY, RELOADING}
@@ -11,6 +13,7 @@ public class Pistol001 : MonoBehaviour
 
     // 총알이 생성될 총구 위치
     private Transform muzzle;
+    //private Transform lieMuzzle;
 
     // 사격시 총구 화염 파티클
     public ParticleSystem muzzlFlash;
@@ -27,20 +30,24 @@ public class Pistol001 : MonoBehaviour
     // 탄창 최대 용량
     public int magCapacity = 9;
     // 탄창 현재 총알 수
-    public int magAmmo;
+    public int magAmmo = 0;
 
     private WaitForSeconds reloadTime;
 
+    private CinemachineVirtualCamera cam;
 
-    private void Start()
+    void Start()
     {
+
+        cam = FindObjectOfType<CinemachineVirtualCamera>();
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
         fireSound = GetComponent<AudioSource>();
         reloadTime = new WaitForSeconds(0.7f);
 
         magAmmo = magCapacity;
-
         state = State.READY;
+        
+
     }
     // Update is called once per frame
     void Update()
@@ -90,16 +97,20 @@ public class Pistol001 : MonoBehaviour
             {
                 GameObject obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.PISTOLBULLET);
 
+
+                Rigidbody objRigid = obj.GetComponent<Rigidbody>();
+
                 obj.transform.position = muzzle.transform.position;
                 obj.transform.rotation = muzzle.transform.rotation;
 
                 obj.gameObject.SetActive(true);
 
+                objRigid.velocity = cam.transform.forward * 30f;
+
                 magAmmo -= 1;
                 muzzlFlash.Play();
                 fireSound.clip = basicShot;
                 fireSound.Play();
-
 
             }
             else
@@ -128,5 +139,6 @@ public class Pistol001 : MonoBehaviour
         state = State.READY;
 
     }
+
 
 }

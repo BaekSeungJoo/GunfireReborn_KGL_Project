@@ -38,7 +38,7 @@ public class Bullet001 : MonoBehaviourPun
         //        randomHit.z + Random.Range(randposMin, randposMax));
         //    myRigid.velocity = random;
 
-        //    StartCoroutine(DestroyBullet(P_PoolObjType.BULLET));
+        //    StartCoroutine(DestroyBullet(PoolObjType.BULLET));
         //    return;
         //}
 
@@ -56,27 +56,33 @@ public class Bullet001 : MonoBehaviourPun
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy"))
         {
+            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
             EnemyHealth helath = other.GetComponent<EnemyHealth>();
 
-            if (helath != null)
-            {
-                //helath.EnemyHpDown(bulletDamage);
-                photonView.RPC("EnemyTakeDamage", RpcTarget.All, bulletDamage);
-            }
+            photonView.RPC("ShotCallMaster_Basic", RpcTarget.MasterClient, helath, bulletDamage);
         }
 
-        if(other.CompareTag("LuckyShotPoint"))
+        if (other.CompareTag("LuckyShotPoint"))
         {
-            EnemyHealth health = other.GetComponent<EnemyHealth>();
+            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
 
-            if(health != null)
-            {
-                //health.EnemyHpDown(bulletDamage * 2);
-                photonView.RPC("EnemyTakeDamage", RpcTarget.All, bulletDamage * 2);
-            }
+            EnemyHealth helath = GFunc.FindRootObj(other.gameObject).GetComponent<EnemyHealth>();
+            photonView.RPC("ShotCallMaster_Lucky", RpcTarget.MasterClient, helath, bulletDamage);
         }
+    }
+
+    [PunRPC]
+    public void ShotCallMaster_Basic(EnemyHealth helth, int damage)
+    {
+        helth.EnemyTakeDamage(damage);
+    }
+
+    [PunRPC]
+    public void ShotCallMaster_Lucky(EnemyHealth helth, int damage)
+    {
+        helth.EnemyTakeDamage(damage * 2);
     }
 
 

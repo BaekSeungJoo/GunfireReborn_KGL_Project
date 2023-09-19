@@ -47,6 +47,23 @@ MonoBehaviour:
   - TakeDamage
   - playerTakeDamage
   - OnTriggerEnter
+  - ApplyHealthUpdate
+  - ShotCallMaster_Basic
+  - ShotCallMaster_Lucky
+  - Shot
+  - CloneReload
+  - CloneShot
+  - EmptyShot
+  - ShotStop
+  - FillPool
+  - InitBullet
+  - ShotRaycast
+  - ChangeWeapon
+  - GetWeapon_SSC
+  - TurnWeapon
+  - LastChange
+  - LastChange_F
+  - LastChange_T
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
