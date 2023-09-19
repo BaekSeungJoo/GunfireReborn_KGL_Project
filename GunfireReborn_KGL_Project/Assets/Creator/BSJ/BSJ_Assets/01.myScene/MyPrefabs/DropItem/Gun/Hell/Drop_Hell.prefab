@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 2984116713753235569}
   - component: {fileID: 2753499339632327005}
   - component: {fileID: 2753499340606538720}
+  - component: {fileID: 2537001884957024723}
   m_Layer: 0
   m_Name: Drop_Hell
-  m_TagString: Untagged
+  m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,6 +132,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgrade: 0
+--- !u!114 &2537001884957024723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172395885948725942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa9d251d1a9c8c4f81bbd7afb3bd096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &486906215286448261
 PrefabInstance:
   m_ObjectHideFlags: 0
