@@ -50,7 +50,8 @@ public class playerHp : MonoBehaviourPun
         {
             return;
         }
-        photonView.RPC("StateUpdate", RpcTarget.All);
+
+        //photonView.RPC("StateUpdate", RpcTarget.All);
     }
 
     //player가 공격받았을때 원격 프로시저 콜 함수

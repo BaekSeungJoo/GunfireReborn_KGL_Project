@@ -21,10 +21,10 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
-  - 
-  - 
+  - Bullet
+  - HitBox
+  - Wall
+  - Enemy
   - 
   - 
   - 

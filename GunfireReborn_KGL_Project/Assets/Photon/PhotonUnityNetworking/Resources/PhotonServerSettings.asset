@@ -66,6 +66,10 @@ MonoBehaviour:
   - LastChange_T
   - FillPool_RPC
   - Push
+  - CureOther
+  - GoingDead
+  - PlayerHealthUpdated
+  - StopCure
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
