@@ -9,15 +9,20 @@ using System.Runtime.Serialization;
 
 public class PistolBullet : MonoBehaviourPun
 {
-    private Rigidbody myRigid = default;
-    private float speed = 30.0f;
+    private int bulletDamage = 5;
 
+    private WaitForSeconds poolingTime;
 
-    public int bulletDamage = 5;
-
+    private void Awake()
+    {
+        poolingTime = new WaitForSeconds(5f);
+    }
     private void OnEnable()
     {
+        // ========= 버그 테스트 하면서 몬스터에게 닿는순간 ( 오브젝트풀링이 되는 순간 ) 코루틴에 의해 꼬이는지 확인해야함 ===================
         StartCoroutine(DestroyBullet(P_PoolObjType.PISTOLBULLET));
+        // ========= 버그 테스트 하면서 몬스터에게 닿는순간 ( 오브젝트풀링이 되는 순간 ) 코루틴에 의해 꼬이는지 확인해야함 ===================
+
     }
 
 
@@ -31,7 +36,8 @@ public class PistolBullet : MonoBehaviourPun
 
             EnemyHealth health = other.GetComponent<EnemyHealth>();
 
-            photonView.RPC("ShotCallMaster_Basic", RpcTarget.MasterClient, health, bulletDamage);
+            health.EnemyTakeDamage(bulletDamage);
+            //photonView.RPC("ShotCallMaster_Basic", RpcTarget.MasterClient, health, bulletDamage);
 
         }
 
@@ -40,34 +46,28 @@ public class PistolBullet : MonoBehaviourPun
             PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
             EnemyHealth health = GFunc.FindRootObj(other.gameObject).GetComponent<EnemyHealth>();
 
-
-            photonView.RPC("ShotCallMaster_Lucky", RpcTarget.MasterClient, health, bulletDamage * 2);
+            health.EnemyTakeDamage(bulletDamage * 2);
+            //photonView.RPC("ShotCallMaster_Lucky", RpcTarget.MasterClient, health, bulletDamage * 2);
         }
 
     }
 
-    [PunRPC]
-    public void ShotCallMaster_Basic(EnemyHealth health, int damage)
-    {
-        health.EnemyTakeDamage(damage);
+    //[PunRPC]
+    //public void ShotCallMaster_Basic(EnemyHealth health, int damage)
+    //{
+    //    health.EnemyTakeDamage(damage);
 
-    }
+    //}
 
-    [PunRPC]
-    public void ShotCallMaster_Lucky(EnemyHealth health, int damage)
-    {
-        health.EnemyTakeDamage(damage * 2);
-    }
+    //[PunRPC]
+    //public void ShotCallMaster_Lucky(EnemyHealth health, int damage)
+    //{
+    //    health.EnemyTakeDamage(damage * 2);
+    //}
 
-    [PunRPC]
-    public void Shot(Pistol_Lie001 lie)
-    {
-        myRigid.velocity = lie.transform.forward * speed;
-
-    }
     private IEnumerator DestroyBullet(P_PoolObjType type)
     {
-        yield return new WaitForSeconds(5f);
+        yield return poolingTime;
         PhotonPoolManager.P_instance.CoolObj(this.gameObject, type);
     }
 

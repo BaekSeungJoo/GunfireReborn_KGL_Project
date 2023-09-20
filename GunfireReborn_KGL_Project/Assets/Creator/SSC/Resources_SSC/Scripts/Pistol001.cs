@@ -95,17 +95,23 @@ public class Pistol001 : MonoBehaviourPun
 
             if (Input.GetMouseButtonDown(0))
             {
-                GameObject obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.PISTOLBULLET);
+                GameObject obj = null;
+                Rigidbody objRigid = null;
 
+                obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.PISTOLBULLET);
 
-                Rigidbody objRigid = obj.GetComponent<Rigidbody>();
+                if (obj != null)
+                {
+                    obj.transform.position = muzzle.transform.position;
+                    obj.transform.rotation = muzzle.transform.rotation;
 
-                obj.transform.position = muzzle.transform.position;
-                obj.transform.rotation = muzzle.transform.rotation;
+                    obj.gameObject.SetActive(true);
 
-                obj.gameObject.SetActive(true);
+                    objRigid = obj.GetComponent<Rigidbody>();
+                
+                    objRigid.velocity = cam.transform.forward * 30f;
+                }
 
-                objRigid.velocity = cam.transform.forward * 30f;
 
                 magAmmo -= 1;
                 muzzlFlash.Play();

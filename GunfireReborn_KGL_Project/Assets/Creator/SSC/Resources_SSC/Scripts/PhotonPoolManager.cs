@@ -33,21 +33,18 @@ public class PhotonPoolManager : MonoBehaviourPun
     [SerializeField]
     List<P_PoolInfo> poolList;
 
+
     private void Awake()
     {
         P_instance = this;
-
-        if(PhotonNetwork.IsMasterClient)
-        {
             // 생성할 오브젝트 풀 갯수만큼 ( 상단에 생성한 리스트 ) 반복
-            for(int i = 0; i < poolList.Count; i++)
-            {
-                // PoolInfo 클래스에 담아둔 정보를 각 poolLsit에 담는다.
-                FillPool(poolList[i]);
-                //photonView.RPC("FillPool", RpcTarget.Others, poolList);
-            }
-
+        for(int i = 0; i < poolList.Count; i++)
+        {
+            // PoolInfo 클래스에 담아둔 정보를 각 poolLsit에 담는다.
+            FillPool(poolList[i]);
+            //photonView.RPC("FillPool", RpcTarget.AllBuffered, poolList[i]);
         }
+
     }
 
     //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -72,17 +69,29 @@ public class PhotonPoolManager : MonoBehaviourPun
             GameObject tempObj = null;
 
             // 인스턴스화 시킨 오브젝트 담아넣기
-            tempObj = PhotonNetwork.Instantiate(poolInfo.prefab.name, poolInfo.container.transform.position, Quaternion.identity);
-            tempObj.transform.parent = poolInfo.container.transform;
-
+            tempObj = Instantiate(poolInfo.prefab, poolInfo.container.transform);
+            tempObj.transform.position = poolInfo.container.transform.position;
             // 생성한 오브젝트 비활성화, 위치 초기화, 메모리 할당하기
             tempObj.SetActive(false);
-            tempObj.transform.position = poolInfo.container.transform.position;
 
             poolInfo.poolObj.Push(tempObj);
+            //photonView.RPC("Push", RpcTarget.AllBuffered, tempObj, poolInfo);
+
         }
 
     }
+
+    //[PunRPC]
+    //public void Push(GameObject tempObj, P_PoolInfo poolInfo)
+    //{
+    //    tempObj.transform.parent = poolInfo.container.transform;
+
+    //    // 생성한 오브젝트 비활성화, 위치 초기화, 메모리 할당하기
+    //    tempObj.SetActive(false);
+    //    tempObj.transform.position = poolInfo.container.transform.position;
+
+    //    poolInfo.poolObj.Push(tempObj);
+    //}
 
     // 생성한 풀링오브젝트를 호출할 메소드 
     public GameObject GetPoolObj(P_PoolObjType type)
@@ -104,13 +113,12 @@ public class PhotonPoolManager : MonoBehaviourPun
             // Stack 메모리에서 빼준다.
             pool.Pop();
         }
-
         // 호출하는 오브젝트 수가 세팅값보다 많다면 
         else
         {
             // 풀링오브젝트를 새로 생성해준다.
-            objInstance = PhotonNetwork.Instantiate(select.prefab.name, select.container.transform.position, Quaternion.identity);
-            objInstance.transform.parent = select.container.transform;
+            objInstance = Instantiate(select.prefab, select.container.transform);
+            //objInstance.transform.parent = select.container.transform;
         }
 
         // 담긴 오브젝트 반환

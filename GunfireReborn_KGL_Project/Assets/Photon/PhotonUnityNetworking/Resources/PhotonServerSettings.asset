@@ -64,6 +64,8 @@ MonoBehaviour:
   - LastChange
   - LastChange_F
   - LastChange_T
+  - FillPool_RPC
+  - Push
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

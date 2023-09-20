@@ -135,8 +135,12 @@ public class Pistol_Lie001 : MonoBehaviourPun, IPunObservable
     public void CloneShot(Vector3 foward, Vector3 Pos, Quaternion rot)
     {
         GameObject obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.PISTOLBULLET);
-        Rigidbody objRigid = obj.GetComponent<Rigidbody>();
+        Rigidbody objRigid = null;
 
+        if (objRigid == null)
+        {
+            objRigid = obj.GetComponent<Rigidbody>();
+        }
         obj.transform.position = Pos;
         obj.transform.rotation = rot;
         obj.gameObject.SetActive(true);

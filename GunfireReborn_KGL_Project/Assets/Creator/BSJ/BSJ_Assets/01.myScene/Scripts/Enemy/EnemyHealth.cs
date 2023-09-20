@@ -27,15 +27,18 @@ public class EnemyHealth : MonoBehaviourPun
     {
         curHealth = newhealth;
         hpbar.fillAmount = newHpbar;
+
+        Debug.Log("몬스터 체력 : " + curHealth);
     }
 
+    
     // Enemy가 공격을 받았을 때 원격 프로시저 콜 해줄 함수
-    [PunRPC]
     public void EnemyTakeDamage(int _damage)
     {
         // 마스터클라이언트에서 입력받은 데미지에 따라 연산을 진행하고
         if (PhotonNetwork.IsMasterClient)
         {
+            Debug.Log("입력받은 데미지 : " +  _damage);
             curHealth -= _damage;
             hpbar.fillAmount = (float)curHealth / (float)maxHealth;
 
@@ -45,7 +48,7 @@ public class EnemyHealth : MonoBehaviourPun
 
             // 마찬가지로 나머지 클라이언트에서도 데미지를 받는 메소드를 수행 시킨다.
             // 하단에 현재체력이 0이하가 될시 게임오브젝트를 비활성화시키는 행동을 시켜주기 위해
-            photonView.RPC("EnemyTakeDamage", RpcTarget.Others, _damage);
+            //photonView.RPC("EnemyTakeDamage", RpcTarget.Others, _damage);
 
         }
 
