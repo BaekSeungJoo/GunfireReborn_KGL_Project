@@ -42,7 +42,7 @@ public class playerCure : MonoBehaviourPun
             return;
         }
 
-        photonView.RPC("GoingDead", RpcTarget.All);
+        //photonView.RPC("GoingDead", RpcTarget.All);
 
         if (SearchPlayer() ==2)
         {//주변에 플레이어가 있을경우

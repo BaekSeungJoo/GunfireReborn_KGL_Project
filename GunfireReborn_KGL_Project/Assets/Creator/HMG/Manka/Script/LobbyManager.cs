@@ -84,7 +84,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //접속 상태 표시
         connectionInfoText.text = "방 참가 성공";
         //모든 룸 참가자가 Main씬을 로드하게 함
-        PhotonNetwork.LoadLevel("MankaTest");
+        PhotonNetwork.LoadLevel("Map_01_BSJ");
     }
 
     // Update is called once per frame

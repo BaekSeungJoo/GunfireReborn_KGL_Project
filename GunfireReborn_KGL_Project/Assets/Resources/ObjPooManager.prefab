@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2769637079782297736}
   - component: {fileID: 6013365942554240965}
-  - component: {fileID: 2443194259594008704}
+  - component: {fileID: 6013365941260790436}
   m_Layer: 0
   m_Name: ObjPooManager
   m_TagString: Untagged
@@ -52,12 +52,11 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents:
-  - {fileID: 2443194259594008704}
+  ObservedComponents: []
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &2443194259594008704
+--- !u!114 &6013365941260790436
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,7 +65,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2769637079782297737}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cb9f2c2b2b5c324b9432ac7eebe4d55, type: 3}
+  m_Script: {fileID: 11500000, guid: d67b22f49a6c7c14ca853e7c392a2aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   poolList:

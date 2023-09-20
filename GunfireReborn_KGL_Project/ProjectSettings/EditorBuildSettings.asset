@@ -9,18 +9,6 @@ EditorBuildSettings:
     path: Assets/Creator/HMG/Manka/TestScene.unity
     guid: e572f8621a56480459039d3d2c85ed28
   - enabled: 1
-    path: Assets/Creator/HMG/Manka/MankaTest.unity
-    guid: 079ee6a6cea5a1e438362657e4253ab4
-  - enabled: 1
-    path: Assets/Creator/PSY/Script/Scenes/LoadingScene_PSY.unity
-    guid: 8cd56137641a90144ad7612174c14f3c
-  - enabled: 1
-    path: Assets/Creator/PSY/Script/Scenes/TitleScene_PSY.unity
-    guid: 0c65814705b6aa140951d606e06410ec
-  - enabled: 1
-    path: Assets/Creator/PSY/Script/Scenes/TestScene.unity
-    guid: 99e718adfea166741b5967b17c067a45
-  - enabled: 1
-    path: Assets/Creator/HMG/Test.unity
-    guid: e82db6237308d4d44bfd9a93019c02bf
+    path: Assets/Creator/BSJ/BSJ_Assets/01.myScene/Scenes/Map_01_BSJ.unity
+    guid: 5498eb2c95ebf6c4396e1bc2427484fb
   m_configObjects: {}
