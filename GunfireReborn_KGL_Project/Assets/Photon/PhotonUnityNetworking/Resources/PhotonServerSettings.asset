@@ -64,6 +64,11 @@ MonoBehaviour:
   - LastChange
   - LastChange_F
   - LastChange_T
+  - CureOther
+  - PlayerTakeDamage
+  - GoingDead
+  - PlayerHealthUpdated
+  - StopCure
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

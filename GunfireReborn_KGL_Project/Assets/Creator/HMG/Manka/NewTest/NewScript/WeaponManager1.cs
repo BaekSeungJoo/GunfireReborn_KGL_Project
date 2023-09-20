@@ -314,7 +314,7 @@ public class WeaponManager1 : MonoBehaviourPun
 
         playerIK.ChangeIK(slotWeapons[number]);
         frontIK.ChangeIK(slotWeapons[number]);
-        TurnWeapon(slotWeapons[2]);
+        TurnWeapon(slotWeapons[number]);
     }
     [PunRPC]
     public void LastChange_T(int i)

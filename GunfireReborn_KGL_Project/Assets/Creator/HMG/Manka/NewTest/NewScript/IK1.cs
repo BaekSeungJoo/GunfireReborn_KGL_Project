@@ -1,18 +1,10 @@
-/*<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK.cs
-
-========
->>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK1.cs*/
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-/*<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK.cs*//*
-public class IK : MonoBehaviour
-========*/
 public class IK1 : MonoBehaviour
-/*>>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK1.cs
-*/
+
 {
     //웨폰 포지션
     public Transform weaponPosition;
@@ -38,11 +30,7 @@ public class IK1 : MonoBehaviour
         {
             weaponChilds[i] = weaponPosition.GetChild(i).gameObject;
         }
-/*<<<<<<<< HEAD:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK.cs*/
         ChangeIK("Pistol");
-/*========*/
-/*        ChangeIK("CrimsonFirescale");
->>>>>>>> origin/SSC:GunfireReborn_KGL_Project/Assets/Creator/HMG/Manka/NewTest/NewScript/IK1.cs*/
     }
 
     // Update is called once per frame
@@ -59,14 +47,14 @@ public class IK1 : MonoBehaviour
         //왼손 조절하는코드
         IKAnimator.SetIKPosition(AvatarIKGoal.LeftHand, p_HandLeft.position);
         IKAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, HandIKHandler);
-        IKAnimator.SetIKRotation(AvatarIKGoal.LeftHand, p_HandLeft.rotation);
-        IKAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, HandIKHandler);
+        //IKAnimator.SetIKRotation(AvatarIKGoal.LeftHand, p_HandLeft.rotation);
+        //IKAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, HandIKHandler);
         
         //오른손 조절하는코드
         IKAnimator.SetIKPosition(AvatarIKGoal.RightHand, p_HandRight.position);
         IKAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, HandIKHandler);
-        IKAnimator.SetIKRotation(AvatarIKGoal.RightHand, p_HandRight.rotation);
-        IKAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, HandIKHandler);
+        //IKAnimator.SetIKRotation(AvatarIKGoal.RightHand, p_HandRight.rotation);
+        //IKAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, HandIKHandler);
 
     }
 
