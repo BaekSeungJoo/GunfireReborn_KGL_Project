@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,10 @@ public class UIManager : MonoBehaviour
     private GameObject mainCanvas;       // 메인 UI
 
     private TextMeshProUGUI text_Reroll; // 새로고침 텍스트
+
+    private GameObject toolTip;          // 인벤토리 툴팁
+    private TextMeshProUGUI toolTipTitleText;
+    private TextMeshProUGUI toolTipInfoText;
 
     #region Exit 변수
     private Button bt_Exit;              // ESC 버튼
@@ -40,14 +45,22 @@ public class UIManager : MonoBehaviour
         bt_Exit = GameObject.Find("ExitButton").GetComponent<Button>();
         text_Exit = GameObject.Find("ExitText").GetComponent <TextMeshProUGUI>();
 
+        toolTip = GameObject.Find("ToolTip");
+
+        toolTipTitleText = toolTip.transform.Find("ItemName").GetComponent<TextMeshProUGUI>();
+        toolTipInfoText = toolTip.transform.Find("ItemInfo").GetComponent<TextMeshProUGUI>();
+
+
 
         SetActiveMainCanvas(true);
         SetActiveInven(false);
         SetActiveShopPopup(false);
         SetActiveBlackSmith(false);
+        SetActiveToolTip(false);
+
     }
 
-    
+
 
     /// <summary>
     /// ShopPopup 활성화 체크 함수 
@@ -136,5 +149,26 @@ public class UIManager : MonoBehaviour
     {  // 메인 UI 활성화 / 비활성화 함수
         mainCanvas?.SetActive(isActive);
     }
+
+    /// <summary>
+    /// ToolTip 활성화 세팅 함수
+    /// </summary>
+    /// <param name="isActive">활성화 여부</param>
+    public void SetActiveToolTip(bool isActive)
+    {
+        toolTip.SetActive(isActive);
+    }
+
+    /// <summary>
+    /// ToolTip 활성화 정보 세팅 함수
+    /// </summary>
+    /// <param name="itemData">활성화 할 아이템</param>
+    public void SetToolTipText(ItemData itemData)
+    {
+        toolTipTitleText.text = itemData.name;
+        toolTipInfoText.text = itemData.info;
+    }
     #endregion
+
+
 }

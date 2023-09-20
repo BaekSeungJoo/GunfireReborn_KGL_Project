@@ -35,7 +35,6 @@ public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         bgSize = GetComponent<RectTransform>();
         baseSize = bgSize.localScale;
 
-
         logText.transform.parent.gameObject.SetActive(false);
 
         itemInfo = GameObject.Find("UI_Information").GetComponent<ItemInfo>();
@@ -44,9 +43,9 @@ public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         itemImage = transform.GetChild(0).GetChild(2).GetComponent<Image>();
 
-        itemData = shopManager.itemDataManager.ItemList[transform.GetSiblingIndex()];
+        itemData = shopManager.itemDataManager.ItemList[transform.GetSiblingIndex()];      
     }
-    private void OnEnable()  // 해당 스크립트가 활성화 되는 순간에 동작하는 함수
+    private void OnEnable()  // 해당 스크립트가 활성화 되는 순간에 동작하는 함수 
     {
         soldOut.SetActive(false);  // 매진 UI를 비활성화한다.
     }
@@ -91,6 +90,10 @@ public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         mine.enabled = false;
 
         // TODO: 구매한 아이템을 인벤토리에 추가한다.
+        // Weapon 스왑과 비슷
+        // shopitembox 와 inventorybox 의 공통점을 찾아라.
+        // 그 공통점을 발견했을 때 그 공통점을 인벤토리 박스로 옮기는 기능을 구현하면 된다.
+        shopManager.Inventory.Trade(itemData);
 
         Invoke("SetActiveLogText", 1.5f);
     }

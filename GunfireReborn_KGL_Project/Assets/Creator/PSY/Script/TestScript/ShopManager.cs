@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
+    private  Inventory inventory;
     private UIManager uiManager;
 
     public ItemDataManager itemDataManager;
@@ -35,10 +36,13 @@ public class ShopManager : MonoBehaviour
             }
         }
     }
+
+    public Inventory Inventory { get { return inventory; } }  // Inventory 프로퍼티 
     #endregion
 
-    private void Start()
+    private void Awake()
     {
+        inventory = GameObject.Find("InventoryCanvas").GetComponent<Inventory>();
         uiManager = GameObject.Find("@Managers").GetComponent<UIManager>();
         itemDataManager = GameObject.Find("@Managers").GetComponent<ItemDataManager>();
     }

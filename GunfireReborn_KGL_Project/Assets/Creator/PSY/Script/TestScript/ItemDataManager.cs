@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// 아이템 데이터 정보 클래스
@@ -36,14 +37,16 @@ public class ItemDataManager : MonoBehaviour
     /// </summary>
     public List<string> ItemInfoList { get { return itemInfoList; } }
     #endregion
-    
+
+    public Sprite[] itemSprites;  // 아이템 이미지
+
     // TODO: 상수 ITEMCOUNTMAX 를 추가한다. 5로 초기화해준다.
     private const int ITEMCOUNTMAX = 5;
 
-    private void Start()
+    private void Awake()
     {
         // TODO: ITEMCOUNTMAX 만큼 반복해서 itemList에 추가한다.
-        for ( int i = 0; i < ITEMCOUNTMAX; i++ )
+        for (int i = 0; i < ITEMCOUNTMAX; i++)
         {
             ItemData data = new ItemData();
 
