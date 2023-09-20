@@ -25,7 +25,6 @@ public class WeaponManager1 : MonoBehaviourPun
     // Update is called once per frame
     private Animator frontAnimator;
 
-    public GameObject playerGun;
 
     private void Start()
     {
@@ -69,11 +68,11 @@ public class WeaponManager1 : MonoBehaviourPun
     }
     void Update()
     {
+
         if(!photonView.IsMine)
         {
             return;
         }
-
         if (Input.GetButtonDown("Swap1"))
         {
             //슬롯1이 비어있으면 return
@@ -82,7 +81,7 @@ public class WeaponManager1 : MonoBehaviourPun
                 return;
             }
             //Todo : 2번, 혹은 3번이라면  현재 총을 쏘고있거나 장전중이라면 애니메이션을 취소하고
-            
+
             if (ActiveSlot[0] == true)
             {
                 return;
@@ -91,18 +90,7 @@ public class WeaponManager1 : MonoBehaviourPun
             ActiveSlot[1] = false;
             ActiveSlot[2] = false;
             frontAnimator.SetTrigger("Swap");
-
-            /*//1번무기에 해당하는 ik로 변경
-            Debug.Log("change1");
-            playerIK.ChangeIK(slotWeapons[0]);
-            //프런트ik도 변경
-            Debug.Log("change2");
-            frontIK.ChangeIK(slotWeapons[0]);
-            //1번에 원래있던 무기를 다시활성화시킴.
-            Debug.Log("change3");
-            //1번이 아닌 다른무기들을 비활성화시킴 front에 있는 무기도 비활성화시킴
-            TurnWeapon(slotWeapons[0]);*/
-            StartCoroutine(DelayedWeaponChange1()); // DelayedWeaponChange 코루틴을 시작하여 0.6초 후에 코드 블록 실행
+            StartCoroutine(DelayedWeaponChange(0)); // DelayedWeaponChange 코루틴을 시작하여 0.6초 후에 코드 블록 실행
         }
         else if(Input.GetButtonDown("Swap2"))
         {
@@ -122,12 +110,7 @@ public class WeaponManager1 : MonoBehaviourPun
             ActiveSlot[1] = true;
             ActiveSlot[2] = false;
             frontAnimator.SetTrigger("Swap");
-           /* playerIK.ChangeIK(slotWeapons[1]);
-            //프런트ik도 변경
-            frontIK.ChangeIK(slotWeapons[1]);
-            Equip_weapons[SearchWeapon()].SetActive(true);
-            TurnWeapon(slotWeapons[1]);*/
-            StartCoroutine(DelayedWeaponChange2());
+            StartCoroutine(DelayedWeaponChange(1));
         }
         else if(Input.GetButtonDown("Swap3"))
         {
@@ -142,12 +125,7 @@ public class WeaponManager1 : MonoBehaviourPun
             ActiveSlot[1] = false;
             ActiveSlot[2] = true;
             frontAnimator.SetTrigger("Swap");
-            /*playerIK.ChangeIK(slotWeapons[2]);
-            //프런트ik도 변경
-            frontIK.ChangeIK(slotWeapons[2]);
-            Equip_weapons[SearchWeapon()].SetActive(true);
-            TurnWeapon(slotWeapons[2]);*/
-            StartCoroutine(DelayedWeaponChange3());
+            StartCoroutine(DelayedWeaponChange(2));
         }
     }
 
@@ -247,7 +225,6 @@ public class WeaponManager1 : MonoBehaviourPun
                  Front_weapons[SearchWeapon()].SetActive(true);*/
                 //
             }
-
         }
 
     }
@@ -330,6 +307,15 @@ public class WeaponManager1 : MonoBehaviourPun
         }
     }
 
+
+    IEnumerator DelayedWeaponChange(int number)
+    {
+        yield return new WaitForSeconds(0.6f);
+
+        playerIK.ChangeIK(slotWeapons[number]);
+        frontIK.ChangeIK(slotWeapons[number]);
+        TurnWeapon(slotWeapons[number]);
+    }
     [PunRPC]
     public void LastChange_T(int i)
     {
@@ -341,64 +327,6 @@ public class WeaponManager1 : MonoBehaviourPun
     {
         Equip_weapons[i].SetActive(false);
     }
-
-
-    IEnumerator DelayedWeaponChange1()
-    {
-        yield return new WaitForSeconds(0.6f); // 0.6초 대기
-
-        // 1번 무기에 해당하는 IK로 변경
-        Debug.Log("change1");
-        playerIK.ChangeIK(slotWeapons[0]);
-
-        // 프런트 IK도 변경
-        Debug.Log("change2");
-        frontIK.ChangeIK(slotWeapons[0]);
-
-        // 1번에 원래 있던 무기를 다시 활성화시킴
-        Debug.Log("change3");
-
-        // 1번이 아닌 다른 무기들을 비활성화시킴, front에 있는 무기도 비활성화시킴
-        TurnWeapon(slotWeapons[0]);
-    }
-    IEnumerator DelayedWeaponChange2()
-    {
-        yield return new WaitForSeconds(0.6f); // 0.6초 대기
-
-        // 2번 무기에 해당하는 IK로 변경
-        //Debug.Log("change1");
-        playerIK.ChangeIK(slotWeapons[1]);
-
-        // 프런트 IK도 변경
-        //Debug.Log("change2");
-        frontIK.ChangeIK(slotWeapons[1]);
-
-        // 2번에 원래 있던 무기를 다시 활성화시킴
-        //Debug.Log("change3");
-
-        // 2번이 아닌 다른 무기들을 비활성화시킴, front에 있는 무기도 비활성화시킴
-        TurnWeapon(slotWeapons[1]);
-    }
-
-    IEnumerator DelayedWeaponChange3()
-    {
-        yield return new WaitForSeconds(0.6f); // 0.6초 대기
-
-        // 2번 무기에 해당하는 IK로 변경
-        //Debug.Log("change1");
-        playerIK.ChangeIK(slotWeapons[2]);
-
-        // 프런트 IK도 변경
-        //Debug.Log("change2");
-        frontIK.ChangeIK(slotWeapons[2]);
-
-        // 2번에 원래 있던 무기를 다시 활성화시킴
-        //Debug.Log("change3");
-
-        // 2번이 아닌 다른 무기들을 비활성화시킴, front에 있는 무기도 비활성화시킴
-        TurnWeapon(slotWeapons[2]);
-    }
-
     IEnumerator GetWeapon(string weaponName)
     {
         if (photonView.IsMine)
@@ -430,5 +358,4 @@ public class WeaponManager1 : MonoBehaviourPun
     {
         StartCoroutine(GetWeapon(weaponName));
     }
-
 }

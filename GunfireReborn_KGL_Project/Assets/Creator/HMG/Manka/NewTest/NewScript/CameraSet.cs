@@ -12,24 +12,23 @@ public class CameraSet : MonoBehaviourPun
     private float currentCameraRotationX = 0;
 
     [SerializeField]
+    private GameObject weaponPosition;
+
+    [SerializeField]
     private CinemachineVirtualCamera theCamera;
     [SerializeField]
     private float lookSensitivity;
-
     void Start()
     {
         if(photonView.IsMine)
         {
             theCamera = FindObjectOfType<CinemachineVirtualCamera>();
             theCamera.transform.parent = gameObject.transform;
-            //Vector3 currentPos = gameObject.transform.position;
-            //theCamera.transform.localPosition = new Vector3(currentPos.x, currentPos.y + 0.8f, currentPos.z+0.4f);
-            //theCamera.transform.localPosition = new Vector3(currentPos.x, currentPos.y, currentPos.z);
+            
 
             theCamera.transform.position = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.8f, transform.localPosition.z + 0.4f);
 
-            //Vector3 currentPos = transform.position;
-            //theCamera.transform.position = new Vector3(currentPos.x, currentPos.y + 0.8f, currentPos.z + 0.4f);
+            //theCamera.transform.position = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.8f, transform.localPosition.z);
         }
     }
 
@@ -53,7 +52,7 @@ public class CameraSet : MonoBehaviourPun
         currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
 
         theCamera.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
-
+       weaponPosition.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
         //float _yRotation = Input.GetAxisRaw("Mouse X");
     }
 }
