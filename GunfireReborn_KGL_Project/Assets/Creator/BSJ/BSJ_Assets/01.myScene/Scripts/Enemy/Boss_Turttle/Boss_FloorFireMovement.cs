@@ -4,53 +4,42 @@ using UnityEngine;
 
 public class Boss_FloorFireMovement : MonoBehaviour
 {
-    public Vector3 targetPos;       // 이동할 목표 위치
-    public float duration = 5.0f;   // 이동에 걸릴 시간
+    public GameObject startPos;        // 이동 시작 위치
 
-    Vector3 initialPosition;    // 이동 시작 위치
-    float startTime;            // 이동 시작 시간
+    private float moveSpeed = 15f;     // 이동 속도
+    private float lifeTime = 2f;      // 이펙트 활성화 시간
+    private float timer = 0f;         // 비활성화까지 더해질 시간
 
-    bool isMoving = false;      // 이동 중인지 체크
+    private Rigidbody rb;
 
-
-    private void Awake()
+    void Start()
     {
-        // 현재 위치를 시작 위치로 셋팅
-        initialPosition = transform.position;
-    }
-
-    private void OnEnable()
-    {
-        // 위치를 다시 셋팅
-        transform.position = initialPosition;
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = transform.forward * moveSpeed;
     }
 
     void Update()
     {
-        if(!isMoving)
+        timer += Time.deltaTime;
+
+        if (timer > lifeTime)
         {
-            StartCoroutine(MoveOverTime());
+            gameObject.SetActive(false);
+            timer = 0f;
         }
     }
-
-    IEnumerator MoveOverTime()
+    private void OnDisable()
     {
-        isMoving = true;
-        startTime = Time.time;
+        // 위치를 다시 셋팅
+        gameObject.transform.localPosition = Vector3.zero;
+    }
 
-        // 보간을 사용하여 게임 오브젝트를 부드럽게 이동시키는데 사용
-        while(Time.time - startTime < duration)
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.transform.CompareTag("Player"))
         {
-            float t = (Time.time - startTime) / duration;
-            // 시작 위치에서 목표 위치까지 보간해서 이동
-            transform.position = Vector3.Lerp(initialPosition, targetPos, t);
-
-            yield return null;
+            Debug.Log("플레이어에 닿았다.");
+            // 플레이어에게 데미지 주는 로직
         }
-
-        transform.position = targetPos;
-        isMoving = false;
-
-        gameObject.SetActive(false);
     }
 }
