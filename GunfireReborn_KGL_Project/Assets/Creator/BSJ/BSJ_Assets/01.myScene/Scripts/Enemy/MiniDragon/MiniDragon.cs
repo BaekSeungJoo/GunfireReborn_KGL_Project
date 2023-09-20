@@ -72,7 +72,7 @@ public class MiniDragon : MeleeEnemyController
     // 공격 순간 (애니메이션 이벤트)
     public void MiniDragonAttack()
     {
-        Debug.Log("Attack");
+        // Debug.Log("Attack");
 
         // 브레스 모으기 이펙트 비활성화
         chargeEffect.gameObject.SetActive(false);
@@ -87,7 +87,7 @@ public class MiniDragon : MeleeEnemyController
     // 공격 끝 ( 애니메이션 이벤트 )
     public void MiniDragonAttackEnd()
     {
-        Debug.Log("AttackEnd");
+        // Debug.Log("AttackEnd");
 
         isAttacking = false;
         animator.SetBool("Attack", false);

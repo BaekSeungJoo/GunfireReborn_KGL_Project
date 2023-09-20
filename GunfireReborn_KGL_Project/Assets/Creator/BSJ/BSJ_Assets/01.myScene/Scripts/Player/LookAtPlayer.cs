@@ -14,6 +14,7 @@ public class LookAtPlayer : MonoBehaviour
             //transform.rotation = Quaternion.LookRotation(targetDirection.normalized * -1, Vector3.up);
 
             transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.back, Camera.main.transform.rotation * Vector3.up);
+
         }
     }
 }

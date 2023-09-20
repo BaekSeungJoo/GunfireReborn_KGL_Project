@@ -29,10 +29,19 @@ public class Enemy : MonoBehaviour
 
     protected Vector3 targetDirection;      // 추적 방향
 
+    // 오디오
+    public AudioClip soundEffect;
+    public AudioSource audioSource;
+
+    // 기본 공격 이펙트
+    public GameObject normalAttackEffect;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = soundEffect;
     }
 
     // 제일 가까운 플레이어 찾기
@@ -120,6 +129,10 @@ public class Enemy : MonoBehaviour
         isAttacking = false;
         animator.SetBool("Attack", false);
         targetPlayer = null;
+        if(normalAttackEffect != null)
+        {
+            normalAttackEffect.SetActive(false);
+        }
     }
 
 
@@ -134,5 +147,16 @@ public class Enemy : MonoBehaviour
         animator.SetBool("Track", false);
 
         targetPlayer = null;
+    }
+
+    // 공격 이펙트, 효과음
+    public void Attack_VFX()
+    {
+        if(normalAttackEffect != null)
+        {
+            normalAttackEffect.SetActive(true);
+        }
+
+        audioSource.Play();
     }
 }

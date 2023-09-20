@@ -6,12 +6,17 @@ using UnityEngine.AI;
 
 public class Creature1 : Enemy
 {
-    public GameObject chargeEffect; // 공격 차지 이펙트
-
     public int ranPattern;      // 어떤 패턴을 실행할 것인가?
 
     public bool isPattern01;    // 공격 패턴 1
     public bool isPattern02;    // 공격 패턴 2
+
+    public AudioClip pattern01AttackAudio;
+    public AudioClip pattern02AttackAudio;
+
+    public GameObject attack01chargeEffect; // 공격 차지 이펙트
+    public GameObject attack01Effect;
+    public GameObject attack02Effect;
 
     private void Awake()
     {
@@ -19,6 +24,7 @@ public class Creature1 : Enemy
 
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
+        audioSource = GetComponent<AudioSource>();
 
         isIdle = true;              // 대기 상태
         isTracking = false;         // 추적 상태
@@ -92,14 +98,14 @@ public class Creature1 : Enemy
     public void ChargeEffect_Creature1()
     {
         // 이펙트 활성화
-        chargeEffect.SetActive(true);
+        attack01chargeEffect.SetActive(true);
     }
 
     // 패턴 1 공격 차지 끝 ( 애니메이션 이벤트 )
     public void ChargeEffectEnd_Creature1()
     {
         // 이펙트 활성화
-        chargeEffect.SetActive(false);
+        attack01chargeEffect.SetActive(false);
     }
 
 
@@ -110,6 +116,10 @@ public class Creature1 : Enemy
         if (enemyType == Type.Melee)
         {
             transform.GetChild(0).gameObject.SetActive(true);
+
+            attack01Effect.SetActive(true);
+            audioSource.clip = pattern01AttackAudio;
+            audioSource.Play();
         }
     }
 
@@ -121,6 +131,10 @@ public class Creature1 : Enemy
         if (enemyType == Type.Melee)
         {
             transform.GetChild(1).gameObject.SetActive(true);
+
+            attack02Effect.SetActive(true);
+            audioSource.clip = pattern02AttackAudio;
+            audioSource.Play();
         }
     }
 
@@ -128,6 +142,10 @@ public class Creature1 : Enemy
     public void AttackEnd_Creature1()
     {
         // Debug.Log("AttackEnd");
+
+        attack01Effect.SetActive(false);
+        attack02Effect.SetActive(false);
+
         // 근접 (트리거를 가진 자식오브젝트 활성화해서 플레이어에게 데미지를 주는 방식)
         if (enemyType == Type.Melee)
         {

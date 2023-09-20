@@ -28,6 +28,8 @@ public class Orc : Enemy
 
         animator = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = soundEffect;
 
         isIdle = true;              // 대기 상태
         isTracking = false;         // 추적 상태

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5034747383678680307}
   - component: {fileID: 8903096778840236327}
   - component: {fileID: 4210868180092266709}
-  - component: {fileID: 4349181668137140314}
   - component: {fileID: 1345597081356608618}
   m_Layer: 0
   m_Name: FakeBoom
@@ -85,19 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4349181668137140314
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 937292307395815702}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1345597081356608618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1118,6 +1104,7 @@ GameObject:
   - component: {fileID: 7753456093471444103}
   - component: {fileID: 7269734822317040653}
   - component: {fileID: 2397602918060013459}
+  - component: {fileID: -3970651695990228046}
   m_Layer: 0
   m_Name: EvilMage
   m_TagString: Untagged
@@ -1328,6 +1315,9 @@ MonoBehaviour:
   isTracking: 0
   isAttacking: 0
   nav: {fileID: 0}
+  soundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  normalAttackEffect: {fileID: 0}
   floorEffect: {fileID: 7080551305192491530}
   chargeEffect: {fileID: 4994364800006456970}
   attackEffect: {fileID: 1337264376872471449}
@@ -1336,6 +1326,18 @@ MonoBehaviour:
   boomPrefab: {fileID: 8822651681692536907}
   fakeBoom: {fileID: 937292307395815702}
   _TargetPlayer: {fileID: 0}
+--- !u!114 &-3970651695990228046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2314034687237531748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c5d1a1bddb3244087b927a585e8c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2314053369330098258
 GameObject:
   m_ObjectHideFlags: 0
@@ -3207,15 +3209,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 354856914468798738, guid: b3d787eebb5d86b4fa56991bcdf93582, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 354856914468798738, guid: b3d787eebb5d86b4fa56991bcdf93582, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.1460824
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 354856914468798738, guid: b3d787eebb5d86b4fa56991bcdf93582, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.27
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 354856914468798738, guid: b3d787eebb5d86b4fa56991bcdf93582, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3245,6 +3247,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1723957955111432414, guid: b3d787eebb5d86b4fa56991bcdf93582, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2a4e8f395c4a83f40ac4369764b8be2f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3d787eebb5d86b4fa56991bcdf93582, type: 3}
 --- !u!1 &8822651681692536907 stripped

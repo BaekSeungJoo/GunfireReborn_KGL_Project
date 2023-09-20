@@ -28,13 +28,8 @@ public class Boom : MonoBehaviour
         rb.velocity = velocity;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        // 기존 코드 => 이펙트도 오브젝트 풀에 넣어서 사용할 예정
-        // Instantiate(boomVFX, transform.position, Quaternion.identity);
-        // Destroy(transform.gameObject);
-
-        // 변경 코드
         // 이펙트 활성화
         evilMage.Active_BombEffect(gameObject.transform.position);
         // 게임오브젝트(탄환) 비활성화
