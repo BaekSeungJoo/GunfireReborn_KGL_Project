@@ -28,7 +28,13 @@ public class EnemyHealth : MonoBehaviourPun
         curHealth = newhealth;
         hpbar.fillAmount = newHpbar;
 
-        Debug.Log("몬스터 체력 : " + curHealth);
+        if (curHealth <= 0)
+        {
+            // 우선 비활성화로 해놓았음.
+            transform.gameObject.SetActive(false);
+
+            // PhotonNetwork.Destroy(gameObject);
+        }
     }
 
     
@@ -41,6 +47,8 @@ public class EnemyHealth : MonoBehaviourPun
             Debug.Log("입력받은 데미지 : " +  _damage);
             curHealth -= _damage;
             hpbar.fillAmount = (float)curHealth / (float)maxHealth;
+
+            Debug.Log("몬스터 체력 : " + curHealth);
 
             // 연산된 감소된 체력과 체력바 값을 매개변수로 ApplyHealthUpdate() 메서드에 보내고 
             // 해당 작업을 나머지 클라이언트에서도 수행하게 한다.

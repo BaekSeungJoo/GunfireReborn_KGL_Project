@@ -7,35 +7,22 @@ using UnityEngine;
 
 public class HellBullet001 : MonoBehaviourPun
 {
-    public CinemachineVirtualCamera cam;
-    private Rigidbody myRigid = default;
-    private float speed = 30.0f;
+    private int bulletDamage = 3;
+    private WaitForSeconds poolingTime;
 
-    private float randposMin = -3.0f;
-    private float randposMax = 3.0f;
+    void Awake()
+    {
+        poolingTime = new WaitForSeconds(5f);
+    }
 
-    public int bulletDamage = 3;
-   
     // Start is called before the first frame update
     void OnEnable()
     {
-        cam = FindObjectOfType<CinemachineVirtualCamera>();
-        myRigid = GetComponent<Rigidbody>();
-
-        Vector3 randomHit = cam.transform.forward * speed ;
-
-        Vector3 random = new Vector3
-            (randomHit.x + Random.Range(randposMin, randposMax),
-            randomHit.y + Random.Range(randposMin, randposMax),
-            randomHit.z + Random.Range(randposMin, randposMax));
-
-        myRigid.velocity = random;
-
         StartCoroutine(DestroyBullet(P_PoolObjType.HELLBULLET));
     }
     private IEnumerator DestroyBullet(P_PoolObjType type)
     {
-        yield return new WaitForSeconds(5f);
+        yield return poolingTime;
         PhotonPoolManager.P_instance.CoolObj(this.gameObject, type);
     }
 
@@ -44,31 +31,18 @@ public class HellBullet001 : MonoBehaviourPun
         if (other.CompareTag("Enemy"))
         {
             PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
-            EnemyHealth helath = other.GetComponent<EnemyHealth>();
-            photonView.RPC("ShotCallMaster_Basic", RpcTarget.MasterClient, helath);
+            EnemyHealth health = other.GetComponent<EnemyHealth>();
+
+            health.EnemyTakeDamage(bulletDamage);
         }
 
         if (other.CompareTag("LuckyShotPoint"))
         {
             PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
+            EnemyHealth health = GFunc.FindRootObj(other.gameObject).GetComponent<EnemyHealth>();
 
-            EnemyHealth helath = GFunc.FindRootObj(other.gameObject).GetComponent<EnemyHealth>();
-            photonView.RPC("ShotCallMaster_Lucky", RpcTarget.MasterClient, helath);
+            health.EnemyTakeDamage(bulletDamage);
         }
     }
-
-    [PunRPC]
-    public void ShotCallMaster_Basic(EnemyHealth helth)
-    {
-        helth.EnemyTakeDamage(bulletDamage);
-    }
-
-    [PunRPC]
-    public void ShotCallMaster_Lucky(EnemyHealth helth)
-    {
-        helth.EnemyTakeDamage(bulletDamage * 2);
-    }
-
-
 
 }

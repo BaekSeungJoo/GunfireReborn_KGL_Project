@@ -7,7 +7,7 @@ using Photon.Pun;
 using System.Diagnostics.Tracing;
 
 // 호출하는 오브젝트의 타입을 구별하기위해 선언하는 enum
-public enum P_PoolObjType { BULLET, HELLBULLET, PISTOLBULLET }
+public enum P_PoolObjType { BULLET, HELLBULLET, PISTOLBULLET, PISTOL_EFFECT }
 
 // 외부 인스펙터창에서 클래스 정보에 접근할수 있게 해주는 [Serializable]
 [Serializable]
@@ -80,18 +80,6 @@ public class PhotonPoolManager : MonoBehaviourPun
         }
 
     }
-
-    //[PunRPC]
-    //public void Push(GameObject tempObj, P_PoolInfo poolInfo)
-    //{
-    //    tempObj.transform.parent = poolInfo.container.transform;
-
-    //    // 생성한 오브젝트 비활성화, 위치 초기화, 메모리 할당하기
-    //    tempObj.SetActive(false);
-    //    tempObj.transform.position = poolInfo.container.transform.position;
-
-    //    poolInfo.poolObj.Push(tempObj);
-    //}
 
     // 생성한 풀링오브젝트를 호출할 메소드 
     public GameObject GetPoolObj(P_PoolObjType type)

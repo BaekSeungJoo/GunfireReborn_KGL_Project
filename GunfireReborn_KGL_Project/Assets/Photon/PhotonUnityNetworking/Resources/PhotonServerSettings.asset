@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: 5a564498-8a4d-4d48-ba8a-dc522295e831
+    AppIdRealtime: c68c09e2-68f9-4910-a3e1-c70f05458be4
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
@@ -70,6 +70,11 @@ MonoBehaviour:
   - GoingDead
   - PlayerHealthUpdated
   - StopCure
+  - UsingSkill
+  - ReLoading
+  - ReLoading_Pun
+  - CloneAudio
+  - CloneEmpty
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

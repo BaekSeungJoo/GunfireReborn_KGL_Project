@@ -28,43 +28,26 @@ public class PistolBullet : MonoBehaviourPun
 
     public void OnTriggerEnter(Collider other)
     {
+        GameObject obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.PISTOL_EFFECT);
+        obj.transform.position = transform.position;
+        
         if(other.CompareTag("Enemy"))
         {
             PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
-
-
-
             EnemyHealth health = other.GetComponent<EnemyHealth>();
 
             health.EnemyTakeDamage(bulletDamage);
-            //photonView.RPC("ShotCallMaster_Basic", RpcTarget.MasterClient, health, bulletDamage);
 
         }
-
-        if (other.CompareTag("LuckyShotPoint"))
+        else if (other.CompareTag("LuckyShotPoint"))
         {
             PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
             EnemyHealth health = GFunc.FindRootObj(other.gameObject).GetComponent<EnemyHealth>();
 
             health.EnemyTakeDamage(bulletDamage * 2);
-            //photonView.RPC("ShotCallMaster_Lucky", RpcTarget.MasterClient, health, bulletDamage * 2);
         }
 
     }
-
-    //[PunRPC]
-    //public void ShotCallMaster_Basic(EnemyHealth health, int damage)
-    //{
-    //    health.EnemyTakeDamage(damage);
-
-    //}
-
-    //[PunRPC]
-    //public void ShotCallMaster_Lucky(EnemyHealth health, int damage)
-    //{
-    //    health.EnemyTakeDamage(damage * 2);
-    //}
-
     private IEnumerator DestroyBullet(P_PoolObjType type)
     {
         yield return poolingTime;

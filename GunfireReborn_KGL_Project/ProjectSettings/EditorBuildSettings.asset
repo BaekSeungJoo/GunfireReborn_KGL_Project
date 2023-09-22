@@ -4,11 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Creator/HMG/Manka/TestScene.unity
-    guid: e572f8621a56480459039d3d2c85ed28
-  - enabled: 1
-    path: Assets/Creator/BSJ/BSJ_Assets/01.myScene/Scenes/Map_01_BSJ.unity
-    guid: 5498eb2c95ebf6c4396e1bc2427484fb
+  m_Scenes: []
   m_configObjects: {}
