@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Creator/PSY/Script/Scenes/TestScene_PSY.unity
+    guid: 8360b11946b9b88409865518b7518926
+  - enabled: 1
+    path: Assets/Creator/PSY/Script/Scenes/Map_01_PSY.unity
+    guid: ebaeb9eee1c158244bfd86bb5cfea85c
+  - enabled: 1
+    path: Assets/Creator/PSY/Script/Scenes/LoadingScene_PSY.unity
+    guid: 8cd56137641a90144ad7612174c14f3c
   m_configObjects: {}

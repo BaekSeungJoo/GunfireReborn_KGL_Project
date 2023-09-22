@@ -15,7 +15,8 @@ public class LoadingManager : MonoBehaviour
     public Image loadingBar;
    
     private float[] fill = new float[5]{ 0.05f, 0.28f , 0.52f , 0.75f , 1f };
-    private void Start()
+
+    private void Awake()
     {
         int randCount = UnityEngine.Random.Range(0, fill.Length);
         loadingBar.fillAmount = fill[randCount];
@@ -26,25 +27,34 @@ public class LoadingManager : MonoBehaviour
         loadingTipList.Add("½Å¼ºÃ¢ : µµ¿ÍÁà ½ÂÁÖ¿¡¸ù");
         loadingTipList.Add("¹é½ÂÁÖ : ºÎ¸£Áö¸¶¼¼¿ä");
         loadingTipList.Add("ÇÑ¸¸±Õ : ¿¨? ¸ð¸£°Ôµû");
-        StartCoroutine(LoadTest());
+
+        int randImageNum = UnityEngine.Random.Range(0, loadingList.Count);
+        int randTextNum = UnityEngine.Random.Range(0, loadingTipList.Count);
+
+        loadingImage.sprite = loadingList[randImageNum];
+        loadingTipText.text = loadingTipList[randTextNum];
+
+        //StartCoroutine(LoadScene());
     }
+     
+    #region ºñµ¿±â 
+    //private IEnumerator LoadScene()
+    //{
+    //    AsyncOperation operation = SceneManager.LoadSceneAsync("Map_01_PSY");
+    //    operation.allowSceneActivation = false;
 
-    private IEnumerator LoadTest()
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync("TestScene");
-        operation.allowSceneActivation = false;
+    //    while ( !operation.isDone )
+    //    {
+    //        int randImageNum = UnityEngine.Random.Range(0, loadingList.Count);
+    //        int randTextNum = UnityEngine.Random.Range(0, loadingTipList.Count);
 
-        while ( !operation.isDone )
-        {
-            int randImageNum = UnityEngine.Random.Range(0, loadingList.Count);
-            int randTextNum = UnityEngine.Random.Range(0, loadingTipList.Count);
+    //        loadingImage.sprite = loadingList[randImageNum];
+    //        loadingTipText.text = loadingTipList[randTextNum];
 
-            loadingImage.sprite = loadingList[randImageNum];
-            loadingTipText.text = loadingTipList[randTextNum];
+    //        yield return new WaitForSeconds(3f);
 
-            yield return new WaitForSeconds(3f);
-
-            operation.allowSceneActivation = true;
-        }
-    }
+    //        operation.allowSceneActivation = true;
+    //    }
+    //}
+    #endregion
 }
