@@ -75,6 +75,21 @@ MonoBehaviour:
   - ReLoading_Pun
   - CloneAudio
   - CloneEmpty
+  - AnimSetBoolAttack
+  - AnimSetBoolIdle
+  - AnimSetBoolTrack
+  - CheckWaveClear
+  - InActiveBoom
+  - LoadNextScene
+  - MasterCall
+  - Melee_AnimSetBoolAttack
+  - Melee_AnimSetBoolIdle
+  - Melee_AnimSetBoolTrack
+  - Pun_SetNextPattern
+  - SetTargetPlayer
+  - SetTrackPlayer
+  - StateUpdate
+  - WaveOpen
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
