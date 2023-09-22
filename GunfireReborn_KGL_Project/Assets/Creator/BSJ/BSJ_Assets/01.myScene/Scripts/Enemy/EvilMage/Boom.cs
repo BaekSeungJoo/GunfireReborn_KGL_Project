@@ -1,9 +1,10 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mime;
 using UnityEngine;
 
-public class Boom : MonoBehaviour
+public class Boom : MonoBehaviourPun
 {
     public Transform target_Tran;       // 타겟 위치
     public float initialAngle = 30f;    // 처음 날라가는 각도
@@ -14,14 +15,13 @@ public class Boom : MonoBehaviour
     private void Awake()
     {
         evilMage = GetComponentInParent<EvilMage>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
     {
-        rb = GetComponent<Rigidbody>();
-        
         // 날아갈 타겟 플레이어의 transform
-        target_Tran = evilMage._TargetPlayer.transform;
+        target_Tran = evilMage.targetPlayer.transform;
 
         // 포물선 운동
         Vector3 velocity = GetVelocity(transform.position, target_Tran.position, initialAngle);      
@@ -30,10 +30,7 @@ public class Boom : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // 이펙트 활성화
-        evilMage.Active_BombEffect(gameObject.transform.position);
-        // 게임오브젝트(탄환) 비활성화
-        this.gameObject.SetActive(false);
+        photonView.RPC("InActiveBoom", RpcTarget.All);
     }
 
     public Vector3 GetVelocity(Vector3 startPos, Vector3 target, float initialAngle)
@@ -100,4 +97,16 @@ public class Boom : MonoBehaviour
         return finalVelocity;
     }
 
+    [PunRPC]
+    public void InActiveBoom()
+    {
+        // 이펙트 활성화
+        evilMage.Active_BombEffect(gameObject.transform.position);
+
+        // 부모 오브젝트 안으로 다시 들어온다
+        gameObject.transform.SetParent(evilMage.boomPos);
+
+        // 게임오브젝트(탄환) 비활성화
+        this.gameObject.SetActive(false);
+    }
 }

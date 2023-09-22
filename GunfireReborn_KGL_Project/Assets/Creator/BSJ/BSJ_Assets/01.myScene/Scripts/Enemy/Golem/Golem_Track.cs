@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,16 @@ public class Golem_Track : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
+        if (enemy.trackPlayer == null)
+        {
+            animator.SetBool("Idle", true);
+            animator.SetBool("Track", false);
+        }
         // 타겟 플레이어 추적
         agent.SetDestination(enemy.trackPlayer.transform.position);
 

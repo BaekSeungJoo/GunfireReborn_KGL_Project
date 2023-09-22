@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -24,6 +25,11 @@ public class Golem_Idle : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
         // 플레이어 위치 추적
         foreach (GameObject player in findAllPlayers)
         {

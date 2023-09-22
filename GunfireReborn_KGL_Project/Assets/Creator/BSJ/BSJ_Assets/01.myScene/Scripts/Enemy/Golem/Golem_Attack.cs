@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,11 @@ public class Golem_Attack : MonoBehaviour
     // 애니메이션 이벤트
     public void Golem_StartAttack()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
         agent.isStopped = true;
         agent.velocity = Vector3.zero;
 
@@ -34,28 +40,53 @@ public class Golem_Attack : MonoBehaviour
 
     public void Golem_Attack01()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
         attack01_HitBox.SetActive(true);
     }
 
     public void Golem_Attack02()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
         attack02_HitBox.SetActive(true);
     }
 
     public void Golem_AttackEnd()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
         attack01_HitBox.SetActive(false);
         attack02_HitBox.SetActive(false);
     }
 
     public void Golem_ResetState()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
         animator.SetBool("Idle", false);
         animator.SetBool("Track", true);
     }
 
     public void Golem_LookTargetPlayer()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
         // 타겟 플레이어 바라보기 && y값 회전 고정
         Vector3 targetDirection = enemy.trackPlayer.transform.position - transform.position;
         targetDirection.y = 0;

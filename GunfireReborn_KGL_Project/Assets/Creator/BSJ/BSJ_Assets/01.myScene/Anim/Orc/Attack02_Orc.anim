@@ -86263,6 +86263,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1
+    functionName: SetNextPattern
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 7
     functionName: Orc_Pattern02_EndAttack
     data: 

@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7868356957350145438}
   - component: {fileID: 2636754654760823847}
   - component: {fileID: 1227443077643351963}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: UICanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,8 +111,8 @@ RectTransform:
   m_GameObject: {fileID: 2254479553227919548}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8167924588140454140}
   m_Father: {fileID: 4676838151956969215}
@@ -120,7 +120,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.39999998}
+  m_AnchoredPosition: {x: 0, y: 0.5}
   m_SizeDelta: {x: 4, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7233920591123905971
@@ -1317,14 +1317,14 @@ GameObject:
   - component: {fileID: 533984381685997356}
   - component: {fileID: 1103483274}
   - component: {fileID: 1103483276}
-  - component: {fileID: 4605212519460834908}
+  - component: {fileID: 8803403248874524361}
   - component: {fileID: 3014375122645141309}
   - component: {fileID: 8256283284396966407}
   - component: {fileID: 1117810108}
   - component: {fileID: -2868344766949661443}
   m_Layer: 0
   m_Name: Crab_Green
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1459,12 +1459,12 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 4605212519460834908}
+  - {fileID: 8803403248874524361}
   - {fileID: 3014375122645141309}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &4605212519460834908
+--- !u!114 &8803403248874524361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1473,13 +1473,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 4676838151956998879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 3
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 10
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
 --- !u!114 &3014375122645141309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1496,16 +1513,16 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Idle
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Track
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Attack
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 0
 --- !u!195 &8256283284396966407
 NavMeshAgent:
@@ -1648,7 +1665,7 @@ GameObject:
   - component: {fileID: 8167924588140454140}
   - component: {fileID: 77089346697545013}
   - component: {fileID: 1605441981544493901}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HpBar_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1725,7 +1742,7 @@ GameObject:
   - component: {fileID: 567044172963606278}
   - component: {fileID: 6977890725154542632}
   - component: {fileID: 1271167498262240887}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

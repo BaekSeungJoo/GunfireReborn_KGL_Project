@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-// using Photon.Pun;
+using Photon.Pun;
 using System.Threading;
 using Photon.Realtime;
 
 // 부모 클래스
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviourPun //IPunObservable
 {
     public enum Type { Melee, Range, Boss}; // 타입 ( 근거리, 원거리, 보스)
     public Type enemyType;                  // 적 타입
@@ -17,8 +17,8 @@ public class Enemy : MonoBehaviour
     public float attackRange;               // 공격 시작 범위
 
     public Transform targetPlayer;          // 플레이어 위치
-    // public PhotonView trackPlayer;       // 최종 추적할 플레이어 ( 포톤 )
-    public GameObject trackPlayer;          // 최종 주적할 플레이어
+    public PhotonView trackPlayer;       // 최종 추적할 플레이어 ( 포톤 )
+    //public GameObject trackPlayer;          // 최종 주적할 플레이어
     public Animator animator;               // 애니메이터
 
     public bool isIdle;                     // 대기 상태
@@ -35,6 +35,21 @@ public class Enemy : MonoBehaviour
 
     // 기본 공격 이펙트
     public GameObject normalAttackEffect;
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (PhotonNetwork.IsMasterClient)
+    //    {
+    //        stream.SendNext(isIdle);
+    //        stream.SendNext(isTracking);
+    //        stream.SendNext(isAttacking);
+    //    }
+    //    else
+    //    {
+    //        isIdle = (bool)stream.ReceiveNext();
+    //        isTracking = (bool)stream.ReceiveNext();
+    //        isAttacking = (bool)stream.ReceiveNext();
+    //    }
+    //}
 
     private void Awake()
     {
@@ -50,7 +65,16 @@ public class Enemy : MonoBehaviour
         // 포톤뷰 스크립트를 갖고 있는 대상 탐색
         // PhotonView[] players = GameObject.FindObjectsOfType<PhotonView>();
         // 테스트 용
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        PhotonView[] players = PhotonView.FindObjectsOfType<PhotonView>();
+        List<PhotonView> playerWithTag = new List<PhotonView>();
+
+        foreach (PhotonView player in players)
+        {
+            if (player.gameObject.CompareTag("Player"))
+            {
+                playerWithTag.Add(player);
+            }
+        }
 
         // 추적 처음 거리는 무한대로 설정
         float closestDistance = Mathf.Infinity;
@@ -58,7 +82,8 @@ public class Enemy : MonoBehaviour
         // photonview를 갖고 있는 모든 대상 중에 Player 태그를 가진 대상 탐색
         // foreach (PhotonView player in players)
         // 테스트
-        foreach (GameObject player in players)
+        // foreach (GameObject player in players)
+        foreach (PhotonView player in playerWithTag)
         {
             if (player.CompareTag("Player"))
             {
@@ -70,6 +95,7 @@ public class Enemy : MonoBehaviour
                 {
                     closestDistance = distance;
                     trackPlayer = player;
+                    photonView.RPC("SetTrackPlayer", RpcTarget.Others, trackPlayer.ViewID);
                 }
             }
         }
@@ -81,10 +107,15 @@ public class Enemy : MonoBehaviour
             nav.isStopped = false;
             isTracking = true;
             isIdle = false;
+
+            // photonView.RPC("AnimSetBoolTrack", RpcTarget.All, true);
+            // photonView.RPC("AnimSetBoolIdle", RpcTarget.All, false);
+
             animator.SetBool("Track", true);
             animator.SetBool("Idle", false);
 
             targetPlayer = trackPlayer.transform;
+            photonView.RPC("SetTargetPlayer", RpcTarget.Others);
             // Debug.Log(closestDistance);
         }
     }
@@ -100,6 +131,9 @@ public class Enemy : MonoBehaviour
 
         isAttacking = true;
         isTracking = false;
+
+        // photonView.RPC("AnimSetBoolAttack", RpcTarget.All, true);
+        // photonView.RPC("AnimSetBoolTrack", RpcTarget.All, false);
         animator.SetBool("Attack", true);
         animator.SetBool("Track", false);
     }
@@ -127,8 +161,11 @@ public class Enemy : MonoBehaviour
         }
         
         isAttacking = false;
+        //photonView.RPC("AnimSetBoolAttack", RpcTarget.AllBuffered, animator, false);
         animator.SetBool("Attack", false);
+
         targetPlayer = null;
+
         if(normalAttackEffect != null)
         {
             normalAttackEffect.SetActive(false);
@@ -144,6 +181,7 @@ public class Enemy : MonoBehaviour
         nav.velocity = Vector3.zero;
 
         isTracking = false;
+        //photonView.RPC("AnimSetBoolTrack", RpcTarget.All, false);
         animator.SetBool("Track", false);
 
         targetPlayer = null;
@@ -158,5 +196,43 @@ public class Enemy : MonoBehaviour
         }
 
         audioSource.Play();
+    }
+
+    [PunRPC]
+    public void AnimSetBoolIdle(bool state)
+    {
+        animator.SetBool("Idle", state);
+    }
+
+    [PunRPC]
+    public void AnimSetBoolTrack(bool state)
+    {
+        animator.SetBool("Track", state);
+    }
+
+    [PunRPC]
+    public void AnimSetBoolAttack(bool state)
+    {
+        animator.SetBool("Attack", state);
+    }
+
+    [PunRPC]
+    public void SetTrackPlayer(int viewID)
+    {
+        PhotonView photonView = PhotonView.Find(viewID);
+        if (photonView != null)
+        {
+            trackPlayer = photonView;
+        }
+        else
+        {
+            Debug.LogError("PhotonView with View ID " + viewID + " not found.");
+        }
+    }
+
+    [PunRPC]
+    public void SetTargetPlayer()
+    {
+        targetPlayer = trackPlayer.transform;
     }
 }

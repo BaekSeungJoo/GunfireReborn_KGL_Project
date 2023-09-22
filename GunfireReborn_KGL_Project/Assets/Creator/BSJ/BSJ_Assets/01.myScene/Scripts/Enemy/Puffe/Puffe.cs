@@ -45,6 +45,11 @@ public class Puffe : Enemy
 
     private void Update()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
         // 기본상태는 대기 상태
         if (isTracking == false && isAttacking == false)
         {
@@ -88,34 +93,34 @@ public class Puffe : Enemy
     // 애니메이션 이벤트
     public void StartEnergyShot()
     {
-        // 이미션 색상 노랑으로 변경
-        ChangeEmissionColor(Color.yellow);
+            // 이미션 색상 노랑으로 변경
+            ChangeEmissionColor(Color.yellow);
 
-        // 추적 플레이어를 바라본다.
-        targetDirection = targetPlayer.position - transform.position;
-        targetDirection.y = 0;
-        transform.rotation = Quaternion.LookRotation(targetDirection.normalized);
+            // 추적 플레이어를 바라본다.
+            targetDirection = targetPlayer.position - transform.position;
+            targetDirection.y = 0;
+            transform.rotation = Quaternion.LookRotation(targetDirection.normalized);
 
-        // 이펙트 활성화
-        gatherEnergyVFX.gameObject.SetActive(true);
-        gatherEnergyVFX2.gameObject.SetActive(true);
-        magicCircleVFX.gameObject.SetActive(true);
+            // 이펙트 활성화
+            gatherEnergyVFX.gameObject.SetActive(true);
+            gatherEnergyVFX2.gameObject.SetActive(true);
+            magicCircleVFX.gameObject.SetActive(true);
 
-        // Line Renderer 위치 설정
-        // 시작점
-        startPoint = shotPoint.transform.position;
-        // 방향
-        direction = (targetPlayer.position - startPoint).normalized;
-        // 끝점
-        endPoint = startPoint + direction * 50f;
+            // Line Renderer 위치 설정
+            // 시작점
+            startPoint = shotPoint.transform.position;
+            // 방향
+            direction = (targetPlayer.position - startPoint).normalized;
+            // 끝점
+            endPoint = startPoint + direction * 50f;
 
-        // Line Renderer 시작점과 끝점 설정
-        lineRenderer.positionCount = 2;
-        lineRenderer.SetPosition(0, startPoint);
-        lineRenderer.SetPosition(1, endPoint);
+            // Line Renderer 시작점과 끝점 설정
+            lineRenderer.positionCount = 2;
+            lineRenderer.SetPosition(0, startPoint);
+            lineRenderer.SetPosition(1, endPoint);
 
-        // Line Renderer 켜기
-        lineRenderer.enabled = true;
+            // Line Renderer 켜기
+            lineRenderer.enabled = true;
     }
 
     public void EnergyShot()
@@ -131,11 +136,11 @@ public class Puffe : Enemy
 
         // 레이 발사 (라인 렌더 시작점 ~ 라인 렌더 끝점)
         RaycastHit hit;
-        if(Physics.Raycast(startPoint, direction, out hit, Vector3.Distance(startPoint, endPoint)))
+        if (Physics.Raycast(startPoint, direction, out hit, Vector3.Distance(startPoint, endPoint)))
         {
             Debug.DrawRay(startPoint, direction, Color.white);
             // 충돌한 물체가 있다면
-            if(hit.collider != null && hit.collider.CompareTag("Player"))
+            if (hit.collider != null && hit.collider.CompareTag("Player"))
             {
                 // Health 스크립트에 있는 TakeDamage 메서드 RPC (remote procedure call)
                 // hit.transform.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage);
@@ -151,6 +156,7 @@ public class Puffe : Enemy
         // 이펙트
         energyShotVFX.gameObject.SetActive(false);
         magicCircleVFX.gameObject.SetActive(false);
+
     }
 
     // 이미션 색상 변경

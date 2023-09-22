@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// using Photon.Pun;
+using Photon.Pun;
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
 using UnityEngine.UI;
@@ -25,10 +25,18 @@ public class MeleeEnemyController : Enemy
 
     private void Update()
     {
+        // 마스터 클라이언트가 아니라면 리턴
+        if(!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
         // 기본상태는 대기 상태
         if (isTracking == false && isAttacking == false)
         {
             isIdle = true;
+            // photonView.RPC("Melee_AnimSetBoolIdle", RpcTarget.All, true);
+
             animator.SetBool("Idle", true);
         }
 
@@ -62,5 +70,24 @@ public class MeleeEnemyController : Enemy
             }
         }
     }
+
+    [PunRPC]
+    public void Melee_AnimSetBoolIdle(bool state)
+    {
+        animator.SetBool("Idle", state);
+    }
+
+    [PunRPC]
+    public void Melee_AnimSetBoolTrack(bool state)
+    {
+        animator.SetBool("Track", state);
+    }
+
+    [PunRPC]
+    public void Melee_AnimSetBoolAttack(bool state)
+    {
+        animator.SetBool("Attack", state);
+    }
+
 
 }

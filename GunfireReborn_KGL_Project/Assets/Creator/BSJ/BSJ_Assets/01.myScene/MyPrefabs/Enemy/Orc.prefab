@@ -374,7 +374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 554876939294609823}
   - component: {fileID: 849634811809590287}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Attack01Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 2574658482526108871}
   - component: {fileID: 5724528840051422799}
   - component: {fileID: 389696742164671397}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HitBox02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1744,17 +1744,17 @@ GameObject:
   - component: {fileID: 4229140787031153048}
   - component: {fileID: 1923143305}
   - component: {fileID: 1923143307}
-  - component: {fileID: 3981059961466610076}
-  - component: {fileID: 4445705109010805909}
-  - component: {fileID: 6599734866714160927}
   - component: {fileID: 1923143308}
   - component: {fileID: 1923143309}
   - component: {fileID: 1923143310}
   - component: {fileID: 163706331394521354}
   - component: {fileID: 2839685315290468}
+  - component: {fileID: 3981059961466610076}
+  - component: {fileID: 1812131338619901114}
+  - component: {fileID: 5127605912621549593}
   m_Layer: 0
   m_Name: Orc
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1834,79 +1834,6 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &3981059961466610076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4315061151993225622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents:
-  - {fileID: 4445705109010805909}
-  - {fileID: 6599734866714160927}
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &4445705109010805909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4315061151993225622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
---- !u!114 &6599734866714160927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4315061151993225622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 1
-  m_SynchronizeParameters:
-  - Type: 4
-    SynchronizeType: 0
-    Name: Idle
-  - Type: 4
-    SynchronizeType: 0
-    Name: Track
-  - Type: 4
-    SynchronizeType: 0
-    Name: Attack
-  - Type: 4
-    SynchronizeType: 0
-    Name: Pattern_01
-  - Type: 4
-    SynchronizeType: 0
-    Name: Pattern_02
-  m_SynchronizeLayers:
-  - SynchronizeType: 0
-    LayerIndex: 0
 --- !u!114 &1923143308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2089,6 +2016,96 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95c5d1a1bddb3244087b927a585e8c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3981059961466610076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4315061151993225622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 1812131338619901114}
+  - {fileID: 5127605912621549593}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1812131338619901114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4315061151993225622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 3
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 10
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
+--- !u!114 &5127605912621549593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4315061151993225622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: Idle
+  - Type: 4
+    SynchronizeType: 1
+    Name: Track
+  - Type: 4
+    SynchronizeType: 1
+    Name: Attack
+  - Type: 4
+    SynchronizeType: 1
+    Name: Pattern_01
+  - Type: 4
+    SynchronizeType: 1
+    Name: Pattern_02
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!1 &4315082740530698992
 GameObject:
   m_ObjectHideFlags: 0
@@ -3108,7 +3125,7 @@ GameObject:
   - component: {fileID: 4475723416014212847}
   - component: {fileID: 2069628203454233894}
   - component: {fileID: 7310588164292070596}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Attack01Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}

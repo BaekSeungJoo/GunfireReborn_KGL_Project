@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,11 @@ public class EvilMage : MeleeEnemyController
 
     private void Update()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
         // 기본상태는 대기 상태
         if (isTracking == false && isAttacking == false)
         {
@@ -39,7 +45,6 @@ public class EvilMage : MeleeEnemyController
 
         // 플레이어와의 위치를 구해서 추적 거리안으로 다가오면 추적
         FindClosestPlayer();
-        _TargetPlayer = targetPlayer;
 
         // 추적 대상이 있다면
         if (targetPlayer != null)
@@ -68,7 +73,6 @@ public class EvilMage : MeleeEnemyController
             else if (Vector3.Distance(transform.position, targetPlayer.position) > trackingRange)
             {
                 StartIdle();
-                _TargetPlayer = null;
             }
         }
     }
@@ -86,6 +90,10 @@ public class EvilMage : MeleeEnemyController
 
         // 자식오브젝트인 폭탄을 활성화 해준다.
         boomPrefab.SetActive(true);
+
+        // 부모 오브젝트와 같은 레벨로 올린다.
+        boomPrefab.transform.SetParent(null);
+
     }
 
     // 가짜 폭탄 활성화

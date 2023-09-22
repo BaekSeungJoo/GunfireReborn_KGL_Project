@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 //using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
@@ -35,6 +36,11 @@ public class Creature1 : Enemy
 
     private void Update()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
         // 기본상태는 대기 상태
         if (isTracking == false && isAttacking == false)
         {

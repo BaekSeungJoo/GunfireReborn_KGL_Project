@@ -3,6 +3,7 @@ using System.Collections.Generic;
 //using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
 using UnityEngine;
 using UnityEngine.AI;
+using Photon.Pun;
 
 public class Orc : Enemy
 {
@@ -15,12 +16,12 @@ public class Orc : Enemy
     public GameObject Attack02End_Effect;       // 패턴 공격 2 공격 끝 이펙트
     public GameObject AttackEndStun_Effect;     // 패턴 공격 2 스턴 이펙트
 
-    public int ranPattern;      // 어떤 패턴을 실행할 것인가?
-
     public bool isPattern01;    // 공격 패턴 1
     public bool isPattern02;    // 공격 패턴 2
 
     public bool isStop;         // 정지 중인지 판단
+
+    public int ranPattern = 0;      // 어떤 패턴을 실행할 것인가?
 
     private void Awake()
     {
@@ -37,13 +38,21 @@ public class Orc : Enemy
         isPattern01 = false;        // 패턴 1
         isPattern02 = false;        // 패턴 2
         isStop = false;             // 정지 상태
+    }
 
+    private void Start()
+    {
         // 처음 패턴 정하기
         SetNextPattern();
     }
 
     private void Update()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
         // 기본상태는 대기 상태
         if (isTracking == false && isAttacking == false)
         {
@@ -77,7 +86,8 @@ public class Orc : Enemy
             // 공격 ( 추적 플레이어가 공격범위 안에 들어오면 )
             if (Vector3.Distance(transform.position, targetPlayer.position) <= attackRange)
             {
-                // 패턴 01
+
+                //// 패턴 01
                 if (ranPattern == 0)
                 {
                     isPattern01 = true;
@@ -90,7 +100,7 @@ public class Orc : Enemy
 
                 // 패턴 02
                 else if (ranPattern == 1)
-                { 
+                {
                     isPattern01 = false;
                     isPattern02 = true;
                     animator.SetBool("Pattern_01", false);
@@ -164,9 +174,6 @@ public class Orc : Enemy
 
         animator.SetBool("Idle", true);
         targetPlayer = null;
-
-        // 다음 패턴 정하기
-        ranPattern = Random.Range(0, 2);
     }
     #endregion
 
@@ -240,17 +247,30 @@ public class Orc : Enemy
 
         animator.SetBool("Idle", true);
         targetPlayer = null;
-
-        SetNextPattern();
     }
     #endregion
 
     // 다음 패턴 정하는 함수
     public void SetNextPattern()
     {
-        // 다음 패턴 정하기
-        ranPattern = Random.Range(0, 2);
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
+        int randomPatternNumber = Random.Range(0, 2);
+
+        photonView.RPC("Pun_SetNextPattern", RpcTarget.All, randomPatternNumber);
     }
+
+    [PunRPC]
+    public void Pun_SetNextPattern(int patternNum)
+    {
+        Debug.Log(patternNum);
+        // 다음 패턴 정하기
+        ranPattern = patternNum;
+    }
+
 
     // 정지하는 함수
     public void Stop()

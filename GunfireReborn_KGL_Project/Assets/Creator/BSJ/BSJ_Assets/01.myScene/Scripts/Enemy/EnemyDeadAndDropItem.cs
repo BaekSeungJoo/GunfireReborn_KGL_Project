@@ -20,6 +20,9 @@ public class EnemyDeadAndDropItem : MonoBehaviour
 
     private void OnDisable()
     {
-        _SetDropItem.DropItem(gameObject.transform);
+        if (_ItemDropManager != null)
+        {
+            _SetDropItem.DropItem(gameObject.transform);
+        }
     }
 }

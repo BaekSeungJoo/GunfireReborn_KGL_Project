@@ -2445,7 +2445,7 @@ GameObject:
   - component: {fileID: -3234552562058480791}
   m_Layer: 0
   m_Name: Player_SSC001
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
