@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: b3c58011-fa94-4734-8fa1-5363050c890c
+    AppIdRealtime: 5a564498-8a4d-4d48-ba8a-dc522295e831
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
@@ -70,24 +70,8 @@ MonoBehaviour:
   - GoingDead
   - PlayerHealthUpdated
   - StopCure
-  - AnimSetBoolAttack
-  - AnimSetBoolIdle
-  - AnimSetBoolTrack
-  - Melee_AnimSetBoolAttack
-  - Melee_AnimSetBoolIdle
-  - Melee_AnimSetBoolTrack
-  - ResetTarget
-  - SetTargetPlayer
-  - SetTrackPlayer
-  - SetNextPattern
-  - Pun_SetNextPattern
-  - Pattern1
-  - Pattern2
-  - InActiveBoom
-  - waveOpen
-  - WaveOpen
-  - CheckWaveClear
-  - LoadNextScene
+  - MasterCall
+  - StateUpdate
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
