@@ -13,6 +13,7 @@ TagManager:
   - Shop
   - Item
   - BlackSmith
+  - Coin
   layers:
   - Default
   - TransparentFX

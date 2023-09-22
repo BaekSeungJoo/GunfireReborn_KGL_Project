@@ -13,7 +13,7 @@ public class SetDropVelocity : MonoBehaviour
 
     private Transform playerTransform;  // 플레이어의 위치
     private float moveSpeed = 5f;            // 플레이어 쪽으로 다가오는 속도
-    private float activeFalseDistance = 2f;     // 해당 거리만큼 가까이가면 비활성화
+    
     private bool isMoveTowardPlayer = false;    // 플레이어 이동 중인지 체크
     
 
@@ -53,16 +53,9 @@ public class SetDropVelocity : MonoBehaviour
             // 플레이어 쪽으로 이동
             float step = moveSpeed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, step);
-
-            // 일정거리 이상 들어가면 비활성화
-            if(Vector3.Distance(playerTransform.position, transform.position) < activeFalseDistance)
-            {
-                gameObject.SetActive(false);
-
-                // 플레이어 쪽에서 해당 아이템을 먹었을 때 실행하는 로직
-            }
         }
     }
+
 
 
     public void SetVelocity()

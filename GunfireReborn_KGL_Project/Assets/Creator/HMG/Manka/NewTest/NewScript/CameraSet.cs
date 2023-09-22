@@ -24,10 +24,7 @@ public class CameraSet : MonoBehaviourPun
         {
             theCamera = FindObjectOfType<CinemachineVirtualCamera>();
             theCamera.transform.parent = gameObject.transform;
-            
-
             theCamera.transform.position = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.8f, transform.localPosition.z + 0.4f);
-
             //theCamera.transform.position = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.8f, transform.localPosition.z);
         }
     }

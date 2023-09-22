@@ -8,14 +8,10 @@ using Photon.Pun;
 public class PlayerMove : MonoBehaviourPun
 {
 
-
     [SerializeField]
     private float walkSpeed;
     private Rigidbody playerRB;
-
-    [SerializeField]
-    private float lookSensitivity;
-
+    
     [SerializeField]
     private float jumpForce;
 
@@ -35,7 +31,6 @@ public class PlayerMove : MonoBehaviourPun
         animator = GetComponent<Animator>();
         capsuleCollider = GetComponent<CapsuleCollider>(); 
         playerRB = GetComponent<Rigidbody>();
-        
     }
 
     
@@ -45,9 +40,7 @@ public class PlayerMove : MonoBehaviourPun
         {
             return;
         }
-
         MoveUni();
-        CharacterRotate();
         TryJump();
         IsGround();
         Dash();
@@ -58,12 +51,10 @@ public class PlayerMove : MonoBehaviourPun
         _moveDirX = Input.GetAxisRaw("Horizontal");
         _moveDirZ = Input.GetAxisRaw("Vertical");
 
-
         Vector3 _moveHorizontal = transform.right * _moveDirX;
         Vector3 _moveVertical = transform.forward * _moveDirZ;
 
         Vector3 _velocity = (_moveHorizontal + _moveVertical).normalized * walkSpeed;
-
 
         playerRB.MovePosition(transform.position + _velocity * Time.deltaTime);
 
@@ -72,12 +63,7 @@ public class PlayerMove : MonoBehaviourPun
 
     }
 
-    private void CharacterRotate()
-    {
-        float _yRotation = Input.GetAxisRaw("Mouse X");
-        Vector3 _characterRotationY = new Vector3(0f, _yRotation, 0f) * lookSensitivity;
-        playerRB.MoveRotation(playerRB.rotation * Quaternion.Euler(_characterRotationY));
-    }
+    
 
     private  void TryJump()
     {
