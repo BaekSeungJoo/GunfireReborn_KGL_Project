@@ -1882,10 +1882,10 @@ MonoBehaviour:
   Attack02_Effect01: {fileID: 2300308367866729275}
   Attack02End_Effect: {fileID: 8634268119065720805}
   AttackEndStun_Effect: {fileID: 1049227748388290620}
-  ranPattern: 0
   isPattern01: 0
   isPattern02: 0
   isStop: 0
+  ranPattern: 0
 --- !u!195 &1923143310
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2059,7 +2059,7 @@ MonoBehaviour:
     InterpolateOption: 3
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 10
-    ExtrapolateOption: 0
+    ExtrapolateOption: 1
     ExtrapolateSpeed: 1
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1
@@ -2089,22 +2089,22 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Idle
   - Type: 4
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Track
   - Type: 4
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Attack
   - Type: 4
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Pattern_01
   - Type: 4
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Pattern_02
   m_SynchronizeLayers:
-  - SynchronizeType: 1
+  - SynchronizeType: 2
     LayerIndex: 0
 --- !u!1 &4315082740530698992
 GameObject:
