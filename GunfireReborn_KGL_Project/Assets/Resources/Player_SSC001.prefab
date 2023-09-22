@@ -3427,6 +3427,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3885324279519377923}
     m_Modifications:
+    - target: {fileID: 558107464143130286, guid: dd86667d602aae9429593b0bc55e261f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5069041732685407968, guid: dd86667d602aae9429593b0bc55e261f, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -3434,6 +3438,10 @@ PrefabInstance:
     - target: {fileID: 6064405228408099809, guid: dd86667d602aae9429593b0bc55e261f, type: 3}
       propertyPath: m_Name
       value: Shotgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064405228408099809, guid: dd86667d602aae9429593b0bc55e261f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6873276709084924251, guid: dd86667d602aae9429593b0bc55e261f, type: 3}
       propertyPath: m_RootOrder
@@ -3479,8 +3487,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8846739757135861690, guid: dd86667d602aae9429593b0bc55e261f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5069041732685407968, guid: dd86667d602aae9429593b0bc55e261f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dd86667d602aae9429593b0bc55e261f, type: 3}
+--- !u!198 &5614097034199935160 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8647533996922782738, guid: dd86667d602aae9429593b0bc55e261f, type: 3}
+  m_PrefabInstance: {fileID: 3885324278341430442}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5984179418482898127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7415003756080502885, guid: dd86667d602aae9429593b0bc55e261f, type: 3}
@@ -3523,10 +3541,27 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 6963496740472385355}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &6963496740472385355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7044308989830807371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b33aede889a95e74683c5d298592f221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muzzlFlash: {fileID: 5614097034199935160}
+  Hell_Shot: {fileID: 8300000, guid: 2eb64a9dabf2c674abe1ce7b3721b74d, type: 3}
+  Hell_Reload: {fileID: 8300000, guid: 8ab9c8ef1da12c04fa00e0ab2dbb79b5, type: 3}
+  EmptyMagAmmo: {fileID: 8300000, guid: 5dbebabca24b9ac4796a28342090972b, type: 3}
 --- !u!4 &7501681360882732567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6768948358748332733, guid: dd86667d602aae9429593b0bc55e261f, type: 3}
@@ -3600,8 +3635,15 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8811933122645546688, guid: 2f541b629be91c7468a48360e9b12023, type: 3}
+    - {fileID: 7776691240712565074, guid: 2f541b629be91c7468a48360e9b12023, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2f541b629be91c7468a48360e9b12023, type: 3}
+--- !u!198 &2320127012416835438 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1574517011884294410, guid: 2f541b629be91c7468a48360e9b12023, type: 3}
+  m_PrefabInstance: {fileID: 3885324280271507044}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8440280627502709800 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4668710384648090188, guid: 2f541b629be91c7468a48360e9b12023, type: 3}
@@ -3612,6 +3654,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5440708953146140918, guid: 2f541b629be91c7468a48360e9b12023, type: 3}
   m_PrefabInstance: {fileID: 3885324280271507044}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5631491331168466963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9109152774022014610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 549c5c7734941ab40ba914e5b7fb7d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useSkiil: 0
+  muzzlFlash: {fileID: 2320127012416835438}
+  basicShot: {fileID: 8300000, guid: f2653e12b27e37841b016af359f463d8, type: 3}
+  skillShot: {fileID: 8300000, guid: 4a4c6e28708a4ee4e870eebc56ca4af8, type: 3}
+  EmptyMagAmmo: {fileID: 8300000, guid: 5dbebabca24b9ac4796a28342090972b, type: 3}
+  CrimsonFirescale_Reload: {fileID: 8300000, guid: 6ec264f71ef62bf43ba8c6d18e099adf, type: 3}
 --- !u!114 &5646465378326018180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3630,7 +3690,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 5631491331168466963}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -3700,6 +3761,18 @@ PrefabInstance:
     - target: {fileID: 1109203822965492162, guid: 497c2aeff878e0a4c9e53afaf675f094, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1656253284628205493, guid: 497c2aeff878e0a4c9e53afaf675f094, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1656253284628205493, guid: 497c2aeff878e0a4c9e53afaf675f094, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1656253284628205493, guid: 497c2aeff878e0a4c9e53afaf675f094, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6267006917769731197, guid: 497c2aeff878e0a4c9e53afaf675f094, type: 3}
       propertyPath: m_Enabled

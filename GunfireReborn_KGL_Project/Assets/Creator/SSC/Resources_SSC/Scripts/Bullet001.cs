@@ -8,48 +8,23 @@ using UnityEngine;
 
 public class Bullet001 : MonoBehaviourPun
 {
-    private CinemachineVirtualCamera cam;
-    private CrimsonFirescale001 rifle;
-    private Rigidbody myRigid = default;
-    private float speed = 30.0f;
-
-    private float randposMin = -3.0f;
-    private float randposMax = 3.0f;
-
     public int bulletDamage = 4;
-   
+    private WaitForSeconds poolingTime;
+
     // Start is called before the first frame update
     void Awake()
     {
-        rifle = FindObjectOfType<CrimsonFirescale001>();
-        cam = FindObjectOfType<CinemachineVirtualCamera>();
-        myRigid = GetComponent<Rigidbody>();
-     
+        poolingTime = new WaitForSeconds(5f);
     }
 
     private void OnEnable()
     {
-        //if (rifle.useSkiil == true)
-        //{
-        //    Vector3 randomHit = cam.transform.forward * speed;
-        //    Vector3 random = new Vector3
-        //        (randomHit.x + Random.Range(randposMin, randposMax),
-        //        randomHit.y + Random.Range(randposMin, randposMax),
-        //        randomHit.z + Random.Range(randposMin, randposMax));
-        //    myRigid.velocity = random;
-
-        //    StartCoroutine(DestroyBullet(PoolObjType.BULLET));
-        //    return;
-        //}
-
-        myRigid.velocity = cam.transform.forward * speed;
-
         StartCoroutine(DestroyBullet(P_PoolObjType.BULLET));
     }
 
     private IEnumerator DestroyBullet(P_PoolObjType type)
     {
-        yield return new WaitForSeconds(5f);
+        yield return poolingTime;
         PhotonPoolManager.P_instance.CoolObj(this.gameObject, type);
     }
 
@@ -59,31 +34,21 @@ public class Bullet001 : MonoBehaviourPun
         if (other.CompareTag("Enemy"))
         {
             PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
-            EnemyHealth helath = other.GetComponent<EnemyHealth>();
+            EnemyHealth health = other.GetComponent<EnemyHealth>();
 
-            photonView.RPC("ShotCallMaster_Basic", RpcTarget.MasterClient, helath, bulletDamage);
+            health.EnemyTakeDamage(bulletDamage);
         }
 
         if (other.CompareTag("LuckyShotPoint"))
         {
             PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
 
-            EnemyHealth helath = GFunc.FindRootObj(other.gameObject).GetComponent<EnemyHealth>();
-            photonView.RPC("ShotCallMaster_Lucky", RpcTarget.MasterClient, helath, bulletDamage);
+            EnemyHealth health = GFunc.FindRootObj(other.gameObject).GetComponent<EnemyHealth>();
+
+            health.EnemyTakeDamage(bulletDamage * 2);
         }
     }
 
-    [PunRPC]
-    public void ShotCallMaster_Basic(EnemyHealth helth, int damage)
-    {
-        helth.EnemyTakeDamage(damage);
-    }
-
-    [PunRPC]
-    public void ShotCallMaster_Lucky(EnemyHealth helth, int damage)
-    {
-        helth.EnemyTakeDamage(damage * 2);
-    }
 
 
 }

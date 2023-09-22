@@ -106,7 +106,6 @@ public class Pistol_Lie001 : MonoBehaviourPun, IPunObservable
                 {
                     magAmmo = 0;
                     photonView.RPC("ShotStop", RpcTarget.Others);
-                    muzzlFlash.Stop();
                     state = State.EMPTY;
                 }
 
@@ -122,7 +121,6 @@ public class Pistol_Lie001 : MonoBehaviourPun, IPunObservable
                 else
                 {
                     photonView.RPC("ShotStop", RpcTarget.Others);
-                    muzzlFlash.Stop();
                 }
             }
 

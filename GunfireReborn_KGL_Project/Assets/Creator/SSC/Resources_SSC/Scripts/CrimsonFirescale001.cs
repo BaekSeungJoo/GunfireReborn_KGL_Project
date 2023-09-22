@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using Cinemachine;
 
 
 // 총기의 현재 상태를 정의할 Enum : 발사가능, 탄창비어있음, 재장전 중
-public enum State { READY, EMPTY, RELOADING }
 public class CrimsonFirescale001 : MonoBehaviour
 {
     public bool useSkiil = false;
 
+    public enum State { READY, EMPTY, RELOADING }
     public State state {  get; private set; }
 
-    // 총알이 생성될 총구 위치
-    private Transform muzzle;
+    private CinemachineVirtualCamera cam;
 
-    // 사격시 총구 화염 파티클
     public ParticleSystem muzzlFlash;
-
+    private Transform muzzle;
     private AudioSource fireSound;
     public AudioClip basicShot;
     public AudioClip skillShot;
@@ -26,30 +25,39 @@ public class CrimsonFirescale001 : MonoBehaviour
     public AudioClip CrimsonFirescale_Reload;
 
     // 사격 간격시간
-    public float attackSpeed = 0.1f;    
+    private float attackSpeed = 0.1f;    
     private float attackTimer = 0f;    
 
     // 전체 최대 총알 수
-    public int maxAmmoRemain = 90;
+    private int maxAmmoRemain = 90;
     // 남아있는 전체 총알 수
-    public int ammoRemain;
+    private int ammoRemain;
 
     // 탄창 최대 용량
-    public int magCapacity = 30;
+    private int magCapacity = 30;
     // 탄창 현재 총알 수
-    public int magAmmo;
+    private int magAmmo;
 
-    public int skillAmmo = 10;
+    private int skillAmmo = 4;
 
-    //public TMP_Text MagAmmoText;
-    //public TMP_Text AmmoRemainText;
-
-    PlayerAttack1 shoot;
+    private float bulletSpeed = 30f;
 
     private WaitForSeconds reloadTime;
 
+    private float xMax = 0.1f;
+    private float xMin = -0.1f;
+
+    private float yMax = 0.1f;
+    private float yMin = -0.1f;
+
+    private float zMax = 0.1f;
+    private float zMin = -0.1f;
+
+
     private void Start()
     {
+        cam = FindObjectOfType<CinemachineVirtualCamera>();
+
         //shoot = FindObjectOfType<PlayerAttack>();
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
         fireSound = GetComponent<AudioSource>();
@@ -111,12 +119,22 @@ public class CrimsonFirescale001 : MonoBehaviour
 
                 if(attackTimer > attackSpeed)
                 {
-                    GameObject obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.BULLET);
+                    GameObject obj = null;
+                    Rigidbody objRigid = null;
 
-                    obj.transform.position = muzzle.transform.position;
-                    obj.transform.rotation = muzzle.transform.rotation;
+                    obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.BULLET);
 
-                    obj.gameObject.SetActive(true);
+                    if (obj != null)
+                    {
+                        obj.transform.position = muzzle.transform.position;
+                        obj.transform.rotation = muzzle.transform.rotation;
+
+                        objRigid = obj.GetComponent<Rigidbody>();
+
+                        obj.gameObject.SetActive(true);
+                        objRigid.velocity = cam.transform.forward * bulletSpeed;
+
+                    }
 
                     magAmmo -= 1;                   
                     muzzlFlash.Play();
@@ -154,12 +172,28 @@ public class CrimsonFirescale001 : MonoBehaviour
             // 나가는 스킬 총알 갯수는 현재 탄창의 남은 양만큼
             for (int i = 0; i < magAmmo; i++)
             {
-                GameObject obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.BULLET);
+                Vector3 foward = cam.transform.forward;
+                foward.x = foward.x + Random.Range(xMax, xMin);
+                foward.y = foward.y + Random.Range(yMax, yMin);
+                foward.z = foward.z + Random.Range(xMax, xMin);
 
-                obj.transform.position = muzzle.transform.position;
-                obj.transform.rotation = muzzle.transform.rotation;
+                GameObject obj = null;
+                Rigidbody objRigid = null;
 
-                obj.gameObject.SetActive(true);
+                obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.BULLET);
+
+                if(obj != null)
+                {
+                    obj.transform.position = muzzle.transform.position;
+                    obj.transform.rotation = muzzle.transform.rotation;
+
+                    objRigid = obj.GetComponent<Rigidbody>();
+
+                    obj.gameObject.SetActive(true);
+                    objRigid.velocity = foward * bulletSpeed;
+
+                }
+
             }
             magAmmo -= magAmmo;
         }
@@ -167,12 +201,28 @@ public class CrimsonFirescale001 : MonoBehaviour
         {
             for (int i = 0; i < skillAmmo; i++)
             {
-                GameObject obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.BULLET);
+                Vector3 foward = cam.transform.forward;
+                foward.x = foward.x + Random.Range(xMax, xMin);
+                foward.y = foward.y + Random.Range(yMax, yMin);
+                foward.z = foward.z + Random.Range(xMax, xMin);
 
-                obj.transform.position = muzzle.transform.position;
-                obj.transform.rotation = muzzle.transform.rotation;
+                GameObject obj = null;
+                Rigidbody objRigid = null;
 
-                obj.gameObject.SetActive(true);
+                obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.BULLET);
+
+                if (obj != null)
+                {
+                    obj.transform.position = muzzle.transform.position;
+                    obj.transform.rotation = muzzle.transform.rotation;
+
+                    objRigid = obj.GetComponent<Rigidbody>();
+
+                    obj.gameObject.SetActive(true);
+                    objRigid.velocity = foward * bulletSpeed;
+
+                }
+
                 magAmmo -= 1;
             }
 

@@ -7307,6 +7307,102 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 755270774483446807, guid: 4786a3e04289d4a4c918cea76a7bdb73, type: 3}
   m_PrefabInstance: {fileID: 2693156028526199560}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &136553297
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3394379205005307679}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &2693156029497867105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7314,12 +7410,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3394379205005307679}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 908192637f715e64ebde1d2f0f09d4d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzlFlash: {fileID: 0}
+  muzzlFlash: {fileID: 2855972255879859186}
   Hell_Shot: {fileID: 8300000, guid: 2eb64a9dabf2c674abe1ce7b3721b74d, type: 3}
   Hell_Reload: {fileID: 8300000, guid: 8ab9c8ef1da12c04fa00e0ab2dbb79b5, type: 3}
   EmptyMagAmmo: {fileID: 8300000, guid: 5dbebabca24b9ac4796a28342090972b, type: 3}
@@ -7443,45 +7539,11 @@ PrefabInstance:
     - {fileID: 6053473794132340236, guid: 34443c5ee24e4514ba72f38c315149bc, type: 3}
     - {fileID: 8802917589677704976, guid: 34443c5ee24e4514ba72f38c315149bc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 34443c5ee24e4514ba72f38c315149bc, type: 3}
---- !u!198 &2586791796205994453 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 470100927207100743, guid: 34443c5ee24e4514ba72f38c315149bc, type: 3}
-  m_PrefabInstance: {fileID: 2693156028677230738}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8571890319288496787 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6022856380699828737, guid: 34443c5ee24e4514ba72f38c315149bc, type: 3}
   m_PrefabInstance: {fileID: 2693156028677230738}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &9060864736962062377 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6403744129016051899, guid: 34443c5ee24e4514ba72f38c315149bc, type: 3}
-  m_PrefabInstance: {fileID: 2693156028677230738}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2693156029165229668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9060864736962062377}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b924681ee33b3834ea44f780706b0e01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useSkiil: 0
-  muzzlFlash: {fileID: 2586791796205994453}
-  basicShot: {fileID: 8300000, guid: f2653e12b27e37841b016af359f463d8, type: 3}
-  skillShot: {fileID: 8300000, guid: 4a4c6e28708a4ee4e870eebc56ca4af8, type: 3}
-  EmptyMagAmmo: {fileID: 8300000, guid: 5dbebabca24b9ac4796a28342090972b, type: 3}
-  CrimsonFirescale_Reload: {fileID: 8300000, guid: 6ec264f71ef62bf43ba8c6d18e099adf, type: 3}
-  attackSpeed: 0.1
-  maxAmmoRemain: 90
-  ammoRemain: 0
-  magCapacity: 30
-  magAmmo: 0
-  skillAmmo: 10
 --- !u!1001 &2693156028790538240
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7746,3 +7808,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e08e7eea9b67324f9c545b241004b0b, type: 3}
+--- !u!198 &2855972255879859186 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198845034460101788, guid: 9e08e7eea9b67324f9c545b241004b0b, type: 3}
+  m_PrefabInstance: {fileID: 2693156029319821166}
+  m_PrefabAsset: {fileID: 0}
