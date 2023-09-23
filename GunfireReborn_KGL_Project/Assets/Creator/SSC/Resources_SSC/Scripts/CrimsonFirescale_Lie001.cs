@@ -39,7 +39,7 @@ public class CrimsonFirescale_Lie001 : MonoBehaviourPun, IPunObservable
 
     private int skillAmmo = 4;
 
-    private float bulletSpeed = 30f;
+    private float bulletSpeed = 50f;
 
     private WaitForSeconds reloadTime;
 

@@ -31,6 +31,7 @@ public class Pistol001 : MonoBehaviourPun
     public int magCapacity = 9;
     // ÅºÃ¢ ÇöÀç ÃÑ¾Ë ¼ö
     public int magAmmo = 0;
+    private float bulletSpeed = 50f;
 
     private WaitForSeconds reloadTime;
 
@@ -109,7 +110,7 @@ public class Pistol001 : MonoBehaviourPun
 
                     objRigid = obj.GetComponent<Rigidbody>();
                 
-                    objRigid.velocity = cam.transform.forward * 30f;
+                    objRigid.velocity = cam.transform.forward * bulletSpeed;
                 }
 
 

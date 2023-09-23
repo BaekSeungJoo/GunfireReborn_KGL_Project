@@ -36,7 +36,7 @@ public class Hell001 : MonoBehaviour
     private int magCapacity = 8;
     // 驕璽 ⑷營 識憲 熱
     private int magAmmo;
-    private float bulletSpeed = 30f;
+    private float bulletSpeed = 50f;
 
     // 餌問 除問衛除
     private WaitForSeconds attackSpeed;

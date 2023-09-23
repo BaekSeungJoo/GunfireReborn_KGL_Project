@@ -30,17 +30,14 @@ public class DamageText : MonoBehaviour
 
         // 데미지 텍스트 자동 파괴
         destroyTimer += Time.deltaTime;
+
         if (destroyTimer > destroyTime)
         {
-            photonView.RPC("DestroyDmgText", RpcTarget.All);
+            //photonView.RPC("DestroyDmgText", RpcTarget.All);
+            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOL_EFFECT);
         }
     }
 
-    [PunRPC]
-    private void DestroyDmgText()
-    {
-        PhotonNetwork.Destroy(gameObject);
-    }
 
     public void SetDamageText(int _damage, Color _color)
     {

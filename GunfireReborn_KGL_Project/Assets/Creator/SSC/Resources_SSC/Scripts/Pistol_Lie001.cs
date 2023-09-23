@@ -24,8 +24,8 @@ public class Pistol_Lie001 : MonoBehaviourPun, IPunObservable
 
     // 사격 간격시간
     public float attackSpeed = 1f;
-    private float attackTimer = 0f;
 
+    private float bulletSpeed = 50f;
     // 탄창 최대 용량
     public int magCapacity = 9;
     // 탄창 현재 총알 수
@@ -143,7 +143,7 @@ public class Pistol_Lie001 : MonoBehaviourPun, IPunObservable
         obj.transform.rotation = rot;
         obj.gameObject.SetActive(true);
 
-        objRigid.velocity = foward * 30f;
+        objRigid.velocity = foward * bulletSpeed;
 
         muzzlFlash.Play();
         fireSound.clip = basicShot;

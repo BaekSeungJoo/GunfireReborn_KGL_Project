@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8793119376902440186}
   - component: {fileID: 1741903094635546436}
   - component: {fileID: 8918154389740961243}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: DamageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,9 +171,8 @@ GameObject:
   - component: {fileID: 8111246098007881360}
   - component: {fileID: 5282054838791855046}
   - component: {fileID: 1991645782488431652}
-  - component: {fileID: 8753274729771366973}
   - component: {fileID: 953450702979918751}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: DamageTxt_Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +243,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &5282054838791855046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,28 +276,6 @@ MonoBehaviour:
   destroyTime: 1
   moveSpeed: 1
   offset: {x: 0, y: 0, z: 0}
---- !u!114 &8753274729771366973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4685587830155689800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &953450702979918751
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -40,7 +40,7 @@ public class CrimsonFirescale001 : MonoBehaviour
 
     private int skillAmmo = 4;
 
-    private float bulletSpeed = 30f;
+    private float bulletSpeed = 50f;
 
     private WaitForSeconds reloadTime;
 

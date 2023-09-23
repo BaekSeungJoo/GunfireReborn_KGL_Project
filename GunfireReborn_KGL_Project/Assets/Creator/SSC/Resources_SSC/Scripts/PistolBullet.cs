@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using Photon.Pun;
 using System.Runtime.Serialization;
+using TMPro;
 
 public class PistolBullet : MonoBehaviourPun
 {
@@ -28,15 +29,20 @@ public class PistolBullet : MonoBehaviourPun
 
     public void OnTriggerEnter(Collider other)
     {
-        GameObject obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.PISTOL_EFFECT);
-        obj.transform.position = transform.position;
-        
-        if(other.CompareTag("Enemy"))
-        {
-            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
-            EnemyHealth health = other.GetComponent<EnemyHealth>();
 
+        if (other.CompareTag("Enemy"))
+        {
+
+            GameObject obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.PISTOL_EFFECT);
+            DamageText objText = obj.GetComponent<DamageText>();
+            objText.SetDamageText(bulletDamage, Color.yellow);
+            obj.transform.position = transform.position;
+
+            EnemyHealth health = other.GetComponent<EnemyHealth>();
             health.EnemyTakeDamage(bulletDamage);
+
+            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
+            Debug.Log(transform.position);
 
         }
         else if (other.CompareTag("LuckyShotPoint"))
@@ -45,6 +51,8 @@ public class PistolBullet : MonoBehaviourPun
             EnemyHealth health = GFunc.FindRootObj(other.gameObject).GetComponent<EnemyHealth>();
 
             health.EnemyTakeDamage(bulletDamage * 2);
+            GameObject obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.PISTOL_EFFECT);
+            obj.transform.position = transform.position;
         }
 
     }
