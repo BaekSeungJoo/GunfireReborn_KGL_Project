@@ -673,9 +673,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc94132ad497dd4d8315f0bdc57f4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popupExit: {fileID: 0}
   bt: {fileID: 831886390}
   checkType: No
-  popupExit: {fileID: 0}
 --- !u!1 &931774581
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,9 +941,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc94132ad497dd4d8315f0bdc57f4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popupExit: {fileID: 0}
   bt: {fileID: 1055224091}
   checkType: Yes
-  popupExit: {fileID: 0}
 --- !u!1 &1276412740
 GameObject:
   m_ObjectHideFlags: 0

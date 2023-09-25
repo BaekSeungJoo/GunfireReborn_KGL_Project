@@ -11,12 +11,11 @@ public class TitleManager : MonoBehaviour
     {
         popupExit = GameObject.Find("PopupExit");
     }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            popupExit.SetActive(true);
+            popupExit?.SetActive(true);
         }
     }
 }
