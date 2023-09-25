@@ -109,8 +109,6 @@ public class PlayerMove_PSY : MonoBehaviourPun
             // 대쉬 입력 방향이 존재하면 대쉬합니다.
             if (dashDirection.magnitude > 0.1f)
             {
-                mainUI.CountDashCoolTime();
-
                 playerRB.velocity = dashDirection * dashSpeed;
                 Invoke("StopDash", 0.1f);
 
@@ -118,12 +116,13 @@ public class PlayerMove_PSY : MonoBehaviourPun
             else
             {
                 // 대쉬 입력 방향이 없을 경우, 플레이어가 현재 바라보는 방향으로 대쉬합니다.
-                mainUI.CountDashCoolTime();
-
                 dashDirection = transform.forward.normalized;
                 playerRB.velocity = dashDirection * dashSpeed;
                 Invoke("StopDash", 0.1f);
             }
+
+            mainUI.CountDashCoolTime();
+            StartCoroutine(mainUI.DashEffect());
         }
     }
 
