@@ -6,12 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Creator/PSY/Script/Scenes/TestScene_PSY.unity
-    guid: 8360b11946b9b88409865518b7518926
+    path: Assets/Creator/BSJ/BSJ_Assets/TestSceneBsjTest.unity
+    guid: 969737abec0608e448780b796efa4659
   - enabled: 1
-    path: Assets/Creator/PSY/Script/Scenes/Map_01_PSY.unity
-    guid: ebaeb9eee1c158244bfd86bb5cfea85c
-  - enabled: 1
-    path: Assets/Creator/PSY/Script/Scenes/LoadingScene_PSY.unity
-    guid: 8cd56137641a90144ad7612174c14f3c
+    path: Assets/Creator/BSJ/BSJ_Assets/01.myScene/Scenes/Map_03_BSJ.unity
+    guid: 7748f12123eca6e49a2f8bd942d1bfd8
   m_configObjects: {}

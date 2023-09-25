@@ -6,7 +6,7 @@ public class Boss_FloorFireMovement : MonoBehaviour
 {
     public GameObject startPos;        // 이동 시작 위치
 
-    private float moveSpeed = 15f;     // 이동 속도
+    private float moveSpeed = 30f;     // 이동 속도
     private float lifeTime = 2f;      // 이펙트 활성화 시간
     private float timer = 0f;         // 비활성화까지 더해질 시간
 
