@@ -143,7 +143,7 @@ public class WeaponManager1 : MonoBehaviourPun
                 //슬롯1은 활성화한다.
                 ActiveSlot[0] = true;
                 //첫번째 슬롯의 아이템을 먹은 아이템으로 바꾼다.
-                weaponName = weaponName.Replace("(get)", "");
+                weaponName = weaponName.Replace("(get)(Clone)", "");
                 slotWeapons[0] = weaponName;
                 frontAnimator.SetTrigger("Swap");
                 /* //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
@@ -176,7 +176,7 @@ public class WeaponManager1 : MonoBehaviourPun
                 //슬롯2은 활성화한다.
                 ActiveSlot[1] = true;
                 //두번째 슬롯의 아이템을 먹은 아이템으로 바꾼다.
-                weaponName = weaponName.Replace("(get)", "");
+                weaponName = weaponName.Replace("(get)(Clone)", "");
                 slotWeapons[1] = weaponName;
                 frontAnimator.SetTrigger("Swap");
                 /*   //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
@@ -201,7 +201,7 @@ public class WeaponManager1 : MonoBehaviourPun
                 //만약 1,2번슬롯이 모두 무기가 장착되어있는 경우라면
                 //현재 활성화된 슬롯이 몇번슬롯인지 체크하고
                 //그슬롯의 아이템을 먹은 아이템으로 바꾼다.
-                weaponName = weaponName.Replace("(get)", "");
+                weaponName = weaponName.Replace("(get)(Clone)", "");
                 slotWeapons[CheckActiveslot()] = weaponName;
                 frontAnimator.SetTrigger("Swap");
 

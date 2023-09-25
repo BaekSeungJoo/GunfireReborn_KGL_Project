@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1187883034438723688}
   - component: {fileID: 4237140794012986092}
   - component: {fileID: 2581296356596783846}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Recovery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,8 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 5c4eac6becf0eb444bdb0fda0ec4591c, type: 2}
-  m_Color: {r: 0.9056604, g: 0.07262372, b: 0.07262372, a: 1}
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9622642, g: 0.9395693, b: 0.9395693, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -67,13 +67,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300170, guid: 7a90fcdada22c9b429479d5933a03692, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3318449749940366572
@@ -2515,11 +2515,12 @@ GameObject:
   - component: {fileID: 5557776142449693494}
   - component: {fileID: 5557776142449693488}
   - component: {fileID: -6886549073861157415}
-  - component: {fileID: 5517838130448914241}
   - component: {fileID: 8515415323163836794}
   - component: {fileID: -2328039991863219367}
   - component: {fileID: -1158425322443016231}
   - component: {fileID: -7767755463820353247}
+  - component: {fileID: 8500858156154588944}
+  - component: {fileID: 6230649519481049982}
   m_Layer: 0
   m_Name: Player_SSC001
   m_TagString: Player
@@ -2729,27 +2730,11 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 5517838130448914241}
   - {fileID: 8515415323163836794}
+  - {fileID: 6230649519481049982}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &5517838130448914241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5557776142449693491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!114 &8515415323163836794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2798,20 +2783,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5712475bda8d9c24fba5245e80797ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  curHealth: 0
-  maxShield: 100
-  curShield: 0
   isturnGroggy: 0
   isturnPlay: 0
-  hpBar: {fileID: 0}
-  shieldBar: {fileID: 0}
   weapon: {fileID: 3885324279519377923}
-  frontWeapon: {fileID: 0}
   recoveryBarOB: {fileID: 2534657316632013915}
   recoveryBar: {fileID: 2581296356596783846}
   isCure: 0
-  otherPlayers: []
   state: 0
 --- !u!114 &-1158425322443016231
 MonoBehaviour:
@@ -2838,12 +2815,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62de680ceb6793541b77220611a088c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: 675
-  remainBullet: 30
-  sBullet: 45
-  remainSBullet: 4
-  lBullet: 160
-  remainlBullet: 10
+  nBullet: 675
+  remainNBullet: 30
+  bBullet: 160
+  remainBBullet: 10
+--- !u!135 &8500858156154588944
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5557776142449693491}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.5
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &6230649519481049982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5557776142449693491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 3
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    ExtrapolateOption: 1
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
 --- !u!1 &5557776142449693493
 GameObject:
   m_ObjectHideFlags: 0
@@ -3331,7 +3352,7 @@ GameObject:
   - component: {fileID: 7453376059414052483}
   - component: {fileID: 8057017436457565517}
   - component: {fileID: 3741164866176813831}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -16,6 +16,7 @@ TagManager:
   - Coin
   - DropBigBullet
   - DropNormalBullet
+  - Groggy
   layers:
   - Default
   - TransparentFX
