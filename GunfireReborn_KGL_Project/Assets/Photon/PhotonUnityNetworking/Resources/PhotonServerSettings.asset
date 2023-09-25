@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: c68c09e2-68f9-4910-a3e1-c70f05458be4
+    AppIdRealtime: 5a564498-8a4d-4d48-ba8a-dc522295e831
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
@@ -90,6 +90,16 @@ MonoBehaviour:
   - SetTrackPlayer
   - StateUpdate
   - WaveOpen
+  - FalseWeapons
+  - MakeFalseRecoveryBar
+  - MakeTrueRecoveryBar
+  - TagChangeGroggy
+  - Cure
+  - PlayerTakeDamage
+  - TurnStateGroggy
+  - ChangeTagState
+  - UpdateRecoveryBar
+  - TrueWeapons
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

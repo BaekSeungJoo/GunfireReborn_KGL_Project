@@ -16,7 +16,8 @@ public class AttackHitBox : MonoBehaviourPun
         {
             // 플레이어에게 데미지 주기
             playerHp player = other.GetComponent<playerHp>();
-            photonView.RPC("MasterCall", RpcTarget.MasterClient, player, damage);
+            //player.photonView.RPC("PlayerTakeDamage", RpcTarget.MasterClient, damage);
+            player.PlayerTakeDamage(damage);
 
             // : Todo
 
@@ -25,11 +26,6 @@ public class AttackHitBox : MonoBehaviourPun
         }
     }
 
-    [PunRPC]
-    public void MasterCall(playerHp player, int damage)
-    {
-        player.PlayerTakeDamage(damage);
-    }
 
     // 히트박스가 사라질 때 isAttcked 초기화
     private void OnDisable()

@@ -1,9 +1,10 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class SetDropVelocity : MonoBehaviour
+public class SetDropVelocity : MonoBehaviourPun
 {
     private Rigidbody rb;
     private float randonPosX;       // 생성될 때 튀어가나는 속도가 될 x값
@@ -30,7 +31,7 @@ public class SetDropVelocity : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.CompareTag("Ground") && gameObject.transform.CompareTag("weapon"))
+        if(gameObject.transform.CompareTag("weapon"))
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
         }
@@ -38,7 +39,7 @@ public class SetDropVelocity : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag("Player"))
+        if (other.transform.CompareTag("Player") && photonView.IsMine)
         {
             playerTransform = other.transform;
             isMoveTowardPlayer = true;

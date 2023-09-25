@@ -23,21 +23,7 @@ public class CubePosition1 : MonoBehaviourPun
             transform.position = cross.transform.position;
             transform.parent = cross.transform;
         }
-       
     }
-    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    if(stream.IsWriting)
-    //    {
-    //        stream.SendNext(transform.position);
-    //    }
-    //    else
-    //    {
-    //        transform.position = (Vector3)stream.ReceiveNext();
-    //    }
-    //}
-
-    // Update is called once per frame
     void Update()
     {
        

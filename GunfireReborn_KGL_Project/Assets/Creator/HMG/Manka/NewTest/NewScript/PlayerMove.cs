@@ -67,7 +67,7 @@ public class PlayerMove : MonoBehaviourPun
 
     private  void TryJump()
     {
-        if(Input.GetKeyDown(KeyCode.Space)&& isGround == true)
+        if(Input.GetKeyDown(KeyCode.Space)&& isGround == true && !((gameObject.tag =="Groggy")==true))
         {
             playerRB.velocity = transform.up * jumpForce;
             animator.SetTrigger("Jump");
