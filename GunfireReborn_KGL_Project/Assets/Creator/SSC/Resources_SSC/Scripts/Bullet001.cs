@@ -2,18 +2,23 @@ using Cinemachine;
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
 public class Bullet001 : MonoBehaviourPun
 {
-    public int bulletDamage = 4;
     private WaitForSeconds poolingTime;
+
+    [SerializeField] private GameObject damageText;
+
+    private TextMeshProUGUI damageSetting;
 
     // Start is called before the first frame update
     void Awake()
     {
+        damageSetting = damageText.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         poolingTime = new WaitForSeconds(5f);
     }
 
@@ -33,19 +38,25 @@ public class Bullet001 : MonoBehaviourPun
     {
         if (other.CompareTag("Enemy"))
         {
+            damageSetting.text = "" + UpgradeManager.up_Instance.rifleDamage;
+            damageSetting.color = Color.yellow;
+            Instantiate(damageText, transform.position, Quaternion.identity);    
             PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
             EnemyHealth health = other.GetComponent<EnemyHealth>();
 
-            health.EnemyTakeDamage(bulletDamage);
+            health.EnemyTakeDamage(UpgradeManager.up_Instance.rifleDamage);
         }
 
         if (other.CompareTag("LuckyShotPoint"))
         {
+            damageSetting.text = UpgradeManager.up_Instance.rifleDamage * 2 + "!";
+            damageSetting.color = Color.red;
+            Instantiate(damageText, transform.position, Quaternion.identity);
             PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
 
             EnemyHealth health = GFunc.FindRootObj(other.gameObject).GetComponent<EnemyHealth>();
 
-            health.EnemyTakeDamage(bulletDamage * 2);
+            health.EnemyTakeDamage(UpgradeManager.up_Instance.rifleDamage * 2);
         }
     }
 

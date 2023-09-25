@@ -13,12 +13,9 @@ public class DamageText : MonoBehaviour
     private TextMeshProUGUI damageText;
     private float destroyTimer = 0f;
 
-    private PhotonView photonView;
-
     private void Awake()
     {
         damageText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        photonView = GetComponent<PhotonView>();
 
         transform.localPosition += offset;
     }
@@ -33,8 +30,7 @@ public class DamageText : MonoBehaviour
 
         if (destroyTimer > destroyTime)
         {
-            //photonView.RPC("DestroyDmgText", RpcTarget.All);
-            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOL_EFFECT);
+            this.gameObject.SetActive(false);
         }
     }
 
