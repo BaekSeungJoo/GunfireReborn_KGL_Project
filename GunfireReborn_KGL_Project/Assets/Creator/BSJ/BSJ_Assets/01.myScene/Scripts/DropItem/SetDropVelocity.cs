@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Photon.Pun;
 
 public class SetDropVelocity : MonoBehaviourPun
 {
@@ -40,11 +39,13 @@ public class SetDropVelocity : MonoBehaviourPun
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag("Player") && photonView.IsMine)
+        if (other.CompareTag("Player") && photonView.IsMine)
         {
             playerTransform = other.transform;
             isMoveTowardPlayer = true;
         }
+        else
+        { return; }
     }
 
     private void Update()

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7031036739088915716}
   - component: {fileID: 2709951809385256286}
   - component: {fileID: 2709951809385256287}
+  - component: {fileID: 7497686632618752018}
   m_Layer: 0
   m_Name: BigBullet
   m_TagString: DropBigBullet
@@ -78,6 +79,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fa9d251d1a9c8c4f81bbd7afb3bd096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7497686632618752018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7031036739088915714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &591662895195785959
 PrefabInstance:
   m_ObjectHideFlags: 0

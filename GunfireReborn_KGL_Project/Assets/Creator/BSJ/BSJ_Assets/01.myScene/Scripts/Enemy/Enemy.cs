@@ -233,6 +233,9 @@ public class Enemy : MonoBehaviourPun //IPunObservable
     [PunRPC]
     public void SetTargetPlayer()
     {
-        targetPlayer = trackPlayer.transform;
+        if(trackPlayer != null)
+        {
+            targetPlayer = trackPlayer.transform;
+        }
     }
 }
