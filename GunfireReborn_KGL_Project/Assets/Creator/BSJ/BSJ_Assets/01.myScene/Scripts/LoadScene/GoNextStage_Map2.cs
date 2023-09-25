@@ -49,6 +49,6 @@ public class GoNextStage_Map2 : MonoBehaviourPun
             { players[i].transform.position = new Vector3(-6, -4, 27); }
         }
 
-        SceneManager.LoadScene("Map_02_BSJ");
+        SceneManager.LoadScene("Main_Map_02");
     }
 }
