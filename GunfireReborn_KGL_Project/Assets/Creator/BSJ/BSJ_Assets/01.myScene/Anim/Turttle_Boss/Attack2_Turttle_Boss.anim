@@ -44715,7 +44715,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.5
+  - time: 3.9
     functionName: Pattern02_AttackEnd
     data: 
     objectReferenceParameter: {fileID: 0}

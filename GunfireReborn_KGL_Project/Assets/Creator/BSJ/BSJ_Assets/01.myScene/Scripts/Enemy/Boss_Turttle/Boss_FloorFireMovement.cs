@@ -33,13 +33,4 @@ public class Boss_FloorFireMovement : MonoBehaviour
         // 위치를 다시 셋팅
         gameObject.transform.localPosition = Vector3.zero;
     }
-
-    private void OnParticleCollision(GameObject other)
-    {
-        if (other.transform.CompareTag("Player"))
-        {
-            Debug.Log("플레이어에 닿았다.");
-            // 플레이어에게 데미지 주는 로직
-        }
-    }
 }

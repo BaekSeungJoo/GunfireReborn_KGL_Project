@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Creator/BSJ/BSJ_Assets/01.myScene/Scenes/Map_03_BSJ.unity
     guid: 7748f12123eca6e49a2f8bd942d1bfd8
+  - enabled: 0
+    path: Assets/Creator/BSJ/BSJ_Assets/01.myScene/Scenes/Enemys_Ground.unity
+    guid: fe2e66ecf5185f54dbfa14acfe1cd257
   m_configObjects: {}

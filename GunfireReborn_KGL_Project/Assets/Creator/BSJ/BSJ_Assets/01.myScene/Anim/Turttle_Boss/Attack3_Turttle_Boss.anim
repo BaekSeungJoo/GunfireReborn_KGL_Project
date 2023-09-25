@@ -121251,15 +121251,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.5
-    functionName: Pattern03_End_FirstAttack
+  - time: 2.6666667
+    functionName: Pattern03_Active_SecondExplosionWarningMark
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.6666667
-    functionName: Pattern03_Active_SecondExplosionWarningMark
+  - time: 3
+    functionName: Pattern03_End_FirstAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -121279,15 +121279,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4.4333334
-    functionName: Pattern03_End_SecondAttack
+  - time: 4.75
+    functionName: Pattern03_Active_ThirdExplosionWarningMark
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4.75
-    functionName: Pattern03_Active_ThirdExplosionWarningMark
+  - time: 5.1833334
+    functionName: Pattern03_End_SecondAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -121307,13 +121307,6 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 6.1833334
-    functionName: Pattern03_End_ThirdAttack
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 6.65
     functionName: Pattern03_InActive_Sheild
     data: 
@@ -121321,7 +121314,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 6.85
+  - time: 6.8333335
+    functionName: Pattern03_End_ThirdAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 6.9166665
     functionName: Pattern_Exit
     data: 
     objectReferenceParameter: {fileID: 0}

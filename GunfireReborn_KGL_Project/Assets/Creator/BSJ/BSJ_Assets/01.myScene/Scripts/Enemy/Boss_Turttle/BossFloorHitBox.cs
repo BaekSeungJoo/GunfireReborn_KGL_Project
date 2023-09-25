@@ -1,9 +1,9 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-public class AttackHitBox : MonoBehaviourPun
+public class BossFloorHitBox : MonoBehaviourPun
 {
     public int damage;                  // 몬스터의 데미지
     private bool isAttcked = false;     // 연속적으로 데미지를 주는 것을 방지하기 위한 조건
@@ -21,6 +21,11 @@ public class AttackHitBox : MonoBehaviourPun
             // 공격을 했음을 체크 (데미지가 중복으로 들어가는 것 방지)
             isAttcked = true;
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        isAttcked = false;
     }
 
     [PunRPC]
