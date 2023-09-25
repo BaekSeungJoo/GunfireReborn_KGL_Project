@@ -19,8 +19,6 @@ public class AttackHitBox : MonoBehaviourPun
             //player.photonView.RPC("PlayerTakeDamage", RpcTarget.MasterClient, damage);
             player.PlayerTakeDamage(damage);
 
-            // : Todo
-
             // 공격을 했음을 체크 (데미지가 중복으로 들어가는 것 방지)
             isAttcked = true;
         }

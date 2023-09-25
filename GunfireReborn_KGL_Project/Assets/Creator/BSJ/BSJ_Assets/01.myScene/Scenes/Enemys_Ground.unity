@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: 71770005}
   - component: {fileID: 71770004}
   - component: {fileID: 71770003}
+  - component: {fileID: 71770006}
   m_Layer: 0
   m_Name: Cube (10)
   m_TagString: Player
@@ -510,6 +511,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71770001}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &71770006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71770001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 31
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &74618314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -708,6 +731,7 @@ GameObject:
   - component: {fileID: 106285038}
   - component: {fileID: 106285037}
   - component: {fileID: 106285036}
+  - component: {fileID: 106285039}
   m_Layer: 0
   m_Name: Cube (9)
   m_TagString: Player
@@ -793,6 +817,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106285034}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &106285039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106285034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 34
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &146549211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1555,6 +1601,7 @@ GameObject:
   - component: {fileID: 287178033}
   - component: {fileID: 287178032}
   - component: {fileID: 287178031}
+  - component: {fileID: 287178034}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Player
@@ -1640,6 +1687,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 287178029}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &287178034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287178029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 41
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &300444620
 GameObject:
   m_ObjectHideFlags: 0
@@ -1743,6 +1812,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiniDragon
       objectReference: {fileID: 0}
+    - target: {fileID: 58961656921936004, guid: 5ff57224f6e7eb04fb26829f747b9ffa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 61911061907878496, guid: 5ff57224f6e7eb04fb26829f747b9ffa, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -1801,6 +1874,7 @@ GameObject:
   - component: {fileID: 303996668}
   - component: {fileID: 303996667}
   - component: {fileID: 303996666}
+  - component: {fileID: 303996669}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Player
@@ -1886,6 +1960,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303996664}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &303996669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303996664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 40
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &325577935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2014,6 +2110,7 @@ GameObject:
   - component: {fileID: 346756502}
   - component: {fileID: 346756501}
   - component: {fileID: 346756500}
+  - component: {fileID: 346756503}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Player
@@ -2099,6 +2196,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346756498}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &346756503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346756498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 37
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &362623012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3036,6 +3155,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlantMon
       objectReference: {fileID: 0}
+    - target: {fileID: 2819909504461858448, guid: b28a9d23524cfc148a4a9ac8ac05a73c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2825111682588739736, guid: b28a9d23524cfc148a4a9ac8ac05a73c, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -3653,6 +3776,7 @@ GameObject:
   - component: {fileID: 787202392}
   - component: {fileID: 787202391}
   - component: {fileID: 787202390}
+  - component: {fileID: 787202394}
   m_Layer: 0
   m_Name: Cube (11)
   m_TagString: Player
@@ -3738,6 +3862,28 @@ Transform:
   m_Father: {fileID: 1315220736}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &787202394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787202389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 39
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &795745250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3858,6 +4004,10 @@ PrefabInstance:
     - target: {fileID: 4676838151956998879, guid: e8cee0dbd15fb59478e0ff9b4b31a226, type: 3}
       propertyPath: m_Name
       value: Crab_Green
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676838151956998879, guid: e8cee0dbd15fb59478e0ff9b4b31a226, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8cee0dbd15fb59478e0ff9b4b31a226, type: 3}
@@ -3992,6 +4142,10 @@ PrefabInstance:
     - target: {fileID: 4465693687123364117, guid: 1a6950a927e7c8642997e735a8dd2d90, type: 3}
       propertyPath: m_Name
       value: MonsterCreature1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4465693687123364117, guid: 1a6950a927e7c8642997e735a8dd2d90, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4465693687123727861, guid: 1a6950a927e7c8642997e735a8dd2d90, type: 3}
       propertyPath: m_RootOrder
@@ -4343,6 +4497,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MushroomSmile
       objectReference: {fileID: 0}
+    - target: {fileID: 594600363271798378, guid: e3c3a82093e556c4c926d872a9b3ac78, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4335605437802576759, guid: e3c3a82093e556c4c926d872a9b3ac78, type: 3}
       propertyPath: sceneViewId
       value: 5
@@ -4508,6 +4666,7 @@ GameObject:
   - component: {fileID: 995974237}
   - component: {fileID: 995974236}
   - component: {fileID: 995974235}
+  - component: {fileID: 995974238}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Player
@@ -4593,6 +4752,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995974233}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &995974238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995974233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 30
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &1013168596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4837,6 +5018,7 @@ GameObject:
   - component: {fileID: 1059529367}
   - component: {fileID: 1059529366}
   - component: {fileID: 1059529365}
+  - component: {fileID: 1059529368}
   m_Layer: 0
   m_Name: Cube (7)
   m_TagString: Player
@@ -4922,6 +5104,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059529363}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1059529368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059529363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 36
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &1079896175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4976,6 +5180,10 @@ PrefabInstance:
     - target: {fileID: 3133425722104492131, guid: 419cf7aaa0ba0cf4984066ed6da5c451, type: 3}
       propertyPath: m_Name
       value: SkeletonWarrior
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133425722104492131, guid: 419cf7aaa0ba0cf4984066ed6da5c451, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6466191835369080346, guid: 419cf7aaa0ba0cf4984066ed6da5c451, type: 3}
       propertyPath: sceneViewId
@@ -5479,6 +5687,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Golem
       objectReference: {fileID: 0}
+    - target: {fileID: 4946865571159922472, guid: e227bfe4856275d489bd77980c9b233a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4948954696683143100, guid: e227bfe4856275d489bd77980c9b233a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -5588,6 +5800,10 @@ PrefabInstance:
     - target: {fileID: 4709564040845024137, guid: 9106d339905391848af45d366308506b, type: 3}
       propertyPath: m_Name
       value: Puffe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709564040845024137, guid: 9106d339905391848af45d366308506b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9106d339905391848af45d366308506b, type: 3}
@@ -5999,6 +6215,7 @@ GameObject:
   - component: {fileID: 1328980813}
   - component: {fileID: 1328980812}
   - component: {fileID: 1328980811}
+  - component: {fileID: 1328980814}
   m_Layer: 0
   m_Name: Cube (8)
   m_TagString: Player
@@ -6084,6 +6301,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1328980809}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1328980814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328980809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 33
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &1344362173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6439,6 +6678,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 235656492}
     m_Modifications:
+    - target: {fileID: 855370670806089625, guid: 8f1b1e53eeb4d3849b838d78e39c939d, type: 3}
+      propertyPath: sceneViewId
+      value: 26
+      objectReference: {fileID: 0}
     - target: {fileID: 1488966503034709855, guid: 8f1b1e53eeb4d3849b838d78e39c939d, type: 3}
       propertyPath: sceneViewId
       value: 23
@@ -6490,6 +6733,10 @@ PrefabInstance:
     - target: {fileID: 2314034687237531748, guid: 8f1b1e53eeb4d3849b838d78e39c939d, type: 3}
       propertyPath: m_Name
       value: EvilMage
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314034687237531748, guid: 8f1b1e53eeb4d3849b838d78e39c939d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6478920371818981662, guid: 8f1b1e53eeb4d3849b838d78e39c939d, type: 3}
       propertyPath: sceneViewId
@@ -6572,6 +6819,7 @@ GameObject:
   - component: {fileID: 1422877408}
   - component: {fileID: 1422877407}
   - component: {fileID: 1422877406}
+  - component: {fileID: 1422877409}
   m_Layer: 0
   m_Name: Cube (6)
   m_TagString: Player
@@ -6657,6 +6905,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422877404}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1422877409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422877404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 38
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1430977619
 GameObject:
   m_ObjectHideFlags: 0
@@ -7645,6 +7915,7 @@ GameObject:
   - component: {fileID: 1757955143}
   - component: {fileID: 1757955142}
   - component: {fileID: 1757955141}
+  - component: {fileID: 1757955144}
   m_Layer: 0
   m_Name: Cube (5)
   m_TagString: Player
@@ -7730,6 +8001,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757955139}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1757955144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757955139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 32
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &1799302483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8230,6 +8523,7 @@ GameObject:
   - component: {fileID: 1997686956}
   - component: {fileID: 1997686955}
   - component: {fileID: 1997686954}
+  - component: {fileID: 1997686957}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Player
@@ -8315,6 +8609,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997686952}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1997686957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997686952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 35
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &2001771686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8391,6 +8707,10 @@ PrefabInstance:
     - target: {fileID: 4315061151993225622, guid: 90f538f3f4349d54388cf46ab6c86195, type: 3}
       propertyPath: m_Name
       value: Orc
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315061151993225622, guid: 90f538f3f4349d54388cf46ab6c86195, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4317677050501622756, guid: 90f538f3f4349d54388cf46ab6c86195, type: 3}
       propertyPath: m_RootOrder
@@ -8524,6 +8844,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cute_OctopusCc
       objectReference: {fileID: 0}
+    - target: {fileID: 7050771939171894483, guid: 3e27935b36a404b4180e7bfb5773d3a0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7050771939172129011, guid: 3e27935b36a404b4180e7bfb5773d3a0, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -8589,6 +8913,10 @@ PrefabInstance:
     - target: {fileID: 8857830502657741435, guid: 61164b90897f2554ab3b915fd42df730, type: 3}
       propertyPath: m_Name
       value: Serpent_Warrior
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857830502657741435, guid: 61164b90897f2554ab3b915fd42df730, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8857830502658166363, guid: 61164b90897f2554ab3b915fd42df730, type: 3}
       propertyPath: m_RootOrder

@@ -4,16 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 
-public class NextStage : MonoBehaviourPun
+public class GoNextStage_Map2 : MonoBehaviourPun
 {
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-            //GameObject player = other.gameObject;
-            //player.transform.position = new Vector3(0, 10, 0);
-
-            photonView.RPC("LoadNextScene", RpcTarget.All);
+            photonView.RPC("LoadNextScene_Map2", RpcTarget.All);
         }
         else
         {
@@ -23,7 +20,7 @@ public class NextStage : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void LoadNextScene()
+    public void LoadNextScene_Map2()
     {
         // 포톤 뷰를 들고 있는 플레이어를 찾아서 위치 동기화
         PhotonView[] allPhotonView = PhotonView.FindObjectsOfType<PhotonView>();

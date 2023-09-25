@@ -9,6 +9,14 @@ public class WaveEnter : MonoBehaviourPun
     public GameObject wave;
     public bool isEnter;
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            photonView.RPC("WaveOpen", RpcTarget.All);
+        }
+    }
+
     public void Update()
     {
         if (!isEnter)
@@ -19,14 +27,6 @@ public class WaveEnter : MonoBehaviourPun
         if(isEnter)
         {
             WaveEntered();
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            photonView.RPC("WaveOpen", RpcTarget.All);
         }
     }
 
