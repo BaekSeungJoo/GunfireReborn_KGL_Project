@@ -17,6 +17,8 @@ public class PistolBullet : MonoBehaviourPun
 
     private TextMeshProUGUI damageSetting;
 
+    public int bulletDamage;
+
     private void Awake()
     {
         damageSetting = damageText.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -37,34 +39,31 @@ public class PistolBullet : MonoBehaviourPun
     {
         if (other.CompareTag("Enemy"))
         {
-            damageSetting.text = "" + UpgradeManager.up_Instance.pistolDamage;
+            damageSetting.text = "" + bulletDamage;
             damageSetting.color = Color.yellow;
 
             Instantiate(damageText, transform.position, Quaternion.identity);
 
             EnemyHealth health = other.GetComponent<EnemyHealth>();
-            health.EnemyTakeDamage(UpgradeManager.up_Instance.pistolDamage);
+            health.EnemyTakeDamage(bulletDamage);
 
             PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
-            Debug.Log(transform.position);
 
         }
         else if (other.CompareTag("LuckyShotPoint"))
         {
-            damageSetting.text = UpgradeManager.up_Instance.pistolDamage * 2 + "!";
+            damageSetting.text = bulletDamage * 2 + "!";
             damageSetting.color = Color.red;
 
             Instantiate(damageText, transform.position, Quaternion.identity);
 
-            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
             EnemyHealth health = GFunc.FindRootObj(other.gameObject).GetComponent<EnemyHealth>();
+            health.EnemyTakeDamage(bulletDamage * 2);
 
-            health.EnemyTakeDamage(UpgradeManager.up_Instance.pistolDamage * 2);
-            GameObject obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.PISTOL_EFFECT);
-            obj.transform.position = transform.position;
+            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
         }
-
     }
+
     private IEnumerator DestroyBullet(P_PoolObjType type)
     {
         yield return poolingTime;

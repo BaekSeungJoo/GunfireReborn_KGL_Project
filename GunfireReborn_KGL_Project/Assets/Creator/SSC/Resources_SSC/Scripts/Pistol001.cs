@@ -39,7 +39,6 @@ public class Pistol001 : MonoBehaviourPun
 
     void Start()
     {
-
         cam = FindObjectOfType<CinemachineVirtualCamera>();
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
         fireSound = GetComponent<AudioSource>();
@@ -98,6 +97,7 @@ public class Pistol001 : MonoBehaviourPun
             {
                 GameObject obj = null;
                 Rigidbody objRigid = null;
+                PistolBullet damage;
 
                 obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.PISTOLBULLET);
 
@@ -109,8 +109,11 @@ public class Pistol001 : MonoBehaviourPun
                     obj.gameObject.SetActive(true);
 
                     objRigid = obj.GetComponent<Rigidbody>();
-                
+                    damage = obj.GetComponent<PistolBullet>();
+
+                    damage.bulletDamage = UpgradeManager.up_Instance.pistolDamage;
                     objRigid.velocity = cam.transform.forward * bulletSpeed;
+                    
                 }
 
 

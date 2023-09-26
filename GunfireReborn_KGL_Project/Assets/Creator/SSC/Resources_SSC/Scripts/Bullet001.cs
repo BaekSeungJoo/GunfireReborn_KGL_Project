@@ -15,6 +15,8 @@ public class Bullet001 : MonoBehaviourPun
 
     private TextMeshProUGUI damageSetting;
 
+    public int riflebulletDamage;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -38,25 +40,25 @@ public class Bullet001 : MonoBehaviourPun
     {
         if (other.CompareTag("Enemy"))
         {
-            damageSetting.text = "" + UpgradeManager.up_Instance.rifleDamage;
+            damageSetting.text = "" + riflebulletDamage;
             damageSetting.color = Color.yellow;
             Instantiate(damageText, transform.position, Quaternion.identity);    
             PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
             EnemyHealth health = other.GetComponent<EnemyHealth>();
 
-            health.EnemyTakeDamage(UpgradeManager.up_Instance.rifleDamage);
+            health.EnemyTakeDamage(riflebulletDamage);
         }
 
         if (other.CompareTag("LuckyShotPoint"))
         {
-            damageSetting.text = UpgradeManager.up_Instance.rifleDamage * 2 + "!";
+            damageSetting.text = riflebulletDamage * 2 + "!";
             damageSetting.color = Color.red;
             Instantiate(damageText, transform.position, Quaternion.identity);
             PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
 
             EnemyHealth health = GFunc.FindRootObj(other.gameObject).GetComponent<EnemyHealth>();
 
-            health.EnemyTakeDamage(UpgradeManager.up_Instance.rifleDamage * 2);
+            health.EnemyTakeDamage(riflebulletDamage * 2);
         }
     }
 

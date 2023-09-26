@@ -30,8 +30,6 @@ public class CrimsonFirescale001 : MonoBehaviour
 
     // 전체 최대 총알 수
     private int maxAmmoRemain = 90;
-    // 남아있는 전체 총알 수
-    private int ammoRemain;
 
     // 탄창 최대 용량
     private int magCapacity = 30;
@@ -53,6 +51,12 @@ public class CrimsonFirescale001 : MonoBehaviour
     private float zMax = 0.1f;
     private float zMin = -0.1f;
 
+    private int weaponAmmo;
+
+    private void Awake()
+    {
+        
+    }
 
     private void Start()
     {
@@ -64,7 +68,8 @@ public class CrimsonFirescale001 : MonoBehaviour
         reloadTime = new WaitForSeconds(2f);
 
         // { 갖고있는 전체 총알, 현재 탄창 총알 텍스트 띄우기
-        ammoRemain = maxAmmoRemain;
+        weaponAmmo = gameObject.transform.parent.GetComponent<playerBullet>().remainNBullet;
+            
         //AmmoRemainText.text = "" + maxAmmoRemain;
         magAmmo = magCapacity;
         //MagAmmoText.text = "" + magCapacity;
@@ -121,6 +126,7 @@ public class CrimsonFirescale001 : MonoBehaviour
                 {
                     GameObject obj = null;
                     Rigidbody objRigid = null;
+                    Bullet001 objDamage = null;
 
                     obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.BULLET);
 
@@ -130,8 +136,11 @@ public class CrimsonFirescale001 : MonoBehaviour
                         obj.transform.rotation = muzzle.transform.rotation;
 
                         objRigid = obj.GetComponent<Rigidbody>();
+                        objDamage = obj.GetComponent<Bullet001>();
 
                         obj.gameObject.SetActive(true);
+
+                        objDamage.riflebulletDamage = UpgradeManager.up_Instance.rifleDamage;
                         objRigid.velocity = cam.transform.forward * bulletSpeed;
 
                     }
@@ -173,12 +182,13 @@ public class CrimsonFirescale001 : MonoBehaviour
             for (int i = 0; i < magAmmo; i++)
             {
                 Vector3 foward = cam.transform.forward;
-                foward.x = foward.x + Random.Range(xMax, xMin);
-                foward.y = foward.y + Random.Range(yMax, yMin);
-                foward.z = foward.z + Random.Range(xMax, xMin);
+                foward.x += Random.Range(xMax, xMin);
+                foward.y += Random.Range(yMax, yMin);
+                foward.z += Random.Range(xMax, xMin);
 
                 GameObject obj = null;
                 Rigidbody objRigid = null;
+                Bullet001 objDamage = null;
 
                 obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.BULLET);
 
@@ -188,8 +198,11 @@ public class CrimsonFirescale001 : MonoBehaviour
                     obj.transform.rotation = muzzle.transform.rotation;
 
                     objRigid = obj.GetComponent<Rigidbody>();
+                    objDamage = obj.GetComponent<Bullet001>();
 
                     obj.gameObject.SetActive(true);
+
+                    objDamage.riflebulletDamage = UpgradeManager.up_Instance.rifleDamage;
                     objRigid.velocity = foward * bulletSpeed;
 
                 }
@@ -202,12 +215,13 @@ public class CrimsonFirescale001 : MonoBehaviour
             for (int i = 0; i < skillAmmo; i++)
             {
                 Vector3 foward = cam.transform.forward;
-                foward.x = foward.x + Random.Range(xMax, xMin);
-                foward.y = foward.y + Random.Range(yMax, yMin);
-                foward.z = foward.z + Random.Range(xMax, xMin);
+                foward.x += Random.Range(xMax, xMin);
+                foward.y += Random.Range(yMax, yMin);
+                foward.z += Random.Range(xMax, xMin);
 
                 GameObject obj = null;
                 Rigidbody objRigid = null;
+                Bullet001 objDamage = null;
 
                 obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.BULLET);
 
@@ -217,8 +231,11 @@ public class CrimsonFirescale001 : MonoBehaviour
                     obj.transform.rotation = muzzle.transform.rotation;
 
                     objRigid = obj.GetComponent<Rigidbody>();
+                    objDamage = obj.GetComponent <Bullet001>();
 
                     obj.gameObject.SetActive(true);
+
+                    objDamage.riflebulletDamage = UpgradeManager.up_Instance.rifleDamage;
                     objRigid.velocity = foward * bulletSpeed;
 
                 }
@@ -247,10 +264,10 @@ public class CrimsonFirescale001 : MonoBehaviour
         fireSound.clip = CrimsonFirescale_Reload;
         fireSound.Play();
 
-        if(reloadBullet > ammoRemain)
+        if(reloadBullet > weaponAmmo)
         {
-            magAmmo += ammoRemain;
-            ammoRemain = 0;
+            magAmmo += weaponAmmo;
+            weaponAmmo = 0;
 
             yield return reloadTime;
 
@@ -261,8 +278,8 @@ public class CrimsonFirescale001 : MonoBehaviour
         }
         // 재장전 시간
         yield return reloadTime;
-            
-        ammoRemain -= reloadBullet;
+
+        weaponAmmo -= reloadBullet;
         magAmmo += reloadBullet;
 
         // 재장전 시간 이후 공격준비 상태로 바꾸며 코루틴 종료

@@ -9,10 +9,4 @@ public class DontDestroy : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    //private void Start()
-    //{
-    //    GameObject spawn = GameObject.FindWithTag("Spawn");
-
-    //    transform.position = spawn.transform.position; 
-    //}
 }
