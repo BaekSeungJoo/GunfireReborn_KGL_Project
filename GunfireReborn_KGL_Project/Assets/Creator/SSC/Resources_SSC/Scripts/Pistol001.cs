@@ -4,6 +4,7 @@ using System.Resources;
 using UnityEngine;
 using Photon.Pun;
 using Cinemachine;
+using TMPro;
 
 public class Pistol001 : MonoBehaviourPun
 {
@@ -37,7 +38,15 @@ public class Pistol001 : MonoBehaviourPun
 
     private CinemachineVirtualCamera cam;
 
-    public GameObject inven;
+    [SerializeField] private GameObject NBullet;
+    [SerializeField] private TextMeshProUGUI BulletText;
+    [SerializeField] private GameObject Inven;
+
+    private void Awake()
+    {
+        magAmmo = magCapacity;
+
+    }
 
     void Start()
     {
@@ -46,19 +55,30 @@ public class Pistol001 : MonoBehaviourPun
         fireSound = GetComponent<AudioSource>();
         reloadTime = new WaitForSeconds(2f);
 
-        magAmmo = magCapacity;
         state = State.READY;
         
-
     }
     // Update is called once per frame
+
+    private void OnEnable()
+    {
+        NBullet.SetActive(true);
+        BulletText.text = magAmmo + " /  ∞ "; 
+    }
+    private void OnDisable()
+
+    {
+        NBullet.SetActive(false);
+    }
+
     void Update()
     {
         if(transform.parent == null)
         {
             return;
         }
-        if(inven.activeSelf == true)
+
+        if(Inven.activeSelf)
         {
             return;
         }
@@ -123,6 +143,7 @@ public class Pistol001 : MonoBehaviourPun
 
 
                 magAmmo -= 1;
+                BulletText.text = magAmmo + " /  ∞ ";
                 muzzlFlash.Play();
                 fireSound.clip = basicShot;
                 fireSound.Play();
@@ -151,6 +172,8 @@ public class Pistol001 : MonoBehaviourPun
 
         // 재장전 시간 이후 공격준비 상태로 바꾸며 코루틴 종료
         magAmmo += reloadBullet;
+        BulletText.text = magAmmo + " /  ∞ ";
+
         state = State.READY;
 
     }

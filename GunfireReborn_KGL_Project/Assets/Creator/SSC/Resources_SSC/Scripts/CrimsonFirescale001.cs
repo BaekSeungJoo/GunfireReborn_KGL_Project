@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using Cinemachine;
+using System.Security.Cryptography;
+using UnityEngine.UI;
 
 
 // 총기의 현재 상태를 정의할 Enum : 발사가능, 탄창비어있음, 재장전 중
@@ -28,9 +30,6 @@ public class CrimsonFirescale001 : MonoBehaviour
     private float attackSpeed = 0.1f;    
     private float attackTimer = 0f;    
 
-    // 전체 최대 총알 수
-    private int maxAmmoRemain = 90;
-
     // 탄창 최대 용량
     private int magCapacity = 30;
     // 탄창 현재 총알 수
@@ -51,11 +50,23 @@ public class CrimsonFirescale001 : MonoBehaviour
     private float zMax = 0.1f;
     private float zMin = -0.1f;
 
-    private int weaponAmmo;
+    playerBullet bulletInfo;
+
+    [SerializeField] private GameObject NBullet;
+    [SerializeField] private GameObject NBulletBack;
+    [SerializeField] private TextMeshProUGUI BulletText;
+
+    Image NbulletFill;
 
     private void Awake()
     {
-        
+        bulletInfo = transform.parent.GetComponent<playerBullet>();
+        magAmmo = magCapacity;
+
+        NbulletFill = NBullet.GetComponent<Image>();
+
+        NbulletFill.fillAmount = (float)bulletInfo.remainNBullet / (float)bulletInfo.maxNBullet;
+
     }
 
     private void Start()
@@ -66,21 +77,30 @@ public class CrimsonFirescale001 : MonoBehaviour
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
         fireSound = GetComponent<AudioSource>();
         reloadTime = new WaitForSeconds(2f);
-
-        // { 갖고있는 전체 총알, 현재 탄창 총알 텍스트 띄우기
-        weaponAmmo = gameObject.transform.parent.GetComponent<playerBullet>().remainNBullet;
-            
-        //AmmoRemainText.text = "" + maxAmmoRemain;
-        magAmmo = magCapacity;
-        //MagAmmoText.text = "" + magCapacity;
-        // } 갖고있는 전체 총알, 현재 탄창 총알 텍스트 띄우기
-
         state = State.READY;        
 
     }
     // Update is called once per frame
+
+    private void OnEnable()
+    {
+        NBullet.SetActive(true);
+        NBulletBack.SetActive(true);
+        //BulletText.text = magAmmo + " / " + weaponAmmo;
+        NbulletFill.fillAmount = (float)bulletInfo.remainNBullet / (float)bulletInfo.maxNBullet;
+    }
+
+    private void OnDisable()
+    {
+        NBullet.SetActive(false);
+        NBulletBack.SetActive(false);
+    }
+
     void Update()
     {
+        NbulletFill.fillAmount = (float)bulletInfo.remainNBullet / (float)bulletInfo.maxNBullet;
+        BulletText.text = magAmmo + " / " + bulletInfo.remainNBullet;
+
         if (transform.parent == null)
         {
             return;
@@ -145,7 +165,8 @@ public class CrimsonFirescale001 : MonoBehaviour
 
                     }
 
-                    magAmmo -= 1;                   
+                    magAmmo -= 1;
+
                     muzzlFlash.Play();
                     fireSound.clip = basicShot;
                     fireSound.volume = 0.4f;
@@ -166,9 +187,6 @@ public class CrimsonFirescale001 : MonoBehaviour
             }
 
         }
-
-        //AmmoRemainText.text = "" + ammoRemain;
-        //MagAmmoText.text = "" + magAmmo;
 
     }
 
@@ -264,10 +282,10 @@ public class CrimsonFirescale001 : MonoBehaviour
         fireSound.clip = CrimsonFirescale_Reload;
         fireSound.Play();
 
-        if(reloadBullet > weaponAmmo)
+        if (reloadBullet > bulletInfo.remainNBullet)
         {
-            magAmmo += weaponAmmo;
-            weaponAmmo = 0;
+            magAmmo += bulletInfo.remainNBullet;
+            bulletInfo.remainNBullet = 0;
 
             yield return reloadTime;
 
@@ -279,7 +297,7 @@ public class CrimsonFirescale001 : MonoBehaviour
         // 재장전 시간
         yield return reloadTime;
 
-        weaponAmmo -= reloadBullet;
+        bulletInfo.remainNBullet -= reloadBullet;
         magAmmo += reloadBullet;
 
         // 재장전 시간 이후 공격준비 상태로 바꾸며 코루틴 종료

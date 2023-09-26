@@ -85,14 +85,12 @@ public class SetDropItem : MonoBehaviour
         else { dropBullet02 = false; }
 
         // ¹«±â (ºÒ²Éºñ´Ã) µå¶ø
-        //int randomGun01Drop = Random.Range(0, 20);
-        int randomGun01Drop = 0;
+        int randomGun01Drop = Random.Range(0, 2);
         if (randomGun01Drop == 0) { dropGun01 = true; }
         else { dropGun01 = false; }
 
         // ¹«±â (Áö¿Á) µå¶ø
-        //int randomGun02Drop = Random.Range(0, 20);
-        int randomGun02Drop = 0;
+        int randomGun02Drop = Random.Range(0, 2);
         if (randomGun02Drop == 0) { dropGun02 = true; }
         else { dropGun02 = false; }
     }
