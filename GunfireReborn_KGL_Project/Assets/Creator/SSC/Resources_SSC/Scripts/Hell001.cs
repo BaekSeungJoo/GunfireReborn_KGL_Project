@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Resources;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class Hell001 : MonoBehaviour
 {
@@ -29,9 +30,6 @@ public class Hell001 : MonoBehaviour
     // 전체 최대 총알 수
     private int maxAmmoRemain = 24;
 
-    // 남아있는 전체 총알 수
-    private int weaponAmmo;
-
     // 탄창 최대 용량
     private int magCapacity = 8;
     // 탄창 현재 총알 수
@@ -51,25 +49,36 @@ public class Hell001 : MonoBehaviour
     private float zMax = 0.15f;
     private float zMin = -0.15f;
 
+    private playerBullet bulletInfo;
+
+    [SerializeField] private GameObject BBullet;
+    [SerializeField] private GameObject BBulletBack;
+    [SerializeField] private TextMeshProUGUI BulletText;
+
+    private Image bulletFill;
+
     // 장전중 사격시 장전 코루틴을 멈추기위한 Reloading() 코루틴을 담을 reload
 
     IEnumerator reload;
 
+    private void Awake()
+    {
+        bulletInfo = transform.parent.GetComponent<playerBullet>();
+        magAmmo = magCapacity;
+
+        bulletFill = BBullet.GetComponent<Image>();
+
+        bulletFill.fillAmount = (float)bulletInfo.remainBBullet / (float)bulletInfo.maxBBullet;
+        // 현재 탄창량 / 맥스 탄창량 
+    }
+
     private void Start()
     {
-        weaponAmmo = gameObject.transform.parent.GetComponent<playerBullet>().remainBBullet;
         cam = FindObjectOfType<CinemachineVirtualCamera>();
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
         fireSound = GetComponent<AudioSource>();
         reloadingTime = new WaitForSeconds(1.0f);
         attackSpeed = new WaitForSeconds(0.75f);
-
-        // { 갖고있는 전체 총알, 현재 탄창 총알 텍스트 띄우기
-        weaponAmmo = maxAmmoRemain;
-        //AmmoRemainText.text = "" + maxAmmoRemain;
-        magAmmo = magCapacity;
-        //MagAmmoText.text = "" + magCapacity;
-        // } 갖고있는 전체 총알, 현재 탄창 총알 텍스트 띄우기
 
         // 장전 코루틴 담아두기
         reload = ReLoading();
@@ -78,9 +87,29 @@ public class Hell001 : MonoBehaviour
         state = State.READY;       
 
     }
+
+    private void OnEnable()
+    {
+        BBullet.SetActive(true);
+        BBulletBack.SetActive(true);
+        BulletText.text = magAmmo + " / " + bulletInfo.remainBBullet;
+        bulletFill.fillAmount = (float)bulletInfo.remainBBullet / (float)bulletInfo.maxBBullet;
+
+    }
+
+    private void OnDisable()
+    {
+        BBullet.SetActive(false);
+        BBulletBack.SetActive(false);
+
+    }
+
     // Update is called once per frame
     void Update()
     {
+        bulletFill.fillAmount = (float)bulletInfo.remainBBullet / (float)bulletInfo.maxBBullet;
+        BulletText.text = magAmmo + " / " + bulletInfo.remainBBullet;
+
         // 플레이어의 손에 있는것이 아니라면 동작하지 않는다.
         if (transform.parent == null)
         {
@@ -125,9 +154,6 @@ public class Hell001 : MonoBehaviour
                 StartCoroutine(Attack());
             }
         }
-
-        //AmmoRemainText.text = "" + ammoRemain;
-        //MagAmmoText.text = "" + magAmmo;
 
     }
 
@@ -193,9 +219,9 @@ public class Hell001 : MonoBehaviour
         while (magAmmo < magCapacity)
         {
             // 남아있는 총알 수가 0 이하가 될시
-            if (weaponAmmo <= 0)
+            if (bulletInfo.remainBBullet <= 0)
             {
-                weaponAmmo = 0;
+                bulletInfo.remainBBullet = 0;
                 yield break;
             }
 
@@ -203,7 +229,7 @@ public class Hell001 : MonoBehaviour
 
             yield return reloadingTime;
             magAmmo += 1;
-            weaponAmmo -= 1;
+            bulletInfo.remainBBullet -= 1;
 
         }
 

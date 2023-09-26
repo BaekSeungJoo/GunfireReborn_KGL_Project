@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerGold : MonoBehaviourPun
 {
 
-    private int Gold;                // 현재골드
+    public int Gold;                // 현재골드
     private float activeFalseDistance = 2f;     // 해당 거리만큼 가까이가면 비활성화
     private TMP_Text goldText;
 

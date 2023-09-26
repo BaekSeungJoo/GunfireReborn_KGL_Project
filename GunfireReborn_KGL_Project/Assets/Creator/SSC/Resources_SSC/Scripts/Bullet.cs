@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    PlayerAttack1 shoot;
+    //PlayerAttack1 shoot;
     public CinemachineVirtualCamera cam;
     private Rigidbody myRigid = default;
     private float speed = 30.0f;
@@ -20,18 +20,18 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        cam = FindObjectOfType<CinemachineVirtualCamera>();
+        /*cam = FindObjectOfType<CinemachineVirtualCamera>();
         shoot = FindObjectOfType<PlayerAttack1>();
         myRigid = GetComponent<Rigidbody>();
 
         //Vector3 target = shoot.hitPoint - transform.position;
-        //Vector3 targetnormal = target.normalized;
+        //Vector3 targetnormal = target.normalized;*/
      
     }
 
     private void OnEnable()
     {
-        if (shoot.useSkill == true)
+        /*if (shoot.useSkill == true)
         {
             Vector3 randomHit = cam.transform.forward * speed;
             Vector3 random = new Vector3
@@ -46,7 +46,7 @@ public class Bullet : MonoBehaviour
 
         myRigid.velocity = cam.transform.forward * speed;
 
-        Invoke("DestroyBullet", 5f);
+        Invoke("DestroyBullet", 5f);*/
     }
 
     private void DestroyBullet()
