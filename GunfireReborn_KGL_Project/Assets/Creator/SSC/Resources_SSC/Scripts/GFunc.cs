@@ -13,6 +13,11 @@ public static class GFunc
 
         while(targetObj.parent != null)
         {
+            if (targetObj.parent.GetComponent<EnemyHealth>() != null) 
+            {
+                return targetObj.gameObject;
+            }
+
             targetObj = targetObj.parent;
         }
         

@@ -17,8 +17,8 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
     public bool isturnGroggy;    //그로기상태가됐는지 확인하는변수
     public bool isturnPlay;      //플레이상태가됐는지 확인하는 변수
 
-    private Slider hpBar;                       //플레이hp바
-    private Slider shieldBar;                   //플레이쉴드바
+    private Image hpBar;                       //플레이hp바
+    private Image shieldBar;                   //플레이쉴드바
     private Animator animator;                  //플레이어 애니메이터
     private IK1 ik;                             //3인칭 ik를 받아오는 변수
     private CinemachineVirtualCamera virtualCam;//내 시네머신을 받아오는변수, //레이를 쏘기시작할 캠
@@ -51,8 +51,8 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
     {
         //초기화
         roation = GetComponent<PlayerRoation>();                                //회전스크리브 받아오기
-        hpBar = GameObject.Find("HpBgBar").GetComponent<Slider>();              //hp바 받아오기
-        shieldBar = GameObject.Find("ShieldBgBar").GetComponent<Slider>();      //shield바 받아오기
+        hpBar = GameObject.Find("HPBar").GetComponent<Image>();              //hp바 받아오기
+        shieldBar = GameObject.Find("ShieldBar").GetComponent<Image>();      //shield바 받아오기
         virtualCam = FindObjectOfType<CinemachineVirtualCamera>();              //버츄얼캠 받아오기
         ik = GetComponent<IK1>();                                               //3인칭ik 받아오기
         animator = GetComponent<Animator>();                                    //내 애니메이터 받아오기
@@ -63,8 +63,8 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
         state = State.play;                                                     //현재 상태를 play로 해놓음
         curHealth = maxHealth;                                                  //현재HP를 MAXHP로 초기화
         curShield = maxShield;                                                  //현재쉴드를 MAXShield로 초기화
-        hpBar.value = (float)curHealth / (float)maxHealth;                      //hp바의 초기화
-        shieldBar.value = (float)curShield / (float)maxShield;                  //Shield바의 초기화
+        hpBar.fillAmount = (float)curHealth / (float)maxHealth;                      //hp바의 초기화
+        shieldBar.fillAmount = (float)curShield / (float)maxShield;                  //Shield바의 초기화
 
         recoveryBar.fillAmount = 1;                                             //리커버리바 1로 초기화
         isturnGroggy = true;
@@ -177,8 +177,8 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
     private void StateUpdate()
     {
 
-        shieldBar.value = (float)curShield / (float)maxShield;
-        hpBar.value = (float)curHealth / (float)maxHealth;
+        shieldBar.fillAmount = (float)curShield / (float)maxShield;
+        hpBar.fillAmount = (float)curHealth / (float)maxHealth;
 
         if (state == State.groggy)                              // 그로기상태라면 
         {

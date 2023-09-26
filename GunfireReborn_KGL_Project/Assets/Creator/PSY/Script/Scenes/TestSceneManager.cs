@@ -83,7 +83,7 @@ public class TestSceneManager : MonoBehaviourPunCallbacks
     private IEnumerator LoadScene()
     {
         // "Map_01_PSY" 씬을 비동기 작업으로 로드한다.
-        AsyncOperation operation = SceneManager.LoadSceneAsync("Map_01_PSY");  
+        AsyncOperation operation = SceneManager.LoadSceneAsync("Main_Map_01");  
         operation.allowSceneActivation = false;  // 씬을 로드하는데 준비가 안됨.
 
         while (!operation.isDone && operation.allowSceneActivation == false)  // 씬의 로드가 끝날 때까지 반복
