@@ -7405,7 +7405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512b6449924cc644eb01c03ecdc7d8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
+  damage: 25
 --- !u!114 &6679188402555745900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7754,7 +7754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512b6449924cc644eb01c03ecdc7d8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  damage: 35
 --- !u!114 &6341439251416290471
 MonoBehaviour:
   m_ObjectHideFlags: 0

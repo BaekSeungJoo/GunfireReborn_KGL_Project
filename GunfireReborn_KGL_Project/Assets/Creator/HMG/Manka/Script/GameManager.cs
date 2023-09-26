@@ -43,13 +43,13 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 randomSpawnPos = Random.insideUnitSphere * 5f;
+        // Vector3 randomSpawnPos = Random.insideUnitSphere * 5f;
         //위치값 y값은 0으로 변경
-        randomSpawnPos.y = 0f;
+        // randomSpawnPos.y = 0f;
 
         //네트워크상의 모든 클라이언트에서 생성실행
         //해당 게임 오브젝트의 주도권은 생성 메서드를 직접 실행한 클라이언트에 있음
-        PhotonNetwork.Instantiate(playerPrefab.name, randomSpawnPos, Quaternion.identity);
+        PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
 
         nowStage = 1;
     }
