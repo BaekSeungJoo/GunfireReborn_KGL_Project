@@ -54,6 +54,11 @@ public class CrimsonFirescale001 : MonoBehaviour
     private float zMin = -0.1f;
 
 
+    private void Awake()
+    {
+        
+    }
+
     private void Start()
     {
         cam = FindObjectOfType<CinemachineVirtualCamera>();
@@ -121,6 +126,7 @@ public class CrimsonFirescale001 : MonoBehaviour
                 {
                     GameObject obj = null;
                     Rigidbody objRigid = null;
+                    Bullet001 objDamage = null;
 
                     obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.BULLET);
 
@@ -130,8 +136,11 @@ public class CrimsonFirescale001 : MonoBehaviour
                         obj.transform.rotation = muzzle.transform.rotation;
 
                         objRigid = obj.GetComponent<Rigidbody>();
+                        objDamage = obj.GetComponent<Bullet001>();
 
                         obj.gameObject.SetActive(true);
+
+                        objDamage.riflebulletDamage = UpgradeManager.up_Instance.rifleDamage;
                         objRigid.velocity = cam.transform.forward * bulletSpeed;
 
                     }
@@ -173,12 +182,13 @@ public class CrimsonFirescale001 : MonoBehaviour
             for (int i = 0; i < magAmmo; i++)
             {
                 Vector3 foward = cam.transform.forward;
-                foward.x = foward.x + Random.Range(xMax, xMin);
-                foward.y = foward.y + Random.Range(yMax, yMin);
-                foward.z = foward.z + Random.Range(xMax, xMin);
+                foward.x += Random.Range(xMax, xMin);
+                foward.y += Random.Range(yMax, yMin);
+                foward.z += Random.Range(xMax, xMin);
 
                 GameObject obj = null;
                 Rigidbody objRigid = null;
+                Bullet001 objDamage = null;
 
                 obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.BULLET);
 
@@ -188,8 +198,11 @@ public class CrimsonFirescale001 : MonoBehaviour
                     obj.transform.rotation = muzzle.transform.rotation;
 
                     objRigid = obj.GetComponent<Rigidbody>();
+                    objDamage = obj.GetComponent<Bullet001>();
 
                     obj.gameObject.SetActive(true);
+
+                    objDamage.riflebulletDamage = UpgradeManager.up_Instance.rifleDamage;
                     objRigid.velocity = foward * bulletSpeed;
 
                 }
@@ -202,12 +215,13 @@ public class CrimsonFirescale001 : MonoBehaviour
             for (int i = 0; i < skillAmmo; i++)
             {
                 Vector3 foward = cam.transform.forward;
-                foward.x = foward.x + Random.Range(xMax, xMin);
-                foward.y = foward.y + Random.Range(yMax, yMin);
-                foward.z = foward.z + Random.Range(xMax, xMin);
+                foward.x += Random.Range(xMax, xMin);
+                foward.y += Random.Range(yMax, yMin);
+                foward.z += Random.Range(xMax, xMin);
 
                 GameObject obj = null;
                 Rigidbody objRigid = null;
+                Bullet001 objDamage = null;
 
                 obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.BULLET);
 
@@ -217,8 +231,11 @@ public class CrimsonFirescale001 : MonoBehaviour
                     obj.transform.rotation = muzzle.transform.rotation;
 
                     objRigid = obj.GetComponent<Rigidbody>();
+                    objDamage = obj.GetComponent <Bullet001>();
 
                     obj.gameObject.SetActive(true);
+
+                    objDamage.riflebulletDamage = UpgradeManager.up_Instance.rifleDamage;
                     objRigid.velocity = foward * bulletSpeed;
 
                 }

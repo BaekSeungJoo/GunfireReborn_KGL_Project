@@ -14,6 +14,8 @@ public class HellBullet001 : MonoBehaviourPun
 
     private TextMeshProUGUI damageSetting;
 
+    public int bulletDamage;
+
     void Awake()
     {
         poolingTime = new WaitForSeconds(5f);
@@ -35,26 +37,26 @@ public class HellBullet001 : MonoBehaviourPun
     {
         if (other.CompareTag("Enemy"))
         {
-            damageSetting.text = "" + UpgradeManager.up_Instance.shotgunDamage;
+            damageSetting.text = "" + bulletDamage;
             damageSetting.color = Color.yellow;
             Instantiate(damageText, transform.position, Quaternion.identity);
 
             PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
             EnemyHealth health = other.GetComponent<EnemyHealth>();
 
-            health.EnemyTakeDamage(UpgradeManager.up_Instance.shotgunDamage);
+            health.EnemyTakeDamage(bulletDamage);
         }
 
         if (other.CompareTag("LuckyShotPoint"))
         {
-            damageSetting.text = UpgradeManager.up_Instance.shotgunDamage * 2 + "!";
+            damageSetting.text = bulletDamage * 2 + "!";
             damageSetting.color = Color.red;
             Instantiate(damageText, transform.position, Quaternion.identity);
 
             PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
             EnemyHealth health = GFunc.FindRootObj(other.gameObject).GetComponent<EnemyHealth>();
 
-            health.EnemyTakeDamage(UpgradeManager.up_Instance.shotgunDamage);
+            health.EnemyTakeDamage(bulletDamage);
         }
     }
 

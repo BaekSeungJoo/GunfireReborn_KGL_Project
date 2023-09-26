@@ -144,8 +144,9 @@ public class Hell001 : MonoBehaviour
 
             GameObject obj = null;
             Rigidbody objRigid = null;
+            HellBullet001 objDamage;
 
-            obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.BULLET);
+            obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.HELLBULLET);
 
             if (obj != null)
             {
@@ -153,7 +154,9 @@ public class Hell001 : MonoBehaviour
                 obj.transform.rotation = muzzle.transform.rotation;
 
                 objRigid = obj.GetComponent<Rigidbody>();
+                objDamage = obj.GetComponent<HellBullet001>();
 
+                objDamage.bulletDamage = UpgradeManager.up_Instance.shotgunDamage;
                 obj.gameObject.SetActive(true);
                 objRigid.velocity = foward * bulletSpeed;
 

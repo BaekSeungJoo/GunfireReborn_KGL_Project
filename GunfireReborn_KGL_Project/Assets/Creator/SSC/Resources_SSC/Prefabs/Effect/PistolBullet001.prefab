@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 54071876843268058}
   - component: {fileID: 135591627764625104}
   - component: {fileID: 5535179011944533818}
+  - component: {fileID: 6894101390262254935}
   m_Layer: 0
   m_Name: PistolBullet001
   m_TagString: Untagged
@@ -4991,3 +4992,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageText: {fileID: 4685587830155689800, guid: 090994d5dbfef2f47b9c1d0e3ae59b89, type: 3}
+--- !u!114 &6894101390262254935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589245581719068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

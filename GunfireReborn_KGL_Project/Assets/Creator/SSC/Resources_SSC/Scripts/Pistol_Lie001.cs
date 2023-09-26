@@ -80,13 +80,13 @@ public class Pistol_Lie001 : MonoBehaviourPun, IPunObservable
                 // 마우스 입력시 빈 탄창 소리 내기
                 if (Input.GetMouseButtonDown(0))
                 {
-                    photonView.RPC("EmptyShot", RpcTarget.Others);
+                    /* PASS : Shin */ 
                 }
                 // 장전키를 눌렀을 시
                 else if (Input.GetKeyDown(KeyCode.R) && magAmmo < magCapacity && state != State.RELOADING)
                 {
                     state = State.RELOADING;
-                    photonView.RPC("CloneReload", RpcTarget.All);
+                    StartCoroutine(ReLoading());
                 }
 
                 // 그 외에 상황에는 밑으로 진행하지 않는다 ( 공격 불가 )
@@ -96,7 +96,7 @@ public class Pistol_Lie001 : MonoBehaviourPun, IPunObservable
             // 탄창 용량 상관없이 장전을 누를때
             if (Input.GetKeyDown(KeyCode.R) && magAmmo < magCapacity && state != State.RELOADING)
             {
-                photonView.RPC("CloneReload", RpcTarget.All);
+                StartCoroutine(ReLoading());
             }
 
 
@@ -113,7 +113,7 @@ public class Pistol_Lie001 : MonoBehaviourPun, IPunObservable
                 {
                     // 내 총구가 바라보는 방향 저장
                     Vector3 foward = transform.right;
-                    photonView.RPC("CloneShot", RpcTarget.Others, foward, muzzle.position, muzzle.rotation);
+                    photonView.RPC("CloneShot", RpcTarget.Others, foward, muzzle.position, muzzle.rotation, UpgradeManager.up_Instance.pistolDamage);
                     magAmmo -= 1;
 
 
@@ -130,20 +130,24 @@ public class Pistol_Lie001 : MonoBehaviourPun, IPunObservable
 
 
     [PunRPC]
-    public void CloneShot(Vector3 foward, Vector3 Pos, Quaternion rot)
+    public void CloneShot(Vector3 foward, Vector3 Pos, Quaternion rot, int damage)
     {
         GameObject obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.PISTOLBULLET);
         Rigidbody objRigid = null;
+        PistolBullet bullet;
 
-        if (objRigid == null)
+        if (obj != null)
         {
             objRigid = obj.GetComponent<Rigidbody>();
-        }
-        obj.transform.position = Pos;
-        obj.transform.rotation = rot;
-        obj.gameObject.SetActive(true);
+            bullet = obj.GetComponent<PistolBullet>();
 
-        objRigid.velocity = foward * bulletSpeed;
+            obj.transform.position = Pos;
+            obj.transform.rotation = rot;
+            obj.gameObject.SetActive(true);
+
+            bullet.bulletDamage = damage;
+            objRigid.velocity = foward * bulletSpeed;
+        }
 
         muzzlFlash.Play();
         fireSound.clip = basicShot;
@@ -156,18 +160,6 @@ public class Pistol_Lie001 : MonoBehaviourPun, IPunObservable
         muzzlFlash.Stop();
     }
 
-    [PunRPC]
-    public void EmptyShot()
-    {
-        fireSound.clip = EmptyMagAmmo;
-        fireSound.Play();
-    }
-
-    [PunRPC]
-    public void CloneReload()
-    {
-        StartCoroutine(ReLoading());
-    }
     IEnumerator ReLoading()
     {
         state = State.RELOADING;
@@ -175,8 +167,6 @@ public class Pistol_Lie001 : MonoBehaviourPun, IPunObservable
         int reloadBullet = 0;
         reloadBullet = magCapacity - magAmmo;
 
-        fireSound.clip = Pistol_Reload;
-        fireSound.Play();
 
         yield return reloadTime;
 

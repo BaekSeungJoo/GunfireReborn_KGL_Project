@@ -139,7 +139,7 @@ public class Hell_Lie001 : MonoBehaviourPun, IPunObservable
     }
 
     [PunRPC]
-    public void CloneShot(Vector3 foward, Vector3 pos, Quaternion rot)
+    public void CloneShot(Vector3 foward, Vector3 pos, Quaternion rot, int damage)
     {
         for (int i = 0; i < 10; i++)
         {
@@ -150,8 +150,9 @@ public class Hell_Lie001 : MonoBehaviourPun, IPunObservable
 
             GameObject obj = null;
             Rigidbody objRigid = null;
+            HellBullet001 objDamage;
 
-            obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.BULLET);
+            obj = PhotonPoolManager.P_instance.GetPoolObj(P_PoolObjType.HELLBULLET);
 
             if (obj != null)
             {
@@ -159,7 +160,9 @@ public class Hell_Lie001 : MonoBehaviourPun, IPunObservable
                 obj.transform.rotation = rot;
 
                 objRigid = obj.GetComponent<Rigidbody>();
+                objDamage = obj.GetComponent<HellBullet001>();
 
+                objDamage.bulletDamage = damage;
                 obj.gameObject.SetActive(true);
                 objRigid.velocity = muzzleFoward * bulletSpeed;
 
@@ -194,7 +197,9 @@ public class Hell_Lie001 : MonoBehaviourPun, IPunObservable
         reload = ReLoading();
 
         photonView.RPC("CloneShot", RpcTarget.Others,
-                         muzzle.transform.forward, muzzle.transform.position, muzzle.transform.rotation);
+                         muzzle.transform.forward, muzzle.transform.position, muzzle.transform.rotation
+                         , UpgradeManager.up_Instance.shotgunDamage);
+        // To do : Awake 에서 데미지값 클래스 받아와서 적용해보기
 
         // 현재 탄창총알이 0보다 작아진다면
         if (magAmmo <= 0)
