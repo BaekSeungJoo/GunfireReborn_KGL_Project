@@ -54,6 +54,7 @@ public class Hell001 : MonoBehaviour
     [SerializeField] private GameObject BBullet;
     [SerializeField] private GameObject BBulletBack;
     [SerializeField] private TextMeshProUGUI BulletText;
+    [SerializeField] private GameObject BlackSmith;
 
     private Image bulletFill;
 
@@ -109,6 +110,11 @@ public class Hell001 : MonoBehaviour
     {
         bulletFill.fillAmount = (float)bulletInfo.remainBBullet / (float)bulletInfo.maxBBullet;
         BulletText.text = magAmmo + " / " + bulletInfo.remainBBullet;
+
+        if (BlackSmith.activeSelf)
+        {
+            return;
+        }
 
         // 플레이어의 손에 있는것이 아니라면 동작하지 않는다.
         if (transform.parent == null)

@@ -40,7 +40,7 @@ public class Pistol001 : MonoBehaviourPun
 
     [SerializeField] private GameObject NBullet;
     [SerializeField] private TextMeshProUGUI BulletText;
-    [SerializeField] private GameObject Inven;
+    [SerializeField] private GameObject BlackSmith;
 
     private void Awake()
     {
@@ -78,7 +78,7 @@ public class Pistol001 : MonoBehaviourPun
             return;
         }
 
-        if(Inven.activeSelf)
+        if(BlackSmith.activeSelf)
         {
             return;
         }

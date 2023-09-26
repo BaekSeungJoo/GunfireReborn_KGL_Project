@@ -55,6 +55,7 @@ public class CrimsonFirescale001 : MonoBehaviour
     [SerializeField] private GameObject NBullet;
     [SerializeField] private GameObject NBulletBack;
     [SerializeField] private TextMeshProUGUI BulletText;
+    [SerializeField] private GameObject BlackSmith;
 
     Image NbulletFill;
 
@@ -100,6 +101,11 @@ public class CrimsonFirescale001 : MonoBehaviour
     {
         NbulletFill.fillAmount = (float)bulletInfo.remainNBullet / (float)bulletInfo.maxNBullet;
         BulletText.text = magAmmo + " / " + bulletInfo.remainNBullet;
+
+        if (BlackSmith.activeSelf)
+        {
+            return;
+        }
 
         if (transform.parent == null)
         {

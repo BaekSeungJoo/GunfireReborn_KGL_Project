@@ -113,6 +113,9 @@ MonoBehaviour:
   - TrueWeapons
   - TurnStateGroggy
   - UpdateRecoveryBar
+  - CheckTriggerEnter
+  - SetPlayerPos_Map2
+  - SetPlayerPos_Map3
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
