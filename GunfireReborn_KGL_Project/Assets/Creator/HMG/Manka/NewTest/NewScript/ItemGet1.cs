@@ -105,8 +105,6 @@ public class ItemGet1 : MonoBehaviourPun
     {
         if(photonView.IsMine)
         {
-
-            Debug.LogFormat("{0}", weaponManager.slotWeapons[0]);
             if (weaponManager.slotWeapons[0] == null)
             {//만약 1번슬롯이 비어있다면  1번에 무기장착하도록함.
                 Debug.Log("1번슬롯에입장");
@@ -120,7 +118,6 @@ public class ItemGet1 : MonoBehaviourPun
             else
             {//만약 1,2,번 슬롯이 모두 있다면 지금현재 사용하고있는 슬롯의 무기와 교환하도록함.
                 Debug.Log("1,2번중 활성화된 슬롯에 입장");
-                weaponManager.WeaponDrop();
                 weaponManager.EquipWeapon(nearObject.name, 99); //어차피 0과 1이외의 경우는 EquipWeapon에서 현재 활성화되어있는 슬롯을체크하고 그슬롯을 바꾸기때문에 상관없다고판단했다.
             }
         }

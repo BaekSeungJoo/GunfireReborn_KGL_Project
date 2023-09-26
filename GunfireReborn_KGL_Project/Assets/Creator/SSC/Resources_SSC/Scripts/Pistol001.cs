@@ -37,6 +37,8 @@ public class Pistol001 : MonoBehaviourPun
 
     private CinemachineVirtualCamera cam;
 
+    public GameObject inven;
+
     void Start()
     {
         cam = FindObjectOfType<CinemachineVirtualCamera>();
@@ -56,7 +58,10 @@ public class Pistol001 : MonoBehaviourPun
         {
             return;
         }
-
+        if(inven.activeSelf == true)
+        {
+            return;
+        }
         if (state == State.EMPTY)
         {
             // 마우스 입력시 빈 탄창 소리 내기
