@@ -17,10 +17,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GlobalAsset/MainScene/Main_Map_01.unity
     guid: e961a6841bfcf9e4f8371348c6c6d901
-  - enabled: 1
-    path: Assets/GlobalAsset/MainScene/Main_Map_02.unity
-    guid: 2885f79bf7a80a74daa43acbe4d1da2d
-  - enabled: 1
-    path: Assets/GlobalAsset/MainScene/Main_Map_03.unity
-    guid: a962e40b30ec683418cd950b76c189ff
   m_configObjects: {}
