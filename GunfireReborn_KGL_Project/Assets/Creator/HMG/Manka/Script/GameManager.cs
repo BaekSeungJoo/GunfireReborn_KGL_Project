@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 
     public GameObject playerPrefab;
 
+    public int nowStage = 0;        // 현재 스테이지가 몇인지
+
     private void Awake()
     {
         if(instance != this)
@@ -48,6 +50,8 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         //네트워크상의 모든 클라이언트에서 생성실행
         //해당 게임 오브젝트의 주도권은 생성 메서드를 직접 실행한 클라이언트에 있음
         PhotonNetwork.Instantiate(playerPrefab.name, randomSpawnPos, Quaternion.identity);
+
+        nowStage = 1;
     }
 
     // Update is called once per frame
