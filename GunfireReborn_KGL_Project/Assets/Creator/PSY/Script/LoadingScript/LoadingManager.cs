@@ -38,4 +38,33 @@ public class LoadingManager : MonoBehaviour
         loadingTipText.text = loadingTipList[randTextNum];
         // } 랜덤으로 로딩 이미지 및 텍스트를 출력한다.
     }
+
+    private void Start()
+    {
+        Debug.Log("실행");
+        if(GameManager.instance?.nowStage >= 1 && GameManager.instance?.nowStage <= 3)
+        {
+            GameManager.instance.nowStage++;
+            Debug.Log("들어옴" + GameManager.instance.nowStage);
+            StartCoroutine(LoadSceneMap("Main_Map_0" + GameManager.instance.nowStage));
+        }
+    }
+
+    #region 비동기 로딩
+    /// <summary>
+    /// 비동기 로딩 함수 ( Map 01 )
+    /// </summary>
+    public IEnumerator LoadSceneMap( string sceneName )
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        operation.allowSceneActivation = false;  // 씬을 로드하는데 준비가 안됨.
+
+        while (!operation.isDone && operation.allowSceneActivation == false)  // 씬의 로드가 끝날 때까지 반복
+        {
+            yield return new WaitForSeconds(3f);    // 실제 시간 3초 딜레이를 준다.
+
+            operation.allowSceneActivation = true;  // 씬 로드의 준비를 끝낸다.
+        }
+    }
+    #endregion
 }
