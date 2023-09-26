@@ -30,7 +30,7 @@ public class Hell001 : MonoBehaviour
     private int maxAmmoRemain = 24;
 
     // 남아있는 전체 총알 수
-    private int ammoRemain;
+    private int weaponAmmo;
 
     // 탄창 최대 용량
     private int magCapacity = 8;
@@ -57,6 +57,7 @@ public class Hell001 : MonoBehaviour
 
     private void Start()
     {
+        weaponAmmo = gameObject.transform.parent.GetComponent<playerBullet>().remainBBullet;
         cam = FindObjectOfType<CinemachineVirtualCamera>();
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
         fireSound = GetComponent<AudioSource>();
@@ -64,7 +65,7 @@ public class Hell001 : MonoBehaviour
         attackSpeed = new WaitForSeconds(0.75f);
 
         // { 갖고있는 전체 총알, 현재 탄창 총알 텍스트 띄우기
-        ammoRemain = maxAmmoRemain;
+        weaponAmmo = maxAmmoRemain;
         //AmmoRemainText.text = "" + maxAmmoRemain;
         magAmmo = magCapacity;
         //MagAmmoText.text = "" + magCapacity;
@@ -192,9 +193,9 @@ public class Hell001 : MonoBehaviour
         while (magAmmo < magCapacity)
         {
             // 남아있는 총알 수가 0 이하가 될시
-            if (ammoRemain <= 0)
+            if (weaponAmmo <= 0)
             {
-                ammoRemain = 0;
+                weaponAmmo = 0;
                 yield break;
             }
 
@@ -202,7 +203,7 @@ public class Hell001 : MonoBehaviour
 
             yield return reloadingTime;
             magAmmo += 1;
-            ammoRemain -= 1;
+            weaponAmmo -= 1;
 
         }
 

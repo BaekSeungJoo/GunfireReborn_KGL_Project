@@ -30,7 +30,7 @@ public class CrimsonFirescale_Lie001 : MonoBehaviourPun, IPunObservable
     // 전체 최대 총알 수
     private int maxAmmoRemain = 90;
     // 남아있는 전체 총알 수
-    private int ammoRemain;
+    private int weaponAmmo;
 
     // 탄창 최대 용량
     private int magCapacity = 30;
@@ -71,7 +71,7 @@ public class CrimsonFirescale_Lie001 : MonoBehaviourPun, IPunObservable
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
         fireSound = GetComponent<AudioSource>();
         reloadTime = new WaitForSeconds(2f);
-        ammoRemain = maxAmmoRemain;
+        weaponAmmo = maxAmmoRemain;
         magAmmo = magCapacity;
 
 
@@ -226,10 +226,10 @@ public class CrimsonFirescale_Lie001 : MonoBehaviourPun, IPunObservable
         reloadBullet = magCapacity - magAmmo;
 
 
-        if(reloadBullet > ammoRemain)
+        if(reloadBullet > weaponAmmo)
         {
-            magAmmo += ammoRemain;
-            ammoRemain = 0;
+            magAmmo += weaponAmmo;
+            weaponAmmo = 0;
 
             yield return reloadTime;
 
@@ -241,7 +241,7 @@ public class CrimsonFirescale_Lie001 : MonoBehaviourPun, IPunObservable
         // 재장전 시간
         yield return reloadTime;
             
-        ammoRemain -= reloadBullet;
+        weaponAmmo -= reloadBullet;
         magAmmo += reloadBullet;
 
         // 재장전 시간 이후 공격준비 상태로 바꾸며 코루틴 종료

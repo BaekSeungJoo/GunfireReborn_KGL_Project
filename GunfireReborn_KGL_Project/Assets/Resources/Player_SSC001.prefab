@@ -2713,12 +2713,12 @@ GameObject:
   - component: {fileID: 8515415323163836794}
   - component: {fileID: -2328039991863219367}
   - component: {fileID: -1158425322443016231}
-  - component: {fileID: -7767755463820353247}
   - component: {fileID: 8500858156154588944}
   - component: {fileID: 6230649519481049982}
   - component: {fileID: 5615440747042247291}
   - component: {fileID: 2246413899918070481}
   - component: {fileID: 5523293102112140012}
+  - component: {fileID: 1367213087201424953}
   m_Layer: 0
   m_Name: Player_SSC001
   m_TagString: Player
@@ -3002,22 +3002,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookSensitivity: 3
---- !u!114 &-7767755463820353247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5557776142449693491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62de680ceb6793541b77220611a088c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nBullet: 675
-  remainNBullet: 30
-  bBullet: 160
-  remainBBullet: 10
 --- !u!135 &8500858156154588944
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3101,6 +3085,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopScripts: []
+--- !u!114 &1367213087201424953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5557776142449693491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10dfb591ccd7d934cb0b6b7592c6eb44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5557776142449693493
 GameObject:
   m_ObjectHideFlags: 0
