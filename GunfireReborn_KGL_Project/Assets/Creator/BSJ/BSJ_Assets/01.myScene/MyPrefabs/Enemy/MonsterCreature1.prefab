@@ -7168,6 +7168,7 @@ GameObject:
   - component: {fileID: 4811422694909929675}
   - component: {fileID: 842228299261881048}
   - component: {fileID: 7762304739672952580}
+  - component: {fileID: 854108837608599336}
   m_Layer: 31
   m_Name: MiniMapCanvas
   m_TagString: Untagged
@@ -7257,6 +7258,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &854108837608599336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4846261902441440548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 083f6c73498413c49ba870bfbcc55745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5522236275801784324
 GameObject:
   m_ObjectHideFlags: 0
@@ -7345,7 +7358,7 @@ GameObject:
   - component: {fileID: 1353772814647183119}
   - component: {fileID: 9020715034241261180}
   - component: {fileID: 6679188402555745900}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Attack02Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7694,7 +7707,7 @@ GameObject:
   - component: {fileID: 1743790504303239285}
   - component: {fileID: 9161234769170971108}
   - component: {fileID: 6341439251416290471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Attack01Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}

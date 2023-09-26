@@ -99,7 +99,7 @@ public class EvilMage : MeleeEnemyController
     // 가짜 폭탄 활성화
     public void InitFakeBoom()
     {
-        fakeBoom.gameObject.SetActive(true);
+        fakeBoom.SetActive(true);
     }
 
     // 공격 모으기 ( 애니메이션 이벤트 )
@@ -107,8 +107,8 @@ public class EvilMage : MeleeEnemyController
     {
         // 브레스 모으기 활성화
         InitFakeBoom();
-        floorEffect.gameObject.SetActive(true);
-        chargeEffect.gameObject.SetActive(true);
+        floorEffect.SetActive(true);
+        chargeEffect.SetActive(true);
     }
 
 
@@ -121,12 +121,12 @@ public class EvilMage : MeleeEnemyController
         InitBoom();
 
         // 공격 모으기 이펙트 비활성화
-        chargeEffect.gameObject.SetActive(false);
+        chargeEffect.SetActive(false);
         // 바닥 이펙트 비활성화
-        floorEffect.gameObject.SetActive(false);
+        floorEffect.SetActive(false);
 
         // 공격 이펙트 활성화
-        attackEffect.gameObject.SetActive(true);
+        attackEffect.SetActive(true);
     }
 
     // 공격 끝 ( 애니메이션 이벤트 )
@@ -136,7 +136,7 @@ public class EvilMage : MeleeEnemyController
         AttackEnd();
 
         // 공격 이펙트 비활성화
-        attackEffect.gameObject.SetActive(false);
+        attackEffect.SetActive(false);
     }
 
     // 폭발 이펙트 생성

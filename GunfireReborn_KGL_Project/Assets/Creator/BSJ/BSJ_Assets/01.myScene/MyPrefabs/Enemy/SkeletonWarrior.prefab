@@ -92,7 +92,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1384411378}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.45
@@ -2215,7 +2215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b5c27fe7067f649ae3d05d7a372d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 50
   curHealth: 0
   hpbar: {fileID: 3818247302598228839}
 --- !u!114 &9153006868415328681
@@ -2761,6 +2761,7 @@ GameObject:
   - component: {fileID: 700860979822653122}
   - component: {fileID: 8801504819078397130}
   - component: {fileID: 6943238287351058520}
+  - component: {fileID: 2510511540577476978}
   m_Layer: 31
   m_Name: MiniMapCanvas
   m_TagString: Untagged
@@ -2850,6 +2851,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2510511540577476978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4985688612657400799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 083f6c73498413c49ba870bfbcc55745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6088373828268025932
 GameObject:
   m_ObjectHideFlags: 0

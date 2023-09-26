@@ -580,6 +580,7 @@ GameObject:
   - component: {fileID: 1700379680497665103}
   - component: {fileID: 4524150253845624011}
   - component: {fileID: 5047553133343575846}
+  - component: {fileID: 9065753103845936942}
   m_Layer: 31
   m_Name: MiniMapCanvas
   m_TagString: Untagged
@@ -669,6 +670,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &9065753103845936942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3257555919910622112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 083f6c73498413c49ba870bfbcc55745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4314471741564789934
 GameObject:
   m_ObjectHideFlags: 0

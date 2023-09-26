@@ -2,11 +2,12 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mime;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Boom : MonoBehaviourPun
 {
-    public Transform target_Tran;       // 타겟 위치
+    public PhotonView target;           // 타겟 위치
     public float initialAngle = 30f;    // 처음 날라가는 각도
 
     private EvilMage evilMage;          // 부모 클래스
@@ -14,23 +15,26 @@ public class Boom : MonoBehaviourPun
 
     private void Awake()
     {
-        evilMage = GetComponentInParent<EvilMage>();
+        evilMage = transform.parent.GetComponentInParent<EvilMage>();
         rb = GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
     {
         // 날아갈 타겟 플레이어의 transform
-        target_Tran = evilMage.targetPlayer.transform;
+        target = evilMage.targetPlayer.GetComponent<PhotonView>();
 
         // 포물선 운동
-        Vector3 velocity = GetVelocity(transform.position, target_Tran.position, initialAngle);      
+        Vector3 velocity = GetVelocity(transform.position, target.transform.position, initialAngle);      
         rb.velocity = velocity;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        photonView.RPC("InActiveBoom", RpcTarget.All);
+        if(!other.CompareTag("Enemy") && !other.CompareTag("Coin") && !other.CompareTag("DropBigBullet") && !other.CompareTag("DropNormalBullet") && !other.CompareTag("weapon"))
+        {
+            InActiveBoom();
+        }
     }
 
     public Vector3 GetVelocity(Vector3 startPos, Vector3 target, float initialAngle)
@@ -53,13 +57,19 @@ public class Boom : MonoBehaviourPun
         // 높이 차이 계산 (초기 속도 계산 시 중력의 영향을 반영하기 위해)
         float yOffset = startPos.y - target.y;
 
+        // 분모가 0이 되지 않도록 조건을 추가하여 NaN을 방지
+        if (distance <= 0 || yOffset <= 0)
+        {
+            return Vector3.zero;
+        }
+
         // { 발사체의 초기 속도를 계산하는 주요 공식
         // 거리의 제곱을 계산 : Mathf.Pow(distance, 2)
         // 거리 제곱에 중력의 절반을 곱한다. 이 값을 발사 각도에 대한 탄젠트 와 높이 차이 yOffset으로 나눔
         // 발사체의 발사 각도에 대한 코사인 : (1 / Mathf.Cos(angle))
         // Mathf.Cos(angle) : 의 역수를 곱한다. 이 부분은 발사 각도의 영향을 보정
         // Mathf.Sqrt((0.5f * gravity * Mathf.Pow(distance, 2)) / (distance * Mathf.Tan(angle) + yOffset));
-        
+
         float initialVelocity
             = (1 / Mathf.Cos(angle)) * Mathf.Sqrt((0.5f * gravity * Mathf.Pow(distance, 2)) / (distance * Mathf.Tan(angle) + yOffset));
         
@@ -97,7 +107,7 @@ public class Boom : MonoBehaviourPun
         return finalVelocity;
     }
 
-    [PunRPC]
+    // [PunRPC]
     public void InActiveBoom()
     {
         // 이펙트 활성화

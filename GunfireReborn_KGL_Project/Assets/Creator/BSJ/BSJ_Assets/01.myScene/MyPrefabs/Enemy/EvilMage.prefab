@@ -2862,6 +2862,7 @@ GameObject:
   - component: {fileID: 4568271278660931001}
   - component: {fileID: 1090903821066980260}
   - component: {fileID: 4877629887990011584}
+  - component: {fileID: 8017884386067705626}
   m_Layer: 31
   m_Name: MiniMapCanvas
   m_TagString: Untagged
@@ -2951,6 +2952,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8017884386067705626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6454840614318828551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 083f6c73498413c49ba870bfbcc55745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8843786476115446549
 GameObject:
   m_ObjectHideFlags: 0
@@ -3128,6 +3141,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7818147465961896782, guid: 34b55d10a4b9ee644b3c19bafdb9b01e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34b55d10a4b9ee644b3c19bafdb9b01e, type: 3}
 --- !u!1 &937292629522184137 stripped
@@ -3147,10 +3164,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6435818074663669410}
     m_Modifications:
-    - target: {fileID: 1588434114044721567, guid: 7dcdecc013afa944aa7048878d9e25c1, type: 3}
-      propertyPath: sceneViewId
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3639444019068903898, guid: 7dcdecc013afa944aa7048878d9e25c1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3199,12 +3212,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boom
       objectReference: {fileID: 0}
-    - target: {fileID: 3642123121969203550, guid: 7dcdecc013afa944aa7048878d9e25c1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3723107735494462736, guid: 7dcdecc013afa944aa7048878d9e25c1, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dcdecc013afa944aa7048878d9e25c1, type: 3}
 --- !u!4 &3410426080494217180 stripped
 Transform:
