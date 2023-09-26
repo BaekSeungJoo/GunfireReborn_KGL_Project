@@ -12,7 +12,7 @@ public class FrontSet : MonoBehaviour
     {
         camera = Camera.main;
         //camera = FindObjectOfType<CinemachineVirtualCamera>();
-        gameObject.transform.position = new Vector3 (camera.transform.position.x+0.25f , camera.transform.position.y-1.3f, camera.transform.position.z+0.25f);
+        gameObject.transform.position = new Vector3 (camera.transform.position.x+0.27f , camera.transform.position.y-1.3f, camera.transform.position.z+0.2f);
     }
 
     // Update is called once per frame

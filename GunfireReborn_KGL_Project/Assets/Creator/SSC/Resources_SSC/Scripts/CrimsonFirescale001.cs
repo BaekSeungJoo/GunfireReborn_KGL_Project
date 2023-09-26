@@ -61,7 +61,7 @@ public class CrimsonFirescale001 : MonoBehaviour
         //shoot = FindObjectOfType<PlayerAttack>();
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
         fireSound = GetComponent<AudioSource>();
-        reloadTime = new WaitForSeconds(1.1f);
+        reloadTime = new WaitForSeconds(2f);
 
         // { 갖고있는 전체 총알, 현재 탄창 총알 텍스트 띄우기
         ammoRemain = maxAmmoRemain;

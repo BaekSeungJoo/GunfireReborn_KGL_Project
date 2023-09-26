@@ -7,6 +7,8 @@ using Photon.Pun;
 
 public class PlayerMove : MonoBehaviourPun
 {
+    private MainUI mainUI;
+    
 
     [SerializeField]
     private float walkSpeed;
@@ -28,6 +30,7 @@ public class PlayerMove : MonoBehaviourPun
     float _moveDirZ = default;
     void Start()
     {
+        mainUI = GameObject.Find("MainUICanvas").GetComponent<MainUI>();
         animator = GetComponent<Animator>();
         capsuleCollider = GetComponent<CapsuleCollider>(); 
         playerRB = GetComponent<Rigidbody>();
@@ -99,6 +102,9 @@ public class PlayerMove : MonoBehaviourPun
                 playerRB.velocity = dashDirection * dashSpeed;
                 Invoke("StopDash", 0.1f);
             }
+
+            mainUI.CountDashCoolTime();
+            StartCoroutine(mainUI.DashEffect());
         }
     }
 

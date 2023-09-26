@@ -2510,7 +2510,6 @@ GameObject:
   - component: {fileID: 3885324279550774250}
   - component: {fileID: 5557776142449692872}
   - component: {fileID: 5557776142449692875}
-  - component: {fileID: 5557776142449692874}
   - component: {fileID: 5557776142449693492}
   - component: {fileID: 5557776142449693494}
   - component: {fileID: 5557776142449693488}
@@ -2523,6 +2522,7 @@ GameObject:
   - component: {fileID: 6230649519481049982}
   - component: {fileID: 5615440747042247291}
   - component: {fileID: 2246413899918070481}
+  - component: {fileID: 5041871744390851933}
   m_Layer: 0
   m_Name: Player_SSC001
   m_TagString: Player
@@ -2636,21 +2636,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
---- !u!114 &5557776142449692874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5557776142449693491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bbb314abfa97b04896a75c3e672e03d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isShoot: 0
-  useSkill: 0
-  isShootPistol: 0
 --- !u!114 &5557776142449693492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2891,6 +2876,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f1f9aebd6ee3c241be1c296b05a1e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5041871744390851933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5557776142449693491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88512494060829f42bd0c876ea13a629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopScripts: []
 --- !u!1 &5557776142449693493
 GameObject:
   m_ObjectHideFlags: 0

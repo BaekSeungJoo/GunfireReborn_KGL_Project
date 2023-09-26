@@ -43,7 +43,7 @@ public class Pistol001 : MonoBehaviourPun
         cam = FindObjectOfType<CinemachineVirtualCamera>();
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
         fireSound = GetComponent<AudioSource>();
-        reloadTime = new WaitForSeconds(0.7f);
+        reloadTime = new WaitForSeconds(2f);
 
         magAmmo = magCapacity;
         state = State.READY;
