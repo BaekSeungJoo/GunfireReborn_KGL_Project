@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/GlobalAsset/MainScene/TestScene.unity
+    guid: d7e42e6a4b0c54d47b69c6a77ec0a208
   - enabled: 1
     path: Assets/Creator/PSY/Script/Scenes/TitleScene_PSY.unity
     guid: 0c65814705b6aa140951d606e06410ec

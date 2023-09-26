@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -107,6 +108,20 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
             ik.enabled = false;
         }
     }
+
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.IsWriting)
+    //    {
+    //        stream.SendNext(recoveryBar);
+    //        stream.SendNext(state);
+    //    }
+    //    else
+    //    {
+    //        recoveryBar.fillAmount = (float)stream.ReceiveNext();
+    //        state = (State)stream.ReceiveNext();
+    //    }
+    //}
 
     #region 피격함수
     //player가 공격받았을때 원격 프로시저 콜 함수
