@@ -30,12 +30,6 @@ public class FrontIK1 : MonoBehaviour
             ChangeIK("Pistol");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnAnimatorIK(int layerIndex)
     {
             //왼손 조절하는코드

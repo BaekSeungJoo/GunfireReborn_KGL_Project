@@ -9,11 +9,6 @@ public class Reload : MonoBehaviour
     public GameObject playerGun;
     public Transform weaponPosition;
     private bool isReloading;
-
-    private void Start()
-    {
-       
-    }
     private void Update()
     {
         if (Input.GetButtonDown("Reload") && !isReloading)
