@@ -6,6 +6,11 @@ using Photon.Pun;
 
 public class GoNextStage_Map2 : MonoBehaviourPun
 {
+    private LoadingManager loadingManager;
+    private void Awake()
+    {
+        loadingManager = GameObject.Find("@Managers").GetComponent<LoadingManager>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
@@ -49,6 +54,7 @@ public class GoNextStage_Map2 : MonoBehaviourPun
             { players[i].transform.position = new Vector3(-6, -4, 27); }
         }
 
-        SceneManager.LoadScene("Main_Map_02");
+        //SceneManager.LoadScene("Main_Map_02");
+        SceneManager.LoadScene("Main_LoadingScene");
     }
 }
