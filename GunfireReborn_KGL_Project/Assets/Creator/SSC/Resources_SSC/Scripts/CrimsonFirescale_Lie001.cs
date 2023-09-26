@@ -70,7 +70,7 @@ public class CrimsonFirescale_Lie001 : MonoBehaviourPun, IPunObservable
     {
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
         fireSound = GetComponent<AudioSource>();
-        reloadTime = new WaitForSeconds(1.1f);
+        reloadTime = new WaitForSeconds(2f);
         ammoRemain = maxAmmoRemain;
         magAmmo = magCapacity;
 

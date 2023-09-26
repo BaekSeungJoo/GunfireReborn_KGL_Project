@@ -11,10 +11,10 @@ public class LoadingManager : MonoBehaviour
     public List<Sprite> loadingList = new List<Sprite>();
     public List<string> loadingTipList = new List<string>();
     public Image loadingImage;
-    public TextMeshProUGUI loadingTipText; 
-    public Image loadingBar; 
-   
-    private float[] fill = new float[3]{ 0.06f, 0.52f, 1f };
+    public TextMeshProUGUI loadingTipText;
+    public Image loadingBar;
+
+    private float[] fill = new float[3] { 0.06f, 0.52f, 1f };
 
     private void Awake()
     {

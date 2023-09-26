@@ -46,7 +46,7 @@ public class Pistol_Lie001 : MonoBehaviourPun, IPunObservable
         }
 
         fireSound = GetComponent<AudioSource>();
-        reloadTime = new WaitForSeconds(0.7f);
+        reloadTime = new WaitForSeconds(2f);
         magAmmo = magCapacity;
         state = State.READY;
     }

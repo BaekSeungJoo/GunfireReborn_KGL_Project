@@ -11,6 +11,8 @@ public class TestSceneManager : MonoBehaviourPunCallbacks
 {
     private string gameVersion = "3"; //게임버젼
 
+    private int count = 0;
+
     private void Start()
     {
         #region Photon : 게임 실행과 동시에 마스터 서버 접속 시도
@@ -72,18 +74,64 @@ public class TestSceneManager : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnJoinedRoom()
     {
-        StartCoroutine(LoadScene());
+        if ( count == 0 )
+        {
+            StartCoroutine(LoadSceneMap01());
+            count++;
+        }
+        else if ( count == 1 )
+        {
+            StartCoroutine(LoadSceneMap02());
+            count++;
+        }
+        else if ( count == 2 )
+        {
+            StartCoroutine(LoadSceneMap03());
+        }
+        
     }
     #endregion
 
     #region 비동기 로딩
     /// <summary>
-    /// 비동기 로딩 함수
+    /// 비동기 로딩 함수 ( Map 01 )
     /// </summary>
-    private IEnumerator LoadScene()
+    private IEnumerator LoadSceneMap01()
     {
         // "Map_01_PSY" 씬을 비동기 작업으로 로드한다.
-        AsyncOperation operation = SceneManager.LoadSceneAsync("Map_01_PSY");  
+        AsyncOperation operation = SceneManager.LoadSceneAsync("Main_Map_01");
+        operation.allowSceneActivation = false;  // 씬을 로드하는데 준비가 안됨.
+
+        while (!operation.isDone && operation.allowSceneActivation == false)  // 씬의 로드가 끝날 때까지 반복
+        {
+            yield return new WaitForSeconds(3f);    // 실제 시간 3초 딜레이를 준다.
+
+            operation.allowSceneActivation = true;  // 씬 로드의 준비를 끝낸다.
+        }
+    }
+
+    /// <summary>
+    /// 비동기 로딩 함수 ( Map 02 )
+    /// </summary>
+    private IEnumerator LoadSceneMap02()
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync("Main_Map_02");
+        operation.allowSceneActivation = false;  // 씬을 로드하는데 준비가 안됨.
+
+        while (!operation.isDone && operation.allowSceneActivation == false)  // 씬의 로드가 끝날 때까지 반복
+        {
+            yield return new WaitForSeconds(3f);    // 실제 시간 3초 딜레이를 준다.
+
+            operation.allowSceneActivation = true;  // 씬 로드의 준비를 끝낸다.
+        }
+    }
+
+    /// <summary>
+    /// 비동기 로딩 함수 ( Map 03 )
+    /// </summary>
+    private IEnumerator LoadSceneMap03()
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync("Main_Map_03");
         operation.allowSceneActivation = false;  // 씬을 로드하는데 준비가 안됨.
 
         while (!operation.isDone && operation.allowSceneActivation == false)  // 씬의 로드가 끝날 때까지 반복

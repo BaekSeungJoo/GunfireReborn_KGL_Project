@@ -29,10 +29,10 @@ public class PlayerTest : MonoBehaviour
     }
     private void Update()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        //float h = Input.GetAxis("Horizontal");
+        //float v = Input.GetAxis("Vertical");
 
-        transform.position += Time.deltaTime * speed * new Vector3(h, 0f, v);
+        //transform.position += Time.deltaTime * speed * new Vector3(h, 0f, v);
 
         if (isShop && Input.GetKeyDown(KeyCode.F))
         {

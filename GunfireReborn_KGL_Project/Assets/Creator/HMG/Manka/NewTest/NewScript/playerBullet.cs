@@ -43,7 +43,6 @@ public class playerBullet : MonoBehaviourPun
         }
 
         // 일정거리 이상 들어가면 비활성화
-        // 홍한범 왔다감
         if (other.CompareTag("Coin"))
         {
             if (Vector3.Distance(transform.position, other.transform.position) < activeFalseDistance)

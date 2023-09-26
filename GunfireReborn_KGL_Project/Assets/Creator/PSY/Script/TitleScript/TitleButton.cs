@@ -52,7 +52,7 @@ public class TitleButton : MonoBehaviour , IPointerEnterHandler , IPointerExitHa
         } 
         else
         {
-            SceneManager.LoadScene("LoadingScene_PSY");  
+            SceneManager.LoadScene("Main_LoadingScene");  
         }
     }
     #endregion
