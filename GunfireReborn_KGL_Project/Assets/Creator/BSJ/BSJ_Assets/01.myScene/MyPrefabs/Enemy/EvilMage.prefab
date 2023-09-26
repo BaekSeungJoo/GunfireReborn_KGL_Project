@@ -1223,7 +1223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b5c27fe7067f649ae3d05d7a372d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 10
   curHealth: 0
   hpbar: {fileID: 7008159935035415208}
 --- !u!114 &2397602918060013459

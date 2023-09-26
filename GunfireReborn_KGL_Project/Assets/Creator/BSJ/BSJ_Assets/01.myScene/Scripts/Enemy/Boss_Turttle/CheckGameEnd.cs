@@ -8,17 +8,21 @@ public class CheckGameEnd : MonoBehaviour
     public bool isGameEnd = false;
     public GameObject gameEndDoor;
     public GameObject clearText;
-    public GameObject volcanoImage;
+    public GameObject volcano;
+
+    public EnemyHealth boss_Health;
 
     public void Update()
     {
+        if (boss_Health != null && boss_Health.curHealth <= 0) { isGameEnd = true; }
+
         if (!isGameEnd) { return; }
 
         else if (isGameEnd) 
         { 
             gameEndDoor.SetActive(true);
             clearText.SetActive(true);
-            volcanoImage.SetActive(false);
+            volcano.SetActive(false);
         }
     }
 }

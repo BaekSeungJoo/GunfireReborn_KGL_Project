@@ -25,7 +25,7 @@ public class LastWaveClear : MonoBehaviourPun
 
         if (waveClear)
         {
-            nextSceneDoor.SetActive(false);
+            nextSceneDoor.SetActive(true);
         }
     }
 

@@ -770,7 +770,7 @@ MonoBehaviour:
   soundEffect: {fileID: 8300000, guid: 1b35b436feaea1c4d8311b9772f89297, type: 3}
   audioSource: {fileID: 0}
   normalAttackEffect: {fileID: 0}
-  damage: 50
+  damage: 20
   gatherEnergyVFX: {fileID: 41477259}
   gatherEnergyVFX2: {fileID: 213710209}
   energyShotVFX: {fileID: 1709751703}

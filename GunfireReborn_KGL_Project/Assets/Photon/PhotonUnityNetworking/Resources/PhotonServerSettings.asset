@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: 5a564498-8a4d-4d48-ba8a-dc522295e831
+    AppIdRealtime: b3c58011-fa94-4734-8fa1-5363050c890c
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
@@ -113,6 +113,7 @@ MonoBehaviour:
   - TrueWeapons
   - TurnStateGroggy
   - UpdateRecoveryBar
+  - CheckTriggerEnter
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
