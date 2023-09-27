@@ -17,6 +17,8 @@ public class LoadingManager : MonoBehaviourPun
 
     private float[] fill = new float[3] { 0.06f, 0.52f, 1f };
 
+    private GameObject UIcam;
+
     private void Awake()
     {
         int randCount = UnityEngine.Random.Range(0, fill.Length);
@@ -38,6 +40,9 @@ public class LoadingManager : MonoBehaviourPun
         loadingImage.sprite = loadingList[randImageNum];
         loadingTipText.text = loadingTipList[randTextNum];
         // } 랜덤으로 로딩 이미지 및 텍스트를 출력한다.
+
+        // UI Camera 꺼줌 ( 백승주 추가 코드 )
+        UIcam = GameObject.Find("UI Camera");
     }
 
     private void Start()
@@ -58,8 +63,9 @@ public class LoadingManager : MonoBehaviourPun
     /// </summary>
     public IEnumerator LoadSceneMap( string sceneName )
     {
-        // 씬 전환하기 전에 메시지 큐 일시 중지
+        // 씬 전환하기 전에 메시지 큐 일시 중지 (백승주 추가 코드) + Ui cam 끄기
         PhotonNetwork.IsMessageQueueRunning = false;
+        UIcam?.SetActive(false);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         operation.allowSceneActivation = false;  // 씬을 로드하는데 준비가 안됨.
@@ -70,8 +76,9 @@ public class LoadingManager : MonoBehaviourPun
 
             operation.allowSceneActivation = true;  // 씬 로드의 준비를 끝낸다.
 
-            // 씬 로드가 완료되면 메시지 큐 다시 시작
+            // 씬 로드가 완료되면 메시지 큐 다시 시작 (백승주 추가 코드) + Ui cam 켜기
             PhotonNetwork.IsMessageQueueRunning = true;
+            UIcam?.SetActive(true);
         }
     }
     #endregion

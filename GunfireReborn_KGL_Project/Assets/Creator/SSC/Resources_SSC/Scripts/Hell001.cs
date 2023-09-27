@@ -77,6 +77,7 @@ public class Hell001 : MonoBehaviour
     {
         cam = FindObjectOfType<CinemachineVirtualCamera>();
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
+        BlackSmith = GameObject.Find("BlackSmithCanvas");
         fireSound = GetComponent<AudioSource>();
         reloadingTime = new WaitForSeconds(1.0f);
         attackSpeed = new WaitForSeconds(0.75f);
@@ -111,7 +112,7 @@ public class Hell001 : MonoBehaviour
         bulletFill.fillAmount = (float)bulletInfo.remainBBullet / (float)bulletInfo.maxBBullet;
         BulletText.text = magAmmo + " / " + bulletInfo.remainBBullet;
 
-        if (BlackSmith.activeSelf)
+        if (BlackSmith != null && BlackSmith.activeSelf)
         {
             return;
         }

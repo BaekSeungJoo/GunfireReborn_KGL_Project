@@ -491,6 +491,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2693156028362872176}
+  - component: {fileID: 1490659527}
+  - component: {fileID: 1490659528}
   m_Layer: 0
   m_Name: WeaponPosition
   m_TagString: Untagged
@@ -516,6 +518,41 @@ Transform:
   m_Father: {fileID: 2693156029863272326}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1490659527
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2693156028362872177}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1490659528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2693156028362872177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62de680ceb6793541b77220611a088c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxNBullet: 675
+  remainNBullet: 0
+  maxBBullet: 160
+  remainBBullet: 10
+  Normal: {fileID: 0}
+  NormalBulletText: {fileID: 0}
+  Large: {fileID: 0}
+  LargeBulletText: {fileID: 0}
+  Special: {fileID: 0}
+  SpecialBulletText: {fileID: 0}
 --- !u!1 &2693156028367143661
 GameObject:
   m_ObjectHideFlags: 0
@@ -5819,9 +5856,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FrontweaponPosition: {fileID: 2693156028362872176}
   FrontWeaponChilds:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2241404729600619621}
+  - {fileID: 9060864736962062377}
+  - {fileID: 3394379205005307679}
   p_HandLeft: {fileID: 0}
   p_HandRight: {fileID: 0}
   IKAnimator: {fileID: 0}
@@ -7505,6 +7542,10 @@ MonoBehaviour:
   Hell_Shot: {fileID: 8300000, guid: 2eb64a9dabf2c674abe1ce7b3721b74d, type: 3}
   Hell_Reload: {fileID: 8300000, guid: 8ab9c8ef1da12c04fa00e0ab2dbb79b5, type: 3}
   EmptyMagAmmo: {fileID: 8300000, guid: 5dbebabca24b9ac4796a28342090972b, type: 3}
+  BBullet: {fileID: 0}
+  BBulletBack: {fileID: 0}
+  BulletText: {fileID: 0}
+  BlackSmith: {fileID: 0}
 --- !u!1001 &2693156028677230738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7628,6 +7669,11 @@ PrefabInstance:
 --- !u!4 &8571890319288496787 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6022856380699828737, guid: 34443c5ee24e4514ba72f38c315149bc, type: 3}
+  m_PrefabInstance: {fileID: 2693156028677230738}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9060864736962062377 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6403744129016051899, guid: 34443c5ee24e4514ba72f38c315149bc, type: 3}
   m_PrefabInstance: {fileID: 2693156028677230738}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2693156028790538240
@@ -7809,3 +7855,6 @@ MonoBehaviour:
   attackSpeed: 1
   magCapacity: 9
   magAmmo: 0
+  NBullet: {fileID: 0}
+  BulletText: {fileID: 0}
+  BlackSmith: {fileID: 0}

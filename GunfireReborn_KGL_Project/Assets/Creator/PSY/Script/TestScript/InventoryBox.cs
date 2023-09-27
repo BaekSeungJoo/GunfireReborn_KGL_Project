@@ -20,9 +20,12 @@ public class InventoryBox : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
     private int itemCount = 0;
 
+    private playerBullet playerBullet;
+    private playerHp playerHp;
+
     public ItemData ItemData { get { return itemData; } }  // ItemData 프로퍼티
 
-    private void Start()
+    private void Awake()
     {
         uiManager = GameObject.Find("@Managers").GetComponent<UIManager>();
 
@@ -31,6 +34,8 @@ public class InventoryBox : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         itemCountText = transform.Find("ItemCount").GetComponent<TextMeshProUGUI>();
         inventoryBoxOutLine = GetComponent<Outline>();
         inventoryBoxSize = GetComponent<Transform>();
+        playerBullet = GameObject.Find("Main Camera/unitychan_SSC001/WeaponPosition").GetComponent<playerBullet>();
+        playerHp = GetComponent<playerHp>();
 
         inventoryBoxOutLine.enabled = false;
         inventoryBoxSize.localScale = new Vector3(1.0f, 1.0f, 1.0f);
@@ -40,18 +45,49 @@ public class InventoryBox : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
     public void OnPointerClick(PointerEventData eventData)
     {
+
+        //if (itemData.name == "툭수탄")
+        //{
+
+        //}
+
+        //if (itemData.name == "일반탄")
+        //{
+        //    playerBullet.remainNBullet += 90;
+        //}
+
+        //if (itemData.name == "탄약 보급")
+        //{
+        //    playerBullet.remainBBullet += 30;
+        //    playerBullet.remainNBullet += 90;
+        //}
+
+        //if (itemData.name == "신기한 만두")
+        //{
+        //    playerHp.curHealth += 30;
+        //}
+
         if (itemData == null)
         {
             return;
         }
 
+        // { "신기한 만두", "탄약 보급", "특수탄", "대형탄", "일반탄" };
+        if ( ItemData.index == 4  )
+        {
+            playerBullet.remainNBullet += 90;
+
+            Debug.Log(playerBullet.remainNBullet);
+        }
+
         SetItemCount(-1);  // 인벤토리에서 해당 아이템을 클릭하면 갯수가 감소한다.
         SetItemImage();
 
-        if ( itemCount <= 0 )
+        if (itemCount <= 0)
         {
             itemData = null;
         }
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)

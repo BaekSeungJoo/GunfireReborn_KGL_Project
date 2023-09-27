@@ -76,6 +76,7 @@ public class CrimsonFirescale001 : MonoBehaviour
 
         //shoot = FindObjectOfType<PlayerAttack>();
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
+        BlackSmith = GameObject.Find("BlackSmithCanvas");
         fireSound = GetComponent<AudioSource>();
         reloadTime = new WaitForSeconds(2f);
         state = State.READY;        
@@ -102,7 +103,7 @@ public class CrimsonFirescale001 : MonoBehaviour
         NbulletFill.fillAmount = (float)bulletInfo.remainNBullet / (float)bulletInfo.maxNBullet;
         BulletText.text = magAmmo + " / " + bulletInfo.remainNBullet;
 
-        if (BlackSmith.activeSelf)
+        if (BlackSmith != null && BlackSmith.activeSelf)
         {
             return;
         }

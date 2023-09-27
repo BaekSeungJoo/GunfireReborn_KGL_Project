@@ -2967,6 +2967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5712475bda8d9c24fba5245e80797ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curHealth: 0
   isturnGroggy: 0
   isturnPlay: 0
   weapon: {fileID: 3885324279519377923}

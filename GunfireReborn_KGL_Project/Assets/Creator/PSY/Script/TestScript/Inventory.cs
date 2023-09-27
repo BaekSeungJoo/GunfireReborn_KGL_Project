@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour
     public ItemDataManager ItemDataManager { get { return itemDataManager; } }  // ItemDataManager 프로퍼티
     #endregion
 
-    private void Start()
+    private void Awake()
     {
         #region F 스왑
         weaponBoxes = GetComponentsInChildren<WeaponBox>();  // 현재 스크립트를 가진 오브젝트의 모든 자식 오브젝트 중에서
@@ -30,7 +30,7 @@ public class Inventory : MonoBehaviour
 
         itemDataManager = GameObject.Find("@Managers").GetComponent<ItemDataManager>();
         shopManager = GameObject.Find("@Managers").GetComponent<ShopManager>();
-
+        
         // ToList() : 배열을 리스트로 바꿔준다.
         inventoryBoxes = GameObject.Find("ItemInventoryFrame/ItemBoxGroup").GetComponentsInChildren<InventoryBox>().ToList();
     }

@@ -52,6 +52,7 @@ public class Pistol001 : MonoBehaviourPun
     {
         cam = FindObjectOfType<CinemachineVirtualCamera>();
         muzzle = transform.Find("Muzzle").GetComponentInChildren<Transform>();
+        BlackSmith = GameObject.Find("BlackSmithCanvas");
         fireSound = GetComponent<AudioSource>();
         reloadTime = new WaitForSeconds(2f);
 
@@ -78,7 +79,7 @@ public class Pistol001 : MonoBehaviourPun
             return;
         }
 
-        if(BlackSmith.activeSelf)
+        if(BlackSmith != null && BlackSmith.activeSelf)
         {
             return;
         }

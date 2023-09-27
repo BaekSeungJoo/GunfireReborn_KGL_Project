@@ -10,7 +10,7 @@ using Photon.Pun.UtilityScripts;
 public class playerHp : MonoBehaviourPun //,IPunObservable
 {
     private int maxHealth;       //최대HP
-    private int curHealth;       //현재HP
+    public int curHealth;       //현재HP
     private int maxShield;       //최대shield;
     private float curShield;       //현재shield;
 

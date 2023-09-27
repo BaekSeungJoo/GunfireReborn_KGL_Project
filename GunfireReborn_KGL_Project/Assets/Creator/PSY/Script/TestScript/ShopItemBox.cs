@@ -26,6 +26,10 @@ public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private Image itemImage;
 
+    public ItemData ItemData { get { return itemData; } }  // ItemData 프로퍼티
+
+    private PlayerGold gold;
+
     private void Start()
     {
         mine = this;
@@ -43,7 +47,9 @@ public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         itemImage = transform.GetChild(0).GetChild(2).GetComponent<Image>();
 
-        itemData = shopManager.itemDataManager.ItemList[transform.GetSiblingIndex()];      
+        itemData = shopManager.itemDataManager.ItemList[transform.GetSiblingIndex()];     
+        
+        gold = GameObject.Find("Cinemachine").transform.parent.gameObject.GetComponent<PlayerGold>();
     }
     private void OnEnable()  // 해당 스크립트가 활성화 되는 순간에 동작하는 함수 
     {
@@ -72,8 +78,25 @@ public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     }
 
+    // 클릭 시 아이템 구매 로직 
     public void OnPointerClick(PointerEventData eventData)
     {
+        // Coin 쓸 곳 
+        if ( ItemData.index == 0 )
+        {
+            // 코인이 부족하면 if ( ) { return; }
+            if (gold.Gold <70)
+            {
+                return;
+            }
+            // 해당 인덱스 물품의 가격만큼 코인
+            
+
+            Debug.Log("삼");
+        }
+
+        
+
         logText.transform.parent.gameObject.SetActive(true);
 
         string styledItemName = $"<color=#FFFB00><size=28>" +
@@ -89,10 +112,7 @@ public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         mine.enabled = false;
 
-        // TODO: 구매한 아이템을 인벤토리에 추가한다.
-        // Weapon 스왑과 비슷
-        // shopitembox 와 inventorybox 의 공통점을 찾아라.
-        // 그 공통점을 발견했을 때 그 공통점을 인벤토리 박스로 옮기는 기능을 구현하면 된다.
+        // 구매한 아이템을 인벤토리에 추가한다.
         shopManager.Inventory.Trade(itemData);
 
         Invoke("SetActiveLogText", 1.5f);
