@@ -24,8 +24,11 @@ public class Inventory : MonoBehaviour
                                                              // WeaponBox 클래스를 가진 자식들을 모두 가져오는 함수이다.
 
         /* 스왑할 무기 데이터 */
-        weaponBoxes[0].SetData(new WeaponData("스나이퍼 +2", 20, 40, 60, "특수탄", "총의 정보입니다.", "사용 중"));
-        weaponBoxes[1].SetData(new WeaponData("라이플 +4", 30, 60, 90, "특수탄2", "총의 정보입니다!", ""));
+        //weaponBoxes[0].SetData(new WeaponData("스나이퍼 +2", 20, 40, 60, "특수탄", "총의 정보입니다.", "사용 중"));
+        //weaponBoxes[1].SetData(new WeaponData("라이플 +4", 30, 60, 90, "특수탄2", "총의 정보입니다!", ""));
+
+        weaponBoxes[0].SetData(new WeaponData("", 0, 0, 0, "", "총의 정보입니다.", "사용 중"));
+        weaponBoxes[1].SetData(new WeaponData("", 0, 0, 0, "", "총의 정보입니다.", ""));
         #endregion
 
         itemDataManager = GameObject.Find("@Managers").GetComponent<ItemDataManager>();

@@ -27,10 +27,10 @@ public class BlackSmithUI : MonoBehaviour
     public Image weaponImage3;                      // 2슬롯불꽃비늘웨폰이미지
     public Image weaponImage4;                      // 2술롯지옥웨폰이미지
 
-    public Image bulletImage1;                      // 1슬롯 특수탄이미지
+    public Image bulletImage1;                      // 1슬롯 일반탄이미지
     public Image bulletImage2;                      // 1슬롯 대형탄이미지
 
-    public Image bulletImage3;                      // 2슬롯 특수탄이미지
+    public Image bulletImage3;                      // 2슬롯 일반탄이미지
     public Image bulletImage4;                      // 2슬롯 대형탄이미지
 
     public TextMeshProUGUI bulletText1;             // 1슬롯 총알 Text
@@ -110,9 +110,27 @@ public class BlackSmithUI : MonoBehaviour
         {
             slot1Weapon = weapon.slotWeapons[0];
         }
+        else
+        {
+            weaponName1.text = "";
+            weaponImage1.gameObject.SetActive(false);
+            weaponImage2.gameObject.SetActive(false);
+            bulletImage1.gameObject.SetActive(false);
+            bulletImage2.gameObject.SetActive(false);
+            bulletText1.text = "";
+        }
         if (weapon.slotWeapons[1] != null)
         {
             slot2Weapon = weapon.slotWeapons[1];
+        }
+        else
+        {
+            weaponName2.text = "";
+            weaponImage3.gameObject.SetActive(false);
+            weaponImage4.gameObject.SetActive(false);
+            bulletImage3.gameObject.SetActive(false);
+            bulletImage4.gameObject.SetActive(false);
+            bulletText2.text = "";
         }
     }
     #endregion
@@ -125,9 +143,11 @@ public class BlackSmithUI : MonoBehaviour
         {
             weaponName1.text = "불꽃 비늘 " + "(" + UpgradeManager.up_Instance.rifleUp +"강)";
             weaponAmmoCount1.text = "탄창용량 30";
-            bulletText1.text = "특수탄";
+            bulletText1.text = "일반탄";
             weaponInfo1.text = "◆ 라이플입니다.";
             weaponDamage1.text = "기초 대미지 " + (UpgradeManager.up_Instance.rifleDamage).ToString();
+            weaponImage1.gameObject.SetActive(true);
+            bulletImage1.gameObject.SetActive(true);
         }
         else if (slot1Weapon == "Shotgun")
         {
@@ -136,16 +156,19 @@ public class BlackSmithUI : MonoBehaviour
             bulletText1.text = "대형탄";
             weaponInfo1.text = "◆ 샷건입니다.";
             weaponDamage1.text = "기초 대미지 " + (UpgradeManager.up_Instance.shotgunDamage).ToString();
-
+            weaponImage2.gameObject.SetActive(true);
+            bulletImage2.gameObject.SetActive(true);
         }
         //슬롯2웨폰무기이름텍스트 업데이트
         if (slot2Weapon == "CrimsonFirescale")
         {
             weaponName2.text = "불꽃 비늘 " + "(" + UpgradeManager.up_Instance.rifleUp + "강)"; ;
             weaponAmmoCount2.text = "탄창용량 30";
-            bulletText2.text = "특수탄";
+            bulletText2.text = "일반탄";
             weaponInfo2.text = "◆ 라이플입니다.";
             weaponDamage2.text = "기초 대미지  " + (UpgradeManager.up_Instance.rifleDamage).ToString();
+            weaponImage3.gameObject.SetActive(true);
+            bulletImage3.gameObject.SetActive(true);
         }
         else if (slot2Weapon == "Shotgun")
         {
@@ -154,6 +177,8 @@ public class BlackSmithUI : MonoBehaviour
             bulletText2.text = "대형탄";
             weaponInfo2.text = "◆ 샷건입니다.";
             weaponDamage2.text = "기초 대미지 " + (UpgradeManager.up_Instance.shotgunDamage).ToString();
+            weaponImage4.gameObject.SetActive(true);
+            bulletImage4.gameObject.SetActive(true);
         }
     }
 

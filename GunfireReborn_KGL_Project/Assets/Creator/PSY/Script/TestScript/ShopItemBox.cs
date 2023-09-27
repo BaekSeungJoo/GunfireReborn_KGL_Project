@@ -49,7 +49,7 @@ public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         itemData = shopManager.itemDataManager.ItemList[transform.GetSiblingIndex()];     
         
-        gold = GameObject.Find("Cinemachine").transform.parent.gameObject.GetComponent<PlayerGold>();
+       
     }
     private void OnEnable()  // 해당 스크립트가 활성화 되는 순간에 동작하는 함수 
     {
@@ -81,6 +81,8 @@ public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     // 클릭 시 아이템 구매 로직 
     public void OnPointerClick(PointerEventData eventData)
     {
+        // { "신기한 만두", "탄약 보급", "특수탄", "대형탄", "일반탄" };
+        gold = GameObject.Find("Cinemachine").transform.parent.gameObject.GetComponent<PlayerGold>();
         // Coin 쓸 곳 
         if ( ItemData.index == 0 )
         {
@@ -90,13 +92,44 @@ public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 return;
             }
             // 해당 인덱스 물품의 가격만큼 코인
-            
+            gold.Gold -= 70;
+        }
+        if (ItemData.index == 1)
+        {
+            // 코인이 부족하면 if ( ) { return; }
+            if (gold.Gold < 70)
+            {
+                return;
+            }
+            // 해당 인덱스 물품의 가격만큼 코인
+            gold.Gold -= 70;
 
             Debug.Log("삼");
         }
+        if (ItemData.index == 2)
+        {
+            // 코인이 부족하면 if ( ) { return; }
+            if (gold.Gold < 70)
+            {
+                return;
+            }
+            // 해당 인덱스 물품의 가격만큼 코인
+            gold.Gold -= 70;
 
-        
+            Debug.Log("삼");
+        }
+        if (ItemData.index == 3)
+        {
+            // 코인이 부족하면 if ( ) { return; }
+            if (gold.Gold < 70)
+            {
+                return;
+            }
+            // 해당 인덱스 물품의 가격만큼 코인
+            gold.Gold -= 70;
 
+            Debug.Log("삼");
+        }
         logText.transform.parent.gameObject.SetActive(true);
 
         string styledItemName = $"<color=#FFFB00><size=28>" +

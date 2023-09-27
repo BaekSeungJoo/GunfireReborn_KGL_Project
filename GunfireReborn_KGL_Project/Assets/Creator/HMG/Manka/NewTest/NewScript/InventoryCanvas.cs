@@ -68,6 +68,8 @@ public class InventoryCanvas : MonoBehaviour
                 weaponAmmo1.text = "30";
                 weaponInfo1.text = "라이플입니다.";
                 weaponType1.text = "특수탄";
+                weaponTypeImage1.gameObject.SetActive(true);
+                bulletTypeImage1.gameObject.SetActive(true);
             }
             else if (weapon.slotWeapons[0] == "Shotgun")
             {
@@ -76,6 +78,8 @@ public class InventoryCanvas : MonoBehaviour
                 weaponAmmo1.text = "8";
                 weaponInfo1.text = "샷건입니다.";
                 weaponType1.text = "대형탄";
+                weaponTypeImage2.gameObject.SetActive(true);
+                bulletTypeImage2.gameObject.SetActive(true);
             }
         }
         if (weapon.slotWeapons[1] != null)
@@ -87,6 +91,8 @@ public class InventoryCanvas : MonoBehaviour
                 weaponAmmo2.text = "30";
                 weaponInfo2.text = "라이플입니다.";
                 weaponType2.text = "특수탄";
+                weaponTypeImage3.gameObject.SetActive(true);
+                bulletTypeImage3.gameObject.SetActive(true);
             }
             else if (weapon.slotWeapons[1] == "Shotgun")
             {
@@ -95,6 +101,8 @@ public class InventoryCanvas : MonoBehaviour
                 weaponAmmo2.text = "8";
                 weaponInfo2.text = "샷건입니다.";
                 weaponType2.text = "대형탄";
+                weaponTypeImage4.gameObject.SetActive(true);
+                bulletTypeImage4.gameObject.SetActive(true);
             }
         }
     }

@@ -35,7 +35,7 @@ public class InventoryBox : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         inventoryBoxOutLine = GetComponent<Outline>();
         inventoryBoxSize = GetComponent<Transform>();
         playerBullet = GameObject.Find("Main Camera/unitychan_SSC001/WeaponPosition").GetComponent<playerBullet>();
-        playerHp = GetComponent<playerHp>();
+        
 
         inventoryBoxOutLine.enabled = false;
         inventoryBoxSize.localScale = new Vector3(1.0f, 1.0f, 1.0f);
@@ -46,36 +46,37 @@ public class InventoryBox : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     public void OnPointerClick(PointerEventData eventData)
     {
 
-        //if (itemData.name == "≈ˆºˆ≈∫")
-        //{
-
-        //}
-
-        //if (itemData.name == "¿œπ›≈∫")
-        //{
-        //    playerBullet.remainNBullet += 90;
-        //}
-
-        //if (itemData.name == "≈∫æ‡ ∫∏±ﬁ")
-        //{
-        //    playerBullet.remainBBullet += 30;
-        //    playerBullet.remainNBullet += 90;
-        //}
-
-        //if (itemData.name == "Ω≈±‚«— ∏∏µŒ")
-        //{
-        //    playerHp.curHealth += 30;
-        //}
-
         if (itemData == null)
         {
             return;
         }
 
         // { "Ω≈±‚«— ∏∏µŒ", "≈∫æ‡ ∫∏±ﬁ", "∆Øºˆ≈∫", "¥Î«¸≈∫", "¿œπ›≈∫" };
+        if (ItemData.index ==0)
+        {
+            playerHp = GameObject.Find("Cinemachine").transform.parent.gameObject.GetComponent<playerHp>();
+            playerHp.curHealth += 40;
+        }
+        
+        if (ItemData.index ==1)
+        {
+
+            playerBullet.remainNBullet += 60;
+            playerBullet.remainBBullet += 30;
+        }
+        if (ItemData.index ==2)
+        {
+
+        }
+        if (ItemData.index ==3)
+        {
+            playerBullet.remainBBullet += 30;
+        }
+
+
         if ( ItemData.index == 4  )
         {
-            playerBullet.remainNBullet += 90;
+            playerBullet.remainNBullet += 60;
 
             Debug.Log(playerBullet.remainNBullet);
         }
