@@ -12,7 +12,7 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
     private int maxHealth;       //최대HP
     private int curHealth;       //현재HP
     private int maxShield;       //최대shield;
-    private int curShield;       //현재shield;
+    private float curShield;       //현재shield;
 
     public bool isturnGroggy;    //그로기상태가됐는지 확인하는변수
     public bool isturnPlay;      //플레이상태가됐는지 확인하는 변수
@@ -36,6 +36,10 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
     public bool isCure;                         //회복중임을 체크하는 변수
     private GameObject hPlayer;                 //내가 회복시키고있는 플레이어를 담을 변수
     private bool isDead;                        //죽은지 체크하는 변수
+
+    private float shieldRecharge = 10f;     //1초마다 회복될 쉴드량
+    private float shieldRechargeCool = 5f;      //쉴드회복 시작 쿨타임
+    private float rechargeTimer = 0;            //쉴드회복 타이머 초기화
 
     playerHp otherHP;
 
@@ -77,23 +81,44 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
         {
             return;
         }
+
+        // 쉴드 회복 타이머를 증가시킴
+        rechargeTimer += Time.deltaTime;
+
+        // 5초 경과 시 쉴드 회복
+        if (rechargeTimer >= shieldRechargeCool)
+        {
+            //Todo : 1초마다 쉴드 10씩 회복하게만들기
+            curShield += Time.deltaTime * shieldRecharge;
+        }
+        // 쉴드 최대값 제한
+        curShield = Mathf.Clamp(curShield, 0, maxShield); // maxShieldValue는 쉴드 최대값
+
         if (state == State.groggy)
         {   //그로기 상태에서는 죽어가는함수를 사용한다.
+            if (isturnGroggy == false)
+            {
+                roation.enabled = false;                                            // 플레이어의 로테이션을 꺼버림
+                photonView.RPC("MakeTrueRecoveryBar", RpcTarget.All);                // 큐어 바를 활성화시킴
+                isturnGroggy = true;
+            }
             photonView.RPC("GoingDead", RpcTarget.All);
         }
-        //RPC로 전해줘야하는부분
         StateUpdate();     //상태를 업데이트하는 함수,hp,shield,애니메이터파라미터,
         //RPC로 전해주지않아도된는, 전해주면안되는 부분
         if (state == State.groggy)                              // 그로기상태라면 
         {
             animator.SetBool("groggy", true);                   // 애니메이터 파라미터를 groggy로 만들어서 groggy애니메이션이 재생되게만들음
         }
-        if (state == State.play)                                                   // 플레이상태라면
+        if (state == State.play)                                // 플레이상태라면
         {
+            
             animator.SetBool("groggy", false);                  // 애니메이터 파라미터를 groggy로 만들어서 groggy애니메이션이 재생되지않게만들음
             if(isturnPlay == false)
             {
                 TurnPlay();
+                roation.enabled = true;                         // 플레이어의 로테이션을 켜버림
+                photonView.RPC("MakeFalseRecoveryBar", RpcTarget.All);               // 큐어 바를 활성화시킴
             }
             ShotRayCast();                                      // 플레이중이라면 rayCast를 쏘게만들음
         }
@@ -109,25 +134,12 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
         }
     }
 
-    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    if (stream.IsWriting)
-    //    {
-    //        stream.SendNext(recoveryBar);
-    //        stream.SendNext(state);
-    //    }
-    //    else
-    //    {
-    //        recoveryBar.fillAmount = (float)stream.ReceiveNext();
-    //        state = (State)stream.ReceiveNext();
-    //    }
-    //}
-
     #region 피격함수
     //player가 공격받았을때 원격 프로시저 콜 함수
     //[PunRPC]
     public void PlayerTakeDamage(int damage)
     {
+        
         if (PhotonNetwork.IsMasterClient)
         {
             if (curShield <= 0)
@@ -138,8 +150,8 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
             {
                 curShield -= damage;
             }
-
-            photonView.RPC("PlayerHealthUpdated", RpcTarget.All, curHealth, curShield);
+            rechargeTimer = 0;
+            photonView.RPC("PlayerHealthUpdated", RpcTarget.All, curHealth, curShield, rechargeTimer);
            
         }
         //쉴드가 남아있다면 쉴드가 까이게 하고 쉴드가 0이거나 이하라면 hp가 까이게함
@@ -156,11 +168,11 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
 
 
     [PunRPC]
-    private void PlayerHealthUpdated(int newCurHealth, int newCurShield)
+    private void PlayerHealthUpdated(int newCurHealth, float newCurShield,float rechargeTime)
     {
         curHealth = newCurHealth;
         curShield = newCurShield;
-
+        rechargeTimer = rechargeTime;
         if (curHealth <= 0)
         {
             photonView.RPC("TurnStateGroggy", RpcTarget.All);
@@ -182,13 +194,11 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
 
         if (state == State.groggy)                              // 그로기상태라면 
         {
-            roation.enabled = false;                            // 플레이어의 로테이션을 꺼버림
-            photonView.RPC("MakeTrueRecoveryBar", RpcTarget.All);                // 큐어 바를 활성화시킴
+            
         }
         else                                                    // 그로기상태가 아니라면
         {
-            roation.enabled = true;                             // 플레이어의 로테이션을 켜버림
-            photonView.RPC("MakeFalseRecoveryBar", RpcTarget.All);               // 큐어 바를 활성화시킴
+            
         }
     }
     #endregion
@@ -321,14 +331,14 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
     private void MakeTrueRecoveryBar()
     {
         recoveryBarOB.SetActive(true);
-        ik.enabled = false;
+        ik.NullIK();
     }
 
     [PunRPC]
     private void MakeFalseRecoveryBar()
     {
         recoveryBarOB.SetActive(false);
-        ik.enabled = true;
+        ik.ChangeIK("Pistol");
     }
     [PunRPC]
     private void Cure()

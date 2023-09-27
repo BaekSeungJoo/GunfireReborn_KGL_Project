@@ -51,11 +51,14 @@ public class BlackSmithUI : MonoBehaviour
         player = FindObjectOfType<CinemachineVirtualCamera>().transform.parent.gameObject;
         weapon = player.GetComponent<WeaponManager1>();
         inforceCountText.text = "잔여 강화 횟수 : 3";
-
     }
 
     private void OnEnable()
     {
+        if(weapon ==null)
+        {
+            return;
+        }
         UpdateWeapon();
         UpdateText();
     }
@@ -80,6 +83,24 @@ public class BlackSmithUI : MonoBehaviour
         {
             weaponDamage2.text = "기초 대미지 " + (UpgradeManager.up_Instance.shotgunDamage).ToString();
         }
+        
+        if(slot1Weapon == "CrimsonFirescale")
+        {
+            weaponName1.text = "불꽃 비늘 " + "(" + UpgradeManager.up_Instance.rifleUp + "강)";
+        }
+        else if (slot1Weapon =="Shotgun")
+        {
+            weaponName1.text = "지 옥 " + "(" + UpgradeManager.up_Instance.shotgunUp + "강)";
+        }
+
+        if(slot2Weapon == "CrimsonFirescale")
+        {
+            weaponName2.text = "불꽃 비늘 " + "(" + UpgradeManager.up_Instance.rifleUp + "강)";
+        }
+        else if (slot2Weapon == "Shotgun")
+        {
+            weaponName2.text = "지 옥 " + "(" + UpgradeManager.up_Instance.shotgunUp + "강)";
+        }
     }
 
     #region 업데이트 웨폰
@@ -102,7 +123,7 @@ public class BlackSmithUI : MonoBehaviour
         //슬롯1웨폰무기이름, 텍스트 업데이트
         if (slot1Weapon == "CrimsonFirescale")
         {
-            weaponName1.text = "불꽃 비늘";
+            weaponName1.text = "불꽃 비늘 " + "(" + UpgradeManager.up_Instance.rifleUp +"강)";
             weaponAmmoCount1.text = "탄창용량 30";
             bulletText1.text = "특수탄";
             weaponInfo1.text = "◆ 라이플입니다.";
@@ -110,7 +131,7 @@ public class BlackSmithUI : MonoBehaviour
         }
         else if (slot1Weapon == "Shotgun")
         {
-            weaponName1.text = "지 옥";
+            weaponName1.text = "지 옥 " + "(" + UpgradeManager.up_Instance.shotgunUp + "강)";
             weaponAmmoCount1.text = "탄창용량 8";
             bulletText1.text = "대형탄";
             weaponInfo1.text = "◆ 샷건입니다.";
@@ -120,7 +141,7 @@ public class BlackSmithUI : MonoBehaviour
         //슬롯2웨폰무기이름텍스트 업데이트
         if (slot2Weapon == "CrimsonFirescale")
         {
-            weaponName2.text = "불꽃 비늘";
+            weaponName2.text = "불꽃 비늘 " + "(" + UpgradeManager.up_Instance.rifleUp + "강)"; ;
             weaponAmmoCount2.text = "탄창용량 30";
             bulletText2.text = "특수탄";
             weaponInfo2.text = "◆ 라이플입니다.";
@@ -128,7 +149,7 @@ public class BlackSmithUI : MonoBehaviour
         }
         else if (slot2Weapon == "Shotgun")
         {
-            weaponName2.text = "지 옥";
+            weaponName2.text = "지 옥 " + "(" + UpgradeManager.up_Instance.shotgunUp + "강)";
             weaponAmmoCount2.text = "탄창용량 8";
             bulletText2.text = "대형탄";
             weaponInfo2.text = "◆ 샷건입니다.";

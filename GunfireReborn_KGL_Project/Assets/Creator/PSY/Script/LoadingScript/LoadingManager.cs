@@ -5,8 +5,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class LoadingManager : MonoBehaviour
+public class LoadingManager : MonoBehaviourPun
 {
     public List<Sprite> loadingList = new List<Sprite>();
     public List<string> loadingTipList = new List<string>();
@@ -46,6 +47,7 @@ public class LoadingManager : MonoBehaviour
         {
             GameManager.instance.nowStage++;
             Debug.Log("들어옴" + GameManager.instance.nowStage);
+            
             StartCoroutine(LoadSceneMap("Main_Map_0" + GameManager.instance.nowStage));
         }
     }
@@ -56,6 +58,9 @@ public class LoadingManager : MonoBehaviour
     /// </summary>
     public IEnumerator LoadSceneMap( string sceneName )
     {
+        // 씬 전환하기 전에 메시지 큐 일시 중지
+        PhotonNetwork.IsMessageQueueRunning = false;
+
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         operation.allowSceneActivation = false;  // 씬을 로드하는데 준비가 안됨.
 
@@ -64,6 +69,9 @@ public class LoadingManager : MonoBehaviour
             yield return new WaitForSeconds(3f);    // 실제 시간 3초 딜레이를 준다.
 
             operation.allowSceneActivation = true;  // 씬 로드의 준비를 끝낸다.
+
+            // 씬 로드가 완료되면 메시지 큐 다시 시작
+            PhotonNetwork.IsMessageQueueRunning = true;
         }
     }
     #endregion

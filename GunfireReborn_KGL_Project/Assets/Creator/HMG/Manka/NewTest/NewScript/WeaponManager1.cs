@@ -25,6 +25,8 @@ public class WeaponManager1 : MonoBehaviourPun
     // Update is called once per frame
     private Animator frontAnimator;
 
+    private UpgradeManager upgradeManager;
+
 
     private void Start()
     {
@@ -43,6 +45,8 @@ public class WeaponManager1 : MonoBehaviourPun
         frontPlayer = Camera.main.transform.GetChild(0).gameObject;
 
         frontIK = frontPlayer.GetComponent<FrontIK1>();
+
+        upgradeManager = GameObject.Find("UpgradeManager").GetComponent<UpgradeManager>();
         //Todo: Equip_weapons[]배열에 존재할모든 무기들을 추가해줘야한다.
         //Equp_weapons[]배열의 무기들의 순서는 프리팹저장배열의 순서와같아야한다.
         //프리팹 저장배열이 반드시 인스펙터창에서 설정이되어있어야한다.
@@ -150,15 +154,31 @@ public class WeaponManager1 : MonoBehaviourPun
             {   //만약 두번째 슬롯이 비어있어서 장착된경우라면
                 //3번째 슬롯이 활성화된상태라면
                 //슬롯1,3은 비활성화한다.
-                ActiveSlot[2] = false;
-                ActiveSlot[0] = false;
-                //슬롯2은 활성화한다.
-                ActiveSlot[1] = true;
-                //두번째 슬롯의 아이템을 먹은 아이템으로 바꾼다.
                 weaponName = weaponName.Replace("(get)(Clone)", "");
-                slotWeapons[1] = weaponName;
-                frontAnimator.SetTrigger("Swap");
-                StartCoroutine(GetWeapon(weaponName));
+                if (SearchBeforeGetWeapon(weaponName) == 0)
+                {
+                    if (slotWeapons[0] == "CrimsonFirescale")
+                    {
+                        upgradeManager.RifleUp();
+                    }
+                    else if (slotWeapons[0] == "Shotgun")
+                    {
+                        upgradeManager.ShotgunUp();
+                    }
+                    frontAnimator.SetTrigger("Swap");
+                }
+                else
+                {
+                    ActiveSlot[2] = false;
+                    ActiveSlot[0] = false;
+                    //슬롯2은 활성화한다.
+                    ActiveSlot[1] = true;
+                    //두번째 슬롯의 아이템을 먹은 아이템으로 바꾼다.
+
+                    slotWeapons[1] = weaponName;
+                    frontAnimator.SetTrigger("Swap");
+                    StartCoroutine(GetWeapon(weaponName));
+                }
             }
             else
             {
@@ -166,8 +186,39 @@ public class WeaponManager1 : MonoBehaviourPun
                 //현재 활성화된 슬롯이 몇번슬롯인지 체크하고
                 //그슬롯의 아이템을 먹은 아이템으로 바꾼다.
                 weaponName = weaponName.Replace("(get)(Clone)", "");
-                slotWeapons[CheckActiveslot()] = weaponName;
-                frontAnimator.SetTrigger("Swap");
+                if (SearchBeforeGetWeapon(weaponName) == 0 || SearchBeforeGetWeapon(weaponName) ==1)
+                {
+                    //1,2번슬롯을 검사해서 1,2번슬롯에 이미 같은이름의 무기가 있는경우
+                    if (SearchBeforeGetWeapon(weaponName) == 0)
+                    {
+                        if (slotWeapons[0] == "CrimsonFirescale")
+                        {
+                            upgradeManager.RifleUp();
+                        }
+                        else if (slotWeapons[0] == "Shotgun")
+                        {
+                            upgradeManager.ShotgunUp();
+                        }
+                        frontAnimator.SetTrigger("Swap");
+                    }
+                    else if (SearchBeforeGetWeapon(weaponName) == 1)
+                    {
+                        if (slotWeapons[1] == "CrimsonFirescale")
+                        {
+                            upgradeManager.RifleUp();
+                        }
+                        else if (slotWeapons[1] == "Shotgun")
+                        {
+                            upgradeManager.ShotgunUp();
+                        }
+                        frontAnimator.SetTrigger("Swap");
+                    }
+                }
+                else
+                {
+                    slotWeapons[CheckActiveslot()] = weaponName;
+                    frontAnimator.SetTrigger("Swap");
+                }
             }
         }
 
@@ -274,5 +325,17 @@ public class WeaponManager1 : MonoBehaviourPun
     public void GetWeapon_SSC(string weaponName)
     {
         StartCoroutine(GetWeapon(weaponName));
+    }
+
+    private int SearchBeforeGetWeapon(string weapon)
+    {
+        for(int i=0; i<2; i++)
+        {
+            if (slotWeapons[i] == weapon)
+            {
+                return i;
+            }
+        }
+        return 99;
     }
 }

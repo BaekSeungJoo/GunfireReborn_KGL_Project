@@ -71,4 +71,17 @@ public class IK1 : MonoBehaviour
             }
         }
     }
+
+    public void NullIK()
+    {
+        // LookAt IK를 해제
+        IKAnimator.SetLookAtWeight(0);
+
+        // 왼손 IK를 해제
+        IKAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0);
+        
+        // 오른손 IK를 해제
+        IKAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
+       
+    }
 }

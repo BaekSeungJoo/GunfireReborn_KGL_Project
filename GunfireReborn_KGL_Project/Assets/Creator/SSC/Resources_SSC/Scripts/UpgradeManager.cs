@@ -26,6 +26,7 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+
     public void RifleUp()
     {
         rifleUp++;
@@ -35,6 +36,6 @@ public class UpgradeManager : MonoBehaviour
     public void ShotgunUp()
     {
         shotgunUp++;
-        shotgunDamage = shotgunDamage + (shotgunUp * 4);
+        shotgunDamage = shotgunDamage + (shotgunUp * 3);
     }
 }

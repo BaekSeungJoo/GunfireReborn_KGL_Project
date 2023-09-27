@@ -60,6 +60,8 @@ public class Inventory : MonoBehaviour
         
         a.SetData(b.data);
         b.SetData(tempData);
+
+
     }
     #endregion
 

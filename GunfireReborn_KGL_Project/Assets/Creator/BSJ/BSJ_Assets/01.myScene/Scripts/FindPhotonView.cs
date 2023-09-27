@@ -3,20 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FindPhotonView : MonoBehaviour
+public class FindPhotonView : MonoBehaviourPun
 {
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //    // PhotonView ID를 가진 PhotonView를 찾아 출력합니다.
-    //    PhotonView photonView = PhotonView.Find(82);
-    //    if (photonView != null)
-    //    {
-    //        Debug.Log("Found PhotonView ID 82 on GameObject: " + photonView.gameObject.name);
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("PhotonView ID 82 not found.");
-    //    }
-    //}
+    private void Update()
+    {
+        Debug.Log(PhotonView.Find(96));
+        Debug.Log(PhotonView.Find(120));
+        Debug.Log(PhotonView.Find(101));
+        Debug.Log(PhotonView.Find(113));
+        Debug.Log(PhotonView.Find(28));
+        Debug.Log(PhotonView.Find(81));
+        Debug.Log(PhotonView.Find(80));
+    }
 }

@@ -34,13 +34,13 @@ public class SetPlayerPosition_Map2 : MonoBehaviourPun
         for(int i = 0; i < players.Count; i++)
         {
             if(i == 0)
-            { players[i].transform.position = new Vector3(3, -4, 27); }
+            { players[i].transform.position = new Vector3(3, 0, 27); }
             else if(i == 1)
-            { players[i].transform.position = new Vector3(0, -4, 27); }
+            { players[i].transform.position = new Vector3(0, 0, 27); }
             else if(i == 2)
-            { players[i].transform.position = new Vector3(-3, -4, 27); }
+            { players[i].transform.position = new Vector3(-3, 0, 27); }
             else if(i == 3)
-            { players[i].transform.position = new Vector3(-6, -4, 27); }
+            { players[i].transform.position = new Vector3(-6, 0, 27); }
         }
     }
 }
