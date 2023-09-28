@@ -41,8 +41,12 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
     private float shieldRechargeCool = 5f;      //쉴드회복 시작 쿨타임
     private float rechargeTimer = 0;            //쉴드회복 타이머 초기화
 
-    playerHp otherHP;
+   /* private Camera Vcamera;
+    public GameObject cross;
+    public GameObject cube;*/
 
+    [SerializeField]
+    private bool activeRecoveryBar;
     public enum State
     {
         play,
@@ -55,24 +59,24 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
     {
         //초기화
         roation = GetComponent<PlayerRoation>();                                //회전스크리브 받아오기
-        hpBar = GameObject.Find("HPBar").GetComponent<Image>();              //hp바 받아오기
-        shieldBar = GameObject.Find("ShieldBar").GetComponent<Image>();      //shield바 받아오기
+        hpBar = GameObject.Find("HPBar").GetComponent<Image>();                 //hp바 받아오기
+        shieldBar = GameObject.Find("ShieldBar").GetComponent<Image>();         //shield바 받아오기
         virtualCam = FindObjectOfType<CinemachineVirtualCamera>();              //버츄얼캠 받아오기
         ik = GetComponent<IK1>();                                               //3인칭ik 받아오기
         animator = GetComponent<Animator>();                                    //내 애니메이터 받아오기
-        FPSUnityChan = Camera.main.transform.GetChild(0).gameObject;               //1인칭ik 받아오기
+        FPSUnityChan = Camera.main.transform.GetChild(0).gameObject;            //1인칭ik 받아오기
 
-        maxHealth = 100;
-        maxShield = 100;
+        maxHealth = 100;                                                        //최대 hp설정
+        maxShield = 100;                                                        //최대 shield설정
         state = State.play;                                                     //현재 상태를 play로 해놓음
         curHealth = maxHealth;                                                  //현재HP를 MAXHP로 초기화
         curShield = maxShield;                                                  //현재쉴드를 MAXShield로 초기화
-        hpBar.fillAmount = (float)curHealth / (float)maxHealth;                      //hp바의 초기화
-        shieldBar.fillAmount = (float)curShield / (float)maxShield;                  //Shield바의 초기화
+        hpBar.fillAmount = (float)curHealth / (float)maxHealth;                 //hp바의 초기화
+        shieldBar.fillAmount = (float)curShield / (float)maxShield;             //Shield바의 초기화
 
         recoveryBar.fillAmount = 1;                                             //리커버리바 1로 초기화
-        isturnGroggy = true;
-        isturnPlay = true;
+        isturnGroggy = true;                                                    //isturnGroggy true로 초기화  //state가 변할때 실행되는 함수들이 한번만 실행되게 만드는 변수들
+        isturnPlay = true;                                                      //isturnPlayr true로 초기화   //만약 true로 안해놓으면 함수들이 한번실행되서 hp가 반밖에없는 상태로 시작함.
     }
 
     private void Update()
@@ -81,7 +85,11 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
         {
             return;
         }
+        //hp와 shield 업데이트
+        shieldBar.fillAmount = (float)curShield / (float)maxShield;
+        hpBar.fillAmount = (float)curHealth / (float)maxHealth;
 
+        #region 쉴드 회복 
         // 쉴드 회복 타이머를 증가시킴
         rechargeTimer += Time.deltaTime;
 
@@ -93,45 +101,82 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
         }
         // 쉴드 최대값 제한
         curShield = Mathf.Clamp(curShield, 0, maxShield); // maxShieldValue는 쉴드 최대값
+        #endregion
+/*
+        if(activeRecoveryBar == true)
+        {
+            recoveryBarOB.SetActive(true);
+        }
+        else
+        {
+            recoveryBarOB.SetActive(false);
+        }*/
 
+
+        //그로기 상태일떄
         if (state == State.groggy)
-        {   //그로기 상태에서는 죽어가는함수를 사용한다.
+        {
+            Debug.Log("그로기냐");
+            Debug.Log(isturnGroggy);
             if (isturnGroggy == false)
             {
-                roation.enabled = false;                                            // 플레이어의 로테이션을 꺼버림
-                photonView.RPC("MakeTrueRecoveryBar", RpcTarget.All);                // 큐어 바를 활성화시킴
-                isturnGroggy = true;
+               
+                Debug.Log(isturnGroggy);
+                Debug.Log("들어오니");
+                animator.SetBool("groggy", true);                                    // 애니메이터 파라미터를 groggy로 만들어서 groggy애니메이션이 재생되게만들음
+                roation.enabled = false;                                             // 3인칭 플레이어의 로테이션을 꺼버림
+                photonView.RPC("MakeTrueRecoveryBar", RpcTarget.All);                // 큐어 바를 활성화시키고 ik를 끈다. rpc로 다른 월드도 키게만들음
+                
+                isturnGroggy = true;                                                 // isturnGroggy를 true로 만들어버려서 함수가 여러번실행되지않게함
             }
-            photonView.RPC("GoingDead", RpcTarget.All);
+
+            photonView.RPC("GoingDead",RpcTarget.MasterClient);                                                             // recoverybar의 fillamount가 점점 줄어들게 만들음
         }
-        StateUpdate();     //상태를 업데이트하는 함수,hp,shield,애니메이터파라미터,
-        //RPC로 전해주지않아도된는, 전해주면안되는 부분
-        if (state == State.groggy)                              // 그로기상태라면 
-        {
-            animator.SetBool("groggy", true);                   // 애니메이터 파라미터를 groggy로 만들어서 groggy애니메이션이 재생되게만들음
-        }
-        if (state == State.play)                                // 플레이상태라면
+        // 플레이상태라면
+        if (state == State.play)                                
         {
             
-            animator.SetBool("groggy", false);                  // 애니메이터 파라미터를 groggy로 만들어서 groggy애니메이션이 재생되지않게만들음
-            if(isturnPlay == false)
+            if (isturnPlay == false)
             {
+                animator.SetBool("groggy", false);                                   // 애니메이터 파라미터를 groggy로 만들어서 groggy애니메이션이 재생되지않게만들음
                 TurnPlay();
-                roation.enabled = true;                         // 플레이어의 로테이션을 켜버림
-                photonView.RPC("MakeFalseRecoveryBar", RpcTarget.All);               // 큐어 바를 활성화시킴
+                roation.enabled = true;                                              // 플레이어의 로테이션을 켜버림
+                photonView.RPC("MakeFalseRecoveryBar", RpcTarget.All);               // 큐어 바를 비활성화시키고 ik를 다시 활성화시킨다.
+                virtualCam.transform.parent = gameObject.transform;
+                virtualCam.transform.localPosition = Vector3.zero;
+                Debug.Log(virtualCam.transform.localPosition);
+                virtualCam.transform.localPosition = new Vector3(0f,0.8f,0.4f);
+                //virtualCam.transform.localPosition = new Vector3(0f, transform.localPosition.y + 0.8f, 0.4f);
+                Debug.Log(virtualCam.transform.localPosition);
             }
-            ShotRayCast();                                      // 플레이중이라면 rayCast를 쏘게만들음
+            ShotRayCast();                                                           // 플레이중이라면 rayCast를 쏘게만들음
         }
-        if (state == State.die)                                 // 죽은상태라면 
+
+        // 죽은상태라면 
+        if (state == State.die)                                 
         {
             if (isDead == false)
             {
-                animator.SetTrigger("Dead");                        // 죽음 애니메이션을 재생되게함
-                
+                animator.SetTrigger("Dead");                                         // 죽음 애니메이션을 재생되게함
                 isDead = true;
             }
-            ik.enabled = false;
+            ik.enabled = false;                   
         }
+    }
+
+    [PunRPC]
+    private void MakeTrueRecoveryBar()
+    {
+        Debug.Log("MakeTrue");
+        //activeRecoveryBar = true;
+        recoveryBarOB.SetActive(true);
+    }
+
+    [PunRPC]
+    private void MakeFalseRecoveryBar()
+    {
+       // activeRecoveryBar = false;
+        recoveryBarOB.SetActive(false);
     }
 
     #region 피격함수
@@ -139,7 +184,6 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
     //[PunRPC]
     public void PlayerTakeDamage(int damage)
     {
-        
         if (PhotonNetwork.IsMasterClient)
         {
             if (curShield <= 0)
@@ -152,7 +196,6 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
             }
             rechargeTimer = 0;
             photonView.RPC("PlayerHealthUpdated", RpcTarget.All, curHealth, curShield, rechargeTimer);
-           
         }
         //쉴드가 남아있다면 쉴드가 까이게 하고 쉴드가 0이거나 이하라면 hp가 까이게함
         //현재 hp가 0보다 낮게된다면 플레이어를 그로기상태로만들음
@@ -160,12 +203,7 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
         //포톤네트워크마스터 클라이언트로 쉴드와 hp를 다른월드의 내게 적용시킴
     }
     #endregion
-    [PunRPC]
-    private void TurnStateGroggy()
-    {
-        state = State.groggy;
-    }
-
+   
 
     [PunRPC]
     private void PlayerHealthUpdated(int newCurHealth, float newCurShield,float rechargeTime)
@@ -175,59 +213,28 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
         rechargeTimer = rechargeTime;
         if (curHealth <= 0)
         {
-            photonView.RPC("TurnStateGroggy", RpcTarget.All);
+            photonView.RPC("TurnTagStateGroggy", RpcTarget.All);        //태그
             isturnGroggy = false;
             isturnPlay = false;
-            Debug.Log("BeforeTurn");
             TurnGroggy();
-            Debug.Log("AfterTurn");
-            photonView.RPC("TagChangeGroggy", RpcTarget.All);
         }
     }
-
-    #region 상태업데이트함수
-    private void StateUpdate()
-    {
-
-        shieldBar.fillAmount = (float)curShield / (float)maxShield;
-        hpBar.fillAmount = (float)curHealth / (float)maxHealth;
-
-        if (state == State.groggy)                              // 그로기상태라면 
-        {
-            
-        }
-        else                                                    // 그로기상태가 아니라면
-        {
-            
-        }
-    }
-    #endregion
-    #region 무기를 비활성화하는함수
     [PunRPC]
-    private void FalseWeapons()
+    private void TurnTagStateGroggy()
     {
-        for (int i = 0; i < weapon.childCount; i++)
-        {
-            weapon.GetChild(i).gameObject.SetActive(false);
-        }
-    }
-    #endregion
-    [PunRPC]
-    private void TagChangeGroggy()
-    {
+        state = State.groggy;
         gameObject.tag = "Groggy";
     }
+
+   
     
     #region 그로기상태로 변하는 함수와, 플레이상태로 변하는 함수
     private void TurnGroggy()
     {
-        Debug.Log("Turn1");
         if(!photonView.IsMine)
         {
             return;
         }
-        Debug.Log("Turn2");
-        isturnGroggy = true;
 
         virtualCam.Follow = gameObject.transform;           // 버츄얼카메라의 Follow와 LookAt을 나로 조절해줌
         virtualCam.LookAt = gameObject.transform;           // 이걸 밖으로 빼야함 왜냐면 StateUpdate는 Rpc로 주기적으로 줘야하는데 다른월드의 나는 버츄얼카메라가 없기때문이다.
@@ -245,10 +252,11 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
         roation.enabled = false;                            // 회전스크립트를 false로 만든다.
 
         photonView.RPC("FalseWeapons", RpcTarget.All);      // 3인칭 무기 모두 false로 만들기
-        ik.enabled = false;                                 // 3인칭 ik false로 만들기
+        ik.isIk = false;                                // 3인칭 ik false로 만들기
         FPSUnityChan.SetActive(false);                      // 1인칭 유니티짱 끄기
     }
 
+   
     public void TurnPlay()
     {
         curHealth = maxHealth / 2;
@@ -258,59 +266,71 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
         virtualCam.DestroyCinemachineComponent<CinemachineOrbitalTransposer>();
         roation.enabled = true;
         virtualCam.transform.position = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.8f, transform.localPosition.z + 0.4f);
-        
+        ik.isIk = true;
+        ik.ChangeIK("Pistol");
         isturnPlay = true;
     }
     #endregion
+
+    #region 무기를 비활성화하는함수
+    [PunRPC]
+    private void FalseWeapons()
+    {
+        for (int i = 0; i < weapon.childCount; i++)
+        {
+            weapon.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+    #endregion
+
+
     #region 죽어가는함수
     [PunRPC]
     private void GoingDead()
     {
-        if (isCure == false)
+        if (PhotonNetwork.IsMasterClient)
         {
-            // 10초 동안 감소해야 할 양을 계산합니다.
-            float decreaseAmount = 1.0f / dyingTime * dieSpeed * Time.deltaTime;
-
-            
-            // fillAmount를 업데이트합니다.
-            recoveryBar.fillAmount = Mathf.Max(recoveryBar.fillAmount - decreaseAmount, 0);
-            // fillAmount가 0이면 필요한 처리를 수행합니다.
-            if (recoveryBar.fillAmount == 0)
+            if (isCure == false)
             {
-                //죽음으로 처리함.
-                state = State.die;
+                // 10초 동안 감소해야 할 양을 계산합니다.
+                float decreaseAmount = 1.0f / dyingTime * dieSpeed * Time.deltaTime;
+                // fillAmount를 업데이트합니다.
+                recoveryBar.fillAmount = Mathf.Max(recoveryBar.fillAmount - decreaseAmount, 0);
+                photonView.RPC("UpdateRecoveryBarDead", RpcTarget.All,recoveryBar.fillAmount);
+                // fillAmount가 0이면 필요한 처리를 수행합니다.
+                if (recoveryBar.fillAmount == 0)
+                {
+                    //죽음으로 처리함.
+                    state = State.die;
+                }
             }
         }
     }
     #endregion
-    #region 중간에 치료를 멈출때 함수
-    [PunRPC]
 
-    private void StopCure()
+    [PunRPC]
+    private void UpdateRecoveryBarDead(float fillAmount)
     {
-        isCure = false;
+        recoveryBar.fillAmount = fillAmount;
     }
-    #endregion
+
+    
     #region 레이를 쏘는함수
     private void ShotRayCast()
     {
         if (Physics.Raycast(virtualCam.transform.position, virtualCam.transform.forward, out hitInfo, rayDistance))
         {   //레이가 충돌한경우 hitInfo에 충돌 정보를 받아온다.
-
-            //Debug.LogFormat("레이 물체 : {0}" , hitInfo.collider.gameObject.name);
             Debug.DrawRay(virtualCam.transform.position, virtualCam.transform.forward * rayDistance, Color.black);
             //playerHp test = hPlayer.GetComponent<playerHp>();
             if (hitInfo.transform.CompareTag("Groggy"))
             {
-                //맞은물체의 Tag가 그로기고(플레이어일시 몬스터가 계속 때려서 흔들림) 맞은 플레이어가 그로기 상태라면
+                //맞은물체의 Tag가 그로기고(태그가 플레이어일시 몬스터가 계속 때려서 카메라가 흔들림) 맞은 플레이어가 그로기 상태라면
                 if (Input.GetButton("Get"))
                 {   //f를누르고있으면
                     hPlayer = hitInfo.collider.gameObject;
-                    Debug.Log("클론의 태그 : " + hPlayer.tag);
                     //지금 레이를 맞은 플레이어를 회복하고있는 플레이어 변수에 저장한다.
-
                     hPlayer.GetComponent<playerHp>().photonView.RPC("Cure", RpcTarget.All);
-                    //cureOther함수를 실행한다.
+                    //플레이어의 cure함수를 실행한다.
                 }
                 else
                 {
@@ -318,47 +338,40 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
                     //회복 중단 시 회복 상태를 초기화합니다.
                 }
             }
+            else
+            {
+                photonView.RPC("StopCure", RpcTarget.All);
+            }
         }
-        else
-        {//만약 레이가 플레이어를 벗어난다면 지금치료중임을 나타내는 변수를 false로 만든다.
-            isCure = false;
-        }
+
+    }
+    #endregion
+    #region 중간에 치료를 멈출때 함수
+    [PunRPC]
+
+    private void StopCure()
+    {
+       hPlayer.GetComponent<playerHp>().isCure = false;
     }
     #endregion
 
-
-    [PunRPC]
-    private void MakeTrueRecoveryBar()
-    {
-        recoveryBarOB.SetActive(true);
-        ik.NullIK();
-    }
-
-    [PunRPC]
-    private void MakeFalseRecoveryBar()
-    {
-        recoveryBarOB.SetActive(false);
-        ik.ChangeIK("Pistol");
-    }
+   
     [PunRPC]
     private void Cure()
     {
         // 현재 치유중 여부를 나타내는 변수를 true로 만들음 
         if (PhotonNetwork.IsMasterClient)
         {
-            otherHP = GetComponent<playerHp>();
+
             isCure = true;
             // 5초 동안 증가해야 할 양을 계산합니다.
             float increaseAmount = 1.0f / cureTime * recoverySpeed * Time.deltaTime;
             // fillAmount를 업데이트합니다.
-            otherHP.recoveryBar.fillAmount = Mathf.Max(recoveryBar.fillAmount + increaseAmount, 0);
-            photonView.RPC("UpdateRecoveryBar", RpcTarget.All,otherHP.recoveryBar.fillAmount);
-            if (otherHP.recoveryBar.fillAmount >= 1.0f)
+            recoveryBar.fillAmount = Mathf.Max(recoveryBar.fillAmount + increaseAmount, 0);
+            photonView.RPC("UpdateRecoveryBar", RpcTarget.All,recoveryBar.fillAmount);
+            if (recoveryBar.fillAmount >= 1.0f)
             {
-                // 플레이어의 스테이트가 play가되면 playerCure이 꺼지므로 반드시 제일 마지막에 두어야한다.
-                photonView.RPC("ChangeTagState", RpcTarget.All);
-                photonView.RPC("TrueWeapons",RpcTarget.All);
-                isCure = false;
+                photonView.RPC("TurnPlayMode", RpcTarget.All);
             }
         }
     }
@@ -370,17 +383,95 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
 
     [PunRPC]
 
-    private void ChangeTagState()
+    private void TurnPlayMode()
     {
-        gameObject.tag = "Player";
-        otherHP.state = State.play;
-        gameObject.GetComponent<Animator>().SetBool("groggy", false);
+        isCure = false;                                     // 회복중임을 나타내는변수를 false로 만든다.
+        gameObject.tag = "Player";                          // 태그를 플레이어로 만든다
+        state = State.play;                                 // 플레이어의 스테이트를 play로 만든다.
+        weapon.GetChild(0).gameObject.SetActive(true);      // 3인칭웨폰을 활성화 한다.
+        FPSUnityChan.SetActive(true);                       // 1인칭 유니티짱 키기
+
     }
 
-    [PunRPC]
-    private void TrueWeapons()
+    #region 플레이어 부활
+    private void ReStart()
     {
-        weapon.GetChild(2).gameObject.SetActive(true);
+        gameObject.tag = "Player";
+        state = State.play;
+        weapon.GetChild(0).gameObject.SetActive(true);      // 3인칭웨폰을 활성화 한다.
         FPSUnityChan.SetActive(true);                       // 1인칭 유니티짱 키기
+        
+        if(GameManager.instance.nowStage == 1)
+        {
+            if (PhotonNetwork.LocalPlayer.ActorNumber % 4 == 1)
+            {
+                gameObject.transform.position = new Vector3(192, -23, 16);
+            }
+            else if (PhotonNetwork.LocalPlayer.ActorNumber % 4 == 2)
+            {
+                gameObject.transform.position = new Vector3(192, -23, 18);
+            }
+            else if (PhotonNetwork.LocalPlayer.ActorNumber % 4 == 3)
+            {
+                gameObject.transform.position = new Vector3(195, -23, 16);
+            }
+            else if (PhotonNetwork.LocalPlayer.ActorNumber % 4 == 0)
+            {
+                gameObject.transform.position = new Vector3(195, -23, 18);
+            }
+            else
+            {
+                gameObject.transform.position = new Vector3(192, -23, 16);
+            }
+        }
+
+        if (GameManager.instance.nowStage == 2)
+        {
+            if (PhotonNetwork.LocalPlayer.ActorNumber % 4 == 1)
+            {
+                gameObject.transform.position = new Vector3(3, 0, 27);
+            }
+            else if (PhotonNetwork.LocalPlayer.ActorNumber % 4 == 2)
+            {
+                gameObject.transform.position = new Vector3(0, 0, 27);
+            }
+            else if (PhotonNetwork.LocalPlayer.ActorNumber % 4 == 3)
+            {
+                gameObject.transform.position = new Vector3(-3, 0, 27);
+            }
+            else if (PhotonNetwork.LocalPlayer.ActorNumber % 4 == 0)
+            {
+                gameObject.transform.position = new Vector3(-6, 0, 27);
+            }
+            else
+            {
+                gameObject.transform.position = new Vector3(3, 0, 27);
+            }
+        }
+
+        if (GameManager.instance.nowStage == 3)
+        {
+            if (PhotonNetwork.LocalPlayer.ActorNumber % 4 == 1)
+            {
+                gameObject.transform.position = new Vector3(-30, 6, -32);
+            }
+            else if (PhotonNetwork.LocalPlayer.ActorNumber % 4 == 2)
+            {
+                gameObject.transform.position = new Vector3(-32, 6, -32);
+            }
+            else if (PhotonNetwork.LocalPlayer.ActorNumber % 4 == 3)
+            {
+                gameObject.transform.position = new Vector3(-34, 6, -32);
+            }
+            else if (PhotonNetwork.LocalPlayer.ActorNumber % 4 == 0)
+            {
+                gameObject.transform.position = new Vector3(-36, 6, -32);
+            }
+            else
+            {
+                gameObject.transform.position = new Vector3(-30, 6, -32);
+            }
+        }
     }
+    #endregion
 }

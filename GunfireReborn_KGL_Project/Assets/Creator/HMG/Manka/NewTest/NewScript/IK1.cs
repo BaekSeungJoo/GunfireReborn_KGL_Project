@@ -16,6 +16,8 @@ public class IK1 : MonoBehaviour
     //얼굴이 바라볼 오브젝트
     public Transform targetObj;
     private Animator IKAnimator;
+    //ik를 작동할지 말지 정하는 변수
+    public bool isIk;
 
     [Range(0, 1)]
     public float HandIKHandler = 1;
@@ -40,21 +42,35 @@ public class IK1 : MonoBehaviour
 
     private void OnAnimatorIK(int layerIndex)
     {
-        //얼굴이 위를바라보게 만드는코드
-        IKAnimator.SetLookAtWeight(1);
-        IKAnimator.SetLookAtPosition(targetObj.position);
-        
-        //왼손 조절하는코드
-        IKAnimator.SetIKPosition(AvatarIKGoal.LeftHand, p_HandLeft.position);
-        IKAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, HandIKHandler);
-        //IKAnimator.SetIKRotation(AvatarIKGoal.LeftHand, p_HandLeft.rotation);
-        //IKAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, HandIKHandler);
-        
-        //오른손 조절하는코드
-        IKAnimator.SetIKPosition(AvatarIKGoal.RightHand, p_HandRight.position);
-        IKAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, HandIKHandler);
-        //IKAnimator.SetIKRotation(AvatarIKGoal.RightHand, p_HandRight.rotation);
-        //IKAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, HandIKHandler);
+        if (isIk == true)
+        {
+            //얼굴이 위를바라보게 만드는코드
+            IKAnimator.SetLookAtWeight(1);
+            IKAnimator.SetLookAtPosition(targetObj.position);
+
+            //왼손 조절하는코드
+            IKAnimator.SetIKPosition(AvatarIKGoal.LeftHand, p_HandLeft.position);
+            IKAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, HandIKHandler);
+            //IKAnimator.SetIKRotation(AvatarIKGoal.LeftHand, p_HandLeft.rotation);
+            //IKAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, HandIKHandler);
+
+            //오른손 조절하는코드
+            IKAnimator.SetIKPosition(AvatarIKGoal.RightHand, p_HandRight.position);
+            IKAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, HandIKHandler);
+            //IKAnimator.SetIKRotation(AvatarIKGoal.RightHand, p_HandRight.rotation);
+            //IKAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, HandIKHandler);
+        }
+        else
+        {
+            // LookAt IK를 해제
+            IKAnimator.SetLookAtWeight(0);
+
+            // 왼손 IK를 해제
+            IKAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0);
+
+            // 오른손 IK를 해제
+            IKAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
+        }
 
     }
 
@@ -70,18 +86,5 @@ public class IK1 : MonoBehaviour
                 p_HandRight = weaponChilds[i].GetComponent<weapon>().rightGrap;
             }
         }
-    }
-
-    public void NullIK()
-    {
-        // LookAt IK를 해제
-        IKAnimator.SetLookAtWeight(0);
-
-        // 왼손 IK를 해제
-        IKAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0);
-        
-        // 오른손 IK를 해제
-        IKAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
-       
     }
 }

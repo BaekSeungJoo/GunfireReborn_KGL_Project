@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,12 @@ public class ExitGame : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Application.Quit();
+            if(PhotonNetwork.InRoom)
+            {
+                PhotonNetwork.LeaveRoom();
+
+                PhotonNetwork.LoadLevel("Main_TitleScene");
+            }
         }
     }
 }
