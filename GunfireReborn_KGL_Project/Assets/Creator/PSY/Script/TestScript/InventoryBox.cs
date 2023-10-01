@@ -56,6 +56,10 @@ public class InventoryBox : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         {
             playerHp = GameObject.Find("Cinemachine").transform.parent.gameObject.GetComponent<playerHp>();
             playerHp.curHealth += 40;
+            if(playerHp.curHealth > 100)
+            {
+                playerHp.curHealth = 100;
+            }
         }
         
         if (ItemData.index ==1)
@@ -63,6 +67,11 @@ public class InventoryBox : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
 
             playerBullet.remainNBullet += 60;
             playerBullet.remainBBullet += 30;
+
+            if(playerBullet.remainNBullet > playerBullet.maxNBullet)
+            { playerBullet.remainNBullet = playerBullet.maxNBullet; }
+            if(playerBullet.remainBBullet > playerBullet.maxBBullet)
+            { playerBullet.remainBBullet = playerBullet.maxBBullet; }
         }
         if (ItemData.index ==2)
         {
@@ -71,6 +80,9 @@ public class InventoryBox : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         if (ItemData.index ==3)
         {
             playerBullet.remainBBullet += 30;
+
+            if (playerBullet.remainBBullet > playerBullet.maxBBullet)
+            { playerBullet.remainBBullet = playerBullet.maxBBullet; }
         }
 
 
@@ -78,7 +90,10 @@ public class InventoryBox : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         {
             playerBullet.remainNBullet += 60;
 
-            Debug.Log(playerBullet.remainNBullet);
+            if (playerBullet.remainNBullet > playerBullet.maxNBullet)
+            { playerBullet.remainNBullet = playerBullet.maxNBullet; }
+
+            // Debug.Log(playerBullet.remainNBullet);
         }
 
         SetItemCount(-1);  // 인벤토리에서 해당 아이템을 클릭하면 갯수가 감소한다.

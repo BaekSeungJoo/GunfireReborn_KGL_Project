@@ -9,6 +9,7 @@ public class CheckGameEnd : MonoBehaviour
     public GameObject gameEndDoor;
     public GameObject clearText;
     public GameObject volcano;
+    public GameObject BossCanvas;
 
     public EnemyHealth boss_Health;
 
@@ -23,6 +24,7 @@ public class CheckGameEnd : MonoBehaviour
             gameEndDoor.SetActive(true);
             clearText.SetActive(true);
             volcano.SetActive(false);
+            BossCanvas.SetActive(false);
         }
     }
 }

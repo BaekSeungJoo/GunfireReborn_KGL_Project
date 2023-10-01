@@ -56,7 +56,14 @@ public class playerBullet : MonoBehaviourPun
             if (Vector3.Distance(transform.position, other.transform.position) < activeFalseDistance)
             {
                 other.gameObject.SetActive(false);
+
                 remainBBullet +=30;
+
+                if (remainBBullet > maxBBullet)
+                {
+                    remainBBullet = maxBBullet;
+                }
+
                 // 플레이어 쪽에서 해당 아이템을 먹었을 때 실행하는 로직
             }
         }
@@ -67,7 +74,14 @@ public class playerBullet : MonoBehaviourPun
             if (Vector3.Distance(transform.position, other.transform.position) < activeFalseDistance)
             {
                 other.gameObject.SetActive(false);
+
                 remainNBullet += 100;
+
+                if(remainNBullet > maxNBullet)
+                {
+                    remainNBullet = maxNBullet;
+                }
+
                 // 플레이어 쪽에서 해당 아이템을 먹었을 때 실행하는 로직
             }
         }

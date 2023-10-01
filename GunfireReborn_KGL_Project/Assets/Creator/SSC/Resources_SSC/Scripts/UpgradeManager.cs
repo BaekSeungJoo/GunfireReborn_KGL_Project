@@ -30,12 +30,12 @@ public class UpgradeManager : MonoBehaviour
     public void RifleUp()
     {
         rifleUp++;
-        rifleDamage = rifleDamage + (rifleUp * 4);
+        rifleDamage = ((rifleUp + 1) * 4);
     }
 
     public void ShotgunUp()
     {
         shotgunUp++;
-        shotgunDamage = shotgunDamage + (shotgunUp * 3);
+        shotgunDamage = ((shotgunUp + 1) * 3);
     }
 }
