@@ -12,9 +12,9 @@ public class ExitGame : MonoBehaviour
             if(PhotonNetwork.InRoom)
             {
                 PhotonNetwork.LeaveRoom();
-
-                PhotonNetwork.LoadLevel("Main_TitleScene");
             }
+
+            Application.Quit();
         }
     }
 }

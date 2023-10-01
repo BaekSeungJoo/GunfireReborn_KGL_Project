@@ -7,6 +7,8 @@ public class GoNextStage_Boss : MonoBehaviourPun
 {
     public GameObject[] playerPos;
 
+    private Canvas MainCanvas;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

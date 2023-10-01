@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5278129476140307654}
   - component: {fileID: 4427156072686185244}
   - component: {fileID: 324578111}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GoldCoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,13 +124,13 @@ GameObject:
   - component: {fileID: 854765494}
   - component: {fileID: -8803469028440391511}
   - component: {fileID: -5703638795347489478}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GoldCoin
   m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5288831783231201898
 Transform:
   m_ObjectHideFlags: 0
@@ -160,7 +160,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 5
   m_Center: {x: 0, y: -0.05, z: 0}
 --- !u!54 &854765494
 Rigidbody:
@@ -228,12 +228,28 @@ PrefabInstance:
       value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 6255624056792257299, guid: 80aa15c064a5ae4458b3381b2e31fdff, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6255624056792257299, guid: 80aa15c064a5ae4458b3381b2e31fdff, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6255962671493717383, guid: 80aa15c064a5ae4458b3381b2e31fdff, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6255979166823262059, guid: 80aa15c064a5ae4458b3381b2e31fdff, type: 3}
       propertyPath: m_Name
       value: CoinEffect02
+      objectReference: {fileID: 0}
+    - target: {fileID: 6255979166823262059, guid: 80aa15c064a5ae4458b3381b2e31fdff, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256281679511150709, guid: 80aa15c064a5ae4458b3381b2e31fdff, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6258633806937197521, guid: 80aa15c064a5ae4458b3381b2e31fdff, type: 3}
       propertyPath: m_RootOrder
@@ -295,9 +311,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5288831783231201898}
     m_Modifications:
+    - target: {fileID: 962075444974924792, guid: 026ec56cadbc9eb4982f732bdd329e1b, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 962075444974931128, guid: 026ec56cadbc9eb4982f732bdd329e1b, type: 3}
       propertyPath: m_Name
       value: CoinEffect01
+      objectReference: {fileID: 0}
+    - target: {fileID: 962075444974931128, guid: 026ec56cadbc9eb4982f732bdd329e1b, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 962075444975223358, guid: 026ec56cadbc9eb4982f732bdd329e1b, type: 3}
       propertyPath: m_RootOrder

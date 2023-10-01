@@ -1,4 +1,5 @@
 using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,15 +13,28 @@ public class SetDropVelocity : MonoBehaviourPun
     private float randonPosZ;       // 생성될 때 튀어가나는 속도가 될 z값
     private Vector3 newVelocity;    // 생성될 때 튀어나가는 속도
 
-    private Transform playerTransform;  // 플레이어의 위치
+    private GameObject[] allPlayers;         // 모든 플레이어
+    private GameObject myClientPlayer;       // 내 클라이언트의 플레이어
     private float moveSpeed = 5f;            // 플레이어 쪽으로 다가오는 속도
-    
-    private bool isMoveTowardPlayer = false;    // 플레이어 이동 중인지 체크
     
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        // 플레이어 태그 중에 내 클라이언트의 플레이어를 찾고 위치 반환
+        allPlayers = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach (GameObject myPlayer in allPlayers)
+        {
+            if (myPlayer.GetPhotonView().IsMine == true)
+            {
+                myClientPlayer = myPlayer;
+            }
+        }
     }
 
     private void OnEnable()
@@ -31,31 +45,20 @@ public class SetDropVelocity : MonoBehaviourPun
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(gameObject.transform.CompareTag("weapon"))
+        if(gameObject.CompareTag("weapon"))
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && photonView.IsMine)
-        {
-            playerTransform = other.transform;
-            isMoveTowardPlayer = true;
-        }
-        else
-        { return; }
-    }
-
     private void Update()
     {
         // 플레이어 쪽으로 이동 중인 경우
-        if(isMoveTowardPlayer && playerTransform != null)
+        if (myClientPlayer != null && this.gameObject.CompareTag("weapon") == false)
         {
             // 플레이어 쪽으로 이동
             float step = moveSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, step);
+            transform.position = Vector3.MoveTowards(transform.position, myClientPlayer.transform.position, step);
         }
     }
 

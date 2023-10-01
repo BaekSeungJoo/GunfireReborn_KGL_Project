@@ -8,6 +8,7 @@ public class Active_Boss : MonoBehaviourPun
     public GameObject boss;
     public GameObject bossActiveEffect;
     public GameObject gameEndCheck;
+    public GameObject bossCanavas;
 
     public bool isEnter = false;
 
@@ -23,6 +24,7 @@ public class Active_Boss : MonoBehaviourPun
             boss.SetActive(true);
             bossActiveEffect.SetActive(true);
             gameEndCheck.SetActive(true);
+            bossCanavas.SetActive(true);
             this.gameObject.SetActive(false);
         }
     }

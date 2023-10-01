@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2709951809385256286}
   - component: {fileID: 2709951809385256287}
   - component: {fileID: 7497686632618752018}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BigBullet
   m_TagString: DropBigBullet
   m_Icon: {fileID: 0}
@@ -124,6 +124,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1185912416505487908, guid: 0dbeac9adec73c04fa9c6813798ea6ee, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1825203880388209865, guid: 0dbeac9adec73c04fa9c6813798ea6ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -196,6 +200,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bullet
       objectReference: {fileID: 0}
+    - target: {fileID: 3055969150205225139, guid: 0dbeac9adec73c04fa9c6813798ea6ee, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 3544686852499965857, guid: 0dbeac9adec73c04fa9c6813798ea6ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.02
@@ -232,6 +240,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4410485340052476002, guid: 0dbeac9adec73c04fa9c6813798ea6ee, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4780479235024297398, guid: 0dbeac9adec73c04fa9c6813798ea6ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -244,10 +256,26 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6062943167495465783, guid: 0dbeac9adec73c04fa9c6813798ea6ee, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6335889237508637234, guid: 0dbeac9adec73c04fa9c6813798ea6ee, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6500440126048833004, guid: 0dbeac9adec73c04fa9c6813798ea6ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: eedbe92cbfa2bdf4780287d06b581657, type: 2}
+    - target: {fileID: 6534947954616890510, guid: 0dbeac9adec73c04fa9c6813798ea6ee, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595369764090566010, guid: 0dbeac9adec73c04fa9c6813798ea6ee, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6644480785990820431, guid: 0dbeac9adec73c04fa9c6813798ea6ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -384,9 +412,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 7703630531125502127, guid: 28b3f6fe6bdcce9448eb9429d5c729ab, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704107288522429385, guid: 28b3f6fe6bdcce9448eb9429d5c729ab, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704437173635882333, guid: 28b3f6fe6bdcce9448eb9429d5c729ab, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7704462441486460849, guid: 28b3f6fe6bdcce9448eb9429d5c729ab, type: 3}
       propertyPath: m_Name
       value: BigEffect02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704462441486460849, guid: 28b3f6fe6bdcce9448eb9429d5c729ab, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28b3f6fe6bdcce9448eb9429d5c729ab, type: 3}
@@ -405,6 +449,14 @@ PrefabInstance:
     - target: {fileID: 4646546344296232084, guid: 38675831e84f21542a66f2ea13a0ff5c, type: 3}
       propertyPath: m_Name
       value: BigEffect01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646546344296232084, guid: 38675831e84f21542a66f2ea13a0ff5c, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646546344296238036, guid: 38675831e84f21542a66f2ea13a0ff5c, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4646546344296462866, guid: 38675831e84f21542a66f2ea13a0ff5c, type: 3}
       propertyPath: m_RootOrder

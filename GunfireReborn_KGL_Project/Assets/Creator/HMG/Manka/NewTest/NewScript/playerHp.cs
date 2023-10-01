@@ -35,6 +35,7 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
     private float rayDistance = 5f;             //레이의 사정거리
     public bool isCure;                         //회복중임을 체크하는 변수
     private GameObject hPlayer;                 //내가 회복시키고있는 플레이어를 담을 변수
+    private playerHp myPlayerHP;
     private bool isDead;                        //죽은지 체크하는 변수
 
     private float shieldRecharge = 10f;     //1초마다 회복될 쉴드량
@@ -328,8 +329,10 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
                 if (Input.GetButton("Get"))
                 {   //f를누르고있으면
                     hPlayer = hitInfo.collider.gameObject;
+                    myPlayerHP = hPlayer.GetComponent<playerHp>();
                     //지금 레이를 맞은 플레이어를 회복하고있는 플레이어 변수에 저장한다.
-                    hPlayer.GetComponent<playerHp>().photonView.RPC("Cure", RpcTarget.All);
+                    //hPlayer.GetComponent<playerHp>().photonView.RPC("Cure", RpcTarget.All);
+                    myPlayerHP.photonView.RPC("Cure", RpcTarget.All);
                     //플레이어의 cure함수를 실행한다.
                 }
                 else
@@ -351,7 +354,11 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
 
     private void StopCure()
     {
-       hPlayer.GetComponent<playerHp>().isCure = false;
+        // hPlayer.GetComponent<playerHp>().isCure = false;
+        if(myPlayerHP == null)
+        { return; }
+
+        myPlayerHP.isCure = false;
     }
     #endregion
 

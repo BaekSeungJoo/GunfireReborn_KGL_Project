@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2753499340606538720}
   - component: {fileID: 2537001884957024723}
   - component: {fileID: 7899756663238763243}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Shotgun(get)
   m_TagString: weapon
   m_Icon: {fileID: 0}
@@ -218,9 +218,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2060559986367088958, guid: 36c0878f839cb294982444c8699b2fe8, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061325313246463862, guid: 36c0878f839cb294982444c8699b2fe8, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2061343272301791968, guid: 36c0878f839cb294982444c8699b2fe8, type: 3}
       propertyPath: m_Name
       value: Hell_Effect03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061343272301791968, guid: 36c0878f839cb294982444c8699b2fe8, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061472013805745506, guid: 36c0878f839cb294982444c8699b2fe8, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36c0878f839cb294982444c8699b2fe8, type: 3}
@@ -251,6 +267,14 @@ PrefabInstance:
     - target: {fileID: 5412551304343009310, guid: a9fa7573d2154ea44b13bbf302226716, type: 3}
       propertyPath: m_Name
       value: HellEffect01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412551304343009310, guid: a9fa7573d2154ea44b13bbf302226716, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412551304343013214, guid: a9fa7573d2154ea44b13bbf302226716, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5412551304343303832, guid: a9fa7573d2154ea44b13bbf302226716, type: 3}
       propertyPath: m_RootOrder
@@ -382,9 +406,25 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4479187580417613840, guid: b7af0b9f3b923c142af657bb4d0dc68a, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479435326616853986, guid: b7af0b9f3b923c142af657bb4d0dc68a, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4479447467990411022, guid: b7af0b9f3b923c142af657bb4d0dc68a, type: 3}
       propertyPath: m_Name
       value: HellEffect02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479447467990411022, guid: b7af0b9f3b923c142af657bb4d0dc68a, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479941137952691062, guid: b7af0b9f3b923c142af657bb4d0dc68a, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7af0b9f3b923c142af657bb4d0dc68a, type: 3}

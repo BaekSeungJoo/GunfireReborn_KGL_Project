@@ -23,6 +23,8 @@ public class Puffe : Enemy
     private Vector3 startPoint;     // 레이 시작 지점
     private Vector3 direction;      // 레이 방향
     private Vector3 endPoint;       // 레이 끝 지점
+    [SerializeField]
+    private LayerMask layerMask;    // 충돌 무시할 레이어 마스크
 
     // private Vector3 targetDirection; ( Enemy )
 
@@ -136,14 +138,22 @@ public class Puffe : Enemy
 
         // 레이 발사 (라인 렌더 시작점 ~ 라인 렌더 끝점)
         RaycastHit hit;
-        if (Physics.Raycast(startPoint, direction, out hit, Vector3.Distance(startPoint, endPoint)))
+        if (Physics.Raycast(startPoint, direction, out hit, Vector3.Distance(startPoint, endPoint), ~layerMask))
         {
             Debug.DrawRay(startPoint, direction, Color.white);
             // 충돌한 물체가 있다면
             if (hit.collider != null && hit.collider.CompareTag("Player"))
             {
-                // Health 스크립트에 있는 TakeDamage 메서드 RPC (remote procedure call)
-                // hit.transform.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage);
+                Debug.Log(hit.collider.tag);
+
+                // 플레이어에게 데미지 주기
+                playerHp player = hit.collider.GetComponent<playerHp>();
+                //player.photonView.RPC("PlayerTakeDamage", RpcTarget.MasterClient, damage);
+                player.PlayerTakeDamage(damage);
+            }
+            else
+            {
+                Debug.Log(hit.collider.tag);
             }
         }
     }

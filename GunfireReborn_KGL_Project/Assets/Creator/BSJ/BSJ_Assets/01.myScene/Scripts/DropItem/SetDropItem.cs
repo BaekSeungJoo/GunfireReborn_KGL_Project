@@ -65,8 +65,8 @@ public class SetDropItem : MonoBehaviour
         // [0] 코인은 무조건 드랍됨. 1/3 확률로 2배의 코인이 드랍되고, 1/3 확률로 3배의 코인이 드랍됨.
         // [1] 총알 1 드랍확률 1/3
         // [2] 총알 2 드랍확률 1/3
-        // [3] 무기 (불꽃비늘) 드랍확률 1/10
-        // [4] 무기 (지옥) 드랍확률 1/10
+        // [3] 무기 (불꽃비늘) 드랍확률 1/6
+        // [4] 무기 (지옥) 드랍확률 1/6
 
         // 코인 드랍
         int randomCoinDrop = Random.Range(0, 3);
@@ -85,12 +85,12 @@ public class SetDropItem : MonoBehaviour
         else { dropBullet02 = false; }
 
         // 무기 (불꽃비늘) 드랍
-        int randomGun01Drop = Random.Range(0, 2);
+        int randomGun01Drop = Random.Range(0, 6);
         if (randomGun01Drop == 0) { dropGun01 = true; }
         else { dropGun01 = false; }
 
         // 무기 (지옥) 드랍
-        int randomGun02Drop = Random.Range(0, 2);
+        int randomGun02Drop = Random.Range(0, 6);
         if (randomGun02Drop == 0) { dropGun02 = true; }
         else { dropGun02 = false; }
     }

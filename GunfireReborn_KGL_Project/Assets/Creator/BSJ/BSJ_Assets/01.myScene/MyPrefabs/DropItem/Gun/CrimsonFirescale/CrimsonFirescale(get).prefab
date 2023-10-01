@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -1179672226244131692}
   - component: {fileID: 1760000378}
   - component: {fileID: 696708699583231829}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CrimsonFirescale(get)
   m_TagString: weapon
   m_Icon: {fileID: 0}
@@ -234,6 +234,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrimsonFirescale_Effect02
       objectReference: {fileID: 0}
+    - target: {fileID: 714072315392510113, guid: a0265dbf280c80440b1712e7f5a075f9, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 714088768829354573, guid: a0265dbf280c80440b1712e7f5a075f9, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 714145976233393369, guid: a0265dbf280c80440b1712e7f5a075f9, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 714823426612400063, guid: a0265dbf280c80440b1712e7f5a075f9, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0265dbf280c80440b1712e7f5a075f9, type: 3}
 --- !u!4 &712260735273931894 stripped
@@ -308,6 +324,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrimsonFirescale_Effect01
       objectReference: {fileID: 0}
+    - target: {fileID: 5882347531905442858, guid: e3d76d48d6c8b094bb9d08d5fbf93210, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5882347531905457002, guid: e3d76d48d6c8b094bb9d08d5fbf93210, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3d76d48d6c8b094bb9d08d5fbf93210, type: 3}
 --- !u!4 &5882347532052188474 stripped
@@ -378,9 +402,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2060559986367088958, guid: 925d08f0a2afa5443a3a4a0416a214da, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061325313246463862, guid: 925d08f0a2afa5443a3a4a0416a214da, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2061343272301791968, guid: 925d08f0a2afa5443a3a4a0416a214da, type: 3}
       propertyPath: m_Name
       value: CrimsonFirescale_Effect03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061343272301791968, guid: 925d08f0a2afa5443a3a4a0416a214da, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061472013805745506, guid: 925d08f0a2afa5443a3a4a0416a214da, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 925d08f0a2afa5443a3a4a0416a214da, type: 3}

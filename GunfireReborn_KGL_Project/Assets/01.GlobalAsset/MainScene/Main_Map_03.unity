@@ -36669,8 +36669,8 @@ RectTransform:
   m_GameObject: {fileID: 782625283}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 125997818}
   - {fileID: 1763966203}
@@ -54471,7 +54471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1094518381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54573,7 +54573,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094518380}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 921079a583d412540a6380b8699c659b, type: 3}
   m_Name: 
@@ -87208,6 +87208,7 @@ MonoBehaviour:
   boss: {fileID: 8494398930219501697}
   bossActiveEffect: {fileID: 1146000323}
   gameEndCheck: {fileID: 904016542}
+  bossCanavas: {fileID: 1094518380}
   isEnter: 0
 --- !u!114 &1780851147
 MonoBehaviour:
@@ -104443,6 +104444,10 @@ PrefabInstance:
       propertyPath: hpbar
       value: 
       objectReference: {fileID: 988427378}
+    - target: {fileID: 8494398930219501700, guid: 829dc8ed74682d646bc67390006d327e, type: 3}
+      propertyPath: maxHealth
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 8494398930419107009, guid: 829dc8ed74682d646bc67390006d327e, type: 3}
       propertyPath: sceneViewId
       value: 2

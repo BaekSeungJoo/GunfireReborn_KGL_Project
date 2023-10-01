@@ -77,7 +77,7 @@ public class WeaponBox : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         #endregion
 
         #region F ½º¿Ò
-        weaponImage = transform.Find("WeaponBg/WeaponImage").GetComponent<Image>();
+        // weaponImage = transform.Find("WeaponBg/WeaponImage").GetComponent<Image>();
         bulletTypeImage = transform.Find("WeaponBg/WeaponTypeBg/WeaponTypeText/WeapomTypeImage").GetComponent<Image>();
         weaponName = transform.Find("WeaponName").GetComponent<TextMeshProUGUI>();
         damageText = transform.Find("WeaponStat/Damage/DamageText").GetComponent<TextMeshProUGUI>();
@@ -179,7 +179,7 @@ public class WeaponBox : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         data = otherData;
 
-        weaponName.text = data.name;
+        // weaponName.text = data.name;
         damageText.text = data.damage.ToString();
         bulletSizeText.text = data.bulletSize.ToString();
         criticalText.text = data.criticalPer.ToString();
