@@ -21,13 +21,13 @@ public class BlackSmithManager : MonoBehaviour
 
             for (int i = 0; i < blackSmiths.Length; i++)
             {
-                Debug.Log("들어옴?");
+                // Debug.Log("들어옴?");
 
                 blackSmiths[i].SetUpgradeCount(count);
 
                 if (count <= 0)
                 {
-                    Debug.Log("카운트 0인데 왜 해 ㅆ방");
+                    // Debug.Log("카운트 0인데 왜 해");
                     blackSmiths[i].SetUpgradeBT();
                 }
             }

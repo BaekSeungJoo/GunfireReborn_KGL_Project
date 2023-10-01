@@ -50,7 +50,10 @@ public class LoadingManager : MonoBehaviourPun
         Debug.Log("실행");
         if(GameManager.instance?.nowStage >= 1 && GameManager.instance?.nowStage <= 3)
         {
+            // 스테이지 인덱스 증가 & 강화 횟수 초기화
             GameManager.instance.nowStage++;
+            GameManager.instance.blackSmithUI.inforceCount = 3;
+
             Debug.Log("들어옴" + GameManager.instance.nowStage);
             
             StartCoroutine(LoadSceneMap("Main_Map_0" + GameManager.instance.nowStage));

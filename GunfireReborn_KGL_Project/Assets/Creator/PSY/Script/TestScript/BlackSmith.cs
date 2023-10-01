@@ -66,6 +66,4 @@ public class BlackSmith : MonoBehaviour
         upgradeCoin.text = $"{upgradePrice}";
     }
     #endregion
-
-
 }

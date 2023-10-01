@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     private static GameManager m_instance;
 
     public int nowStage = 0;        // 현재 스테이지가 몇인지
+    public BlackSmithUI blackSmithUI; // 강화 횟수 초기화
 
     private void Awake()
     {
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        // 스테이지 인덱스 증가
         nowStage = 1;
     }
 }

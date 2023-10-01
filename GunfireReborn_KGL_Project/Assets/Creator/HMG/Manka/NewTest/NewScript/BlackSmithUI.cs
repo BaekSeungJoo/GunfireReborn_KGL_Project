@@ -43,7 +43,7 @@ public class BlackSmithUI : MonoBehaviour
     public TextMeshProUGUI weaponInfo2;             // 슬롯2웨폰설명
 
     public TextMeshProUGUI inforceCountText;        // 강화횟수텍스트
-    private int inforceCount = 3;                   // 강화횟수
+    public int inforceCount = 3;                    // 강화횟수
 
     // Start is called before the first frame update
     void Start()
@@ -55,13 +55,14 @@ public class BlackSmithUI : MonoBehaviour
 
     private void OnEnable()
     {
-        if(weapon ==null)
+        if (weapon == null)
         {
             return;
         }
         UpdateWeapon();
         UpdateText();
     }
+
     // Update is called once per frame
     void Update()
     {
