@@ -32,7 +32,9 @@ public class ShopItemBox : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private void Start()
     {
+
         mine = this;
+
 
         bgOutline = GetComponent<Outline>();
 

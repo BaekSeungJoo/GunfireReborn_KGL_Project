@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour
 
         SetActiveMainCanvas(true);
         SetActiveInven(false);
-        SetActiveShopPopup(false);
+        //SetActiveShopPopup(false);
         SetActiveBlackSmith(false);
         SetActiveToolTip(false);
 
@@ -105,7 +105,6 @@ public class UIManager : MonoBehaviour
     {  // 새로고침 버튼 클릭 시 클릭 횟수가 차감된 텍스트 출력 함수
         if ( shopManager.Count > 0 )
         {
-            Debug.Log("2");
             shopManager.Count--;
             text_Reroll.text = $"새로 고침 <i> {shopManager.Count} / 3 <i> ";
         }

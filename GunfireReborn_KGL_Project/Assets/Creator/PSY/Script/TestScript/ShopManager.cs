@@ -25,7 +25,7 @@ public class ShopManager : MonoBehaviour
 
             if (count >= 0)
             {
-                PlayerTest player = GameObject.Find("Player").GetComponent<PlayerTest>();
+                PlayerTest player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerTest>();
                 for (int i = 0; i < player.shopScripts.Count; i++)
                 {
                     Debug.Log("3");

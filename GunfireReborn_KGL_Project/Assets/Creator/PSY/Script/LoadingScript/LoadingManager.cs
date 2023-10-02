@@ -62,7 +62,7 @@ public class LoadingManager : MonoBehaviourPun
 
     #region 비동기 로딩
     /// <summary>
-    /// 비동기 로딩 함수 ( Map 01 )
+    /// 비동기 로딩 함수
     /// </summary>
     public IEnumerator LoadSceneMap( string sceneName )
     {

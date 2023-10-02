@@ -8,8 +8,6 @@ public class PlayerTest : MonoBehaviour
 
     public List<ShopItemBox> shopScripts = new List<ShopItemBox>();  // 여러 곳에 있는 ShopScript를 List에 담는다
 
-    private float speed = 5f;
-
     private bool isShop = false;
     private bool isBlackSmith = false;
 
@@ -21,6 +19,8 @@ public class PlayerTest : MonoBehaviour
         {
             shopScripts.Add(items[i].GetComponent<ShopItemBox>());  // 가지고 온 태그가 아이템인 오브젝트들에서 ShopScript를 뽑아서 List에 넣는다.
         }
+
+        uiManager.SetActiveShopPopup(false);
     }
 
     private void Start()
@@ -29,10 +29,6 @@ public class PlayerTest : MonoBehaviour
     }
     private void Update()
     {
-        //float h = Input.GetAxis("Horizontal");
-        //float v = Input.GetAxis("Vertical");
-
-        //transform.position += Time.deltaTime * speed * new Vector3(h, 0f, v);
 
         if (isShop && Input.GetKeyDown(KeyCode.F))
         {
