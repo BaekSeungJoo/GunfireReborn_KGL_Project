@@ -19,13 +19,12 @@ public class PlayerTest : MonoBehaviour
         {
             shopScripts.Add(items[i].GetComponent<ShopItemBox>());  // 가지고 온 태그가 아이템인 오브젝트들에서 ShopScript를 뽑아서 List에 넣는다.
         }
-
-        uiManager.SetActiveShopPopup(false);
     }
 
     private void Start()
     {
         uiManager = GameObject.Find("@Managers").GetComponent<UIManager>();
+        uiManager.SetActiveShopPopup(false);
     }
     private void Update()
     {
