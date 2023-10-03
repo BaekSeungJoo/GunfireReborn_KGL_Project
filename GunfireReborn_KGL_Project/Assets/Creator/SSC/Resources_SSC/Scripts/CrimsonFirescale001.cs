@@ -96,6 +96,8 @@ public class CrimsonFirescale001 : MonoBehaviour
     {
         NBullet.SetActive(false);
         NBulletBack.SetActive(false);
+
+        state = State.READY;
     }
 
     void Update()

@@ -67,13 +67,14 @@ public class Pistol001 : MonoBehaviourPun
         BulletText.text = magAmmo + " /  ¡Ä "; 
     }
     private void OnDisable()
-
     {
         NBullet.SetActive(false);
+        state = State.READY;
     }
 
     void Update()
     {
+
         if(transform.parent == null)
         {
             return;
