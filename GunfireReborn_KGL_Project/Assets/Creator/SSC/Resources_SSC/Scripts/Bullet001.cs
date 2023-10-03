@@ -43,7 +43,7 @@ public class Bullet001 : MonoBehaviourPun
             damageSetting.text = "" + riflebulletDamage;
             damageSetting.color = Color.yellow;
             Instantiate(damageText, transform.position, Quaternion.identity);    
-            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
+            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.BULLET);
             EnemyHealth health = other.GetComponent<EnemyHealth>();
 
             health.EnemyTakeDamage(riflebulletDamage);
@@ -54,7 +54,7 @@ public class Bullet001 : MonoBehaviourPun
             damageSetting.text = riflebulletDamage * 2 + "!";
             damageSetting.color = Color.red;
             Instantiate(damageText, transform.position, Quaternion.identity);
-            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
+            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.BULLET);
 
             EnemyHealth health = GFunc.FindRootObj(other.gameObject).GetComponent<EnemyHealth>();
 

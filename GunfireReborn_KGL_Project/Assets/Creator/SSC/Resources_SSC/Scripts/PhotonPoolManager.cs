@@ -7,7 +7,7 @@ using Photon.Pun;
 using System.Diagnostics.Tracing;
 
 // 호출하는 오브젝트의 타입을 구별하기위해 선언하는 enum
-public enum P_PoolObjType { BULLET, HELLBULLET, PISTOLBULLET, PISTOL_EFFECT }
+public enum P_PoolObjType { BULLET, HELLBULLET, PISTOLBULLET}
 
 // 외부 인스펙터창에서 클래스 정보에 접근할수 있게 해주는 [Serializable]
 [Serializable]
@@ -42,22 +42,14 @@ public class PhotonPoolManager : MonoBehaviourPun
         {
             // PoolInfo 클래스에 담아둔 정보를 각 poolLsit에 담는다.
             FillPool(poolList[i]);
-            //photonView.RPC("FillPool", RpcTarget.AllBuffered, poolList[i]);
         }
 
     }
 
-    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    if(PhotonNetwork.IsMasterClient)
-    //    {
-    //        stream.SendNext(poolList);
-    //    }
-    //    else
-    //    {
-    //        poolList = (List<P_PoolInfo>)stream.ReceiveNext();
-    //    }
-    //}
+    private void Update()
+    {
+        Debug.Log("1. 라이플 : " + poolList[0].poolObj.Count + " , 2. 샷건 : " + poolList[1].poolObj.Count + " , 3. 권총 : " + poolList[2].poolObj.Count);
+    }
 
     // PoolInfo 클래스 셋팅값 ( 인스펙터창에서 셋팅하는 것 ) 기반으로 풀링오브젝트 생성하기
     void FillPool(P_PoolInfo poolInfo)
@@ -75,7 +67,6 @@ public class PhotonPoolManager : MonoBehaviourPun
             tempObj.SetActive(false);
 
             poolInfo.poolObj.Push(tempObj);
-            //photonView.RPC("Push", RpcTarget.AllBuffered, tempObj, poolInfo);
 
         }
 
@@ -88,25 +79,25 @@ public class PhotonPoolManager : MonoBehaviourPun
         P_PoolInfo select = GetPoolByType(type);
 
         // 해당하는 타입의 스택 
-        Stack<GameObject> pool = select.poolObj;
+        //Stack<GameObject> pool = select.poolObj;
 
         // 담아둘 게임오브젝트 초기화
-        GameObject objInstance = default;
+        GameObject objInstance = null;
 
         // 호출하는 오브젝트 수가 세팅해둔 오브젝트로 충분하다면
-        if(pool.Count > 0)
+        if(select.poolObj.Count > 0)
         {
             // 해당 오브젝트를 게임오브젝트에 담고
-            objInstance = pool.Peek();
+            objInstance = select.poolObj.Peek();
+
             // Stack 메모리에서 빼준다.
-            pool.Pop();
+            select.poolObj.Pop();
         }
         // 호출하는 오브젝트 수가 세팅값보다 많다면 
         else
         {
             // 풀링오브젝트를 새로 생성해준다.
             objInstance = Instantiate(select.prefab, select.container.transform);
-            //objInstance.transform.parent = select.container.transform;
         }
 
         // 담긴 오브젝트 반환
@@ -120,11 +111,10 @@ public class PhotonPoolManager : MonoBehaviourPun
 
         obj.SetActive(false);
         obj.transform.position = select.container.transform.position;
-        Stack<GameObject> pool = select.poolObj;
 
-        if(pool.Contains(obj) == false)
+        if(select.poolObj.Contains(obj) == false)
         {
-            pool.Push(obj);
+            select.poolObj.Push(obj);
         }
     }
 

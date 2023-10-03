@@ -103,6 +103,7 @@ public class Hell001 : MonoBehaviour
     {
         BBullet.SetActive(false);
         BBulletBack.SetActive(false);
+        state = State.READY;
 
     }
 

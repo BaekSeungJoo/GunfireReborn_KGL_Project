@@ -41,7 +41,7 @@ public class HellBullet001 : MonoBehaviourPun
             damageSetting.color = Color.yellow;
             Instantiate(damageText, transform.position, Quaternion.identity);
 
-            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
+            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.HELLBULLET);
             EnemyHealth health = other.GetComponent<EnemyHealth>();
 
             health.EnemyTakeDamage(bulletDamage);
@@ -53,7 +53,7 @@ public class HellBullet001 : MonoBehaviourPun
             damageSetting.color = Color.red;
             Instantiate(damageText, transform.position, Quaternion.identity);
 
-            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.PISTOLBULLET);
+            PhotonPoolManager.P_instance.CoolObj(this.gameObject, P_PoolObjType.HELLBULLET);
             EnemyHealth health = GFunc.FindRootObj(other.gameObject).GetComponent<EnemyHealth>();
 
             health.EnemyTakeDamage(bulletDamage);

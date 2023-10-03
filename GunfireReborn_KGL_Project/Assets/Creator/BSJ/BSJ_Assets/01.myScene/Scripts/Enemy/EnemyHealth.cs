@@ -44,11 +44,8 @@ public class EnemyHealth : MonoBehaviourPun
         // 마스터클라이언트에서 입력받은 데미지에 따라 연산을 진행하고
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("입력받은 데미지 : " +  _damage);
             curHealth -= _damage;
             hpbar.fillAmount = (float)curHealth / (float)maxHealth;
-
-            Debug.Log("몬스터 체력 : " + curHealth);
 
             // 연산된 감소된 체력과 체력바 값을 매개변수로 ApplyHealthUpdate() 메서드에 보내고 
             // 해당 작업을 나머지 클라이언트에서도 수행하게 한다.
