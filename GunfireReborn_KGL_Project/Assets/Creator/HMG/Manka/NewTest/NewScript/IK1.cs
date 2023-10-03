@@ -25,6 +25,7 @@ public class IK1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isIk = true;
         IKAnimator = GetComponent<Animator>();
         //Todo  웨폰의 자식들을  weaponchilds에 저장해야함
         weaponChilds = new GameObject[weaponPosition.childCount];

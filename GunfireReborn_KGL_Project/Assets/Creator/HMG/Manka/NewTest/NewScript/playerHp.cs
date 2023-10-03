@@ -7,7 +7,7 @@ using Cinemachine;
 using UnityEngine.UI;
 using Photon.Pun.UtilityScripts;
 
-public class playerHp : MonoBehaviourPun //,IPunObservable
+public class playerHp : MonoBehaviourPun
 {
     private int maxHealth;       //최대HP
     public int curHealth;       //현재HP
@@ -41,10 +41,6 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
     private float shieldRecharge = 10f;     //1초마다 회복될 쉴드량
     private float shieldRechargeCool = 5f;      //쉴드회복 시작 쿨타임
     private float rechargeTimer = 0;            //쉴드회복 타이머 초기화
-
-   /* private Camera Vcamera;
-    public GameObject cross;
-    public GameObject cube;*/
 
     [SerializeField]
     private bool activeRecoveryBar;
@@ -103,16 +99,7 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
         // 쉴드 최대값 제한
         curShield = Mathf.Clamp(curShield, 0, maxShield); // maxShieldValue는 쉴드 최대값
         #endregion
-/*
-        if(activeRecoveryBar == true)
-        {
-            recoveryBarOB.SetActive(true);
-        }
-        else
-        {
-            recoveryBarOB.SetActive(false);
-        }*/
-
+      
 
         //그로기 상태일떄
         if (state == State.groggy)
@@ -145,10 +132,7 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
                 photonView.RPC("MakeFalseRecoveryBar", RpcTarget.All);               // 큐어 바를 비활성화시키고 ik를 다시 활성화시킨다.
                 virtualCam.transform.parent = gameObject.transform;
                 virtualCam.transform.localPosition = Vector3.zero;
-                Debug.Log(virtualCam.transform.localPosition);
                 virtualCam.transform.localPosition = new Vector3(0f,0.8f,0.4f);
-                //virtualCam.transform.localPosition = new Vector3(0f, transform.localPosition.y + 0.8f, 0.4f);
-                Debug.Log(virtualCam.transform.localPosition);
             }
             ShotRayCast();                                                           // 플레이중이라면 rayCast를 쏘게만들음
         }
@@ -168,15 +152,12 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
     [PunRPC]
     private void MakeTrueRecoveryBar()
     {
-        Debug.Log("MakeTrue");
-        //activeRecoveryBar = true;
         recoveryBarOB.SetActive(true);
     }
 
     [PunRPC]
     private void MakeFalseRecoveryBar()
     {
-       // activeRecoveryBar = false;
         recoveryBarOB.SetActive(false);
     }
 
@@ -389,7 +370,6 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
     }
 
     [PunRPC]
-
     private void TurnPlayMode()
     {
         isCure = false;                                     // 회복중임을 나타내는변수를 false로 만든다.
@@ -399,7 +379,6 @@ public class playerHp : MonoBehaviourPun //,IPunObservable
         FPSUnityChan.SetActive(true);                       // 1인칭 유니티짱 키기
 
     }
-
     #region 플레이어 부활
     private void ReStart()
     {

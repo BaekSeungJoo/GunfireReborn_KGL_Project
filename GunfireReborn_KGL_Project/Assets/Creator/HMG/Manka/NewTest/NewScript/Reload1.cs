@@ -9,10 +9,10 @@ public class Reload1 : MonoBehaviour
     public GameObject playerGun;
     public Transform weaponPosition;
     private bool isReloading;
-
+    private Animator animator;
     private void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -20,7 +20,8 @@ public class Reload1 : MonoBehaviour
         {
 
             // 총을 천천히 아래로 내리는 코루틴을 시작합니다.
-            StartCoroutine(LowerGun());
+            //StartCoroutine(LowerGun());
+            animator.SetTrigger("Reload");
         }
     }
     private void Search()

@@ -9,13 +9,20 @@ public class Reload : MonoBehaviour
     public GameObject playerGun;
     public Transform weaponPosition;
     private bool isReloading;
+    Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
     private void Update()
     {
         if (Input.GetButtonDown("Reload") && !isReloading)
         {
+            animator.SetTrigger("Reload");
             
             // 총을 천천히 아래로 내리는 코루틴을 시작합니다.
-            StartCoroutine(LowerGun());
+            //StartCoroutine(LowerGun());
         }
     }
     private void Search()
@@ -33,22 +40,35 @@ public class Reload : MonoBehaviour
  
     IEnumerator LowerGun()
     {
-        // 재장전 중인 상태로 설정합니다.
+        // 리로드 상태로 설정합니다.
         isReloading = true;
+        // 탐색을 수행합니다.
         Search();
+
         // 팔과 총을 천천히 아래로 내리는 처리를 구현합니다.
         float elapsedTime = 0f;
-        float duration = 0.5f; // 내리는 시간 (예: 3초)
+        float duration = 0.5f; // 내리는 시간
+
+        // 팔의 초기 로컬 위치를 저장합니다.
         Vector3 initialArmLocalPosition = playerGun.transform.localPosition;
+
+        // 아래로 팔을 내리기 위한 목표 로컬 위치를 계산합니다.
         Vector3 targetArmLocalPosition = initialArmLocalPosition - playerGun.transform.up * 0.5f; // 아래로 내리기
 
+        // 총의 초기 로컬 회전 값을 저장합니다.
         Quaternion initialGunLocalRotation = playerGun.transform.localRotation;
-        Quaternion targetGunLocalRotation = Quaternion.Euler(0f, -90f, -45f); // Z 축만 회전
+
+        // 총을 Z축 기준으로 회전시키기 위한 목표 로컬 회전 값을 계산합니다.
+        Quaternion targetGunLocalRotation = Quaternion.Euler(0f, -90f, -45f);
 
         while (elapsedTime < duration)
         {
             float t = elapsedTime / duration;
+
+            // 팔의 로컬 위치를 보간합니다.
             playerGun.transform.localPosition = Vector3.Lerp(initialArmLocalPosition, targetArmLocalPosition, t);
+
+            // 총의 로컬 회전을 보간합니다.
             playerGun.transform.localRotation = Quaternion.Slerp(initialGunLocalRotation, targetGunLocalRotation, t);
 
             elapsedTime += Time.deltaTime;
@@ -63,7 +83,11 @@ public class Reload : MonoBehaviour
         while (elapsedTime < duration)
         {
             float t = elapsedTime / duration;
+
+            // 팔의 로컬 위치를 다시 초기 위치로 보간합니다.
             playerGun.transform.localPosition = Vector3.Lerp(targetArmLocalPosition, initialArmLocalPosition, t);
+
+            // 총의 로컬 회전을 다시 초기 회전으로 보간합니다.
             playerGun.transform.localRotation = Quaternion.Slerp(targetGunLocalRotation, initialGunLocalRotation, t);
 
             elapsedTime += Time.deltaTime;

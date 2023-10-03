@@ -26,11 +26,16 @@ public class ItemGet1 : MonoBehaviourPun
     //레이가 맞은곳을 저장할변수
     Vector3 hitPosition = Vector3.zero;
 
+    public GameObject itemInfo;
+    public ItemInfoUI ItemInfo2;
+
     // Start is called before the first frame update
     void Start()
     {
         cam = FindObjectOfType<CinemachineVirtualCamera>();
         weaponManager = GetComponent<WeaponManager1>();
+        itemInfo = GameObject.Find("MainUICanvas").transform.GetChild(0).gameObject;
+        ItemInfo2 = itemInfo.GetComponent<ItemInfoUI>();
     }
 
     // Update is called once per frame
@@ -53,11 +58,14 @@ public class ItemGet1 : MonoBehaviourPun
             Debug.DrawRay(cam.transform.position, cam.transform.forward * rayDistance, Color.red);
             if (hitInfo.transform.CompareTag("weapon"))
             {
+                itemInfo.SetActive(true);
+                ItemInfo2.SetItemInfo();
                 GetItem();
             }
         }
         else
         {   //레이가 아무것도 맞지않은경우
+            itemInfo.SetActive(false);
             hitPosition = cam.transform.position + cam.transform.forward * rayDistance;
         }
     }
