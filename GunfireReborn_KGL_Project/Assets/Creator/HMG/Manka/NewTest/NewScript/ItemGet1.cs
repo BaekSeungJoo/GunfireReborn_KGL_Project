@@ -62,6 +62,10 @@ public class ItemGet1 : MonoBehaviourPun
                 ItemInfo2.SetItemInfo();
                 GetItem();
             }
+            else
+            {
+                itemInfo.SetActive(false);
+            }
         }
         else
         {   //레이가 아무것도 맞지않은경우
@@ -102,9 +106,7 @@ public class ItemGet1 : MonoBehaviourPun
              //일단은 임시적으로 아이템을 파괴하게 만들음
 
                 ChangeWeapon();
-                Debug.LogFormat("왜 안되는거야?");
                 Destroy(nearObject.gameObject);
-                Debug.LogFormat("파괴가 안된다고?");
             }
         }
     }
@@ -115,18 +117,16 @@ public class ItemGet1 : MonoBehaviourPun
         {
             if (weaponManager.slotWeapons[0] == null)
             {//만약 1번슬롯이 비어있다면  1번에 무기장착하도록함.
-                Debug.Log("1번슬롯에입장");
                 weaponManager.EquipWeapon(nearObject.name, 0);
             }
             else if (weaponManager.slotWeapons[1] == null)
             {//만약 2번슬롯이 비어있다면  2번에 무기장착하도록함.
-                Debug.Log("2번슬롯에입장");
                 weaponManager.EquipWeapon(nearObject.name, 1);
             }
             else
             {//만약 1,2,번 슬롯이 모두 있다면 지금현재 사용하고있는 슬롯의 무기와 교환하도록함.
-                Debug.Log("1,2번중 활성화된 슬롯에 입장");
-                weaponManager.EquipWeapon(nearObject.name, 99); //어차피 0과 1이외의 경우는 EquipWeapon에서 현재 활성화되어있는 슬롯을체크하고 그슬롯을 바꾸기때문에 상관없다고판단했다.
+                weaponManager.EquipWeapon(nearObject.name, 99); 
+                //어차피 0과 1이외의 경우는 EquipWeapon에서 현재 활성화되어있는 슬롯을체크하고 그슬롯을 바꾸기때문에 상관없다고판단했다.
             }
         }
 

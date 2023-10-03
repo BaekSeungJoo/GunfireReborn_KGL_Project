@@ -153,12 +153,14 @@ public class playerHp : MonoBehaviourPun
     private void MakeTrueRecoveryBar()
     {
         recoveryBarOB.SetActive(true);
+        ik.isIk = false;                                // 3인칭 ik false로 만들기
     }
 
     [PunRPC]
     private void MakeFalseRecoveryBar()
     {
         recoveryBarOB.SetActive(false);
+        ik.isIk = true;
     }
 
     #region 피격함수
@@ -234,7 +236,7 @@ public class playerHp : MonoBehaviourPun
         roation.enabled = false;                            // 회전스크립트를 false로 만든다.
 
         photonView.RPC("FalseWeapons", RpcTarget.All);      // 3인칭 무기 모두 false로 만들기
-        ik.isIk = false;                                // 3인칭 ik false로 만들기
+        
         FPSUnityChan.SetActive(false);                      // 1인칭 유니티짱 끄기
     }
 
@@ -248,7 +250,6 @@ public class playerHp : MonoBehaviourPun
         virtualCam.DestroyCinemachineComponent<CinemachineOrbitalTransposer>();
         roation.enabled = true;
         virtualCam.transform.position = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.8f, transform.localPosition.z + 0.4f);
-        ik.isIk = true;
         ik.ChangeIK("Pistol");
         isturnPlay = true;
     }
@@ -377,7 +378,6 @@ public class playerHp : MonoBehaviourPun
         state = State.play;                                 // 플레이어의 스테이트를 play로 만든다.
         weapon.GetChild(0).gameObject.SetActive(true);      // 3인칭웨폰을 활성화 한다.
         FPSUnityChan.SetActive(true);                       // 1인칭 유니티짱 키기
-
     }
     #region 플레이어 부활
     private void ReStart()

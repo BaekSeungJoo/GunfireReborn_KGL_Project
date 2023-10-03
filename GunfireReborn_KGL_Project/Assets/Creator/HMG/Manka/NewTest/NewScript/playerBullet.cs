@@ -68,7 +68,6 @@ public class playerBullet : MonoBehaviourPun
             }
         }
 
-
         if(other.CompareTag("DropNormalBullet"))
         {
             if (Vector3.Distance(transform.position, other.transform.position) < activeFalseDistance)

@@ -261,14 +261,11 @@ public class WeaponManager1 : MonoBehaviourPun
                 if (Equip_weapons[i].name == weaponName)
                 {
                     photonView.RPC("LastChange_T", RpcTarget.All, i);
-                    //Equip_weapons[i].SetActive(true);
-                    Debug.LogFormat("{0},{1}", Equip_weapons[i].name, Front_weapons[i].name);
                     Front_weapons[i].SetActive(true);
                 }
                 else
                 {
                     photonView.RPC("LastChange_F", RpcTarget.All, i);
-                    //Equip_weapons[i].SetActive(false);
                     Front_weapons[i].SetActive(false);
                 }
             }
@@ -300,23 +297,10 @@ public class WeaponManager1 : MonoBehaviourPun
         if (photonView.IsMine)
         {
             yield return new WaitForSeconds(0.6f); // 0.6초 대기
-
             //또한 먹은아이템의 이름을 확인해서 IK로 바꾼다.
             playerIK.ChangeIK(weaponName);
-            //Debug.Log("format1");
-            //1인칭시점의 IK또한바꿔준다.
             frontIK.ChangeIK(weaponName);
-            //Debug.Log("format2");
-
-            //아닌 것들을 모두 false로 바꾸고 맞는것무기는 true로 바꾼다.
-
-            //photonView.RPC("TurnWeapon", RpcTarget.All, weaponName);
-
-            // =============== Legacy : Shin =====================
-
             TurnWeapon(weaponName);
-
-            // =============== Legacy : Shin =====================
         }
 
     }

@@ -44,7 +44,7 @@ public class Reload1 : MonoBehaviour
         Search();
         // 팔과 총을 천천히 아래로 내리는 처리를 구현합니다.
         float elapsedTime = 0f;
-        float duration = 0.5f; // 내리는 시간 (예: 3초)
+        float duration = 0.5f; // 내리는 시간
         Vector3 initialArmLocalPosition = playerGun.transform.localPosition;
         Vector3 targetArmLocalPosition = initialArmLocalPosition - playerGun.transform.up * 0.5f; // 아래로 내리기
 

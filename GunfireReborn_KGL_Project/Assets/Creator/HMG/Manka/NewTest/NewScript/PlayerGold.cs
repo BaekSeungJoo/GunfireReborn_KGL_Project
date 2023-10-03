@@ -42,7 +42,6 @@ public class PlayerGold : MonoBehaviourPun
             {
                 other.gameObject.SetActive(false);
                 Gold += 5;
-                // 플레이어 쪽에서 해당 아이템을 먹었을 때 실행하는 로직
             }
         }
     }
