@@ -1,2 +1,15 @@
-# GunfireReborn_KGL_Project
-GunfireReborn_KGL_Project 23/09/06 ~ 23/09/27
+# GunfireReborn_Project
+
+## 🖥️ 프로젝트 소개
+Steam 게임 건파이어 리본을 모작한 프로젝트 입니다.
+포톤 네트워크를 붙혀 멀티 플레이 게임을 제작해보았습니다.
+<br>
+
+## 🕰️ 개발 기간
+* 23/09/06 ~ 23/09/27
+   
+### ⚙️ 개발 환경
+- Unity   : 2021.3.27f1
+- IDE     : Visual Studio 2022
+- 목표타겟 : PC
+
